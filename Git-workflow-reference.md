@@ -24,7 +24,7 @@ Step 9: git push origin <branch name>
 
 Step 10: git checkout staging
 
-Step 11: git merge origin <branch name>
+Step 11: git merge origin <branch name> or git pull origin staging to update local staging branch
 
 [ Team will review staging branch then merge into master]
 
