@@ -20,3 +20,4 @@ Redesign Apartment Hunt’s current website utilizing modern technologies.
 
 npm start: Run this to start server running on port 3000. BE ADVISED - this command __does not__ run nodemon!
 npm run build: Run this script to compile webpack running in watch mode.
+npm test: Run this script to run __all__ test. Jest automatically looks for files with 'compenent'.test.js formating
