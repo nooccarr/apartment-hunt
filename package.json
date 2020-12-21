@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "node server/app.js",
-    "build": "npx webpack --config webpack.config.js --watch"
+    "build-dev": "npx webpack --mode development --config webpack.config.js --watch",
+    "build-prod": "npx webpack --mode production --config webpack.config.js --watch"
   },
   "repository": {
     "type": "git",
