@@ -11,7 +11,7 @@ class Description extends React.Component {
 
     render () {
         return (
-            <div className='description'>
+            <>
                 <div className='desMain'>
                     <div className='desDetail'>tbd</div>
                     <div className='desAct'>tbd</div>
@@ -22,7 +22,7 @@ class Description extends React.Component {
                     <div className='criteria'>Dining</div>
                     <div className='criteria'>Crime</div>
                 </div>
-            </div>
+            </>
         )
     }
 }
