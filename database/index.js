@@ -10,7 +10,8 @@ let apartmentSchema = mongoose.Schema({
     dogs: Boolean,
     price: Number,
     sqft: Number,
-    agent: String
+    agent: String,
+    neighborhood: String
 });
 
 let Apartment = mongoose.model('Apartment', apartmentSchema);
