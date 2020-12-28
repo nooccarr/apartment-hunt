@@ -5,12 +5,11 @@
 .desContainer {
   position: absolute;
   margin-right: 0px auto;
-  justify-content: center;
+  justify-content: left;
   display: flex;
   padding: 20px;
-  background-color: blue;
-  width: 100%;
   bottom: 70px;
+  left: -83px;
 }
 
 .criteria {
@@ -27,7 +26,6 @@
 }
 
 .desMain {
-  background-color: green;
   width: 100%;
   height: 520px;
   display: flex;
@@ -41,7 +39,6 @@
 
 .desDetail {
   background-color: white;
-  border: solid black;
   order: 0;
   flex: 2 1 auto;
   align-self: auto;
@@ -49,8 +46,88 @@
 
 .desAct {
   background-color: white;
-  border: solid black;
   order: 0;
   flex: 1 1 auto;
+  align-self: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-end;
+  align-items: center;
+}
+
+.contactAgent {
+  color: pink;
+  font-size: 45px;
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  padding-top: 20px;
+}
+
+.subApp {
+  color: pink;
+  font-size: 45px;
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  padding-top: 20px;
+}
+
+.desDetail {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+}
+
+.desAddress {
+  font-size: 35px;
+  color: pink;
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+}
+
+.desAptDet {
+  font-size: 35px;
+  color: pink;
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: stretch;
+}
+
+.desEle1 {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+}
+
+.desEle2 {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+}
+
+.desEle3 {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+}
+
+.desDes {
+  background-color: pink;
+  color: white;
+  order: 0;
+  flex: 3 1 auto;
   align-self: auto;
 }
