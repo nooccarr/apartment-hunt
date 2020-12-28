@@ -81,3 +81,33 @@ span {
   text-decoration: none !important;
   color: #555;
 }
+
+@media only screen and (max-width: 1273px) {
+  .title-signup {
+    font-size: 20px;
+  }
+
+  .input-label-signup {
+    font-size: 10px;
+  }
+
+  .or-group-signup {
+    font-size: 10px;
+  }
+
+  .login-btn-signup {
+    font-size: 10px !important;
+    padding: 3px 30px !important;
+    line-height: 30px !important;
+  }
+
+  .google-icon-signup {
+    padding: 6px;
+  }
+
+  .admin-link-btn-signup {
+    font-size: 10px !important;
+    padding: 3px 30px !important;
+    line-height: 30px !important;
+  }
+}

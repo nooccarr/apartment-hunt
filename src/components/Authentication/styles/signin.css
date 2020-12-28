@@ -153,3 +153,41 @@ span {
 .back-signin {
   transform: rotateY(180deg);
 }
+
+@media only screen and (max-width: 1273px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .input-label {
+    font-size: 10px;
+  }
+
+  .or-group {
+    font-size: 10px;
+  }
+
+  .login-btn {
+    font-size: 10px !important;
+    padding: 3px 30px !important;
+    line-height: 30px !important;
+  }
+
+  .google-icon {
+    padding: 6px;
+  }
+
+  .admin-link-btn {
+    font-size: 10px !important;
+    padding: 3px 30px !important;
+    line-height: 30px !important;
+  }
+
+  .sign-up-link {
+    margin-top: 80px;
+  }
+
+  .sign-up-account {
+    margin-top: 10px;
+  }
+}
