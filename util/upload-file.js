@@ -2,9 +2,9 @@ const S3 = require('aws-sdk/clients/s3');
 
 
 
-const ID = 'AKIAI3L7HBNGPU62UHFA';
-const SECRET = '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';
-const BUCKET_NAME = 'nate-pruitt-test-bucket-0001';
+const ID = '';
+const SECRET = '';
+const BUCKET_NAME = '';
 
 const s3 = new S3({
   accessKeyId: ID,
