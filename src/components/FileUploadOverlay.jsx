@@ -12,7 +12,6 @@ const FileUploadOverlay = () => {
   }
 
 
-
   return (
     <div>
       <div onClick={() => {updateOverlay()}}>
