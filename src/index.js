@@ -5,4 +5,4 @@ import css from '../dist/styles/styles.css'
 import FileUpload from './components/FileUpload.jsx';
 import FileUploadOverlay from './components/FileUploadOverlay.jsx'
 
-ReactDOM.render(<FileUploadOverlay />, document.getElementById('app'));
+ReactDOM.render(<FileUpload />, document.getElementById('app'));
