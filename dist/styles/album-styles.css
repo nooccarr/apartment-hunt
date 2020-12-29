@@ -1,0 +1,17 @@
+.album {
+    position: relative;
+    width: 700px;
+    height: 450px;
+    background-color: gray;
+    margin: auto;
+}
+.options {
+    position: absolute;
+    color: white;
+    text-decoration: underline;
+    text-shadow: 1px 1px 1px black;
+    user-select: none;
+}
+.options:hover {
+    color: aqua;
+}
