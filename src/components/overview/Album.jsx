@@ -14,7 +14,7 @@ class Album extends React.Component {
     display (option) {
         switch (option) {
             case 'Photo Album':
-                return this.carousel;
+                return this.carousel();
             case 'Virtual Tour':
                 return this.matterport();
             case 'Video Tour':
@@ -28,7 +28,7 @@ class Album extends React.Component {
     }
 
     carousel () {
-        return <div>
+        return <div className="carousel">
             carousel condiminium
         </div>
     }
