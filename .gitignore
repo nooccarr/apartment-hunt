@@ -105,7 +105,4 @@ dist/bundle.js.LICENSE.txt
 
 # TernJS port file
 .tern-port
-173142_1.txt:Zone.Identifier
-database/173142_1.json
-firstApt.json
-sxecondApt.json
+database/173142_1.txt
