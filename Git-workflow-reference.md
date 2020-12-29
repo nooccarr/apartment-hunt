@@ -1,53 +1,70 @@
 Thanks Dylan!
 
-Step 1: navigate to your local repo in VS code
+## Step 1:
 
-Step 2:  git <branch>    => <branch> indicates which branch you are on
+- navigate to your local repo in VS code
 
-Step 3: git checkout staging    => if not already on staging branch
+## Step 2:
 
-Step 4: git checkout -b <branch name>   => creates a new branch off of staging
+- git [ your branch ] => [ *branch ] indicates which branch you are on
 
-Step 5: do some work on your local repo
-[ when you are ready to commit  ]
+## Step 3:
 
-Step 6: git add . 
+- git checkout staging => if not already on staging branch
 
-Step 7: git status     
+## Step 4:
 
-Step 8:  git commit -m ‘<message>’
+- git checkout -b [ your branch ] => creates a new branch off of staging
 
-Step 9: git push origin <branch name>
+## Step 5: do some work on your local repo
 
-[ Go to GitHub and open a new pull request for your branch]
-[base: staging  compare: <branch name> ]
+- [ when you are ready to commit ]
 
-Step 10: git checkout staging
+## Step 6:
 
-Step 11: git merge origin <branch name> or git pull origin staging to update local staging branch
+- git add .
 
-[ Team will review staging branch then merge into master]
+## Step 7:
 
-Step 12: DELETING FEATURE BRANCHES
+- git status
 
-list remote branches
+## Step 8:
 
-  git branch -r
+- git commit -m ‘[ message ]’
 
-Delete local branch
+## Step 9:
 
-  git branch -d <branch name>
+- git push origin [ your branch ] => NOT main branch
 
-Delete remote branch
+## [ Go to GitHub and open a new pull request for your branch]
 
-  git push --delete origin <branch name>
+- [base: STAGING compare: [ your branch ] ]
 
-Remove unneeded remote tracking branches 
+## Step 10:
 
-  git remote prune origin <branch name>
+- git checkout staging
 
+## Step 11:
 
+- git merge origin [ your branch ] or git pull origin staging to update local
+  staging branch
 
+- [ Team will review staging branch then merge into main]
 
+## DELETING FEATURE BRANCHES
 
+## list remote branches
 
+- git branch -r
+
+## Delete local branch
+
+- git branch -d [ your branch ]
+
+## Delete remote branch
+
+- git push --delete origin [ your branch ]
+
+## Remove unneeded remote tracking branches
+
+- git remote prune origin [ your branch ]
