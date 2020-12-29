@@ -9,9 +9,6 @@ class Album extends React.Component {
             selection: 'Photo Album',
             options: ['Photo Album','Virtual Tour','Video Tour'],
             images: [],
-            liftGallery: '',
-            galleryTop: 0,
-            galleryLift: 0,
             current: 0
         }
     }
@@ -21,8 +18,7 @@ class Album extends React.Component {
         imgs = imgs.concat(imgs);
         imgs = imgs.concat(imgs);
         imgs = imgs.concat(imgs);
-        var lift = imgs.length > 10 ? 60 : 0;
-        this.setState({images: imgs, galleryTop: lift, galleryLift: lift});
+        this.setState({images: imgs});
     }
 
     display (option) {
@@ -44,10 +40,8 @@ class Album extends React.Component {
     shift (way, e) {
         var current = this.state.current;
         if (way === null) {
-            console.log('shifting to ', e.target.id);
             current = Number(e.target.id);
         } else {
-            console.log('shifting', way ? 'right' : 'left');
             if (current === 0 && !way) {
                 current = this.state.images.length - 1;
             } else if (current === this.state.images.length - 1 && way) {
@@ -56,7 +50,6 @@ class Album extends React.Component {
                 current += way ? 1 : -1;
             }
         }
-        console.log(current);
         this.setState({current: current});
         }
 
@@ -66,24 +59,13 @@ class Album extends React.Component {
             <img className="main-image" src={this.state.images[this.state.current]}/>
             <div className="arrow right" onClick={() => this.shift(true)}/>
             <div className="arrow left" onClick={() => this.shift(false)}/>
-            <div className="gallery-container"
-                style={{top: 390 - this.state.galleryTop,
-                        height: 60 + this.state.galleryTop}}
-                onMouseEnter={this.state.galleryLift === this.state.galleryTop ? 
-                    () => this.setState({liftGallery: ' lift'}) : null}
-                onMouseLeave={this.state.galleryLift === 0 ?
-                    () => this.setState({liftGallery: ' drop'}): null}
-                onAnimationEnd={() => this.setState({
-                    galleryLift: this.state.liftGallery === ' lift' ? 0 : this.state.galleryTop,
-                    liftGallery: ''})}>
-                <div className={`gallery-carousel${this.state.liftGallery}`} style={this.state.images.length < 11 ? 
-                    {left: 300 - 30 * this.state.images.length} : {top: this.state.galleryLift, left: 0, width: 600}}>
+            <div className="gallery-container">
                     {_.map(this.state.images, (src) => {
                         j++;
                         return <img key={j} id={j} className="gallery-photo"
+                            style={j === this.state.current ? {opacity: 1} : {}}
                             src={src} onClick={(e) => this.shift(null, e)}/>
                     })}
-                </div>
             </div>
         </div>
     }

@@ -10,7 +10,6 @@
     width: 700px;
     height: 450px;
     margin: auto;
-    border: 1px solid red;
 }
 .options {
     position: absolute;
@@ -27,11 +26,10 @@
 .carousel {
     position: absolute;
     width: 700px;
-    height: 450px;
-    background-color: gray;
 }
 .main-image {
     width: 700px;
+    height: 450px;
 }
 .arrow {
     position: absolute;
@@ -56,30 +54,11 @@
 }
 .gallery-container {
     position: absolute;
-    left: 50px;
-    width: 600px;
-    overflow-y: auto;
-}
-.gallery-carousel {
-    position: absolute;
-    height: 60px;
-}
-.lift {
-    animation: liftGallery 0.5s forwards;
-}
-.drop {
-    animation: dropGallery 0.5s forwards;
-}
-@keyframes liftGallery {
-    from {top: 50%;}
-    to {top: 0%;}
-}
-@keyframes dropGallery {
-    from {top: 0%;}
-    to {top: 50%;}
+    top: 455px;
+    width: 700px;
 }
 .gallery-photo {
-    padding: 10px;
+    padding: 5px;
     height: 40px;
     width: 40px;
     opacity: .5;
