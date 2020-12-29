@@ -15,7 +15,11 @@ for (var i = 0; i < aptLength; i++) {
     apt.city = allApts[i].city;
     apt.country = allApts[i].country;
     apt.description = allApts[i].descriptions[0].value;
-    apt.sqft = allApts[i].floorSizeValue;
+    if (allApts[i].floorSizeValue !== undefined) {
+        apt.sqft = allApts[i].floorSizeValue;
+    } else {
+        apt.sqft = 1000;
+    }
     apt.latitude = allApts[i].latitude;
     apt.longitude = allApts[i].longitude;
     if (allApts[i].listingName !== undefined) {
