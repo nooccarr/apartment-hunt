@@ -16,6 +16,9 @@ body {
   background-size: cover;
 }
 
+.homepage-container {
+  z-index: 1;
+}
 .container {
   position: relative;
   display: flex;
@@ -29,23 +32,27 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 1.25rem;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .Logo {
   font-family: "Arizonia", cursive;
   font-size: 6rem;
   line-height: 8rem;
+  font-weight: lighter;
   text-align: center;
   color: #ffffff;
+  cursor: default;
 }
 
 .Slogan {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 4rem;
   text-align: center;
   padding: 0 10px 45px 10px;
   color: #ffffff;
+  cursor: default;
 }
 
 .search-container {
@@ -57,7 +64,7 @@ body {
 }
 
 .search-bar {
-  width: 44rem;
+  width: 54rem;
   max-width: 100%;
   height: 2.5rem;
   padding: 0 1rem; 
@@ -78,4 +85,5 @@ body {
   position: relative;
   left: -30px;
   transition: all 0.1s ease-in-out;
+  cursor: pointer;
 }
