@@ -13,8 +13,8 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        {/* I love <span className='pink'>pink!</span>
-        I love my dog teddy! */}
+        I love <span className='pink'>pink!</span>
+        I love my dog teddy!
         <Overview/>
       </div>
     )

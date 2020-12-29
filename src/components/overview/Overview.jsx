@@ -1,5 +1,6 @@
 import React from 'react';
 import Description from './Description.jsx'
+import Album from './Album.jsx';
 
 class Overview extends React.Component {
     constructor(props) {
@@ -16,6 +17,8 @@ class Overview extends React.Component {
         return (
         <div>
             <Description/>
+            this is the overview
+            <Album/>
         </div>
         )
     }
