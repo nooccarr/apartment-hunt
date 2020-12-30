@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import regeneratorRuntime from "regenerator-runtime";
-import searchicon from '../styles/images/search-icon.png'
-import pinkmarker from '../styles/images/pink-marker.png'
+import searchicon from './styles/images/search-icon.png'
+import pinkmarker from './styles/images/pink-marker.png'
 
 const HomePageSearch = () => {
-  const [address, setAddress] = React.useState('');
-  const [coordinates, setCoordinates] = React.useState({
+  const [address, setAddress] = useState('');
+  const [coordinates, setCoordinates] = useState({
     lat: null,
     lng: null,
   });
 
-  const handleSelect = async value => {
+  const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     setAddress(value);
@@ -50,7 +50,7 @@ const HomePageSearch = () => {
   return (
     <>
       <div>
-        <PlacesAutoComplete 
+        <PlacesAutoComplete
           value={address}
           onChange={setAddress}
           onSelect={handleSelect}
@@ -82,11 +82,11 @@ const HomePageSearch = () => {
                 })}
               </div>
             </div>
-            )}
+          )}
         </PlacesAutoComplete>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default HomePageSearch;

@@ -3,45 +3,45 @@
 
 @font-face {
   font-family: "quentinregular";
-  src: url("fonts/Quentin.otf") format("opentype");
+  src: url("../../pages/styles/fonts/Quentin.otf") format("opentype");
   font-style: normal;
 }
 
 @font-face {
   font-family: "herbariumregular";
-  src: url("fonts/Herbarium.otf") format("opentype");
+  src: url("../../pages/styles/fonts/Herbarium.otf") format("opentype");
   font-style: normal;
 }
 
 @font-face {
   font-family: "barcelonyregular";
-  src: url("fonts/Barcelony.otf") format("opentype");
+  src: url("../../pages/styles/fonts/Barcelony.otf") format("opentype");
   font-style: normal;
 }
 
 @font-face {
   font-family: "comic-sans";
-  src: url("fonts/LDFComicSans.otf") format("opentype");
+  src: url("../../pages/styles/fonts/LDFComicSans.otf") format("opentype");
   font-style: normal;
 }
 
-* {
+/* * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
+} */
 
 html {
-  background: url("./images/home-background.jpg") no-repeat center center fixed;
+  background: url('./images/home-background.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
-}
+} */
 
 /* .homepage-container {
   background: url("./images/home-background.jpg") no-repeat center center fixed;
@@ -73,7 +73,7 @@ html {
   font-family: "Raleway", sans-serif;
   /* font-family: 'comic-sans'; */
   font-size: 1.25rem;
-  color: #ffffff;
+  color: #000000;
   cursor: pointer;
 }
 
@@ -98,7 +98,8 @@ html {
   cursor: default;
 }
 
-.search-container, .search-list {
+.search-container,
+.search-list {
   display: flex;
   justify-content: center;
   align-items: center;
