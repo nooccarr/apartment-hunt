@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import axios from 'axios';
 import regeneratorRuntime from "regenerator-runtime";
 import searchicon from './styles/images/search-icon.png'
 import pinkmarker from './styles/images/pink-marker.png'
@@ -10,15 +11,17 @@ const HomePageSearch = () => {
     lat: null,
     lng: null,
   });
+  const [apartments, addApartments] = useState([]);
 
   const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     setAddress(value);
-    setCoordinates(latLng);
+    await setCoordinates(latLng);
+    // getNearby(coordinates);
   };
 
-  const consolelog = () => {
+  const startGeolocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(getCoordinates, handleError);
     } else {
@@ -47,6 +50,12 @@ const HomePageSearch = () => {
     }
   }
 
+  // const getNearby = (coordinates) => {
+  //   axios.get('/locations', { params: {coordinates} })
+  //     .then(({ data }) => { addApartments(data)})
+  //     .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
+  // }
+
   return (
     <>
       <div>
@@ -62,7 +71,7 @@ const HomePageSearch = () => {
                   className='pink-marker' 
                   src={pinkmarker} 
                   alt='pink-marker'
-                  onClick={consolelog}
+                  onClick={startGeolocation}
                 />
                 <input className='search-bar'
                   {...getInputProps({placeholder: 'Enter an address, neighborhood, city, or ZIP code' })} 
@@ -72,10 +81,10 @@ const HomePageSearch = () => {
               <div className='search-list'>
                 {loading && <div className='search-suggestions'>Loading...</div>}
 
-                {suggestions.map(suggestion => {
+                {suggestions.map((suggestion, index) => {
                   return (
                     <>
-                      <div {...getSuggestionItemProps(suggestion)} className='search-suggestions' >
+                      <div {...getSuggestionItemProps(suggestion)} className='search-suggestions' key={index}>
                         {suggestion.description}
                       </div>
                     </>)
