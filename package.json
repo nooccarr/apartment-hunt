@@ -40,7 +40,6 @@
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "^0.13.7",
-    "resolve-cwd": "^3.0.0",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "styled-components": "^5.2.1"
