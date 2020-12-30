@@ -33,7 +33,7 @@ class Album extends React.Component {
     }
 
     matterport () {
-        return <iframe width="700" height="450" frameBorder="0" allowFullScreen allow="xr-spatial-tracking"
+        return <iframe width="900" height="500" frameBorder="0" allowFullScreen allow="xr-spatial-tracking"
         src="https://my.matterport.com/show/?m=d25yC39miPY"></iframe>
     }
 
@@ -73,15 +73,17 @@ class Album extends React.Component {
     render () {
         var i = -1;
         return (
+            <div className="album-container" style={{height: 555 + 50*Math.floor(this.state.images.length / 18)}}>
         <div className="album">
             {_.map(this.state.options, (option) => {
                 i++;
-                return <a className="options" key={option} style={{left: 400 + 110 * i}}
+                return <a className="options" key={option} style={{left: 600 + 110 * i}}
                     onClick={() => this.setState({selection: option})}>
                         {option}
                     </a>
             })}
             {this.display(this.state.selection)}
+        </div>
         </div>
         )
     }
