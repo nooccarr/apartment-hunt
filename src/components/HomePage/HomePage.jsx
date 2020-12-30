@@ -36,9 +36,8 @@ const HomePage = ({ setSearchValue }) => {
               Smarter apartment search. Quality apartments you'll want to rent.
             </p>
           </div>
-          <HomePageSearch />
+          <HomePageSearch setSearchValue={ setSearchValue } />
         </div>
- <HomePageSearch setSearchValue={ setSearchValue } />
       </div>
     </div>
   );
