@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Login, LoginModal } from '../Authentication/index';
 import HomePageSearch from './Search.jsx';
 import './styles/homelogin.css';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 const HomePage = () => {
   const [clickedLogin, setClickedLogin] = useState(false);
@@ -38,6 +39,10 @@ const HomePage = () => {
         <HomePageSearch />
       </div>
       <div className='button-container'></div>
+
+      <a>
+      <Link to='/apartment'>Stuff</Link>
+      </a>
     </div>
   );
 };

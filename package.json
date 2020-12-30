@@ -37,11 +37,7 @@
     "react-icons": "^4.1.0",
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.2.0",
-<<<<<<< HEAD
-=======
     "regenerator-runtime": "^0.13.7",
-    "resolve-cwd": "^3.0.0",
->>>>>>> 9ba3c362934494a862e91d841fccf403f20534cf
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
