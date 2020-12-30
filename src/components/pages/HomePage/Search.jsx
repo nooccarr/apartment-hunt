@@ -49,8 +49,6 @@ const HomePageSearch = () => {
 
   return (
     <>
-      {console.log(address)}
-      {console.log(coordinates)}
       <div>
         <PlacesAutoComplete 
           value={address}
