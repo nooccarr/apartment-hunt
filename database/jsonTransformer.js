@@ -20,8 +20,7 @@ for (var i = 0; i < aptLength; i++) {
     } else {
         apt.sqft = 1000;
     }
-    apt.latitude = allApts[i].latitude;
-    apt.longitude = allApts[i].longitude;
+    apt.position = {type: "Point", coordinates: [parseFloat(allApts[i].longitude), parseFloat(allApts[i].latitude)]}
     if (allApts[i].listingName !== undefined) {
         apt.listingName = allApts[i].listingName;
       } else {
@@ -36,7 +35,7 @@ for (var i = 0; i < aptLength; i++) {
         }
         apt.price = price;
       } else {
-        apt.price = "1234";
+        apt.price = 1234;
       }
     apt.pics = allApts[i].imageURLs;
     petsOk = Math.random();
