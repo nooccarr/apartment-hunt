@@ -1,6 +1,13 @@
 import React from 'react'
-import Overview from './overview/Overview.jsx'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
+import Overview from './overview/Overview.jsx'
+import About from './overview/aboutus.jsx';
+import '../../dist/styles/styles.css';
 
 class App extends React.Component {
   constructor(){
@@ -12,11 +19,22 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
+    <Router>
+      <Switch>
+        <Route  path="/aboutus">
+          <About/>
+        </Route>
+        <Route path="/">
+          <Overview/>
+        </Route>  
+      </Switch>
+    </Router>
+      /* {<div>
         I love <span className='pink'>pink!</span>
         I love my dog teddy!
         <Overview/>
-      </div>
+      </div>} */
+      
     )
 
   }
