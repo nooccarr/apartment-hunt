@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import HomePageSearchFilters from './Filters.jsx'
+// import HomePageSearchFilters from './Filters.jsx'
 import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import regeneratorRuntime from "regenerator-runtime";
 import searchicon from '../styles/images/search-icon.png'
@@ -10,7 +10,7 @@ const HomePageSearch = () => {
     lat: null,
     lng: null,
   });
-  const [filters, setFilters] = React.useState(false);
+  // const [filters, setFilters] = React.useState(false);
 
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
@@ -19,40 +19,47 @@ const HomePageSearch = () => {
     setCoordinates(latLng);
   };
 
-  const changeFilterStatus = () => {
-    setFilters(!filters);
-  }
+  // const changeFilterStatus = () => {
+  //   setFilters(!filters);
+  // }
+
+  // const closeFilters = () => {
+  //   setFilters(false);
+  // }
 
   return (
     <>
-      <PlacesAutoComplete 
-        value={address}
-        onChange={setAddress}
-        onSelect={handleSelect}
-      >
-        {({ getInputProps, suggestions, loading }) => (
-          <div>
-            <div className='search-container'>
-              <input className='search-bar'
-                {...getInputProps({placeholder: 'Enter an address, neighborhood, city, or ZIP code' })} 
-              />
-              <span className='search-filters' onClick={changeFilterStatus}>Filters</span>
-              <img className='search-icon' onClick={handleSelect} src={searchicon} alt='search-icon'/>
+      {console.log(address)}
+      <div>
+        <PlacesAutoComplete 
+          value={address}
+          onChange={setAddress}
+          onSelect={handleSelect}
+        >
+          {({ getInputProps, suggestions, loading }) => (
+            <div>
+              <div className='search-container'>
+                <input className='search-bar' 
+                // onClick={closeFilters}
+                  {...getInputProps({placeholder: 'Enter an address, neighborhood, city, or ZIP code' })} 
+                />
+                {/* <span className='search-filters' onClick={changeFilterStatus}>Filters</span> */}
+                <img className='search-icon' onClick={handleSelect} src={searchicon} alt='search-icon'/>
+              </div>
+              <div className='search-list'>
+                {loading && <div className='search-suggestions'>Loading...</div>}
+                {suggestions.map(suggestion => {
+                  return (
+                    <div className='search-suggestions'>
+                        {suggestion.description}
+                    </div>)
+                })}
+              </div>
             </div>
-            <div className='search-list'>
-              {loading && <div className='search-suggestions'>Loading...</div>}
-              {suggestions.map(suggestion => {
-                return (
-                  <div className='search-suggestions'>
-                      {suggestion.description}
-                  </div>)
-              })}
-            </div>
-          </div>
-          )}
-      </PlacesAutoComplete>
-      <HomePageSearchFilters />
-      {/* {filters ? <HomePageSearchFilters /> : null} */}
+            )}
+        </PlacesAutoComplete>
+        {/* {filters ? <HomePageSearchFilters /> : null} */}
+      </div>
     </>
   )
 }

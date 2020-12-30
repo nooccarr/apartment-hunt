@@ -1,42 +1,43 @@
 import React, { useState } from 'react';
 
 const HomePageSearchFilters = () => {
+
+  const consolelog = () => {
+    console.log('hello world')
+  }
   return (
     <>
-      <div className="filter-container">
-        chris
+      <form className='filter-container' onSubmit={consolelog}>
+        <label>
+          Bedrooms:
+          <select value={'Choose Amount'} onChange={consolelog}>
+            <option value="">Studio</option>
+            <option value="1">1 or more</option>
+            <option value="2">2 or more</option>
+            <option value="3">3 or more</option>
+            <option value="4">4 or more</option>
+          </select>
+        </label>
+        <label>
+          Bathrooms:
+          <select value={'Choose Amount'} onChange={consolelog}>
+            <option value="1">1 or more</option>
+            <option value="2">2 or more</option>
+            <option value="3">3 or more</option>
+            <option value="4">4 or more</option>
+          </select>
+        </label>
 
-      </div>
-      {/* <div class="radio-group">
         <div>
-          <input className='radio-button' type="radio" name="Buy" />
-          <label className='radio-name'>Buy</label>
+          <label>
+            Price Range:
+            <input/>
+            {' - '}
+            <input/>
+          </label>
         </div>
-        <div>
-          <input className='radio-button' type="radio" name="Rent" />
-          <label className='radio-name'>Rent</label>
-        </div>
-      </div>
-
-      <div>
-        Bedrooms
-
-      </div>
-      <div>
-        Bathrooms
-
-      </div>
-      <div class="radio-group">
-        Price Range
-        <div>
-          <input className='radio-button' type="radio" name="Buy" />
-          <label className='radio-name'>Buy</label>
-        </div>
-        <div>
-          <input className='radio-button' type="radio" name="Rent" />
-          <label className='radio-name'>Rent</label>
-        </div>
-      </div> */}
+        <input type='submit' value='Save' />
+      </form>
     </>
 
   )
