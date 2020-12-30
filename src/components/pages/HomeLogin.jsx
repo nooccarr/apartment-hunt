@@ -1,12 +1,11 @@
 import React from 'react';
-import LandingPage from '../Authentication/Login/Main';
-import './styles/homelogin.css';
+import HomePage from '../HomePage/HomePage';
 
 const HomeLogin = () => {
   return (
-    <div>
-      <LandingPage />
-    </div>
+    <>
+      <HomePage />
+    </>
   );
 };
 
