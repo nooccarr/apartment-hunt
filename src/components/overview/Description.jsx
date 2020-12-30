@@ -16,9 +16,9 @@ class Description extends React.Component {
                     <div className='desDetail'>
                         <div className='desAddress'>999 Unreal Ave, Brooklyn, NY, 11111</div>
                         <div className='desAptDet'>
-                            <div classname='desEle1'>PRICE</div>
-                            <div classname='desEle2'>BED</div>
-                            <div classname='desEle3'>BATH</div>
+                            <div className='desEle1'>PRICE</div>
+                            <div className='desEle2'>BED</div>
+                            <div className='desEle3'>BATH</div>
                         </div>
                         <div className='desDes'>Description</div>
                     </div>
