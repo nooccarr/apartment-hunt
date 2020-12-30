@@ -25,6 +25,7 @@ Apts.find().where('position').near({ center: [long, lat], maxDistance:  0.000047
     res.sendStatus(500);
   })
 }
+
 module.exports = {
   login,
   signup,

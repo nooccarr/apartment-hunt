@@ -1,5 +1,5 @@
 import React from 'react';
-import Filters from './filters';
+import Filters from './Filters';
 import GoogleMap from './GoogleMap';
 import Results from './Results';
 import './styles.scss';
