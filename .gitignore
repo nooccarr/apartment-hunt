@@ -106,3 +106,5 @@ dist/bundle.js.LICENSE.txt
 # TernJS port file
 .tern-port
 database/173142_1.txt
+# sercret keys
+server/auth/credentials.js
