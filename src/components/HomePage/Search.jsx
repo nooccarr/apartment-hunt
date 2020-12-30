@@ -4,7 +4,7 @@ import regeneratorRuntime from "regenerator-runtime";
 import searchicon from './styles/images/search-icon.png'
 import pinkmarker from './styles/images/pink-marker.png'
 
-const HomePageSearch = () => {
+const HomePageSearch = ({ setSearchValue }) => {
   const [address, setAddress] = useState('');
   const [coordinates, setCoordinates] = useState({
     lat: null,
@@ -14,6 +14,7 @@ const HomePageSearch = () => {
   const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
+    setSearchValue(value);
     setAddress(value);
     setCoordinates(latLng);
   };
