@@ -6,6 +6,7 @@ const { router } = require('./routes/route');
 const app = express();
 const PORT = 3000;
 
+
 // Serve static assets from 'dist' folder
 app.use('(/apartment)?', express.static(path.join(__dirname, '../dist')));
 app.use(parser.json());

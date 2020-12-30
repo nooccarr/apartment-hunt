@@ -10,5 +10,5 @@ let user = new Schema({
 });
 
 let User = mongoose.model('user', user);
-user.index({ id: 1 }, { uniqe: true }, { timestamps: true });
+user.index({ id: 1 }, { unique: true }, { timestamps: true });
 module.exports = User;
