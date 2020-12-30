@@ -17,9 +17,7 @@ class Overview extends React.Component {
 
         return (
         <div>
-            <div className="album-container">
-                <Album/>
-            </div>
+            <Album/>
             <Description/>
         </div>
         )
