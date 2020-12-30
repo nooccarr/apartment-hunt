@@ -1,15 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Arizonia&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Arizonia&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap');
 
-* {
+/* todo  */
+/* This effects other components when using the wildcard. Safer to stick with unqiue classnames * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
+} */
 
 html {
-  background: url("./images/home-background.jpg") no-repeat center center fixed;
+  background: url('./images/home-background.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -47,14 +48,14 @@ html {
 }
 
 .Sign-In {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1.25rem;
   color: #ffffff;
   cursor: pointer;
 }
 
 .Logo {
-  font-family: "Arizonia", cursive;
+  font-family: 'Arizonia', cursive;
   font-size: 6rem;
   line-height: 8rem;
   font-weight: lighter;
@@ -64,7 +65,7 @@ html {
 }
 
 .Slogan {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 1.5rem;
   line-height: 4rem;
   text-align: center;
@@ -73,7 +74,8 @@ html {
   cursor: default;
 }
 
-.search-container, .search-list {
+.search-container,
+.search-list {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,7 +87,7 @@ html {
   width: 100%;
   max-width: 54rem;
   height: 2.5rem;
-  padding: 1rem 1rem; 
+  padding: 1rem 1rem;
   border-radius: 0.25rem;
   border: none;
   box-shadow: 0 0.15px 5px 0.5px #888888;

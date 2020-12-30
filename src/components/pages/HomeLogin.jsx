@@ -1,12 +1,9 @@
 import React from 'react';
-import AuthLogin from '../Authentication/Login/Main';
-import HomePage from './HomePage/HomePage.jsx'
-import './styles/homelogin.css';
+import HomePage from '../HomePage/HomePage';
 
 const HomeLogin = () => {
   return (
     <>
-      {/* <AuthLogin /> */}
       <HomePage />
     </>
   );
