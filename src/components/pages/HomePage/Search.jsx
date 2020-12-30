@@ -18,6 +18,36 @@ const HomePageSearch = () => {
     setCoordinates(latLng);
   };
 
+  const consolelog = () => {
+    console.log('clicked')
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getCoordinates, handleError);
+    } else {
+      alert('Geolocation Not Available.')
+    }
+  }
+
+  const getCoordinates = (position) => {
+    setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude})
+  }
+
+  const handleError = (error) => {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        alert('User Denied Geolocation Permission.')
+        break;
+      case error.POSITION_UNAVAILABLE:
+        alert('Users Position Unavailable.')
+        break;
+      case error.TIMEOUT:
+        alert('User Location Request Timeout.')
+        break;
+      case error.UNKNOWN_ERROR:
+        alert('Unknown Error Has Ocurred With Geolocation.')
+        break;
+    }
+  }
+
   return (
     <>
       <div>
@@ -29,7 +59,12 @@ const HomePageSearch = () => {
           {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
             <div>
               <div className='search-container'>
-                <img className='pink-marker' src={pinkmarker} alt='pink-marker'/>
+                <img 
+                  className='pink-marker' 
+                  src={pinkmarker} 
+                  alt='pink-marker'
+                  onClick={consolelog}
+                />
                 <input className='search-bar'
                   {...getInputProps({placeholder: 'Enter an address, neighborhood, city, or ZIP code' })} 
                   />
