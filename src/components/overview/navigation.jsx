@@ -13,9 +13,9 @@ class Navigation extends React.Component {
 
 
     render () {
-
+ 
         return (
-      <div>
+      <div className="navheader">
         <div className="header" id="home">
        
         
@@ -46,7 +46,7 @@ class Navigation extends React.Component {
                 </div>
                 <div className="search-form">
                   <form method="get" action="/homelist" id="search" className="f-right">
-                    <input name="query" calssName="search-input" type="text" size="40" placeholder="Try to find your apartment" />
+                    <input name="query" className="search-input" type="text" size="40" placeholder="Try to find your apartment" />
                     <button type="submit" className="searchButton"> Search</button>
                   </form>
                 </div>
