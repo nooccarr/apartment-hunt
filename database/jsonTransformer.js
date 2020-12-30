@@ -6,7 +6,7 @@ let wholeStr = raw.toString();
 let validJSON = "[" + wholeStr.replace(/\n/g, ",") + "]";
 let allApts = JSON.parse(validJSON);
 let aptLength = allApts.length;
-fs.writeFileSync('aptClean.txt', '[');
+fs.writeFileSync('aptClean.json', '[');
 for (var i = 0; i < aptLength; i++) {
     let apt = {};
     apt.address = allApts[i].address;
@@ -60,7 +60,7 @@ for (var i = 0; i < aptLength; i++) {
     if (i !== aptLength - 1) {
         aptStr = aptStr + ',';
     }
-    fs.appendFileSync('aptClean.txt', aptStr);
+    fs.appendFileSync('aptClean.json', aptStr);
 }
-fs.appendFileSync('aptClean.txt', ']');
+fs.appendFileSync('aptClean.json', ']');
 console.log('success meow');
