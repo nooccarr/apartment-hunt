@@ -10,7 +10,6 @@
     width: 700px;
     height: 450px;
     margin: auto;
-    border: 1px solid red;
 }
 .options {
     position: absolute;
@@ -27,5 +26,43 @@
 .carousel {
     position: absolute;
     width: 700px;
+}
+.main-image {
+    width: 700px;
     height: 450px;
+}
+.arrow {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-right: 10px solid white;
+    border-bottom: 10px solid white;
+    opacity: 0.33;
+}
+.arrow:hover {
+    opacity: 1;
+}
+.right {
+    transform: rotate(-45deg);
+    right: 50px;
+    top: 190px;
+}
+.left {
+    transform: rotate(135deg);
+    left: 50px;
+    top: 190px;
+}
+.gallery-container {
+    position: absolute;
+    top: 455px;
+    width: 700px;
+}
+.gallery-photo {
+    padding: 5px;
+    height: 40px;
+    width: 40px;
+    opacity: .5;
+}
+.gallery-photo:hover {
+    opacity: 1;
 }
