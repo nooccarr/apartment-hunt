@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node server/app.js",
+    "start": "nodemon server/app.js",
     "build-dev": "npx webpack --mode development --config webpack.config.js --watch",
     "build-prod": "npx webpack --mode production --config webpack.config.js --watch"
   },
@@ -25,12 +25,22 @@
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+<<<<<<< HEAD
     "node-sass": "^5.0.0",
+=======
+    "mongoose": "^5.11.9",
+    "nodemon": "^2.0.6",
+>>>>>>> origin/staging
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.1.0",
+    "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.2.0",
+    "regenerator-runtime": "^0.13.7",
     "resolve-cwd": "^3.0.0",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",

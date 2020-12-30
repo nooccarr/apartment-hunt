@@ -105,6 +105,11 @@ dist/bundle.js.LICENSE.txt
 
 # TernJS port file
 .tern-port
+<<<<<<< HEAD
 
 # Google Maps API Key
 src/components/SearchResults/config/
+=======
+# sercret keys
+server/auth/credentials.js
+>>>>>>> origin/staging
