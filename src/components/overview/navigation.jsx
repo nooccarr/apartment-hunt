@@ -15,8 +15,8 @@ class Navigation extends React.Component {
     render () {
  
         return (
-      <div>
-        <div className="navheader" id="home">
+      <div className="navheader">
+        <div className="header" id="home">
        
         
           <div className="header_top">
