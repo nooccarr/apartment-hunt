@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-// import HomePageSearchFilters from './Filters.jsx'
-import PlacesAutoComplete, {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete';
-import regeneratorRuntime from 'regenerator-runtime';
-import searchicon from './styles/images/search-icon.png';
+import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import regeneratorRuntime from "regenerator-runtime";
+import searchicon from './styles/images/search-icon.png'
+import pinkmarker from './styles/images/pink-marker.png'
 
 const HomePageSearch = () => {
   const [address, setAddress] = useState('');
@@ -13,7 +10,6 @@ const HomePageSearch = () => {
     lat: null,
     lng: null,
   });
-  // const [filters, setFilters] = React.useState(false);
 
   const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
@@ -22,57 +18,72 @@ const HomePageSearch = () => {
     setCoordinates(latLng);
   };
 
-  // const changeFilterStatus = () => {
-  //   setFilters(!filters);
-  // }
+  const consolelog = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getCoordinates, handleError);
+    } else {
+      alert('Geolocation Not Available.')
+    }
+  }
 
-  // const closeFilters = () => {
-  //   setFilters(false);
-  // }
+  const getCoordinates = (position) => {
+    setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude})
+  }
+
+  const handleError = (error) => {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        alert('User Denied Geolocation Permission.')
+        break;
+      case error.POSITION_UNAVAILABLE:
+        alert('Users Position Unavailable.')
+        break;
+      case error.TIMEOUT:
+        alert('User Location Request Timeout.')
+        break;
+      case error.UNKNOWN_ERROR:
+        alert('Unknown Error Has Ocurred With Geolocation.')
+        break;
+    }
+  }
 
   return (
     <>
-      {console.log(address)}
       <div>
         <PlacesAutoComplete
           value={address}
           onChange={setAddress}
-          onSelect={handleSelect}>
-          {({ getInputProps, suggestions, loading }) => (
+          onSelect={handleSelect}
+        >
+          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
             <div>
               <div className='search-container'>
-                <input
-                  className='search-bar'
-                  // onClick={closeFilters}
-                  {...getInputProps({
-                    placeholder:
-                      'Enter an address, neighborhood, city, or ZIP code',
-                  })}
+                <img 
+                  className='pink-marker' 
+                  src={pinkmarker} 
+                  alt='pink-marker'
+                  onClick={consolelog}
                 />
-                {/* <span className='search-filters' onClick={changeFilterStatus}>Filters</span> */}
-                <img
-                  className='search-icon'
-                  onClick={handleSelect}
-                  src={searchicon}
-                  alt='search-icon'
-                />
+                <input className='search-bar'
+                  {...getInputProps({placeholder: 'Enter an address, neighborhood, city, or ZIP code' })} 
+                  />
+                <img className='search-icon' src={searchicon} alt='search-icon'/>
               </div>
               <div className='search-list'>
-                {loading && (
-                  <div className='search-suggestions'>Loading...</div>
-                )}
-                {suggestions.map((suggestion) => {
+                {loading && <div className='search-suggestions'>Loading...</div>}
+
+                {suggestions.map(suggestion => {
                   return (
-                    <div className='search-suggestions'>
-                      {suggestion.description}
-                    </div>
-                  );
+                    <>
+                      <div {...getSuggestionItemProps(suggestion)} className='search-suggestions' >
+                        {suggestion.description}
+                      </div>
+                    </>)
                 })}
               </div>
             </div>
           )}
         </PlacesAutoComplete>
-        {/* {filters ? <HomePageSearchFilters /> : null} */}
       </div>
     </>
   );
