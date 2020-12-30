@@ -1,27 +1,15 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
-import LandingPage from '../Authentication/Login/Main';
+import HomePage from '../HomePage/HomePage';
 import SearchResults from '../SearchResults/index';
-import './styles/homelogin.css';
+// import './styles/homelogin.css';
 
 const HomeLogin = () => {
 
-  const [searchValue, setSearchValue] = useState('a');
-  console.log(searchValue);
+  const [searchValue, setSearchValue] = useState(null);
+
   return searchValue 
     ? <SearchResults searchValue={ searchValue } setSearchValue={ setSearchValue } /> 
-    : <LandingPage setSearchValue={ setSearchValue } />;
-=======
-import React from 'react';
-import HomePage from '../HomePage/HomePage';
-
-const HomeLogin = () => {
-  return (
-    <>
-      <HomePage />
-    </>
-  );
->>>>>>> origin/staging
+    : <HomePage setSearchValue={ setSearchValue } />;
 };
 
 export default HomeLogin;
