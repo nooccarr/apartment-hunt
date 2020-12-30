@@ -3,7 +3,7 @@ import { Login, LoginModal } from '../Authentication/index';
 import HomePageSearch from './Search.jsx';
 import './styles/homelogin.css';
 
-const HomePage = () => {
+const HomePage = ({ setSearchValue }) => {
   const [clickedLogin, setClickedLogin] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -38,6 +38,7 @@ const HomePage = () => {
           </div>
           <HomePageSearch />
         </div>
+ <HomePageSearch setSearchValue={ setSearchValue } />
       </div>
     </div>
   );

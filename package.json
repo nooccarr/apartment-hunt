@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ApartmentHuntBlueOcean/ApartmentHunt#readme",
   "dependencies": {
     "@babel/preset-react": "^7.12.10",
+    "@googlemaps/js-api-loader": "^1.11.1",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
@@ -28,15 +29,20 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "node-sass": "^5.0.0",
     "mongoose": "^5.11.9",
     "nodemon": "^2.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "resolve-cwd": "^3.0.0",
+    "underscore": "^1.12.0",
     "react-icons": "^4.1.0",
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "^0.13.7",
     "resolve-cwd": "^3.0.0",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
