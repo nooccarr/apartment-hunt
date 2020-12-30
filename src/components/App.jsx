@@ -15,6 +15,7 @@ const App = () => {
           <PrivateRoute path='/admin' component={Admin} />
         </div>
       </Router>
+      <Overview/>
     </AuthContext.Provider>
   );
 };
