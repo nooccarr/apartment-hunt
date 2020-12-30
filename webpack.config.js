@@ -20,21 +20,6 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-<<<<<<< HEAD
-        use: ["style-loader", "css-loader"]
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-          },
-        ],
-      },
-    ]
-  }
-}
-=======
         use: ['style-loader', 'css-loader'],
       },
       {
@@ -63,4 +48,3 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
   },
 };
->>>>>>> overview
