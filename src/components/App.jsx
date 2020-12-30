@@ -2,21 +2,26 @@ import React from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import PrivateRoute from './Authentication/Auth/PrivateRoute';
 import { AuthContext } from './Authentication/Auth/AuthContext';
-import { HomeLogin, Admin, UserProfile } from './pages/index';
+import { HomeLogin, UserProfile } from './pages/index';
 import Overview from './overview/Overview.jsx';
 
 const App = () => {
   return (
-    <AuthContext.Provider value={true}>
+    <div>
       <Router>
         <div>
           <Route exact path='/' component={HomeLogin} />
           <Route exact path='/apartment' component={Overview}/>
-          <PrivateRoute path='/user' component={UserProfile} />
-          <PrivateRoute path='/admin' component={Admin} />
         </div>
       </Router>
-    </AuthContext.Provider>
+      <AuthContext.Provider value={true}>
+        <Router>
+          <div>
+            <PrivateRoute path='/user' component={UserProfile} />
+          </div>
+        </Router>
+      </AuthContext.Provider>
+    </div>
   );
 };
 
