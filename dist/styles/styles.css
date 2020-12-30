@@ -5,12 +5,12 @@
 }
 
 .desContainer {
-  position: absolute;
+  position: relative;
   margin-right: 0px auto;
   justify-content: left;
   display: flex;
   padding: 20px;
-  bottom: 70px;
+  bottom: 0px;
   left: -83px;
 }
 
