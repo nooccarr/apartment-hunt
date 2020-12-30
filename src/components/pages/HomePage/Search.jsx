@@ -19,7 +19,6 @@ const HomePageSearch = () => {
   };
 
   const consolelog = () => {
-    console.log('clicked')
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(getCoordinates, handleError);
     } else {
@@ -50,6 +49,8 @@ const HomePageSearch = () => {
 
   return (
     <>
+      {console.log(address)}
+      {console.log(coordinates)}
       <div>
         <PlacesAutoComplete 
           value={address}

@@ -32,6 +32,7 @@ const HomePage = () => {
         <div>
           <h1 className='Logo'>Apartment Hunt</h1>
           <p className='Slogan'>Smarter apartment search. Quality apartments you'll want to rent.</p>
+
         </div>
         <HomePageSearch />
       </div>
