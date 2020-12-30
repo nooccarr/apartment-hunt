@@ -8,14 +8,14 @@ import Overview from './overview/Overview.jsx';
 const App = () => {
   return (
     <AuthContext.Provider value={true}>
-      {/* <Router>
+      <Router>
         <div>
           <Route exact path='/' component={HomeLogin} />
+          <Route exact path='/apartment' component={Overview}/>
           <PrivateRoute path='/user' component={UserProfile} />
           <PrivateRoute path='/admin' component={Admin} />
         </div>
-      </Router> */}
-      <Overview/>
+      </Router>
     </AuthContext.Provider>
   );
 };
