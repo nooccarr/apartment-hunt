@@ -1,12 +1,14 @@
 import React from 'react';
-import LandingPage from '../Authentication/Login/Main';
+import AuthLogin from '../Authentication/Login/Main';
+import HomePage from './HomePage/HomePage.jsx'
 import './styles/homelogin.css';
 
 const HomeLogin = () => {
   return (
-    <div>
-      <LandingPage />
-    </div>
+    <>
+      {/* <AuthLogin /> */}
+      <HomePage />
+    </>
   );
 };
 
