@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap");
 
+/* Custom Fonts as per Client */
 @font-face {
   font-family: "quentinregular";
   src: url("../../pages/styles/fonts/Quentin.otf") format("opentype");
@@ -24,6 +25,16 @@
   src: url("../../pages/styles/fonts/LDFComicSans.otf") format("opentype");
   font-style: normal;
 }
+
+/* 
+$clientcolor: pink;
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+*/
 
 html {
   background: url('./images/home-background.jpg') no-repeat center center fixed;
@@ -85,7 +96,6 @@ h1.Logo {
   padding: 0 10px 45px 10px;
   color: #ffffff;
   cursor: default;
-  animation: fadeIn 0.5s ease-in;
 }
 
 .search-container,
@@ -109,7 +119,6 @@ h1.Logo {
   transition: transform 0.1s ease-in-out;
   position: relative;
   z-index: 2;
-  animation: fadeIn 0.5s ease-in;
 }
 
 .search-bar:focus {
