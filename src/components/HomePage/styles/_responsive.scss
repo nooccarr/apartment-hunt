@@ -1,0 +1,105 @@
+/* Tablets and under */
+@media(max-width: 768px) {
+  .Logo {
+    font-family: 'herbariumregular';
+    font-size: 4rem;
+    line-height: 8rem;
+    font-weight: lighter;
+    text-align: center;
+    color: #ffffff;
+    cursor: default;
+  }
+  
+  .Slogan {
+    font-family: $client-font;
+    font-size: 1rem;
+    line-height: 2rem;
+    text-align: center;
+    padding: 0 10px 45px 10px;
+    color: #ffffff;
+    cursor: default;
+  }
+
+  .search-bar {
+    font-family: $client-font;
+    width: 100%;
+    max-width: 28rem;
+    height: 2.5rem;
+    padding: 0 10px 0 50px;
+    border-radius: 0.25rem;
+    border: none;
+    box-shadow: 0 0.15px 5px 0.5px #888888;
+    transition: transform 0.1s ease-in-out;
+    position: relative;
+    z-index: 2;
+  }
+
+  .search-suggestions {
+    font: $client-font;
+    position: relative;
+    top: -2px;
+    left: 0px;
+    width: 500px;
+    max-width: 100%;
+    height: 1.5rem;
+    padding: 0.75rem 0.5rem 0rem 0.5rem;
+    border-bottom: 1px solid rgb(255, 255, 255);
+    background-color: rgba(255, 248, 255, 0.897);
+    opacity: 0.8;
+    cursor: pointer;
+    z-index: 1;
+  }
+}
+
+/* Mobile */
+@media(max-width: 500px) {
+  .Logo {
+    font-family: 'herbariumregular';
+    font-size: 3rem;
+    line-height: 7rem;
+    font-weight: lighter;
+    text-align: center;
+    color: #ffffff;
+    cursor: default;
+  }
+  
+  .Slogan {
+    font-family: $client-font;
+    font-size: 1rem;
+    line-height: 2rem;
+    text-align: center;
+    padding: 0 10px 45px 10px;
+    color: #ffffff;
+    cursor: default;
+  }
+
+  .search-bar {
+    font-family: $client-font;
+    width: 100%;
+    max-width: 20rem;
+    height: 2rem;
+    font-size: 10px;
+    padding: 0 10px 0 50px;
+    border-radius: 0.25rem;
+    border: none;
+    box-shadow: 0 0.15px 5px 0.5px #888888;
+    transition: transform 0.1s ease-in-out;
+    position: relative;
+    z-index: 2;
+  }
+
+  .search-suggestions {
+    position: relative;
+    top: -2px;
+    left: 0px;
+    width: 500px;
+    max-width: 100%;
+    height: 1.5rem;
+    padding: 0.75rem 0.5rem 0rem 0.5rem;
+    border-bottom: 1px solid rgb(255, 255, 255);
+    background-color: rgba(255, 248, 255, 0.897);
+    opacity: 0.8;
+    cursor: pointer;
+    z-index: 1;
+  }
+}

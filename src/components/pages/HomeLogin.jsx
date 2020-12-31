@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import HomePage from '../HomePage/HomePage';
 import SearchResults from '../SearchResults/index';
-// import './styles/homelogin.css';
 
 const HomeLogin = () => {
 

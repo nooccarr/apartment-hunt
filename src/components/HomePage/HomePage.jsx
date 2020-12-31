@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Login, LoginModal } from '../Authentication/index';
 import HomePageSearch from './Search.jsx';
-import './styles/homelogin.css';
+import './styles/main.scss';
 
 const HomePage = ({ setSearchValue }) => {
   const [clickedLogin, setClickedLogin] = useState(false);

@@ -196,7 +196,7 @@ export default [
               "color": "#2f3948"
           },
           {
-              "visibility": "off"
+              "visibility": "on"
           }
       ]
   },
@@ -205,7 +205,7 @@ export default [
       "elementType": "all",
       "stylers": [
           {
-              "visibility": "off"
+              "visibility": "on"
           }
       ]
   },
@@ -214,10 +214,10 @@ export default [
       "elementType": "labels.text.fill",
       "stylers": [
           {
-              "color": "#d59563"
+              "color": "#ffccff"
           },
           {
-              "visibility": "off"
+              "visibility": "on"
           }
       ]
   },
