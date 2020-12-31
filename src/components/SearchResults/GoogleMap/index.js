@@ -1,12 +1,12 @@
 import React from 'react';
-import google_api_key from '../config/google_api_key';
+// import google_api_key from '../config/google_api_key';
 import { Loader } from '@googlemaps/js-api-loader';
 
 const GoogleMap = () => {
   let map;
 
   const loader = new Loader({
-    apiKey: google_api_key,
+    apiKey: AIzaSyC4aX9sHt7WGIUfoEqwz0iFLSNn3fslAX8,
     version: 'weekly'
   });
 

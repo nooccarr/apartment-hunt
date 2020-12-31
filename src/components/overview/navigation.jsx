@@ -28,7 +28,7 @@ class Navigation extends React.Component {
             </div>
             
 
-              <div className="search-bar">
+              <div className="navigation-search-bar">
                 <div className="col-2-3">  
                 <div className="menu">
                   <ul>
