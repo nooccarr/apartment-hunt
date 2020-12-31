@@ -63,7 +63,7 @@ body{
    -o-border-radius:1px;
 }
  
-.search-bar {
+.navigation-search-bar {
   display: block;
   text-align: left;
 }
@@ -113,7 +113,7 @@ input.search-input{
 	position:relative;
   top:1px;
   height: 15px;
-  width: 35px;
+  width: 250px;
 }
 
 .about-us-container {
