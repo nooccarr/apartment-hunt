@@ -17,7 +17,7 @@ const App = () => {
       <AuthContext.Provider value={true}>
         <Router>
           <div>
-            <PrivateRoute path='/user' component={UserProfile} />
+            <PrivateRoute exact path='/user' component={UserProfile} />
           </div>
         </Router>
       </AuthContext.Provider>
