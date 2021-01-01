@@ -38,7 +38,6 @@ const ChatMessage = mongoose.model('ChatMessage', chatMessageSchema);
 const saveMsg = (message) => {
   return ChatMessage.findOne({ chatId: message.chatId }, function (err, data) {
     if (data) {
-      console.log(data);
       const newMessage = {
         message: message.body,
         sender: message.sender,
@@ -47,12 +46,6 @@ const saveMsg = (message) => {
       const msgCol = data.messages;
       msgCol.push(newMessage);
       return data.save();
-      // return ChatMessage.findOneAndUpdate(
-      //   { chatId: message.chatId },
-      //   {
-      //     messages: msgCol,
-      //   }
-      // );
     } else {
       const params = {
         chatId: message.chatId,
@@ -69,7 +62,6 @@ const saveMsg = (message) => {
           },
         ],
       };
-      console.log('params: ', params);
       return ChatMessage.create(params);
     }
   });
