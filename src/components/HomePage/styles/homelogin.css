@@ -24,6 +24,13 @@
   src: url("../../pages/styles/fonts/LDFComicSans.otf") format("opentype");
   font-style: normal;
 }
+html, body {
+  height: 100vh;
+}
+
+body {
+  margin: 0px;
+}
 
 html {
   background: url('./images/home-background.jpg') no-repeat center center fixed;
