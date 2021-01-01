@@ -36,17 +36,23 @@ const ChatMessage = mongoose.model('ChatMessage', chatMessageSchema);
 
 // save or create messages that sent from user
 const saveMsg = (message) => {
-  ChatMessage.find({ chatId: message.chatId }, function (err, data) {
+  return ChatMessage.findOne({ chatId: message.chatId }, function (err, data) {
     if (data) {
-      return ChatMessage.findAndUpdate(message.chatId, {
-        $push: {
-          messages: {
-            message: message.body,
-            sender: message.sender,
-            createdAt: JSON.stringify(new Date()),
-          },
-        },
-      });
+      console.log(data);
+      const newMessage = {
+        message: message.body,
+        sender: message.sender,
+        createdAt: JSON.stringify(new Date()),
+      };
+      const msgCol = data.messages;
+      msgCol.push(newMessage);
+      return data.save();
+      // return ChatMessage.findOneAndUpdate(
+      //   { chatId: message.chatId },
+      //   {
+      //     messages: msgCol,
+      //   }
+      // );
     } else {
       const params = {
         chatId: message.chatId,
@@ -55,7 +61,7 @@ const saveMsg = (message) => {
         agentName: message.agentName,
         userId: message.userId,
         agentId: message.agentId,
-        message: [
+        messages: [
           {
             message: message.body,
             sender: message.sender,
@@ -63,6 +69,7 @@ const saveMsg = (message) => {
           },
         ],
       };
+      console.log('params: ', params);
       return ChatMessage.create(params);
     }
   });
@@ -82,4 +89,7 @@ const fetchMsgById = (query) => {
   return ChatMessage.findById(query.chatId, 'messages').exec();
 };
 
-module.exports = ChatMessage;
+module.exports.saveMsg = saveMsg;
+module.exports.fetchChatsByUser = fetchChatsByUser;
+module.exports.fetchChatsByAgent = fetchChatsByAgent;
+module.exports.fetchMsgById = fetchMsgById;
