@@ -10,7 +10,7 @@ const Filters = () => {
         return (
           <div className='singleFilterContainer'>
             <div 
-              id={ 'toggle' + filter } // REMOVE THIS
+              id={ 'toggle' + filter }
               className='filter' 
               onClick={() => {
                 document.getElementById(filter).classList.toggle('show');
