@@ -4,8 +4,8 @@ import regeneratorRuntime from "regenerator-runtime";
 import searchicon from './styles/images/search-icon.png'
 import pinkmarker from './styles/images/pink-marker.png'
 
-const HomePageSearch = ({ setSearchValue }) => {
-  const [address, setAddress] = useState('');
+const HomePageSearch = ({ searchValue, setSearchValue }) => {
+  const [address, setAddress] = useState(searchValue);
   const [coordinates, setCoordinates] = useState({
     lat: null,
     lng: null,
