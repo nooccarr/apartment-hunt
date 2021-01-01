@@ -5,9 +5,9 @@ import SearchResults from '../SearchResults/index';
 
 const HomeLogin = () => {
 
-  const [searchValue, setSearchValue] = useState('New York, NY, USA');
+  const [searchValue, setSearchValue] = useState(null);
 
-  return searchValue !== ''
+  return searchValue
     ? <SearchResults searchValue={ searchValue } setSearchValue={ setSearchValue } /> 
     : <HomePage setSearchValue={ setSearchValue } />;
 };

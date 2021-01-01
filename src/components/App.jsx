@@ -11,7 +11,7 @@ const App = () => {
       <Router>
         <div>
           <Route exact path='/' component={HomeLogin} />
-          <Route exact path='/apartment' component={Overview}/>
+          <Route exact path='/apartment' component={Overview} />
         </div>
       </Router>
       <AuthContext.Provider value={true}>
