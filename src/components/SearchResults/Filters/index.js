@@ -4,6 +4,20 @@ import './_filterStyle.scss';
 const Filters = () => {
 
   const categories = ['Price', 'Beds', 'Baths', 'More'];
+
+  const dropdowns = {
+    Price:  <div className='dropdown'>
+              <input className='priceText' type='text' placeholder='Min'></input>
+              -
+              <input className='priceText' type='text' placeholder='Max'></input>
+            </div>,
+    Beds: <div className='dropdown'>
+            <div className='bedSelect'>Any</div>
+            <div className='bedSelect'>1+</div>
+            <div className='bedSelect'>2+</div>
+            <div className='bedSelect'>3+</div>
+          </div>,
+  }
   return (
     <div className='allFiltersContainer'>
       {categories.map(filter => {
@@ -24,11 +38,7 @@ const Filters = () => {
               />
             </div>
             <div id={filter} className='dropdown-content'>
-              <div className='dropdown'>
-                <input className='priceText' type='text' placeholder='Min'></input>
-                -
-                <input className='priceText' type='text' placeholder='Max'></input>
-              </div>
+              { dropdowns[filter] }
             </div>
           </div>
         );
