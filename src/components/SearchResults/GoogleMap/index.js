@@ -6,7 +6,7 @@ const GoogleMap = () => {
   let map;
 
   const loader = new Loader({
-    apiKey: AIzaSyC4aX9sHt7WGIUfoEqwz0iFLSNn3fslAX8,
+    apiKey: 'AIzaSyC4aX9sHt7WGIUfoEqwz0iFLSNn3fslAX8',
     version: 'weekly'
   });
 

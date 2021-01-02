@@ -3,18 +3,10 @@ import { Link } from 'react-router-dom';
 import logo from '../../images/logo.png';
 
 import SearchBar from '../SearchResults/TopBanner/SearchBar/index.js';
+import Login from '../Authentication/Login/Login.jsx';
 
-class Navigation extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+const Navigation  = ({ searchValue, setSearchValue }) => {
 
-        }
-    }
-
-
-
-    render () {
  
         return (
           <div>
@@ -44,12 +36,14 @@ class Navigation extends React.Component {
                     <li className="login" >
                       <div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a></div>
                     </li>
-                
+                     
                   </ul>
+
+                  
                 </div>
                 <div className="search-form">
                   <form method="get" action="/homelist" id="search" className="f-right">
-                  <SearchBar/>
+                  <SearchBar searchValue={ searchValue } setSearchValue={ setSearchValue } />
                     
                     <button type="submit" className="searchButton"> Search</button>
                   </form>
@@ -62,8 +56,8 @@ class Navigation extends React.Component {
       </div>
     </div>
     </div>
-        )
-    }
-}
+        );
+    
+};
 
 export default Navigation;

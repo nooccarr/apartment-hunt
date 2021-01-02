@@ -4,6 +4,7 @@ import PrivateRoute from './Authentication/Auth/PrivateRoute';
 import { AuthContext } from './Authentication/Auth/AuthContext';
 import { HomeLogin, UserProfile } from './pages/index';
 import Overview from './overview/Overview.jsx';
+import About from './overview/aboutus.jsx';
 
 const App = () => {
   return (
@@ -12,8 +13,10 @@ const App = () => {
         <div>
           <Route exact path='/' component={HomeLogin} />
           <Route exact path='/apartment' component={Overview} />
+          <Route exact path='/aboutus' component={About} />
         </div>
       </Router>
+ 
       <AuthContext.Provider value={true}>
         <Router>
           <div>
