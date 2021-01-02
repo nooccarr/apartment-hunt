@@ -4,6 +4,7 @@ const db = require('./index.js');
 
 let apartmentSchema = new mongoose.Schema({
     address: String,
+    listingName: String,
     state: String,
     zipCode: String,
     city: String,
