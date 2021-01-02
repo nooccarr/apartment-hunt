@@ -31,6 +31,7 @@ Apts.find().where('position').near({ center: [long, lat], maxDistance:  0.000089
     res.status(200).json(filteredApts);
   })
   .catch((err) => {
+    console.log(err);
     res.sendStatus(500);
   })
 };
