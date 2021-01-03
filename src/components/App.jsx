@@ -4,6 +4,7 @@ import PrivateRoute from './Authentication/Auth/PrivateRoute';
 import { AuthContext } from './Authentication/Auth/AuthContext';
 import { HomeLogin, UserProfile } from './pages/index';
 import Overview from './overview/Overview.jsx';
+import ChatApp from './ChatBox/frontend/ChatApp.jsx'
 
 const App = () => {
   return (
@@ -21,6 +22,12 @@ const App = () => {
           </div>
         </Router>
       </AuthContext.Provider>
+      {/* ///////////FIXME:ChatBox/////////// */}
+      <Router>
+        <div>
+          <Route exact path='/chatbox' component={ChatApp} />
+        </div>
+      </Router>
     </div>
   );
 };
