@@ -1,14 +1,10 @@
 import React from 'react';
+import Photos from './Photos/index';
 
-const Listings = ({listing: { photo, price, beds, baths, size, street, city, state }}) => {
-
+const Listings = ({listing: { photos, price, beds, baths, size, street, city, state }}) => {
   return (
     <div className='listing'>
-      <div 
-        className='listingPhoto'
-        style={{ backgroundImage: `url(${photo})` }}
-      ></div>
-
+      <Photos photos={ photos } />
       <div className='listingInfo'>
         <div className='price'>{ price }</div>
         <div className='details'>
