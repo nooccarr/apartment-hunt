@@ -17,6 +17,7 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     setSearchValue(value);
     setAddress(value);
     setCoordinates(latLng);
+    console.log(latLng);
   };
 
   const consolelog = () => {
@@ -28,7 +29,7 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
   }
 
   const getCoordinates = (position) => {
-    setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude})
+    setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude});
   }
 
   const handleError = (error) => {
