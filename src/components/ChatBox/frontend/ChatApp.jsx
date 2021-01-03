@@ -4,17 +4,20 @@ import Convos from './Convos.jsx';
 import sampleChatData from './sampleChatData.js';
 import Texts from './Texts.jsx';
 
+
 const ChatApp = () => {
 
   const [convos, setConvos] = useState(false);
   const [texts, setTexts] = useState(false);
   const [chatIdx, setChatIdx] = useState(null);
   const [chatHist, setChatHist] = useState([]);
+  const [chatId, setChatId] = useState(null);
 
   const selectConvo = (id) => {
+    setChatIdx(id);
+    setChatId(chatHist[id].chatId)
     setConvos(false);
     setTexts(true);
-    setChatIdx(id);
   }
 
   const exitChat = () => {
@@ -26,41 +29,28 @@ const ChatApp = () => {
     setChatHist(sampleChatData)
   })
 
-  const updateConvo = (message) => {
+  const updateConvo = (messageObj, chatRoomId) => {
+    if (chatRoomId === null) {
+      return;
+    }
+    
     let outdatedChat = [...chatHist];
-    let chatRoom = outdatedChat[chatIdx]
-    let newMessage = sendSocket(chatHist[chatIdx].chatId, message)
-    chatRoom.messages.push(newMessage)
-    setChatHist(outdatedChat)
-    // storeConvo()
+    for (let i = 0; i < outdatedChat.length; i++) {
+      if (outdatedChat[i].chatId === chatRoomId) {
+        let chatRoom = outdatedChat[i]
+        chatRoom.messages.push(messageObj)
+        setChatHist(outdatedChat)
+      }
+    }
+
+    // console.log('updateConvo')
+    // let outdatedChat = [...chatHist];
+    // let chatRoom = outdatedChat[chatIdx]
+    // // let newMessage = sendSocket(chatHist[chatIdx].chatId, messageObj.message)
+    // chatRoom.messages.push(messageObj)
+    // setChatHist(outdatedChat)
+    // // storeConvo(messageObj)
   }
-
-  const sendSocket = (id, message) => {
-      const [socket, setSocket] = useState()
-    
-      useEffect(() => {
-        const newSocket = io(
-          'http://localhost:5000',
-          { query: { id }, text: message }
-        )
-        setSocket(newSocket)
-    
-        return () => newSocket.close()
-      }, [id])
-    
-      return (
-
-        {
-          room: socket,
-          text: message,
-        }
-        // <div value={socket}>
-        //   {message}
-        // </div>
-      )
-  }
-
-
 
   
   return (
@@ -71,7 +61,8 @@ const ChatApp = () => {
       </nav>
       <div>
         {convos ? <Convos chatHistory={chatHist} selectConvo={selectConvo}/> : null}
-        {texts ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo}/> : null}
+        {texts ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId}/> : null}
+        {/* {socketOn ? <SendSocket messageObj={chatHist[chatIdx]} /> : null} */}
       </div>
     </div>
   );

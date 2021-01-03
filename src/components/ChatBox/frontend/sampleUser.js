@@ -1,3 +1,3 @@
-let loggedUser = 'Matt123';
+let loggedUser = 'John465';
 
 export default loggedUser;
