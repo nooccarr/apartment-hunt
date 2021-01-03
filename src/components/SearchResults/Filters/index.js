@@ -8,7 +8,7 @@ const Filters = () => {
   const dropdowns = {
     Price:  <div className='dropdown'>
               <input className='priceText' type='text' placeholder='Min'></input>
-              -
+              <div style={{marginRight: '10px'}}>-</div>
               <input className='priceText' type='text' placeholder='Max'></input>
             </div>,
     Beds: <div className='dropdown'>
@@ -16,6 +16,12 @@ const Filters = () => {
             <div className='bedSelect'>1+</div>
             <div className='bedSelect'>2+</div>
             <div className='bedSelect'>3+</div>
+          </div>,
+    Baths: <div className='dropdown'>
+            <div className='bathSelect'>Any</div>
+            <div className='bathSelect'>1+</div>
+            <div className='bathSelect'>2+</div>
+            <div className='bathSelect'>3+</div>
           </div>,
   }
   return (
