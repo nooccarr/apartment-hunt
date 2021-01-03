@@ -10,16 +10,17 @@ import TopBanner from './TopBanner';
 const SearchResults = ({ searchValue, setSearchValue }) => {
   return (
     <div className='main'>
-      <div className='leftSide'>
-      <TopBanner />
-      <SearchBar searchValue={ searchValue } setSearchValue={ setSearchValue } />
-      <Filters searchValue={ searchValue } setSearchValue={ setSearchValue } />
-      <Results />
+      <TopBanner searchValue={ searchValue } setSearchValue={ setSearchValue } />
+      <div className='bottomContainer'>
+        <div className='leftSide'>
+          <Filters searchValue={ searchValue } setSearchValue={ setSearchValue } />
+          <Results />
+        </div>
+        <div className='rightSide'>
+          <GoogleMap />
+        </div>
       </div>
-      <div className='rightSide'>
-        <GoogleMap />
       </div>
-    </div>
   );
 };
 

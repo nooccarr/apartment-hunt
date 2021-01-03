@@ -4,7 +4,7 @@ import SearchResults from '../SearchResults/index';
 
 const HomeLogin = () => {
 
-  const [searchValue, setSearchValue] = useState(null);
+  const [searchValue, setSearchValue] = useState('New York, NY, USA');
 
   return (
     searchValue 
