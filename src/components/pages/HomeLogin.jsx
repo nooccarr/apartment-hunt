@@ -6,9 +6,11 @@ const HomeLogin = () => {
 
   const [searchValue, setSearchValue] = useState(null);
 
-  return searchValue 
+  return (
+    searchValue 
     ? <SearchResults searchValue={ searchValue } setSearchValue={ setSearchValue } /> 
-    : <HomePage setSearchValue={ setSearchValue } />;
+    : <HomePage setSearchValue={ setSearchValue } />
+  )
 };
 
 export default HomeLogin;

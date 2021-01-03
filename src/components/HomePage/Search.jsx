@@ -4,6 +4,7 @@ import axios from 'axios';
 import regeneratorRuntime from "regenerator-runtime";
 import searchicon from './styles/images/search-icon.png'
 import pinkmarker from './styles/images/pink-marker.png'
+import SearchResults from '../SearchResults';
 
 const HomePageSearch = ({ setSearchValue }) => {
   const [address, setAddress] = useState('');
@@ -16,11 +17,15 @@ const HomePageSearch = ({ setSearchValue }) => {
   const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
-    setSearchValue(value);
+    // setSearchValue(value);
     setAddress(value);
-    await setCoordinates(latLng);
+    setCoordinates(latLng);
     // getNearby(coordinates);
   };
+
+  const findApartments = async () => {
+    setSearchValue(address)
+  }
 
   const startGeolocation = () => {
     if (navigator.geolocation) {
@@ -31,6 +36,7 @@ const HomePageSearch = ({ setSearchValue }) => {
   }
 
   const getCoordinates = (position) => {
+    console.log(position);
     setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude})
   }
 
@@ -64,28 +70,43 @@ const HomePageSearch = ({ setSearchValue }) => {
           value={address}
           onChange={setAddress}
           onSelect={handleSelect}
+          onSubmit={findApartments}
         >
           {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
             <div>
-              <div className='search-container'>
+              <form 
+                className='search-container' 
+                onSubmit={findApartments}>
                 <img 
                   className='pink-marker' 
                   src={pinkmarker} 
                   alt='pink-marker'
                   onClick={startGeolocation}
                 />
-                <input className='search-bar'
+                <input 
+                  className='search-bar'
+                  // value={address}
+                  onChange={setAddress}
                   {...getInputProps({placeholder: 'Enter an address, neighborhood, city, or ZIP code' })} 
                   />
-                <img className='search-icon' src={searchicon} alt='search-icon'/>
-              </div>
-              <div className='search-list'>
+                <img 
+                  className='search-icon' 
+                  src={searchicon}
+                  alt='search-icon'
+                  onClick={findApartments}/>
+              </form>
+              <div 
+                className='search-list'>
                 {loading && <div className='search-suggestions'>Loading...</div>}
 
                 {suggestions.map((suggestion, index) => {
                   return (
                     <>
-                      <div {...getSuggestionItemProps(suggestion)} className='search-suggestions' key={index}>
+                      <div 
+                        {...getSuggestionItemProps(suggestion)} 
+                        className='search-suggestions' 
+                        key={index}
+                      >
                         {suggestion.description}
                       </div>
                     </>)
