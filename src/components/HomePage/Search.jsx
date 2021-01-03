@@ -4,7 +4,6 @@ import axios from 'axios';
 import regeneratorRuntime from "regenerator-runtime";
 import searchicon from './styles/images/search-icon.png'
 import pinkmarker from './styles/images/pink-marker.png'
-import SearchResults from '../SearchResults';
 
 const HomePageSearch = ({ searchValue, setSearchValue }) => {
   const [address, setAddress] = useState(searchValue);
@@ -12,19 +11,23 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     lat: null,
     lng: null,
   });
-  const [apartments, addApartments] = useState([]);
+  const [apartments, addApartments] = useState(null);
 
   const handleSelect = async (value) => {
+    // converts location value to coordinates for API call
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
-    // setSearchValue(value);
     setAddress(value);
     setCoordinates(latLng);
-    // getNearby(coordinates);
   };
 
   const findApartments = async () => {
+    // allows data flow of search bar value to the next page
     setSearchValue(address)
+    // API call with Coordinates
+    axios.get('/search', { params: {lat: 40.69396233779667, long: -73.94443814752641} })
+      .then((results) => { addApartments(results.data); })
+      .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
   }
 
   const startGeolocation = () => {
@@ -56,12 +59,6 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
         break;
     }
   }
-
-  // const getNearby = (coordinates) => {
-  //   axios.get('/locations', { params: {coordinates} })
-  //     .then(({ data }) => { addApartments(data)})
-  //     .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
-  // }
 
   return (
     <>
