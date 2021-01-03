@@ -6,8 +6,8 @@ import searchicon from './styles/images/search-icon.png'
 import pinkmarker from './styles/images/pink-marker.png'
 import SearchResults from '../SearchResults';
 
-const HomePageSearch = ({ setSearchValue }) => {
-  const [address, setAddress] = useState('');
+const HomePageSearch = ({ searchValue, setSearchValue }) => {
+  const [address, setAddress] = useState(searchValue);
   const [coordinates, setCoordinates] = useState({
     lat: null,
     lng: null,
@@ -70,7 +70,6 @@ const HomePageSearch = ({ setSearchValue }) => {
           value={address}
           onChange={setAddress}
           onSelect={handleSelect}
-          onSubmit={findApartments}
         >
           {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
             <div>
@@ -85,7 +84,6 @@ const HomePageSearch = ({ setSearchValue }) => {
                 />
                 <input 
                   className='search-bar'
-                  // value={address}
                   onChange={setAddress}
                   {...getInputProps({placeholder: 'Enter an address, neighborhood, city, or ZIP code' })} 
                   />

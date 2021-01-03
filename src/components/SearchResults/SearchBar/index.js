@@ -11,13 +11,15 @@ const SearchBar = ({ searchValue, setSearchValue }) => {
   };
 
   return (
-    <input 
-    type='text' 
-    id='searchBar'
-    defaultValue={ searchValue }
-    onKeyPress={onSearchEnter}
-    // style={{backgroundImage: 'url(./images/search.png)' }} 
-  />
+    <div className='searchBarContainer'>
+      <input 
+        type='text' 
+        id='searchBar'
+        defaultValue={ searchValue }
+        onKeyPress={onSearchEnter}
+        // style={{backgroundImage: 'url(./images/search.png)' }} 
+      />
+    </div>
   );
 };
 

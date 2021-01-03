@@ -4,18 +4,18 @@ const db = require('./index.js');
 
 let apartmentSchema = new mongoose.Schema({
     address: String,
+    listingName: String,
     state: String,
     zipCode: String,
     city: String,
     country: String,
     description: String,
     sqft: Number,
-    latitude: Number,
-    longitude: Number,
-    neighborhoods: String,
+    neighborhoods: Array,
+    position: Object,
     price: Number,
-    pics: String,
-    pets: String,
+    pics: Array,
+    pets: Object,
     beds: Number,
     baths: Number,
     agent: String
