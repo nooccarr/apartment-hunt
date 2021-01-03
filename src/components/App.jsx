@@ -4,7 +4,7 @@ import PrivateRoute from './Authentication/Auth/PrivateRoute';
 import { AuthContext } from './Authentication/Auth/AuthContext';
 import { HomeLogin, UserProfile } from './pages/index';
 import Overview from './overview/Overview.jsx';
-import ChatApp from './ChatBox/ChatApp.jsx'
+import ChatApp from './ChatBox/frontend/ChatApp.jsx'
 
 const App = () => {
   return (
