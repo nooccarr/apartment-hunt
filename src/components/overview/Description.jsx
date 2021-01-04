@@ -1,4 +1,6 @@
 import React from 'react';
+import sampleApts from './sampleData';
+import Restaurants from './Restaurants.jsx'
 
 class Description extends React.Component {
     constructor(props) {
@@ -49,7 +51,7 @@ class Description extends React.Component {
                 <div id="diningModal" className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={() => {this.flipDiningModal()}}>&times;</span>
-                        <p>List of dining options...</p>
+                        <Restaurants location={sampleApts[1]}/>
                     </div>
                 </div>
             )

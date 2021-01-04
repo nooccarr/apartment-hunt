@@ -163,3 +163,7 @@
   font-size: 28px;
   font-weight: bold;
 }
+
+.restaurantList {
+  overflow: scroll;
+}
