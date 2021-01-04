@@ -1,11 +1,11 @@
 let sampleChatData = [
   {
-    chatId: 1244353,
+    chatId: '1244353',
     address: '123 Cherry St, apt. 5B',
     userName: 'Matt123',
     agentName: 'John465',
-    userId: 324234, //user authentication key
-    agentId: 13445, //agent authentication key
+    userId: '324234', //user authentication key
+    agentId: '13445', //agent authentication key
     messages: [
       {
         message: 'Hello, Im interested!',
@@ -20,12 +20,12 @@ let sampleChatData = [
     ],
   },
   {
-    chatId: 3674637,
+    chatId: '3674637',
     address: '456 Walnut St, apt. 9K',
     userName: 'Matt123',
     agentName: 'Steve768',
-    userId: 324234, //user authentication key
-    agentId: 273849, //agent authentication key
+    userId: '324234', //user authentication key
+    agentId: '273849', //agent authentication key
     messages: [
       {
         message: 'Interested!',
