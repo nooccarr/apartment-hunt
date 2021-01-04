@@ -31,7 +31,7 @@ let maxD = parseFloat(req.query.distance) / 1609.344;
   });
 }
 if (req.query.burrough) {
-  Apts.find({})
+  Apts.find({neighborhoods:})
   .then((apts) => {
     res.status(200).json(apts)
   })
