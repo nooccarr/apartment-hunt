@@ -11,6 +11,8 @@
 
 $color: #ffebea;
 $text: 'comic-sans';
+$linen: #faf0e6;
+$pink: #ffb0fbc4;
 
 .main {
   height: 100%;
@@ -18,7 +20,7 @@ $text: 'comic-sans';
   display: grid;
   // grid-template-columns: 35% 65%;
   grid-template-rows: 8vh 92vh;
-  background-color: white;
+  background-color: $linen;
   overflow: hidden;
   .topBanner {
     height: 100%;
@@ -27,24 +29,27 @@ $text: 'comic-sans';
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $color;
+    background-color: $linen;
+    // background-color: black;
     box-shadow: 0px 0px 5px black;
 
     .companyName {
       flex: 1;
       font-family: "herbarium";
-      color: white;
+      font-size: 45px;
+      color: $pink;
       // margin: {
       //   left: 35px;
       // };
       // text-shadow: inset 0px 0px 5px black;
-      filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .5));
-      font-size: 45px;
+      // filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .5));
+
     }
     .searchBarContainer {
       // grid-row: 1;
       flex: 1;
-      background-color: $color;
+      background-color: $linen;
+      // background-color: black;
       display: flex;
       align-items: center;
       height: 50%;
