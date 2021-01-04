@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ApartmentContext } from './ApartmentContext.jsx'
 import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import axios from 'axios';
 import regeneratorRuntime from "regenerator-runtime";
@@ -11,13 +12,15 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     lat: null,
     lng: null,
   });
-  const [apartments, addApartments] = useState(null);
+  const {listings, getListings} = useContext(ApartmentContext)
+  // const [apartments, addApartments] = useState([]);
+  // const apartmentData = useContext(ApartmentContext)
 
   const handleSelect = async (value) => {
     // converts location value to coordinates for API call
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
-    setAddress(value);
+    // setAddress(value);
     setCoordinates(latLng);
   };
 
@@ -25,8 +28,16 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     // allows data flow of search bar value to the next page
     setSearchValue(address)
     // API call with Coordinates
-    axios.get('/search', { params: {lat: 40.69396233779667, long: -73.94443814752641} })
-      .then((results) => { addApartments(results.data); })
+    axios.get('/search', { 
+      params: {
+        distance: 0.25, 
+        lat: 40.69396233779667, 
+        long: -73.94443814752641}
+      })
+      // .then((results) => { console.log(results.data)})
+      // .then((results) => { addApartments(results.data); })
+      .then((results) => {setValue(results.data)})
+      // .then(() => console.log(apartments))
       .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
   }
 
@@ -64,7 +75,7 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     <>
       <div>
         <PlacesAutoComplete
-          value={address}
+          value={address || ''}
           onChange={setAddress}
           onSelect={handleSelect}
         >
