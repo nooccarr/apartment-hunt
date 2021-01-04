@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class Restaurants extends React.Component {
+class Schools extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,11 +11,11 @@ class Restaurants extends React.Component {
     componentDidMount() {
         const fakeRequest = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.692390,-73.914880&radius=2000&type=restaurant&key=AIzaSyByaqFNRm8cBAWr4q5C3_-D0mv355NJOaA'
         const frontReq = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-        axios({method: 'get', url: `/restaurants/?location=${this.props.location.latitude},${this.props.location.longitude}&radius=2000&type=restaurant&key=AIzaSyByaqFNRm8cBAWr4q5C3_-D0mv355NJOaA`, headers: { "Access-Control-Allow-Origin": '*'} })
+        axios({method: 'get', url: `/schools/?location=${this.props.location.latitude},${this.props.location.longitude}&radius=5000&type=school&key=AIzaSyByaqFNRm8cBAWr4q5C3_-D0mv355NJOaA`, headers: { "Access-Control-Allow-Origin": '*'} })
             .then((response) => {
                 console.log('request made and recieved', response)
                 this.setState({
-                    restaurantList: response.data
+                    schoolList: response.data
                 })
             })
             .catch((err) => {
@@ -24,26 +24,25 @@ class Restaurants extends React.Component {
     }
 
 
+
+
     render() {
-        if (this.state.restaurantList !== undefined) {
+        if (this.state.schoolList !== undefined) {
             return (
                 <div>
-                    {this.state.restaurantList.map((restaurant, index) => {
+                    {this.state.schoolList.map((school, index) => {
                         return (
-                            <div key={index}>{restaurant.name} Price Level:{restaurant.price_level} Rating:{restaurant.rating}</div>
+                            <div key={index}>{school.name} Rating:{school.rating}</div>
                         )
                     })}
                 </div>
             )
         } else {
             return (
-                <div className='restaurantList'>
-                    Please wait while we find restaurants
-                </div>
+                <div>please wait while we find schools</div>
             )
         }
     }
 }
 
-
-export default Restaurants
+export default Schools

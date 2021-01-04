@@ -1,6 +1,7 @@
 import React from 'react';
 import sampleApts from './sampleData';
-import Restaurants from './Restaurants.jsx'
+import Restaurants from './Restaurants.jsx';
+import Schools from './Schools.jsx';
 
 class Description extends React.Component {
     constructor(props) {
@@ -84,7 +85,7 @@ class Description extends React.Component {
                 <div id="schoolsModal" className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={() => {this.flipSchoolsModal()}}>&times;</span>
-                        <p>info about schools in the area</p>
+                        <Schools location={sampleApts[1]}/>
                     </div>
                 </div>
             )
@@ -149,7 +150,7 @@ class Description extends React.Component {
             <>
                 <div className='desMain'>
                     <div className='desDetail'>
-                        <div className='desAddress'>999 Unreal Ave, Brooklyn, NY, 11111</div>
+                        <div className='desAddress'>{sampleApts[1].address}, {sampleApts[1].city}, {sampleApts[1].state}, {sampleApts[1].zipCode}</div>
                         <div className='desAptDet'>
                             <div className='desEle1'>PRICE</div>
                             <div className='desEle2'>BED</div>
