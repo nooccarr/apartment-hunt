@@ -13,14 +13,13 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     lng: null,
   });
   const {listings, getListings} = useContext(ApartmentContext)
-  // const [apartments, addApartments] = useState([]);
-  // const apartmentData = useContext(ApartmentContext)
+  const [apartments, addApartments] = useState([]);
 
   const handleSelect = async (value) => {
     // converts location value to coordinates for API call
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
-    // setAddress(value);
+    setAddress(value);
     setCoordinates(latLng);
   };
 
@@ -36,7 +35,7 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
       })
       // .then((results) => { console.log(results.data)})
       // .then((results) => { addApartments(results.data); })
-      .then((results) => {setValue(results.data)})
+      .then((results) => {getListings(results.data)})
       // .then(() => console.log(apartments))
       .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
   }

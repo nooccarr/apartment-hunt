@@ -7,7 +7,7 @@ import { HomeLogin, UserProfile } from './pages/index';
 import Overview from './overview/Overview.jsx';
 
 const App = () => {
-  const [listings, getListings] = useState('hello from context');
+  const [listings, getListings] = useState([]);
 
   return (
     <div>
