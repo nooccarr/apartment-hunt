@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { v4: uuidv4 } = require('uuid');
 // if (process.env.MONGODB_URI) {
 //   mongoose.connect(process.env.MONGODB_URI);
 // } else {
@@ -36,35 +37,17 @@ const ChatMessage = mongoose.model('ChatMessage', chatMessageSchema);
 
 // save or create messages that sent from user
 const conAgent = (message) => {
-  return ChatMessage.findOne({ chatId: message.chatId }, function (err, data) {
-    if (data) {
-      const newMessage = {
-        message: message.body,
-        sender: message.sender,
-        createdAt: JSON.stringify(new Date()),
-      };
-      const msgCol = data.messages;
-      msgCol.push(newMessage);
-      return data.save();
-    } else {
-      const params = {
-        chatId: message.chatId,
-        address: message.address,
-        userName: message.userName,
-        agentName: message.agentName,
-        userId: message.userId,
-        agentId: message.agentId,
-        messages: [
-          {
-            message: message.body,
-            sender: message.sender,
-            createdAt: JSON.stringify(new Date()),
-          },
-        ],
-      };
-      return ChatMessage.create(params);
+  return ChatMessage.findOne(
+    { address: message.address, userName: message.userName },
+    function (err, data) {
+      if (data) {
+        return;
+      } else {
+        message.chatId = uuidv4();
+        return ChatMessage.create(message);
+      }
     }
-  });
+  );
 };
 
 const saveMsg = (message) => {
@@ -90,7 +73,7 @@ const fetchChatsByUser = (query) => {
 };
 
 const fetchChatsByAgent = (query) => {
-  return ChatMessage.find({ agentId: query.agentId }).exec();
+  return ChatMessage.find({ agentName: query.userName }).exec();
 };
 
 // fetch message by roomname/id...
@@ -98,8 +81,17 @@ const fetchMsgById = (query) => {
   return ChatMessage.findById(query.chatId, 'messages').exec();
 };
 
+const fetchMsgByChatRoom = (query) => {
+  console.log('query: ', query);
+  return ChatMessage.find({
+    address: query.address,
+    userName: query.userName,
+  }).exec();
+};
+
 module.exports.saveMsg = saveMsg;
 module.exports.fetchChatsByUser = fetchChatsByUser;
 module.exports.fetchChatsByAgent = fetchChatsByAgent;
 module.exports.fetchMsgById = fetchMsgById;
 module.exports.conAgent = conAgent;
+module.exports.fetchMsgByChatRoom = fetchMsgByChatRoom;
