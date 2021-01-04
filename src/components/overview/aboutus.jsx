@@ -13,9 +13,9 @@ class About extends React.Component {
     return (
 
       <div>
-        <div className="navigation-bar">
+     
           <Navigation/>
-        </div>
+      
         <div className="about-us-container">
         this is aboutus
         
