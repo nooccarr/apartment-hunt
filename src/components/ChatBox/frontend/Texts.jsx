@@ -1,7 +1,9 @@
 import React, { useState, useEffect }  from 'react'
 import loggedUser from './sampleUser'
 import { Form, InputGroup, Button } from 'react-bootstrap'
+import axios from 'axios';
 const io = require('socket.io-client');
+
 
 
 const Texts = (props) => {
@@ -60,22 +62,25 @@ const Texts = (props) => {
     e.preventDefault();
 
     // sendMessage()
-    console.log('loggedUser', loggedUser)
+    console.log('loggedUser', loggedUser.user)
     socket.emit('new message', {
       room: props.chatId,
       messageObj: {
         message: text,
-        sender: loggedUser
+        sender: loggedUser.user
     }})
     
-    // props.updateConvo(
-    //   {
-    //     message: text,
-    //     sender: loggedUser,
-    //     // createdAt: 
-    //   } 
-    // )
+    storeMessageObj(props.chatBox.chatId, text, loggedUser.user)
+
     setText('')
+  }
+
+  const storeMessageObj = (chatId, message, user) => {
+    axios.post('/msg', {
+      chatId: chatId,
+      body: message,
+      sender: user,
+    })
   }
 
   return (
@@ -97,8 +102,8 @@ const Texts = (props) => {
           {props.chatBox.messages.map((messageObj, index) => (
           <div 
             key={index}
-            className={`my-1 d-flex flex-column ${loggedUser === messageObj.sender ? 'align-items-end' : 'align-items-start'} justified-content-end`}>
-              {(() => { if (messageObj.sender === loggedUser) {
+            className={`my-1 d-flex flex-column ${loggedUser.user === messageObj.sender ? 'align-items-end' : 'align-items-start'} justified-content-end`}>
+              {(() => { if (messageObj.sender === loggedUser.user) {
                 return (
                   <div className="text-right">
                     <div className={'rounded px-2 py-1 bg-primary text-white'}>{messageObj.message}</div>

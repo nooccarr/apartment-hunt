@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 // import Dashboard from './Dashboard.jsx';
 import Convos from './Convos.jsx';
-import sampleChatData from './sampleChatData.js';
+// import sampleChatData from './sampleChatData.js';
 import Texts from './Texts.jsx';
+import loggedUser from './sampleUser'
+import axios from 'axios';
 
 
 const ChatApp = () => {
@@ -26,8 +28,22 @@ const ChatApp = () => {
 
   //Axios get
   useEffect(() => {
-    setChatHist(sampleChatData)
-  })
+    if (loggedUser.role === 'client') {
+      console.log('hitEffect', loggedUser.user)
+      return axios.get('/msg/user', {
+        params: {
+          userName: loggedUser.user
+        }
+      }).then(({ data }) => {
+        console.log('dataHist: ', data);
+        setChatHist(data)
+        console.log('newDataHist: ', data);
+      })
+    } else if (role === 'agent') {
+      return axios.get('/msg/agent')
+    }
+    // setChatHist(sampleChatData)
+  }, [])
 
   const updateConvo = (messageObj, chatRoomId) => {
     if (chatRoomId === null) {
@@ -42,16 +58,7 @@ const ChatApp = () => {
         setChatHist(outdatedChat)
       }
     }
-
-    // console.log('updateConvo')
-    // let outdatedChat = [...chatHist];
-    // let chatRoom = outdatedChat[chatIdx]
-    // // let newMessage = sendSocket(chatHist[chatIdx].chatId, messageObj.message)
-    // chatRoom.messages.push(messageObj)
-    // setChatHist(outdatedChat)
-    // // storeConvo(messageObj)
   }
-
   
   return (
     <div>
@@ -69,3 +76,15 @@ const ChatApp = () => {
 };
 
 export default ChatApp;
+
+
+
+
+
+ // console.log('updateConvo')
+    // let outdatedChat = [...chatHist];
+    // let chatRoom = outdatedChat[chatIdx]
+    // // let newMessage = sendSocket(chatHist[chatIdx].chatId, messageObj.message)
+    // chatRoom.messages.push(messageObj)
+    // setChatHist(outdatedChat)
+    // // storeConvo(messageObj)
