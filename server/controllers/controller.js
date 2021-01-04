@@ -14,7 +14,7 @@ const signup = (req, res) => {
 };
 
 const apt = (req, res) => {
-  let id = "5ff3518081b85bdc963f3c79"
+  let id = req.query.id;
   Apts.findById(id)
   .then((apartment) => {
     res.status(200).json(apartment);
@@ -23,6 +23,7 @@ const apt = (req, res) => {
     res.sendStatus(500);
   })
 };
+
 const search = (req, res) => {
 //0.00008938082823178741
 //
