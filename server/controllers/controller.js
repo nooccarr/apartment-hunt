@@ -14,23 +14,32 @@ const signup = (req, res) => {
 };
 
 const search = (req, res) => {
-console.log(req.params);
-let long = -73.94443814752641;
-let lat = 40.69396233779667;
+//0.00008938082823178741
+//
+console.log("QUERY",req.query);
+let long = parseFloat(req.query.long);
+let lat = parseFloat(req.query.lat);
 let ascOrDsc = req.query.order ? req.query.order : -1;
-// if (req.query.priceMin || req.query.priceMax) {
-// Apts.find({price: $gte: req.query.priceMin, $lte: req.query.priceMax}).sort({price: ascOrDsc})
-//.then((apts) => {
-//  res.status(200).json(apts)
-//})
-//}
-// if (req.query.burrough) {
-// Apts.find({})
-//.then((apts) => {
-//  res.status(200).json(apts)
-//})
-//}
-Apts.find().where('position').near({ center: [long, lat], maxDistance:  0.00008938082823178741, spherical: true })
+let maxD = parseFloat(req.query.distance) / 1609.344;
+/*if (req.query.priceMin || req.query.priceMax) {
+  Apts.find({price: {$gte: req.query.priceMin, $lte: req.query.priceMax}}).sort({price: ascOrDsc})
+  .then((apts) => {
+    res.status(200).json(apts)
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  });
+}
+if (req.query.burrough) {
+  Apts.find({})
+  .then((apts) => {
+    res.status(200).json(apts)
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  });
+}*/
+Apts.find().where('position').near({ center: [long, lat], maxDistance: maxD, spherical: true })
   .then((apts) => {
     let filteredApts = [];
     for (let i = 0; i < apts.length; i++){

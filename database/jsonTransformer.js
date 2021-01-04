@@ -28,6 +28,7 @@ for (var i = 0; i < aptLength; i++) {
       }
     
     apt.neighborhoods = allApts[i].neighborhoods;
+    apt.neighborhoods.push('Brooklyn');
     if (allApts[i].prices !== undefined) {
         let price = allApts[i].prices[0].amountMin;
         while(price > 10000) {
