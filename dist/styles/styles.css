@@ -1,3 +1,5 @@
+@import 'album-styles.css';
+
 .primary-font {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
@@ -39,4 +41,135 @@
 .upload-cancel-container > div {
   color:#FF6EC7;
   padding: 10px;
+}
+
+
+.desContainer {
+  position: relative;
+  margin-right: 0px auto;
+  justify-content: left;
+  display: flex;
+  padding: 20px;
+  bottom: 0px;
+  left: -83px;
+}
+
+.criteria {
+  background-color: pink;
+  padding: 10px;
+  height: 200px;
+  width: 200px;
+  margin-left: 70px;
+  margin-right: 70px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 45px;
+  color: white;
+}
+
+.desMain {
+  width: 100%;
+  height: 520px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: stretch;
+
+}
+
+.desDetail {
+  background-color: white;
+  order: 0;
+  flex: 2 1 auto;
+  align-self: auto;
+}
+
+.desAct {
+  background-color: white;
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-end;
+  align-items: center;
+}
+
+.contactAgent {
+  color: pink;
+  font-size: 45px;
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  padding-top: 20px;
+}
+
+.subApp {
+  color: pink;
+  font-size: 45px;
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  padding-top: 20px;
+}
+
+.desDetail {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+}
+
+.desAddress {
+  font-size: 35px;
+  color: pink;
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+}
+
+.desAptDet {
+  font-size: 35px;
+  color: pink;
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: stretch;
+}
+
+.desEle1 {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+}
+
+.desEle2 {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+}
+
+.desEle3 {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+}
+
+.desDes {
+  background-color: pink;
+  color: white;
+  order: 0;
+  flex: 3 1 auto;
+  align-self: auto;
 }

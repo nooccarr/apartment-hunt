@@ -1,16 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/apartmentHunt', {useMongoClient: true});
+const db = mongoose.connect('mongodb://3.15.44.229/apartmentHunt', {promiseLibrary: global.Promise});
 
-let apartmentSchema = mongoose.Schema({
-    address: String,
-    beds: Number,
-    baths: Number,
-    cats: Boolean,
-    dogs: Boolean,
-    price: Number,
-    sqft: Number,
-    agent: String
-});
-
-let Apartment = mongoose.model('Apartment', apartmentSchema);
+module.exports = db;

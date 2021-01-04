@@ -1,5 +1,8 @@
 const express = require('express');
 const path = require('path');
+const parser = require('body-parser');
+const cors = require('cors');
+const { router } = require('./routes/route');
 const app = express();
 const PORT = 3000;
 const axios = require('axios');
@@ -7,8 +10,12 @@ const multer = require('multer');
 const upload = multer();
 const {uploadFile, getFile, decryptMessage} = require('../util/upload-file.js');
 
+
 // Serve static assets from 'dist' folder
-app.use(express.static(path.join(__dirname, '../dist')));
+app.use('(/apartment)?', express.static(path.join(__dirname, '../dist')));
+app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }));
+app.use(cors());
 
 app.post('/upload', upload.any(), (req, res) => {
   // How to pass files to endpoint?
@@ -43,6 +50,9 @@ app.get('/download', (req, res) => {
 })
 
 
+
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`)
-})
+  console.log(`Listening on port ${PORT}`);
+});
+
+app.use('/', router);

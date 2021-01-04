@@ -1,27 +1,44 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Card, Form, Input } from '../styles/AuthForm.jsx';
 import Button from '@material-ui/core/Button';
 import { FcGoogle } from 'react-icons/fc';
 import { GrUserAdmin } from 'react-icons/gr';
+import { login } from './Axios';
 import '../styles/signin.css';
 
 const Signin = ({ handleSignUp }) => {
   const [adminClicked, setAdminClicked] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = () => {
+    login(userEmail, userPassword);
+  };
 
   return (
     <Card className='login-group'>
       <div className='title'>Sign In</div>
       <Form>
         <span className='input-label'>Email</span>
-        <Input type='email' placeholder='Email' />
+        <Input
+          type='email'
+          placeholder='Email'
+          onChange={(e) => setUserEmail(e.target.value)}
+        />
         <span className='input-label'>Password</span>
-        <Input type='password' placeholder='Password' />
-        <Link to='/user' style={{ textDecoration: 'none' }}>
-          <Button className='login-btn' variant='contained'>
-            Sign In
-          </Button>
-        </Link>
+        <Input
+          type='password'
+          placeholder='Password'
+          onChange={(e) => setUserPassword(e.target.value)}
+        />
+        <Button
+          className='login-btn'
+          variant='contained'
+          onClick={() => handleSubmit()}>
+          Sign In
+        </Button>
       </Form>
       <div className='or-group'>OR</div>
       <div className={adminClicked ? 'flip-container-signin' : ''}>
