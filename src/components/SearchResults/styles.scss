@@ -1,43 +1,62 @@
-// @import url('https://fonts.googleapis.com/css2?family=Tangerine&display=swap');
-// $font: 'Tangerine';
+@font-face {
+  font-family: "herbarium";
+  src: url('../pages/styles/fonts/Herbarium.otf') format("opentype");
+  font-style: normal;
+}
+@font-face {
+  font-family: "comic-sans";
+  src: url('../pages/styles/fonts/LDFComicSans.otf') format("opentype");
+  font-style: normal;
+}
 
-@import url('https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap');
-$font: 'Euphoria Script';
 $color: #ffebea;
-$text: #979797;
+$text: 'comic-sans';
 
 .main {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 5vh 5vh 90vh;
-  background-color: $color;
+  // grid-template-columns: 35% 65%;
+  grid-template-rows: 8vh 92vh;
+  background-color: white;
   overflow: hidden;
-
   .topBanner {
     height: 100%;
     width: 100%;
     grid-row: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $color;
+    box-shadow: 0px 0px 5px black;
 
-    .topBannerLeft {
-      height: 100%;
-      width: 100%;
-      grid-column: 1;
+    .companyName {
+      flex: 1;
+      font-family: "herbarium";
+      color: white;
+      // margin: {
+      //   left: 35px;
+      // };
+      // text-shadow: inset 0px 0px 5px black;
+      filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .5));
+      font-size: 45px;
+    }
+    .searchBarContainer {
+      // grid-row: 1;
+      flex: 1;
+      background-color: $color;
       display: flex;
       align-items: center;
-
-      .companyName {
-        font-family: $font, cursive;
-        color: $text;
-        font-size: 45px;
-      }
+      height: 50%;
       #searchBar {
-        flex: 1;
-        height: 40%;
+        width: 55%;
+        height: 100%;
+        // box-shadow: 0px 0px 5px rgba(0, 0, 0, .5);
+        font-family: $text;
         margin: {
-          left: 10px
+          left: 30px;
+          // right: 30px;
+          // bottom: 15px;
         };
         padding: {
           left: 10px;
@@ -47,9 +66,10 @@ $text: #979797;
           image: url('https://img.icons8.com/ios/24/000000/search--v1.png');
           repeat: no-repeat;
           position: right 10px center;
+          color: white;
         }
         border: {
-          radius: 8px;
+          radius: 5px;
           style: none;
         }
         outline: none;
@@ -57,220 +77,70 @@ $text: #979797;
     }
   }
 
-  .filters {
+  .bottomContainer {
     grid-row: 2;
-    height: 100%;
-    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    background-color: white;
-    
-    .filtersLeft {
+    grid-template-columns: 50% 50%;
+    // width: 100%;
+    // height: 100%;
+    .leftSide {
+      // height: 100%;
+      // width: 100%;
       grid-column: 1;
-      height: 100%;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-
-      // #searchBar {
-      //   flex: 1;
-      //   height: 40%;
-      //   margin: {
-      //     left: 10px
-      //   };
-      //   padding: {
-      //     left: 10px;
-      //     right: 10px;
-      //   };
-      //   background: {
-      //     image: url('https://img.icons8.com/ios/24/000000/search--v1.png');
-      //     repeat: no-repeat;
-      //     position: right 10px center;
-      //   }
-      //   border: {
-      //     radius: 8px;
-      //     style: none;
-      //   }
-      //   outline: none;
-      // }
-
-      .filter {
-        flex: 1;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        background-color: $color;
-        color: $text;
-        margin: {
-          right: 5px;
-          left: 5px;
-        };
-        padding: {
-          top: 10px;
-          // right: 5px;
-          bottom: 10px;
-          // left: 5px;
-        };
-        border: {
-          radius: 8px;
-          color: $text;
-          style: solid;
-          width: 1px;
-        }
-      }
+      display: grid;
+      grid-template-rows: 3vh 89vh;
+      // box-shadow: 0px 0px 5px black;
     }
-  }
-
-  .resultsAndMap {
-    grid-row: 3;
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    .results {
-      grid-column: 1;
-      height: 100%;
-      width: 100%;
-      background-color: white;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-      overflow: scroll;
-
-      .listing {
-        width: 250px;
-        height: 300px;
-        margin: {
-          top: 10px;
-          bottom: 10px;
-          left: 10px;
-          right: 10px;
-        };
-        // border-radius: 8px;
-        border: {
-          radius: 8px;
-          color: $text;
-          width: 1px;
-          style: solid;
-        };
-        background-color: white;
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        overflow: hidden;
-
-        .listingPhoto {
-          height: 100%;
-          width: 100%;
-          grid-row: 1;
-          background: {
-            repeat: no-repeat;
-            size: cover;
-          };
-        }
-
-        .listingInfo {
-          grid-row: 2;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          // width: 100%;
-          // display: flex;
-
-          .price {
-            margin: {
-              top: 10px;
-              left: 10px;
-              right: 10px;
-              bottom: 10px;
-            };
-            font: {
-              size: 25px;
-              weight: bold;
-            }
-          }
-
-          .details {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            margin: {
-              left: 10px;
-              right: 10px;
-            };
-
-            .bedrooms, .bathrooms, .size {
-              // display: flex;
-              // align-items: center;
-              font-size: 18px;
-              // margin: {
-              //   left: 10px;
-              //   top: 10px;
-              // };
-              padding: {
-                top: 5px;
-              //   right: 0px;
-              //   bottom: 0px;
-                left: 20px;
-              };
-              background: {
-                size: 16px 24px;
-                repeat: no-repeat;
-              }
-            }
-            .bedrooms {
-              background-image: url('https://img.icons8.com/ios-filled/50/000000/empty-bed.png');
-            }
-            .bathrooms {
-              background-image: url('https://img.icons8.com/ios-filled/24/000000/shower-and-tub.png');
-            }
-            .size {
-              background-image: url('https://img.icons8.com/ios-filled/50/000000/ruler.png');
-            }
-
-          }
-
-          .address {
-            margin: {
-              left: 10px;
-              top: 10px;
-            };
-            font: {
-              size: 18px;
-            }
-          }
-        }
-      }
-
-      .listing:hover {
-        box-shadow: 0px 0px 10px #d8a7a3;
-      }
-    }
-
-    .mapContainer {
+    .rightSide {
       grid-column: 2;
-      overflow: hidden;
-      background-color: white;
+      // height: 100%;
+      // width: 100%;
+      // background-color: $color;
+      // margin: {
+      //   left: 5px;
+      // }
       padding: {
-        top: 10px;
-        right: 10px;
-        bottom: 10px;
-        left: 10px;
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
       };
-
       #map {
-        border-radius: 8px;
+        // box-shadow: 0px 0px 5px black;
+        // border-radius: 8px;
         height: 100%;
         width: 100%;
-        // padding: {
-        //   top: 10px;
-        //   right: 10px;
-        //   bottom: 10px;
-        //   left: 10px;
-        // };
       }
     }
   }
+    
+    // .bottomRight {
+    //   grid-column: 2;
+    //   height: 100%;
+    //   width: 100%;
+    //   padding: {
+    //     top: 5px;
+    //     bottom: 5px;
+    //     right: 5px;
+    //     left: 5px;
+    //   };
+    //   box-shadow: inset 0px 0px 5px black;
+  
+      // .mapContainer {
+      //   grid-column: 2;
+      //   overflow: hidden;
+      //   background-color: white;
+      //   padding: {
+      //     top: 10px;
+      //     right: 10px;
+      //     bottom: 10px;
+      //     left: 10px;
+      //   };
+  
+      //   #map {
+      //     border-radius: 8px;
+      //     height: 100%;
+      //     width: 100%;
+      //   }
+      // }
 }
