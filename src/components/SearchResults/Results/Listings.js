@@ -3,7 +3,10 @@ import React from 'react';
 const Listings = ({listing: { photo, price, beds, baths, size, street, city, state }}) => {
 
   return (
-    <div className='listing'>
+    <div className='listing' onClick={() => {
+      window.history.pushState({path: '/apartment'}, '', '/apartment');
+      window.location.reload(false);
+    }}>
       <div 
         className='listingPhoto'
         style={{ backgroundImage: `url(${photo})` }}
