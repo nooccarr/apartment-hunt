@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon server/app.js",
+    "start-sock": "nodemon src/components/ChatBox/backend/chatbox_server.js",
     "build-dev": "npx webpack --mode development --config webpack.config.js --watch",
     "build-prod": "npx webpack --mode production --config webpack.config.js --watch"
   },
@@ -46,7 +47,8 @@
     "socket.io": "^3.0.4",
     "socket.io-client": "^3.0.4",
     "styled-components": "^5.2.1",
-    "underscore": "^1.12.0"
+    "underscore": "^1.12.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

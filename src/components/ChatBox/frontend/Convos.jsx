@@ -4,6 +4,18 @@ const Convos = (props) => {
 
   console.log('props.chatHistory', props.chatHistory)
 
+  // let receiver;
+  // let user;
+
+  // if (loggedUser === 'client') {
+  //   receiver = 'agent'
+  //   user = 'agentName'
+  // } else if (loggedUser === 'agent') {
+  //   receiver = 'client'
+  //   user = 'userName'
+  // }
+
+
   if (!props.chatHistory) {
     return (
       <div>
@@ -17,7 +29,7 @@ const Convos = (props) => {
         {props.chatHistory.map((chat, idx) => (
           <div key={chat.chatId} onClick={() => props.selectConvo(idx)}>
             <div>{chat.address}</div>
-            <div>Agent: {chat.messages[chat.messages.length - 1].sender}</div>
+            <div>{props.role === 'client' ? 'agent' : 'client'}: {props.role === 'client' ? chat.agentName : chat.userName}</div>
           </div>
         ))}
       </div>

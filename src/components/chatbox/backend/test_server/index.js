@@ -14,7 +14,7 @@ const PORT = 4000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/msg/user', function (req, res) {
+app.get('/msg/client', function (req, res) {
   fetchChatsByUser(req.query)
     .then((result) => {
       res.send(result);
@@ -39,7 +39,7 @@ app.get('/msg/agent', function (req, res) {
 app.post('/msg', function (req, res) {
   console.log(req);
 
-  // saveMsg(req.query)
+  // conAgent(req.query)
   //   .then(() => {
   //     res.sendStatus(200);
   //   })

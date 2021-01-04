@@ -10,7 +10,9 @@ const {
   saveMsg,
   fetchChatsByUser,
   fetchChatsByAgent,
+  conAgent,
   fetchMsgById,
+  fetchMsgByChatRoom,
 } = require('../src/components/ChatBox/backend/chatboxDB.js');
 
 // Serve static assets from 'dist' folder
@@ -30,7 +32,7 @@ app.use('(/chatbox)?', express.static(path.join(__dirname, '../dist')));
 ////////////////
 
 app.post('/msg', function (req, res) {
-  console.log(req.body);
+  // console.log('msg', req.body);
 
   saveMsg(req.body)
     .then(() => {
@@ -41,8 +43,8 @@ app.post('/msg', function (req, res) {
     });
 });
 
-app.get('/msg/user', function (req, res) {
-  console.log('hit', req.query);
+app.get('/msg/client', function (req, res) {
+  // console.log('hit', req.query);
   fetchChatsByUser(req.query)
     .then((result) => {
       res.send(result);
@@ -50,5 +52,38 @@ app.get('/msg/user', function (req, res) {
     .catch((err) => {
       res.sendStatus(500);
       console.log(err);
+    });
+});
+
+app.get('/msg/agent', function (req, res) {
+  fetchChatsByAgent(req.query)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+      console.log(err);
+    });
+});
+
+app.post('/chatRoom', function (req, res) {
+  // console.log('chatreq', req.body);
+  conAgent(req.body)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+});
+
+app.get('/chatRoom', function (req, res) {
+  return fetchMsgByChatRoom(req.query)
+    .then((chatterRoom) => {
+      console.log('chatterRoom: ', chatterRoom);
+      res.json(chatterRoom);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
     });
 });
