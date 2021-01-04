@@ -26,7 +26,7 @@ body{
  position: absolute;
  z-index: 1;
  width: 100%;
- background: #FFF;
+ background: rgb(254,218,218);
 }
  .logo{
  text-align:left;
@@ -47,14 +47,22 @@ body{
    transition: all 0.5s ease;
 }
 .menu li a:hover {
-  color:rgb(255, 42, 166);
+  color:rgb(191,99,104);
 } 
-.menu li.login a{
- 
-    box-shadow:inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 1px 1px #961d71;
-    background: rgb(233, 54, 152);
-       
-   border: 1px solid rgb(206, 53, 142);
+
+.menu li a:active {
+	background:linear-gradient(to bottom, rgb(191,99,104)5%,rgb(191,99,104) 100%);
+	background-color:rgb(191,99,104);
+}
+
+#loginButton {
+  font-size:1em;
+  font-weight:500;
+  margin:5px 15px;
+  box-shadow:inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 1px 1px rgb(203,117,120);
+  background:  rgb(239,174,170);
+  
+   border: 1px solid  rgb(239,174,170);
    font-weight:normal;
    color: #FFF;
    border-radius:1px;
@@ -62,13 +70,18 @@ body{
    -moz-border-radius:1px;
    -o-border-radius:1px;
 }
+
+#loginButton:active {
+	background:linear-gradient(to bottom, rgb(191,99,104)5%,rgb(191,99,104) 100%);
+	background-color:rgb(191,99,104);
+}
  
 .navigation-search-bar {
   display: block;
   text-align: left;
 }
 
-#loginContainer {
+#loginButton {
    position:relative;
 }
 #loginContainer a span{
@@ -90,11 +103,11 @@ body{
 
 .searchButton {
   position: relative;
-  box-shadow:inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 1px 1px #961d71;
-  background: rgb(233, 54, 152);
+  box-shadow:inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 1px 1px rgb(203,117,120);
+  background: rgb(239,174,170);
   
    margin-left: 5px;
-   border: 1px solid rgb(206, 53, 142);
+   border: 1px solid rgb(239,174,170);
    font-weight:normal;
    color: #FFF;
    border-radius:1px;
@@ -103,11 +116,11 @@ body{
    -o-border-radius:1px;
 }
 .searchButton:hover {
-  color:rgb(255, 42, 166);
+  color:rgb(191,99,104);
 }
 .searchButton:active {
-	background:linear-gradient(to bottom, #ef027d 5%, #ff5bb0 100%);
-	background-color:#ef027d;
+	background:linear-gradient(to bottom, rgb(191,99,104)5%,rgb(191,99,104) 100%);
+	background-color:rgb(191,99,104);
 }
 input.search-input{
 	position:relative;

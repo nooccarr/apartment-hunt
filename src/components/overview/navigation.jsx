@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.png';
 
+import './navigation-style.scss';
+
+
 import SearchBar from '../SearchResults/TopBanner/SearchBar/index.js';
 import Login from '../Authentication/Login/Login.jsx';
 
@@ -34,7 +37,7 @@ const Navigation  = ({ searchValue, setSearchValue }) => {
                       <div id="chatButton"><a href="#" id="chatButton"><span>Chat Button</span></a></div>
                     </li>		    
                     <li className="login" >
-                      <div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a></div>
+                      <button type="submit" id="loginButton"> <span>Login</span></button>
                     </li>
                      
                   </ul>
