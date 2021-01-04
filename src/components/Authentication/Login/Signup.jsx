@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Form, Input } from '../styles/AuthForm';
+import { Card, Form, Input } from '../styles/AuthForm.jsx';
 import Button from '@material-ui/core/Button';
 import { FcGoogle } from 'react-icons/fc';
 import '../styles/signup.css';

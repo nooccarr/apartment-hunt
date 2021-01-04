@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Login, LoginModal, Nav } from '../index';
+import { Login, LoginModal, Nav } from '../index.jsx';
 
 const AuthLogin = () => {
   const [clickedLogin, setClickedLogin] = useState(false);

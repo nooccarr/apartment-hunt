@@ -1,5 +1,5 @@
 import React from 'react';
-import LandingPage from '../Authentication/Login/Main';
+import LandingPage from '../Authentication/Login/Main.jsx';
 import './styles/homelogin.css';
 
 const HomeLogin = () => {

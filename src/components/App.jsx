@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import PrivateRoute from './Authentication/Auth/PrivateRoute';
-import { AuthContext } from './Authentication/Auth/AuthContext';
-import { HomeLogin, Admin, UserProfile } from './pages/index';
+import PrivateRoute from './Authentication/Auth/PrivateRoute.jsx';
+import { AuthContext } from './Authentication/Auth/AuthContext.jsx';
+import { HomeLogin, Admin, UserProfile } from './pages/index.jsx';
 
 const App = () => {
   return (

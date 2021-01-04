@@ -1,5 +1,5 @@
-import Admin from './Admin';
-import HomeLogin from './HomeLogin';
-import UserProfile from './UserProfile';
+import Admin from './Admin.jsx';
+import HomeLogin from './HomeLogin.jsx';
+import UserProfile from './UserProfile.jsx';
 
 export { Admin, HomeLogin, UserProfile };
