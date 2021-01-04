@@ -1,21 +1,42 @@
-.pink {
-  color: pink;
+.primary-font {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+.file-upload-widget-container {
+  background-color: white;
+  width:600px;
+  border-radius: 10px;
+}
+.select-documents-container {
+  display:flex;
+
+}
+.status-message {
+  margin-left:auto;
+  padding: 15px 32px;
+  font-style: italic;
+}
+.select-documents-button {
+    color: #FF6EC7;
+    padding: 15px 32px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.preview-file-container > hr {
+  border: 1px solid #FF6EC7;
+}
+.file-container {
+  display: flex;
 }
 
-.overlay {
-  position: fixed; /* Sit on top of the page content */
-  /*display: none;*/ /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
+.file-container > div {
+  padding: 10px;
 }
 
-.hidden {
-  display: none;
+.upload-cancel-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.upload-cancel-container > div {
+  color:#FF6EC7;
+  padding: 10px;
 }
