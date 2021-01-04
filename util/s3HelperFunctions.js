@@ -58,7 +58,6 @@ const decryptMessage = (encryptedMessage) => {
     var decipher,
         result,
         iv;
-    console.log('Encrypted buffer received to decrypt: ', encryptedMessage);
     // Get the iv: the first 16 bytes
     iv = encryptedMessage.slice(0, 16);
 
@@ -70,7 +69,6 @@ const decryptMessage = (encryptedMessage) => {
 
     // Actually decrypt it
     result = Buffer.concat([decipher.update(encryptedMessage), decipher.final()]);
-    console.log('Decrypted buffer to be read: ', result);
 
     return result;
 }
