@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
+import './album-styles.scss';
 
 class Album extends React.Component {
 
