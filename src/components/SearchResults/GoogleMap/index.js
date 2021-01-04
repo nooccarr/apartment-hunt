@@ -1,5 +1,5 @@
 import React from 'react';
-import google_api_key from '../config/google_api_key';
+//import google_api_key from '../config/google_api_key';
 import { Loader } from '@googlemaps/js-api-loader';
 // import createHTMLMapMarker from './html-map-marker';
 // import './NeonSign/_neonsign.scss'
@@ -40,7 +40,7 @@ const GoogleMap = () => {
        map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 40.730610, lng: -73.935242 },
         zoom: 11,
-        
+
         // FOR DARK MODE
 
         // styles: [
@@ -131,7 +131,7 @@ const GoogleMap = () => {
       //   let marker = createHTMLMapMarker({
       //     latlng: new google.maps.LatLng(lat, long),
       //     map:map,
-      //     html: 
+      //     html:
       //     `<div class='wrapper'>
       //       <div class='neon-wrapper'>
       //         <span class='${className}'>${city}</span>

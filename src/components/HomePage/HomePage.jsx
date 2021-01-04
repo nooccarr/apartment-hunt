@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Login, LoginModal } from '../Authentication/index';
+import { Login, LoginModal } from '../Authentication/index.jsx';
 import HomePageSearch from './Search.jsx';
 import './styles/homelogin.css';
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import HomePage from '../HomePage/HomePage.jsx';
-import SearchResults from '../SearchResults/index.jsx';
+import SearchResults from '../SearchResults/index.js';
 // import './styles/homelogin.css';
 
 const HomeLogin = () => {
