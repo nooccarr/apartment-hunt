@@ -1,5 +1,6 @@
-import React from 'react';
-// import google_api_key from '../config/google_api_key';
+import React, {useContext} from 'react';
+import { ApartmentContext } from '../../HomePage/ApartmentContext'
+import google_api_key from '../config/google_api_key';
 import { Loader } from '@googlemaps/js-api-loader';
 import lightMap from './MapStyles/lightmap.js';
 import darkMap from './MapStyles/darkmap.js';
@@ -8,7 +9,8 @@ import darkMap from './MapStyles/darkmap.js';
 
 const GoogleMap = () => {
   // const [light, setLighting] = useState(true)
-  let map;
+  let map, marker;
+  const { listings } = useContext(ApartmentContext)
   // const cities = [
   //   {
   //     city: 'new york',
@@ -38,13 +40,28 @@ const GoogleMap = () => {
     version: 'weekly'
   });
 
-  loader.load().then(() => {
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 40.730610, lng: -73.935242 },
-      zoom: 10,
-      options: { styles: lightMap }
-    });
-  })
+  loader.load()
+    .then(() => {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 40.730610, lng: -73.935242 },
+        zoom: 10,
+        options: { styles: lightMap }
+      }); 
+    })
+    .then(() => {
+      marker = listings.map((apartment) => {
+        new google.maps.Marker({
+          position: { lat: apartment.position.coordinates[1], lng: apartment.position.coordinates[0] },
+          map,
+          title: "Apartment Listing",
+          // icon: {
+          //   url: "",
+          //   scaledSize: new window.google.maps.Size(45, 25)
+          // }
+        });
+      })
+    })
+
       // NEON SIGNS
 
       // cities.forEach(({ city, lat, long, gradient, className }) => {

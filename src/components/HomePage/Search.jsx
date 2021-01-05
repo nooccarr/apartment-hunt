@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ApartmentContext } from './ApartmentContext.jsx'
 import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import axios from 'axios';
 import regeneratorRuntime from "regenerator-runtime";
@@ -11,22 +12,30 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     lat: null,
     lng: null,
   });
-  const [apartments, addApartments] = useState(null);
+  const [apartments, addApartments] = useState([]);
+  const {listings, getListings} = useContext(ApartmentContext)
 
   const handleSelect = async (value) => {
+    console.log(value);
     // converts location value to coordinates for API call
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     setAddress(value);
     setCoordinates(latLng);
+    console.log(latLng);
   };
 
-  const findApartments = async () => {
-    // allows data flow of search bar value to the next page
-    setSearchValue(address)
+  const findApartments = () => {
     // API call with Coordinates
-    axios.get('/search', { params: {lat: 40.69396233779667, long: -73.94443814752641} })
-      .then((results) => { addApartments(results.data); })
+    axios.get('/search', { 
+      params: {
+        distance: 0.25, 
+        lat: 40.69396233779667, 
+        long: -73.94443814752641}
+      })
+      .then((results) => { getListings(results.data); })
+      // after obtaining listings, persist search to allow data flow of search bar value to the next page
+      .then(() => { setSearchValue(address); })
       .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
   }
 
@@ -63,8 +72,9 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
   return (
     <>
       <div>
+        {console.log(listings)}
         <PlacesAutoComplete
-          value={address}
+          value={address || ''}
           onChange={setAddress}
           onSelect={handleSelect}
         >
