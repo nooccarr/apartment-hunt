@@ -116,5 +116,6 @@ database/173142_1.txt
 # Google Maps API Key
 src/components/SearchResults/config/google_api_key.js
 
-# sercret keys
+# secret keys
 server/auth/credentials.js
+util/s3Config.js
