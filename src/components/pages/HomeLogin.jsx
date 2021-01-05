@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 import HomePage from '../HomePage/HomePage';
 import SearchResults from '../SearchResults/index';
-// import './styles/homelogin.css';
 
-const HomeLogin = () => {
-  const [searchValue, setSearchValue] = useState(null);
+const HomeLogin = ({ user, getUserInfo }) => {
+  const [searchValue, setSearchValue] = useState('');
 
-  return searchValue ? (
-    <SearchResults searchValue={searchValue} setSearchValue={setSearchValue} />
-  ) : (
-    <HomePage setSearchValue={setSearchValue} />
+  return (
+    <>
+      {searchValue ? (
+        <SearchResults
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
+      ) : (
+        <HomePage
+          setSearchValue={setSearchValue}
+          user={user}
+          getUserInfo={getUserInfo}
+        />
+      )}
+    </>
   );
 };
 
