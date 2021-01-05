@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ApartmentContext } from '../../HomePage/ApartmentContext'
+import { ApartmentContext } from '../../HomePage/ApartmentContext.jsx'
 import Listings from './Listings/index';
 import './_results_styles.scss';
 

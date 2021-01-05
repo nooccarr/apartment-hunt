@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import PrivateRoute from './Authentication/Auth/PrivateRoute';
-import { ApartmentContext } from './HomePage/ApartmentContext';
-import { AuthContext } from './Authentication/Auth/AuthContext';
-import { HomeLogin, UserProfile } from './pages/index';
+import PrivateRoute from './Authentication/Auth/PrivateRoute.jsx';
+import { ApartmentContext } from './HomePage/ApartmentContext.jsx';
+import { AuthContext } from './Authentication/Auth/AuthContext.jsx';
+import { HomeLogin, UserProfile } from './pages/index.jsx';
 import Overview from './overview/Overview.jsx';
-import UploadListing from './Agent/UploadListing';
+import UploadListing from './Agent/UploadListing.jsx';
 
 const App = () => {
   const [listings, getListings] = useState([]);
