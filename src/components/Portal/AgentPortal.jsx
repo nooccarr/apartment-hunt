@@ -39,10 +39,20 @@ const AgentPortal = () => {
     setTexts(true)
   }, [resetId])
   
-
-  // const openClientChat = (chatIdx) => {
-
-  // }
+//////////////////////////////////////Keep socket connection//////////////////////////
+  // useEffect(() => {
+  //   if (!inRoom) {
+  //     setInRoom(true)
+  //     for (let i = 0; i < chatHist.length; i++) {
+  //       socket.emit('join room', {room: chatHist[i].chatId});
+  //     }
+  //   }
+  //   // return () => {
+  //   //   socket.emit('leave room', {
+  //   //     room: props.chatId
+  //   //   })
+  //   // }
+  // }, [chatHist])
 
   const exitChat = () => {
     setTexts(false)
