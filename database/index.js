@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 // const db = mongoose.connect('mongodb://localhost/apartmentHunt', {promiseLibrary: global.Promise});
 
 // const { user, password } = require('./dbconfig');
@@ -7,5 +7,5 @@ const mongoose = require('mongoose');
 //   { promiseLibrary: global.Promise }
 // );
 
-module.exports = db;
+// module.exports = db;
 
