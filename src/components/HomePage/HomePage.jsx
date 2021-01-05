@@ -12,7 +12,7 @@ const HomePage = ({ setSearchValue, user, getUserInfo }) => {
   const [clickedLogin, setClickedLogin] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
-  console.log(user);
+  // console.log(user);
 
   const openModal = (boolean) => {
     setClickedLogin(true);
