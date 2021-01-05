@@ -5,6 +5,7 @@ import { ApartmentContext } from './HomePage/ApartmentContext';
 import { AuthContext } from './Authentication/Auth/AuthContext';
 import { HomeLogin, UserProfile } from './pages/index';
 import Overview from './overview/Overview.jsx';
+import UploadListing from './Agent/UploadListing';
 
 const App = () => {
   const [listings, getListings] = useState([]);
@@ -16,6 +17,7 @@ const App = () => {
           <div>
             <Route exact path='/' component={HomeLogin} />
             <Route exact path='/apartment' component={Overview} />
+            <Route exact path='/uploadlisting' component={UploadListing} />
           </div>
         </Router>
       </ApartmentContext.Provider>
