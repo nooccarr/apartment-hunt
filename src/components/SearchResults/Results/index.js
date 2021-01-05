@@ -105,7 +105,6 @@ const Results = () => {
 
   return (
     <div className='results'>
-      {console.log(listings)}
       {listings.map(listing => <Listings listing={ listing } />)}
     </div>
   );
