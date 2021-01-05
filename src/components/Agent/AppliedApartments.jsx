@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import ApplicantListContainer from './ApplicantListContainer.jsx'
+import css from '../FileUpload/styles/styles.css'
+
 
 const AppliedApartments = ({agentName}) => {
 

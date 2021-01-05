@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import FileUpload from './FileUpload.jsx';
 import Modal from '@material-ui/core/Modal';
+import css from './styles/styles.css'
 
 const FileUploadOverlay = () => {
   // conditional that turn it on and off??

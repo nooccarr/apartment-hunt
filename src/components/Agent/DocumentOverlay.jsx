@@ -2,31 +2,19 @@ import React, {useState, useEffect} from 'react';
 import Modal from '@material-ui/core/Modal';
 import axios from 'axios'
 import { Document, Page, StyleSheet} from 'react-pdf/dist/umd/entry.webpack';
+import css from '../FileUpload/styles/styles.css'
+
 
 const DocumentOverlay = ({fileName}) => {
-  // conditional that turn it on and off??
 
 
   const [open, setOpen] = useState(false)
   const [file, setFile] = useState('');
   const [numPages, setNumPages] = useState(null);
-  /*
-  useEffect(() => {
-    axios.get(`/download?filename=${fileName}`)
-    .then((data) => {
-      console.log(data);
-      setFile({'data':data.data.Body.data});
-    })
-    .catch((err) => {
-      console.log(fileName);
-      console.log("Error with download! Error: ", err);
-    })
-  }, [])
-  */
+
   const downloadFile = () => {
     axios.get(`/download?filename=${fileName}`)
     .then((data) => {
-      console.log(data);
       setFile({'data':data.data.Body.data});
       updateOverlay();
     })

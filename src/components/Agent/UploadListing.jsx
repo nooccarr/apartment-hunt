@@ -73,15 +73,15 @@ const getPos = async () => {
       })
   };
 
-  
+
   const handlePets = (e) => {
     e.preventDefault();
     if(e.target.value === 'yes') {
-        
+
         setListing(prevState => ({...prevState, pets: {...prevState.pets, [e.target.name]: true}}));
     }
     if(e.target.value === 'no') {
-        
+
         setListing(prevState => ({...prevState, pets: {...prevState.pets, [e.target.name]: false}}));
     }
   };
@@ -115,7 +115,7 @@ const getPos = async () => {
                   <label>Description: </label>
                   <textarea name="description" onChange={handleChange}></textarea>
               </div>
-              
+
               <div>
                   <label>Agent: </label>
                   <input type="text" name="agent" onChange={handleChange}></input>
@@ -142,28 +142,28 @@ const getPos = async () => {
                   <input type="button"  name="cats" value='yes' onClick={handlePets}></input><input type="button"  name="cats" value='no' onClick={handlePets}></input><br></br>
                   <label>Dogs? </label>
                   <input type="button"  name="dogs" value='yes'  onClick={handlePets}></input><input type="button"  name="dogs" value='no'  onClick={handlePets}></input><br></br>
-                
+
               </div>
               <div>
-                  
+
                   <label>Neighborhoods (ADD BORROUGH TO HERE AS WELL): </label>
                   <input type="text" id="hoods" name="neighborhoods" onChange={handleUrl}></input>
                   <input type="submit" value="Add" name="neighborhoods" onClick={addUrl}></input>
-                  
+
               </div>
               <div>
-                  
+
                   <label>Pictures: </label>
                   <input type="url" id="picIn" name="pics" onChange={handleUrl}></input>
                   <input type="submit" value="Submit" name="pics" onClick={addUrl}></input>
-                  
+
               </div>
               <div>
-                  
+
                   <label>Videos: </label>
                   <input type="url" id="vidIn" name="videos" onChange={handleUrl}></input>
                   <input type="submit" value="Submit" name="videos" onClick={addUrl}></input>
-                
+
               </div>
               <input type="submit" value="Submit Listing" onClick={handleSubmit}></input>
           </form>

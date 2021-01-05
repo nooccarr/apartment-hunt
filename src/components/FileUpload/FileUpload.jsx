@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Document, Page} from 'react-pdf/dist/umd/entry.webpack';
 import { faFileAlt } from '@fortawesome/free-regular-svg-icons'
+import css from './styles/styles.css'
 
 const FileUpload = () => {
   const fileInput = useRef(null)

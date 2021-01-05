@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import DocumentOverlay from './DocumentOverlay.jsx';
+import css from '../FileUpload/styles/styles.css'
+
 const ApplicantListEntry = ({apartment, username}) => {
 
   var [userFullName, setUserFullName] = useState('');
