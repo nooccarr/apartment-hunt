@@ -9,16 +9,6 @@ import axios from 'axios';
 
 const ChatApp = () => {
 
-  // function useAsyncState(initialValue) {
-  //   const [value, setValue] = useState(initialValue);
-  //   const setter = x =>
-  //     new Promise(resolve => {
-  //       setValue(x);
-  //       resolve(x);
-  //     });
-  //   return [value, setter];
-  // }
-
   const [convos, setConvos] = useState(false);
   const [texts, setTexts] = useState(false);
   const [chatIdx, setChatIdx] = useState(null);
@@ -29,8 +19,9 @@ const ChatApp = () => {
   const [conAge, setConAge] = useState(false);
   const [getChatHist, setGetChatHist] = useState(false);
   const [getIndvChat, setGetIndvChat] = useState(false);
+
+  const [inRoom, setInRoom] = useState(false);
   
-  // const [chatHistId, setChatHistId] = useState(null)
 
   const selectConvo = (id) => {
     setChatIdx(id);
@@ -43,42 +34,32 @@ const ChatApp = () => {
     setTexts(false)
   }
 
-  //Axios get
   useEffect(() => {
-    if (!loggedUser.role === 'client' || !loggedUser.role === 'agent') {
-      return;
-    }
-    let user = loggedUser.role ;
-      // console.log('hitEffect', loggedUser.user)
-      return axios.get(`/msg/${user}`, {
+      return axios.get(`/msg/client`, {
         params: {
           userName: loggedUser.user
         }
       }).then(({ data }) => {
-        // console.log('dataHist: ', data);
         setChatHist(data)
-        // console.log('newDataHist: ', data);
       })
-    // setChatHist(sampleChatData)
-  }, [])
-
-  useEffect(() => {
-    if (!loggedUser.role === 'client' || !loggedUser.role === 'agent') {
-      return;
-    }
-    let user = loggedUser.role ;
-      // console.log('hitEffect', loggedUser.user)
-      return axios.get(`/msg/${user}`, {
-        params: {
-          userName: loggedUser.user
-        }
-      }).then(({ data }) => {
-        // console.log('dataHist: ', data);
-        setChatHist(data)
-        // console.log('newDataHist: ', data);
-      })
-    // setChatHist(sampleChatData)
   }, [convos])
+
+  ////////////////////////////Keep all socket connection/////////////
+  // useEffect(() => {
+  //   if (!inRoom) {
+  //     setInRoom(true)
+  //     for (let i = 0; i < chatHist.length; i++) {
+  //       socket.emit('join room', {room: chatHist[i].chatId});
+  //     }
+  //   }
+  //   // return () => {
+  //   //   socket.emit('leave room', {
+  //   //     room: props.chatId
+  //   //   })
+  //   // }
+  // }, [chatHist])
+
+  /////////////////////////////////////////////////////////////////
 
   const updateConvo = (messageObj, chatRoomId) => {
     if (chatRoomId === null) {
@@ -95,19 +76,11 @@ const ChatApp = () => {
     }
   }
 
-  // async function changeHist(data) {
-  //   await setChatHist(data)
-  //   console.log('here', data)
-  //   console.log('firstHistory: ', chatHist);
-  // }
-
   useEffect(() => {
-    console.log('effect', firstRender)
     if (!firstRender) {
       setFirstRender(true)
       return;
     }
-    console.log('hit:');
     axios.post('/chatRoom', {
       address: '47382 Please Ave',
       userName: 'LOLA64739',
@@ -121,9 +94,7 @@ const ChatApp = () => {
   }, [conAge])
 
   useEffect(() => {
-    console.log('effect2', firstRender)
     if (!firstRender) {
-      // setFirstRender(true)
       return;
     }
     console.log('hit2:');
@@ -132,19 +103,15 @@ const ChatApp = () => {
         userName: loggedUser.user
       }
     }).then(({ data }) => {
-      console.log('here', data)
       setChatHist(data)
-      console.log('firstHistory: ', chatHist);
       setGetIndvChat(!getIndvChat)
     })
   }, [getChatHist])
 
   useEffect(() => {
     if (!firstRender) {
-      // setFirstRender(true)
       return;
     }
-    console.log('firstHistory: ', chatHist);
     let chatInfo = {address: '47382 Please Ave', userName: 'LOLA64739'}
     return axios.get('/chatRoom', { 
       params: {
@@ -152,116 +119,16 @@ const ChatApp = () => {
         userName: chatInfo.userName,
       }
     }).then(({ data }) => {
-        console.log('convo: ', data);
-        console.log('chatHistory: ', chatHist);
         for (let i = 0; i < chatHist.length; i++) {
-          console.log('chatHist[i].chatId: ', chatHist[i].chatId);
-          console.log('data[0].chatId: ', data[0].chatId);
           if (chatHist[i].chatId === data[0].chatId) {
-            console.log('I: ', i);
             setChatIdx(i);
-            console.log('IAfter: ', chatIdx);
-            console.log('chatHistId: ', chatId);
             setChatId(data[0].chatId)
-            console.log('AfterchatHistId: ', chatId);
-            console.log('Texts: ', texts);
             setTexts(true);
-            console.log('AfterTexts: ', texts);
           }
         }
     })
   }, [getIndvChat])
-
-
-  // useEffect(() => {
-  //   console.log('convo: ', data);
-  //   console.log('chatHistory: ', chatHist);
-  //   for (let i = 0; i < chatHist.length; i++) {
-  //     console.log('chatHist[i].chatId: ', chatHist[i].chatId);
-  //     console.log('data[0].chatId: ', data[0].chatId);
-  //     if (chatHist[i].chatId === data[0].chatId) {
-  //       console.log('I: ', i);
-  //       setChatIdx(i);
-  //       console.log('IAfter: ', chatIdx);
-  //       console.log('chatHistId: ', chatHistId);
-  //       setChatId(chatHistId)
-  //       console.log('AfterchatHistId: ', chatHistId);
-  //       console.log('Texts: ', texts);
-  //       setTexts(true);
-  //       console.log('AfterTexts: ', texts);
-  //     }
-  //   }
-  // }, [getIndvChat])
-  
-  // const openChat = (i, chatHistId) => {
-  //   console.log('chatHistId: ', chatHistId);
-  //   console.log('I: ', i);
-  //   setChatIdx(i);
-  //   setChatId(chatHistId)
-  //   setTexts(true);
-  // }
-  
-  // const createChatRoom = () => {
-  //   // return axios.get('/details', {})
-  //   // .then((chatParams) => {
-  //     axios.post('/chatRoom', {
-  //       address: '47382 Please Ave',
-  //       userName: 'Phil54356',
-  //       agentName: 'harvey83924',
-  //       userId: '573272',
-  //       agentId: '273849',
-  //       messages: [],
-  //   })
-  //   .then(() => {
-  //     return axios.get(`/msg/client`, {
-  //       params: {
-  //         userName: loggedUser.user
-  //       }
-  //     })
-  //   })
-  //   .then(({ data }) => {
-  //     console.log('here', data)
-  //     setChatHist(data)
-  //     console.log('firstHistory: ', chatHist);
-  //     // setHistChat(!histChat)
-  //     // let chatHistChange = await changeHist(data)
-  //     // changeHist(data);
-  //     // console.log(chatHistChange)
-  //   }).then(() => {
-  //     console.log('secondHistory: ', chatHist);
-  //     let chatInfo = {address: '47382 Please Ave', userName: 'Phil54356'}
-  //     return axios.get('/chatRoom', { 
-  //       params: {
-  //         address: chatInfo.address,
-  //         userName: chatInfo.userName,
-  //       }
-  //     })
-  //   })
-  //   .then(({ data }) => {
-  //     console.log('convo: ', data);
-  //     console.log('chatHistory: ', chatHist);
-  //     for (let i = 0; i < chatHist.length; i++) {
-  //       console.log('chatHist[i].chatId: ', chatHist[i].chatId);
-  //       console.log('data[0].chatId: ', data[0].chatId);
-  //       if (chatHist[i].chatId === data[0].chatId) {
-  //         console.log('I: ', i);
-  //         setChatIdx(i);
-  //         console.log('IAfter: ', chatIdx);
-  //         console.log('chatHistId: ', chatHistId);
-  //         setChatId(chatHistId)
-  //         console.log('AfterchatHistId: ', chatHistId);
-  //         console.log('Texts: ', texts);
-  //         setTexts(true);
-  //         console.log('AfterTexts: ', texts);
-  //       }
-  //     }
-  //   }).catch((err) => {
-  //     console.log('error: ', err);
-  //   })
-  // };
-
-  
-  
+    
   
   return (
     <div>
@@ -291,3 +158,23 @@ export default ChatApp;
     // chatRoom.messages.push(messageObj)
     // setChatHist(outdatedChat)
     // // storeConvo(messageObj)
+
+
+    //Axios get
+  // useEffect(() => {
+    // if (!loggedUser.role === 'client' || !loggedUser.role === 'agent') {
+    //   return;
+    // }
+    // let user = loggedUser.role ;
+      // console.log('hitEffect', loggedUser.user)
+      // return axios.get(`/msg/${user}`, {
+      //   params: {
+      //     userName: loggedUser.user
+      //   }
+      // }).then(({ data }) => {
+        // console.log('dataHist: ', data);
+        // setChatHist(data)
+        // console.log('newDataHist: ', data);
+      // })
+    // setChatHist(sampleChatData)
+  // }, [])
