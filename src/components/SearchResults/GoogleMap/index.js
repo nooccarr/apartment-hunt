@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import { ApartmentContext } from '../../HomePage/ApartmentContext.jsx'
-//import google_api_key from '../config/google_api_key';
+import google_api_key from '../config/google_api_key.js';
 import { Loader } from '@googlemaps/js-api-loader';
 import lightMap from './MapStyles/lightmap.js';
 import darkMap from './MapStyles/darkmap.js';
@@ -43,7 +43,7 @@ const GoogleMap = () => {
   loader.load()
     .then(() => {
       map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 40.730610, lng: -73.935242 },
+        center: { lat: 40.69396233779667, lng: -73.94443814752641 },
         zoom: 10,
         options: { styles: lightMap }
       });
