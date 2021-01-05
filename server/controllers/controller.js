@@ -13,6 +13,16 @@ const signup = (req, res) => {
   res.sendStatus(200);
 };
 
+const applicants = (req, res) => {
+  Apts.find().where('agent').equals(req.query.agent).where('applicants').exists(true)
+  .then((apts) => {
+    res.status(200).json(apts);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  })
+};
+
 const apt = (req, res) => {
   let id = req.query.id;
   Apts.findById(id)
@@ -103,5 +113,6 @@ module.exports = {
   signup,
   search,
   listing,
-  apt
+  apt,
+  applicants
 };
