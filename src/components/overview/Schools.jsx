@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import googleKey from './googleApi.js'
 
 class Schools extends React.Component {
     constructor(props) {
@@ -9,9 +10,9 @@ class Schools extends React.Component {
     }
 
     componentDidMount() {
-        const fakeRequest = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.692390,-73.914880&radius=2000&type=restaurant&key=AIzaSyByaqFNRm8cBAWr4q5C3_-D0mv355NJOaA'
+        const fakeRequest = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.692390,-73.914880&radius=2000&type=restaurant&key=${googleKey}`
         const frontReq = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-        axios({method: 'get', url: `/schools/?location=${this.props.location.latitude},${this.props.location.longitude}&radius=5000&type=school&key=AIzaSyByaqFNRm8cBAWr4q5C3_-D0mv355NJOaA`, headers: { "Access-Control-Allow-Origin": '*'} })
+        axios({method: 'get', url: `/schools/?location=${this.props.location.latitude},${this.props.location.longitude}&radius=5000&type=school&key=${googleKey}`, headers: { "Access-Control-Allow-Origin": '*'} })
             .then((response) => {
                 console.log('request made and recieved', response)
                 this.setState({
@@ -39,7 +40,7 @@ class Schools extends React.Component {
                                 <img src={school.photos === undefined ?
                                 'https://visualsound.com/wp-content/uploads/2019/05/unavailable-image.jpg' : 
                                 `https://maps.googleapis.com/maps/api/place/photo?maxheight=100&photoreference=
-                                ${school.photos[0].photo_reference}&key=AIzaSyByaqFNRm8cBAWr4q5C3_-D0mv355NJOaA`}
+                                ${school.photos[0].photo_reference}&key=${googleKey}`}
                                 className='modalImage'></img><br></br>
                                 Rating:{school.rating} {star.repeat(Math.round(school.rating))}{empty.repeat(5-Math.round(school.rating))}<br/>
                             </div>

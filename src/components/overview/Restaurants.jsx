@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
+import googleKey from './googleApi.js'
 
 class Restaurants extends React.Component {
     constructor(props) {
@@ -10,9 +11,9 @@ class Restaurants extends React.Component {
     }
 
     componentDidMount() {
-        const fakeRequest = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.692390,-73.914880&radius=2000&type=restaurant&key=AIzaSyByaqFNRm8cBAWr4q5C3_-D0mv355NJOaA'
+        const fakeRequest = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.692390,-73.914880&radius=2000&type=restaurant&key=${googleKey}`
         const frontReq = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-        axios({method: 'get', url: `/restaurants/?location=${this.props.location.latitude},${this.props.location.longitude}&radius=2000&type=restaurant&key=AIzaSyByaqFNRm8cBAWr4q5C3_-D0mv355NJOaA`, headers: { "Access-Control-Allow-Origin": '*'} })
+        axios({method: 'get', url: `/restaurants/?location=${this.props.location.latitude},${this.props.location.longitude}&radius=2000&type=restaurant&key=${googleKey}`, headers: { "Access-Control-Allow-Origin": '*'} })
             .then((response) => {
                 console.log('request made and recieved', response)
                 this.setState({
@@ -39,7 +40,7 @@ class Restaurants extends React.Component {
                             <img src={restaurant.photos === undefined ?
                             'https://visualsound.com/wp-content/uploads/2019/05/unavailable-image.jpg' :
                             `https://maps.googleapis.com/maps/api/place/photo?maxheight=100&photoreference=
-                            ${restaurant.photos[0].photo_reference}&key=AIzaSyByaqFNRm8cBAWr4q5C3_-D0mv355NJOaA`} 
+                            ${restaurant.photos[0].photo_reference}&key=${googleKey}`} 
                             className='modalImage'></img><br></br>
                             Price Level:{money.repeat(restaurant.price_level)} <br></br>
                             Rating: {restaurant.rating} {star.repeat(Math.round(restaurant.rating))}{empty.repeat(5-Math.round(restaurant.rating))}<br></br>
