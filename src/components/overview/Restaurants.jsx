@@ -34,9 +34,15 @@ class Restaurants extends React.Component {
                         const empty = '☆'
                         const star = '★'
                         return (
-                            <div key={index}>{restaurant.name} <br></br>
+                            <div key={index} className='singleSchool'>
+                            {restaurant.name} <br></br>
+                            <img src={restaurant.photos === undefined ?
+                            'https://visualsound.com/wp-content/uploads/2019/05/unavailable-image.jpg' :
+                            `https://maps.googleapis.com/maps/api/place/photo?maxheight=100&photoreference=
+                            ${restaurant.photos[0].photo_reference}&key=AIzaSyByaqFNRm8cBAWr4q5C3_-D0mv355NJOaA`} 
+                            className='modalImage'></img><br></br>
                             Price Level:{money.repeat(restaurant.price_level)} <br></br>
-                            Rating: {restaurant.rating} {star.repeat(Math.round(restaurant.rating))}{empty.repeat(5-Math.round(restaurant.rating))}
+                            Rating: {restaurant.rating} {star.repeat(Math.round(restaurant.rating))}{empty.repeat(5-Math.round(restaurant.rating))}<br></br>
                             </div>
                         )
                     })}

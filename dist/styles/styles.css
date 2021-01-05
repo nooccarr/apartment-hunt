@@ -167,3 +167,11 @@
 .restaurantList {
   overflow: scroll;
 }
+
+.modalImage {
+  height: 100px
+}
+
+.singleSchool {
+  margin-bottom: 15px;
+}
