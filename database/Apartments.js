@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 
 let apartmentSchema = new mongoose.Schema({
     address: String,
-    applicants: Array,
     listingName: String,
     state: String,
     zipCode: String,
