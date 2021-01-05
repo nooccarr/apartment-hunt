@@ -12,8 +12,8 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     lat: null,
     lng: null,
   });
-  const {listings, getListings} = useContext(ApartmentContext)
   const [apartments, addApartments] = useState([]);
+  const {listings, getListings} = useContext(ApartmentContext)
 
   const handleSelect = async (value) => {
     // converts location value to coordinates for API call
@@ -23,9 +23,7 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     setCoordinates(latLng);
   };
 
-  const findApartments = async () => {
-    // allows data flow of search bar value to the next page
-    setSearchValue(address)
+  const findApartments = () => {
     // API call with Coordinates
     axios.get('/search', { 
       params: {
@@ -33,10 +31,9 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
         lat: 40.69396233779667, 
         long: -73.94443814752641}
       })
-      // .then((results) => { console.log(results.data)})
-      // .then((results) => { addApartments(results.data); })
-      .then((results) => {getListings(results.data)})
-      // .then(() => console.log(apartments))
+      .then((results) => { getListings(results.data); })
+      // after obtaining listings, persist search to allow data flow of search bar value to the next page
+      .then(() => { setSearchValue(address); })
       .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
   }
 
