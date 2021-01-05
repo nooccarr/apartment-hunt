@@ -17,19 +17,16 @@ const App = () => {
     <div>
       <ApartmentContext.Provider value={{ listings, getListings }}>
         <Router>
-          <div>
+          <Switch>
             <Route exact path='/' component={HomeLogin} />
             <Route exact path='/apartment' component={Overview} />
             <Route exact path='/uploadlisting' component={UploadListing} />
-          </div>
+          </Switch>
         </Router>
       </ApartmentContext.Provider>
       <AuthContext.Provider value={tokens}>
         <Router>
           <Switch>
-            <Route exact path='/'>
-              <HomeLogin />
-            </Route>
             <PrivateRoute component={UserProfile} user={user} path='/profile' />
             <PrivateRoute component={AdminPortal} admin={admin} path='/admin' />
           </Switch>
