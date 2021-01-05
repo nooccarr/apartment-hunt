@@ -36,7 +36,7 @@ const GoogleMap = () => {
   // ]
 
   const loader = new Loader({
-    apiKey: 'AIzaSyC4aX9sHt7WGIUfoEqwz0iFLSNn3fslAX8',
+    apiKey: google_api_key,
     version: 'weekly'
   });
 
