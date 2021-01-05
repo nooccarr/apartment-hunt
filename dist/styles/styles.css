@@ -1,7 +1,35 @@
 @import 'album-styles.css';
+/********
 
+File Upload/ Video Upload Fonts
+
+
+
+*******/
 .primary-font {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+.select-video-button {
+  color: #FF6EC7;
+  border: 1px solid pink;
+  width: 100px;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: deeppink
+}
+.upload-video-button {
+  color:#FF6EC7;
+  border: 1px solid pink;
+  border-radius: 5px;
+  background-color: deeppink;
+}
+
+.video-file-container {
+  display: flex;
+}
+
+.video-file-container > div {
+  padding: 10px;
 }
 .file-upload-widget-container {
   background-color: white;
@@ -42,6 +70,8 @@
   color:#FF6EC7;
   padding: 10px;
 }
+
+/******* End of File Upload/ Video Upload Font ******/
 
 
 .desContainer {
