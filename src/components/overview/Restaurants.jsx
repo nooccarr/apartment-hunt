@@ -30,7 +30,7 @@ class Restaurants extends React.Component {
         if (this.state.restaurantList !== undefined) {
             return (
                 <div>
-                    {this.state.restaurantList.map((restaurant, index) => {
+                    {this.state.restaurantList.slice(0, 10).map((restaurant, index) => {
                         const money = '$'
                         const empty = '☆'
                         const star = '★'

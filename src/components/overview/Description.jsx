@@ -165,10 +165,10 @@ class Description extends React.Component {
                     </div>
                 </div>
                 <div className='desContainer'>
-                    <div className='criteria' onClick={() => {this.flipAreaModal()}}>Area</div>
-                    <div className='criteria' onClick={() => {this.flipSchoolsModal()}}>Schools</div>
-                    <div className='criteria' onClick={() => {this.flipDiningModal()}}>Dining</div>
-                    <div className='criteria' onClick={() => {this.flipCrimeModal()}}>Crime</div>
+                    <img src='./neighborhood.png' className='criteria' onClick={() => {this.flipAreaModal()}}></img>
+                    <img src='./schools.png' className='criteria' onClick={() => {this.flipSchoolsModal()}}></img>
+                    <img src='./restaurants.png' className='criteria' onClick={() => {this.flipDiningModal()}}></img>
+                    <img src='./crime.png' className='criteria' onClick={() => {this.flipCrimeModal()}}></img>
                 </div>
                 {this.areaModal()}
                 {this.diningModal()}
