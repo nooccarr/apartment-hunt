@@ -23,6 +23,22 @@ const applicants = (req, res) => {
   })
 };
 
+/*****
+
+Query for users by usernam
+
+*****/
+
+const userController = (req, res) => {
+  User.findOne({username: req.query.username}).exec()
+  .then((user) => {
+    res.status(200).json(user);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  })
+}
+
 const apt = (req, res) => {
   let id = req.query.id;
   Apts.findById(id)
@@ -114,5 +130,6 @@ module.exports = {
   search,
   listing,
   apt,
-  applicants
+  applicants,
+  userController
 };

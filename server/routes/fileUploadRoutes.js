@@ -4,9 +4,10 @@ const { updateUserDocs } = require('../controllers/updateUserDocs.js');
 const { updateApartmentApplicant } = require('../controllers/updateApartmentApplicant.js');
 
 const downloadRoute = (req, res) => {
-  getFile("Encrypted PDF File.pdf")
+  console.log('Request object', req);
+  console.log('Req file name: ', req.query.filename);
+  getFile(req.query.filename)
   .then((data) => {
-
     data['Body'] = decryptMessage(data['Body']);
     res.send(data).status(200);
   })
@@ -24,8 +25,8 @@ const uploadRoute = (req, res) => {
     promises.push(uploadFile(file));
     fileNames.push(file.originalname);
   })
-  //promises.push(updateUserDocs(1, fileNames));
-  //promises.push(updateApartmentApplicant(1, 2));
+  promises.push(updateUserDocs("username", fileNames));
+  promises.push(updateApartmentApplicant("5ff48f80f8d9ecaff9eb3545", "username"));
   Promise.all(promises)
   .then((result) => {
     res.sendStatus(200);

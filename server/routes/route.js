@@ -12,7 +12,7 @@ router.get('/search', controller.search);
 router.get('/apt', controller.apt);
 router.get('/applicants', controller.applicants);
 router.post('/listing', controller.listing);
-
+router.get('/user', controller.userController)
 // File Upload Routes
 router.get('/download', downloadRoute);
 router.post('/upload', upload.any(), uploadRoute);
