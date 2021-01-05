@@ -13,6 +13,27 @@ const signup = (req, res) => {
   res.sendStatus(200);
 };
 
+const applicants = (req, res) => {
+  Apts.find().where('agent').equals(req.query.agent).where('applicants').exists(true)
+  .then((apts) => {
+    res.status(200).json(apts);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  })
+};
+
+const apt = (req, res) => {
+  let id = req.query.id;
+  Apts.findById(id)
+  .then((apartment) => {
+    res.status(200).json(apartment);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  })
+};
+
 const search = (req, res) => {
 //0.00008938082823178741
 //
@@ -57,6 +78,7 @@ Apts.find().where('position').near({ center: [long, lat], maxDistance: maxD, sph
 
 const listing = (req, res) => {
 
+  console.log(req.body);
   let aptObj = {};
   aptObj.address = req.body.address;
   aptObj.listingName = req.body.address;
@@ -65,15 +87,17 @@ const listing = (req, res) => {
   aptObj.zipCode = req.body.zipCode;
   aptObj.country = "US";
   aptObj.description = req.body.description;
-  aptObj.pets = {dogs: req.body.dogs, cats: req.body.cats};
+  aptObj.pets = {dogs: req.body.pets.dogs, cats: req.body.pets.cats};
   aptObj.agent = req.body.agent;
   aptObj.sqft = req.body.sqft;
   aptObj.beds = req.body.beds;
   aptObj.baths = req.body.baths;
   aptObj.price = req.body.price;
   aptObj.neighborhoods = req.body.neighborhoods;
-  aptObj.position = {type: "Point", coordinates: [req.body.longitude, req.body.latitude]}
+  aptObj.position = {type: "Point", coordinates: [req.body.position.coordinates[0], req.body.position.coordinates[1]]}
   aptObj.pics = req.body.pics;
+  aptObj.videos = req.body.videos;
+  console.log(aptObj);
   Apts.create(aptObj)
   .then(() => {
     res.sendStatus(200);
@@ -88,5 +112,7 @@ module.exports = {
   login,
   signup,
   search,
-  listing
+  listing,
+  apt,
+  applicants
 };

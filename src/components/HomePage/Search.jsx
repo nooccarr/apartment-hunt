@@ -14,11 +14,13 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
   const [apartments, addApartments] = useState(null);
 
   const handleSelect = async (value) => {
+    console.log(value);
     // converts location value to coordinates for API call
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     setAddress(value);
     setCoordinates(latLng);
+    console.log(latLng);
   };
 
   const findApartments = async () => {

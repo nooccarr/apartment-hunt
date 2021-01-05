@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 const db = require('./index.js');
+const Schema = mongoose.Schema;
 
 
 let apartmentSchema = new mongoose.Schema({
     address: String,
+    applicants: Array,
     listingName: String,
     state: String,
     zipCode: String,
@@ -15,6 +17,7 @@ let apartmentSchema = new mongoose.Schema({
     position: Object,
     price: Number,
     pics: Array,
+    videos: Array,
     pets: Object,
     beds: Number,
     baths: Number,
@@ -22,5 +25,5 @@ let apartmentSchema = new mongoose.Schema({
 });
 
 let Apartments = mongoose.model('Apartment', apartmentSchema);
-
+//Apartments.index({ aptID: 1 }, { unique: true });
 module.exports = Apartments;
