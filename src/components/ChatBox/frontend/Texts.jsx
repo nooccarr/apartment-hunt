@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from 'react'
-import loggedUser from './sampleUser'
+// import loggedUser from './sampleUser'
 import { Form, InputGroup, Button } from 'react-bootstrap'
 import axios from 'axios';
 const io = require('socket.io-client');
@@ -62,15 +62,15 @@ const Texts = (props) => {
     e.preventDefault();
 
     // sendMessage()
-    console.log('loggedUser', loggedUser.user)
+    console.log('loggedUser', props.loggedIn.user)
     socket.emit('new message', {
       room: props.chatId,
       messageObj: {
         message: text,
-        sender: loggedUser.user
+        sender: props.loggedIn.user
     }})
     
-    storeMessageObj(props.chatBox.chatId, text, loggedUser.user)
+    storeMessageObj(props.chatBox.chatId, text, props.loggedIn.user)
 
     setText('')
   }
@@ -98,12 +98,12 @@ const Texts = (props) => {
       <div>{props.chatBox.address}</div>
       <div className='d-flex flex-grow-1 overflow-auto'>
         <div>
-          {console.log('chatBox', props.chatBox)}
+          {/* {console.log('chatBox', props.chatBox)} */}
           {props.chatBox.messages.map((messageObj, index) => (
           <div 
             key={index}
-            className={`my-1 d-flex flex-column ${loggedUser.user === messageObj.sender ? 'align-items-end' : 'align-items-start'} justified-content-end`}>
-              {(() => { if (messageObj.sender === loggedUser.user) {
+            className={`my-1 d-flex flex-column ${props.loggedIn.user === messageObj.sender ? 'align-items-end' : 'align-items-start'} justified-content-end`}>
+              {(() => { if (messageObj.sender === props.loggedIn.user) {
                 return (
                   <div className="text-right">
                     <div className={'rounded px-2 py-1 bg-primary text-white'}>{messageObj.message}</div>

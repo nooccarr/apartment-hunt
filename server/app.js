@@ -28,9 +28,14 @@ app.listen(PORT, () => {
 app.use('/', router);
 
 // FIXME:ChatBox
+app.use('(/aportal)?', express.static(path.join(__dirname, '../dist')));
+////////////////
+
+// FIXME:ChatBox
 app.use('(/chatbox)?', express.static(path.join(__dirname, '../dist')));
 ////////////////
 
+////////////////ChatBox Logic/////////////////////////////////
 app.post('/msg', function (req, res) {
   // console.log('msg', req.body);
 
@@ -87,3 +92,5 @@ app.get('/chatRoom', function (req, res) {
       res.sendStatus(500);
     });
 });
+
+////////////////ChatBox Logic/////////////////////////////////
