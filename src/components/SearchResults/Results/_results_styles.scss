@@ -23,7 +23,7 @@ $text: 'comic-sans';
   overflow: scroll;
 
   .listing {
-    width: 250px;
+    width: 245px;
     height: 300px;
     margin: {
       top: 15px;
@@ -32,7 +32,7 @@ $text: 'comic-sans';
       right: 5px;
     };
     border: {
-      radius: 0px;
+      radius: 5px;
       color: rgb(192, 192, 192);
       width: 1px;
       style: solid;
@@ -48,11 +48,12 @@ $text: 'comic-sans';
       grid-row: 1;
       background: {
         repeat: no-repeat;
-        size: cover;
+        size: 100% 100%;
       };
       display: flex;
       justify-content: space-between;
       align-items: center;
+      // border-radius: 5px;
 
       .arrows {
         background-color: white;
@@ -134,6 +135,7 @@ $text: 'comic-sans';
       }
       .arrows:hover {
         opacity: .6;
+        cursor: pointer;
       }
     }
   }
