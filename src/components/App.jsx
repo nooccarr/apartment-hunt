@@ -9,10 +9,11 @@ import UploadListing from './Agent/UploadListing';
 
 const App = () => {
   const [listings, getListings] = useState([]);
+  const [coordinates, setCoordinates] = useState([]);
 
   return (
     <div>
-      <ApartmentContext.Provider value={{listings, getListings}}>
+      <ApartmentContext.Provider value={{listings, getListings, coordinates, setCoordinates}}>
         <Router>
           <div>
             <Route exact path='/' component={HomeLogin} />

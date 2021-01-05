@@ -8,16 +8,9 @@ import pinkmarker from './styles/images/pink-marker.png'
 
 const HomePageSearch = ({ searchValue, setSearchValue }) => {
   const [address, setAddress] = useState(searchValue);
-  const [coordinates, setCoordinates] = useState({
-    lat: null,
-    lng: null,
-  });
-  const [apartments, addApartments] = useState([]);
-  const {listings, getListings} = useContext(ApartmentContext)
+  const {listings, getListings, coordinates, setCoordinates} = useContext(ApartmentContext)
 
   const handleSelect = async (value) => {
-    console.log(value);
-    // converts location value to coordinates for API call
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     setAddress(value);
@@ -28,13 +21,15 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     // API call with Coordinates
     axios.get('/search', { 
       params: {
-        distance: 0.25, 
+        distance: 0.25,
         lat: 40.69396233779667, 
-        long: -73.94443814752641}
+        long: -73.94443814752641,
+        // lat: coordinates.lat,
+        // long: coordinates.lng
+      }
       })
       .then((results) => { getListings(results.data); })
-      // after obtaining listings, persist search to allow data flow of search bar value to the next page
-      .then(() => { setSearchValue(address); })
+      .then(() => { setSearchValue(address || 'Current Location'); })
       .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
   }
 
@@ -46,8 +41,9 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     }
   }
 
-  const getCoordinates = (position) => {
-    setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude})
+  const getCoordinates = async (position) => {
+    await setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude});
+    findApartments();
   }
 
   const handleError = (error) => {
@@ -70,7 +66,6 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
   return (
     <>
       <div>
-        {console.log(listings)}
         <PlacesAutoComplete
           value={address || ''}
           onChange={setAddress}
