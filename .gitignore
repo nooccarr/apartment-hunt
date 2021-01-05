@@ -116,4 +116,4 @@ server/auth/credentials.js
 database/dbconfig.js
 
 # google key
-.googleApi.js
+src/components/overview/googleApi.js
