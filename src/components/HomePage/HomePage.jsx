@@ -5,13 +5,32 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 // import './styles/homelogin.css';
 import './styles/main.scss';
 
-const HomePage = ({ setSearchValue }) => {
+import axios from 'axios';
+import Cookies from 'js-cookie';
+
+const HomePage = ({ setSearchValue, user, getUserInfo }) => {
   const [clickedLogin, setClickedLogin] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+
+  console.log(user);
 
   const openModal = (boolean) => {
     setClickedLogin(true);
     setModalOpen(boolean);
+  };
+
+  const signOut = () => {
+    // alert('signing out');
+    // axios
+    //   .delete('/logout')
+    //   .then((response) => {
+    //     console.log('logout response', response);
+    //     //jwt cookie should be undefined now
+    //     console.log('jwt cookies', Cookies.get('jwt'));
+    //   })
+    //   .catch((err) => {
+    //     console.log('error while logging out', err);
+    //   });
   };
 
   return (
@@ -22,9 +41,14 @@ const HomePage = ({ setSearchValue }) => {
             <h1 className='Sign-In' onClick={() => openModal(true)}>
               <Link to='/login'> Log In</Link>
             </h1>
+            {/* <h1 className='Sign-Out' onClick={() => signOut()}>
+              Sign Out
+            </h1> */}
             {clickedLogin ? (
               <LoginModal
-                Login={<Login openModal={openModal} />}
+                Login={
+                  <Login openModal={openModal} getUserInfo={getUserInfo} />
+                }
                 modalOpen={modalOpen}
                 openModal={openModal}
               />
@@ -47,7 +71,7 @@ const HomePage = ({ setSearchValue }) => {
           path='/login'
           render={(props) => {
             <LoginModal
-              Login={<Login />}
+              Login={<Login openModal={openModal} getUserInfo={getUserInfo} />}
               modalOpen={modalOpen}
               openModal={openModal}
             />;
