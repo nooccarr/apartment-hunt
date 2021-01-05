@@ -4,7 +4,7 @@ import HomePageSearch from './Search.jsx';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './styles/homelogin.css';
 
-const HomePage = ({ setSearchValue, getUserInfo, userID, userName }) => {
+const HomePage = ({ setSearchValue }) => {
   const [clickedLogin, setClickedLogin] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -12,8 +12,6 @@ const HomePage = ({ setSearchValue, getUserInfo, userID, userName }) => {
     setClickedLogin(true);
     setModalOpen(boolean);
   };
-
-  console.log(userName);
 
   return (
     <Router>
@@ -25,9 +23,7 @@ const HomePage = ({ setSearchValue, getUserInfo, userID, userName }) => {
             </h1>
             {clickedLogin ? (
               <LoginModal
-                Login={
-                  <Login getUserInfo={getUserInfo} openModal={openModal} />
-                }
+                Login={<Login openModal={openModal} />}
                 modalOpen={modalOpen}
                 openModal={openModal}
               />
@@ -50,7 +46,7 @@ const HomePage = ({ setSearchValue, getUserInfo, userID, userName }) => {
           path='/login'
           render={(props) => {
             <LoginModal
-              Login={<Login getUserInfo={getUserInfo} />}
+              Login={<Login />}
               modalOpen={modalOpen}
               openModal={openModal}
             />;

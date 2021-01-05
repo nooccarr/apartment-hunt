@@ -3,7 +3,7 @@ import Signin from './Signin';
 import Signup from './Signup';
 import '../styles/login.css';
 
-const Login = ({ getUserInfo, openModal }) => {
+const Login = ({ openModal }) => {
   const [signUp, setSignUp] = useState(false);
 
   return (
@@ -13,15 +13,11 @@ const Login = ({ getUserInfo, openModal }) => {
           <div className='front-login'>
             <Signin
               handleSignUp={() => setSignUp(true)}
-              getUserInfo={getUserInfo}
               openModal={openModal}
             />
           </div>
           <div className='back-login'>
-            <Signup
-              handleSignIn={() => setSignUp(false)}
-              getUserInfo={getUserInfo}
-            />
+            <Signup handleSignIn={() => setSignUp(false)} />
           </div>
         </div>
       </div>

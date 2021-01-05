@@ -1,23 +1,16 @@
 import React, { useState } from 'react';
 import { Card, Form, Input } from '../styles/AuthForm';
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { FcGoogle } from 'react-icons/fc';
 import { GrUserAdmin } from 'react-icons/gr';
 import axios from 'axios';
 import '../styles/signin.css';
 
-const Signin = ({ handleSignUp, getUserInfo, openModal }) => {
+const Signin = ({ handleSignUp, openModal }) => {
   const [adminClicked, setAdminClicked] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const [invalid, setInvalid] = useState(false);
 
   const login = (email, password) => {
     axios
@@ -26,11 +19,8 @@ const Signin = ({ handleSignUp, getUserInfo, openModal }) => {
         password,
       })
       .then((res) => {
-        if (!res.body) {
-          setInvalid(true);
-        }
-        getUserInfo(1, 'dylan', false, 'user');
         openModal(false);
+        console.log(res);
       });
   };
 
@@ -41,18 +31,9 @@ const Signin = ({ handleSignUp, getUserInfo, openModal }) => {
         password,
       })
       .then((res) => {
-        // getAdminInfo()
-        if (res.body) {
-          setInvalid(true);
-          openModal(false);
-        }
-        getAdminInfo(1, 'dylan', false, 'user');
+        console.log(res);
       });
   };
-
-  if (invalid) {
-    return <Redirect to='/' />;
-  }
 
   return (
     <Card className='login-group'>

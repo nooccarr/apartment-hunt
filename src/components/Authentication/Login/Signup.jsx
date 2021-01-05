@@ -5,7 +5,7 @@ import { FcGoogle } from 'react-icons/fc';
 import axios from 'axios';
 import '../styles/signup.css';
 
-const Signup = ({ handleSignIn, getUserInfo }) => {
+const Signup = ({ handleSignIn }) => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -18,8 +18,7 @@ const Signup = ({ handleSignIn, getUserInfo }) => {
         username,
       })
       .then((res) => {
-        getUserInfo(1, 'dylan', true, 'user');
-        window.location.href = '/profile';
+        console.log(res);
       });
   };
 

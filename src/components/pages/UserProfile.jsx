@@ -1,16 +1,10 @@
 import React from 'react';
 import HomeLogin from './HomeLogin';
 
-const UserProfile = ({ getUserInfo, userID, userName }) => {
-  console.log(userName);
-
+const UserProfile = () => {
   return (
     <div>
-      <HomeLogin
-        getUserInfo={getUserInfo}
-        userID={userID}
-        userName={userName}
-      />
+      <HomeLogin />
     </div>
   );
 };
