@@ -7,7 +7,6 @@ const { router } = require('./routes/route');
 const app = express();
 const PORT = 3000;
 
-<<<<<<< HEAD
 const {
   saveMsg,
   fetchChatsByUser,
@@ -16,7 +15,7 @@ const {
   // fetchMsgById,
   fetchMsgByChatRoom,
 } = require('../src/components/ChatBox/backend/chatboxDB.js');
-=======
+
 const jwt = require('jsonwebtoken');
 var JwTStrategy = require('passport-jwt').Strategy;
 const passport = require('passport');
@@ -61,7 +60,6 @@ app.use(passport.initialize());
 //.session() for persistent login sessions
 //can probably disable
 app.use(passport.session());
->>>>>>> b3bcbdad11894ffedbfb26b057ad15fbcafdf5cb
 
 // Serve static assets from 'dist' folder
 app.use('(/apartment)?', express.static(path.join(__dirname, '../dist')));
