@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Login, LoginModal } from '../Authentication/index';
 import HomePageSearch from './Search.jsx';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import './styles/homelogin.css';
+// import './styles/homelogin.css';
 import './styles/main.scss';
 
 const HomePage = ({ setSearchValue }) => {

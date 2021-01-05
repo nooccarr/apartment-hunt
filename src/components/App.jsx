@@ -9,13 +9,13 @@ import UploadListing from './Agent/UploadListing';
 
 const App = () => {
   const [tokens, setTokens] = useState(null);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ name: 'dylan' });
   const [admin, setAdmin] = useState({});
   const [listings, getListings] = useState([]);
 
   return (
     <div>
-      <ApartmentContext.Provider value={{listings, getListings}}>
+      <ApartmentContext.Provider value={{ listings, getListings }}>
         <Router>
           <div>
             <Route exact path='/' component={HomeLogin} />
@@ -24,17 +24,17 @@ const App = () => {
           </div>
         </Router>
       </ApartmentContext.Provider>
-     <AuthContext.Provider value={tokens}>
-      <Router>
-        <Switch>
-          <Route exact path='/'>
-            <HomeLogin />
-          </Route>
-          <PrivateRoute component={UserProfile} user={user} path='/profile' />
-          <PrivateRoute component={AdminPortal} admin={admin} path='/admin' />
-        </Switch>
-      </Router>
-    </AuthContext.Provider>
+      <AuthContext.Provider value={tokens}>
+        <Router>
+          <Switch>
+            <Route exact path='/'>
+              <HomeLogin />
+            </Route>
+            <PrivateRoute component={UserProfile} user={user} path='/profile' />
+            <PrivateRoute component={AdminPortal} admin={admin} path='/admin' />
+          </Switch>
+        </Router>
+      </AuthContext.Provider>
     </div>
   );
 };
