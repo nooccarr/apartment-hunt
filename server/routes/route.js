@@ -1,6 +1,6 @@
 const express = require('express');
 const controller = require('../controllers/controller');
-const { downloadRoute, uploadRoute } = require('./fileUploadRoutes.js');
+const { downloadRoute, uploadRoute, videoRoute } = require('./fileUploadRoutes.js');
 const multer = require('multer');
 const upload = multer();
 
@@ -14,6 +14,9 @@ router.post('/listing', controller.listing);
 // File Upload Routes
 router.get('/download', downloadRoute);
 router.post('/upload', upload.any(), uploadRoute);
+router.post('/video', upload.any(), videoRoute);
+
+
 
 module.exports = {
   router,

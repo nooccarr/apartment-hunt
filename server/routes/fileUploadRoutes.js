@@ -1,5 +1,5 @@
 
-const { uploadFile, getFile, decryptMessage} = require('../../util/s3HelperFunctions.js');
+const { uploadFile, getFile, decryptMessage, uploadVideo} = require('../../util/s3HelperFunctions.js');
 const { updateUserDocs } = require('../controllers/updateUserDocs.js');
 const { updateApartmentApplicant } = require('../controllers/updateApartmentApplicant.js');
 
@@ -36,5 +36,18 @@ const uploadRoute = (req, res) => {
   })
 }
 
+const videoRoute = (req, res) => {
+  uploadVideo(req.files[0])
+  .then((result) => {
+    console.log(result);
+    res.sendStatus(200)
+  })
+  .catch((err) => {
+    console.log("Error in video upload route! Error: ", err);
+    res.sendStatus(500);
+  })
+}
+
 exports.downloadRoute = downloadRoute;
 exports.uploadRoute = uploadRoute;
+exports.videoRoute = videoRoute;
