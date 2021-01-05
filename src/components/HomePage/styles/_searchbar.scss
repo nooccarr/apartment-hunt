@@ -1,0 +1,70 @@
+.search-container, .search-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0;
+}
+
+.search-bar {
+  font-family: $client-font;
+  width: 100%;
+  max-width: 38rem;
+  height: 2.5rem;
+  padding: 0 10px 0 50px;
+  border-radius: 0.25rem;
+  border: none;
+  box-shadow: 0 0.15px 5px 0.5px #888888;
+  transition: transform 0.1s ease-in-out;
+  position: relative;
+  z-index: 2;
+  &:focus {
+    outline: none;
+    transform: scale(1.02);
+    transition: all 0.1s ease-in-out;
+  }
+}
+
+.pink-marker {
+  max-height: 1.25rem;
+  max-width: 1.25rem;
+  position: relative;
+  left: 30px;
+  cursor: pointer;
+  z-index: 3;
+  &:hover {
+    @include iconFocus()
+  }
+}
+
+.search-icon {
+  max-height: 1.25rem;
+  max-width: 1.25rem;
+  position: relative;
+  left: -30px;
+  cursor: pointer;
+  z-index: 3;
+  &:hover {
+    @include iconFocus()
+  }
+}
+
+.search-list {
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.search-suggestions {
+  position: relative;
+  top: -2px;
+  left: 0px;
+  width: 666px;
+  max-width: 100%;
+  height: 1.5rem;
+  padding: 0.75rem 0.5rem 0rem 0.5rem;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  background-color: rgba(255, 248, 255, 0.897);
+  opacity: 0.8;
+  cursor: pointer;
+  z-index: 1;
+}

@@ -1,0 +1,71 @@
+$client-color: pink;
+$client-font: 'Palatino';
+// $client-font: 'comic-sans';
+
+@import 'fonts';
+@import 'utils';
+@import 'searchbar';
+@import 'responsive';
+
+html {
+  background: url('./images/home-background.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.homepage-container {
+
+  .container {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 30px;
+    height: 4rem;
+
+    .Sign-In {
+      font-family: "Raleway", sans-serif;
+      font-size: 1.2rem;
+      font-weight: lighter;
+      color: #ffffff;
+      cursor: pointer;
+      &:hover {
+        color: $client-color;
+      }
+    }
+  }
+
+  .Logo {
+    font-family: 'herbariumregular';
+    font-size: 5rem;
+    line-height: 10rem;
+    font-weight: lighter;
+    text-align: center;
+    color: #ffffff;
+    cursor: default;
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  h1.Logo {
+    margin: 0;
+    padding: 0;
+  }
+
+  .Slogan {
+    font-family: $client-font;
+    font-size: 1.4rem;
+    line-height: 1rem;
+    text-align: center;
+    padding: 0 10px 45px 10px;
+    color: #ffffff;
+    cursor: default;
+  }
+}

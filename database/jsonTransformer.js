@@ -6,9 +6,10 @@ let wholeStr = raw.toString();
 let validJSON = "[" + wholeStr.replace(/\n/g, ",") + "]";
 let allApts = JSON.parse(validJSON);
 let aptLength = allApts.length;
-fs.writeFileSync('aptClean.json', '[');
+fs.writeFileSync('aptCleanA.json', '[');
 for (var i = 0; i < aptLength; i++) {
     let apt = {};
+    apt.applicants = [];
     apt.address = allApts[i].address;
     apt.state = 'NY';
     apt.zipCode = allApts[i].postalCode;
@@ -28,6 +29,7 @@ for (var i = 0; i < aptLength; i++) {
       }
     
     apt.neighborhoods = allApts[i].neighborhoods;
+    apt.neighborhoods.push('Brooklyn');
     if (allApts[i].prices !== undefined) {
         let price = allApts[i].prices[0].amountMin;
         while(price > 10000) {
@@ -38,6 +40,7 @@ for (var i = 0; i < aptLength; i++) {
         apt.price = 1234;
       }
     apt.pics = allApts[i].imageURLs;
+    apt.videos = [];
     petsOk = Math.random();
     if (petsOk < .2) {
         apt.pets = {'dogs': false, 'cats': false};
@@ -59,7 +62,7 @@ for (var i = 0; i < aptLength; i++) {
     if (i !== aptLength - 1) {
         aptStr = aptStr + ',';
     }
-    fs.appendFileSync('aptClean.json', aptStr);
+    fs.appendFileSync('aptCleanA.json', aptStr);
 }
-fs.appendFileSync('aptClean.json', ']');
+fs.appendFileSync('aptCleanA.json', ']');
 console.log('success meow');
