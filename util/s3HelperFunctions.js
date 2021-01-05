@@ -1,13 +1,12 @@
 const S3 = require('aws-sdk/clients/s3');
 const crypto = require('crypto');
 const Stream = require('stream');
+const {ID, SECRET} = require('./s3Config.js');
 
-const ID = 'AKIAJZY6PGXY4SZSG4DA';
-const SECRET = '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';
 const BUCKET_NAME = 'nate-pruitt-test-bucket-0001';
 
 const algorithm = 'aes-192-cbc';
-const password = 'Password used to generate key';
+const password = '';
   // Use the async `crypto.scrypt()` instead.
 const key = crypto.scryptSync(password, 'salt', 24);
   // The IV is usually passed along with the ciphertext.
