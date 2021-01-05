@@ -11,7 +11,7 @@ const Listings = ({listing: { pics, price, beds, baths, sqft, address, city, sta
           <div className='details'>
             <div className='bedrooms'>{ beds } bd</div>
             <div className='bathrooms'>{ baths } ba</div>
-            <div className='size'>{ sqft }sqft</div>
+            <div className='size'>{ sqft } sqft</div>
           </div>
           <div className='address'>
             <a>{ address }</a>

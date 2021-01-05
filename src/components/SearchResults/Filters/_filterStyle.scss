@@ -102,6 +102,25 @@ $text: 'comic-sans';
           family: 'comic-sans';
         }
       }
+      .submitPrice {
+        background-color: pink;
+        padding: {
+          top: 8px;
+          bottom: 8px;
+          right: 8px;
+          left: 8px;
+        };
+        margin: {
+          right: 10px;
+        };
+        border: {
+          radius: 5px;
+          color: rgb(192, 192, 192);
+          style: solid;
+          width: 1px;
+        }
+        cursor: pointer;
+      }
 
       .bedSelect, .bathSelect {
         cursor: pointer;

@@ -1,33 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import './_filterStyle.scss';
 
-const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequestedBaths }) => {
+const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequestedBaths, requestedMinPrice, setRequestedMinPrice, requestedMaxPrice, setRequestedMaxPrice }) => {
 
   const categories = ['Price', 'Beds', 'Baths', 'More'];
 
+  const select = (num, type) => {
+    document.getElementById(`${num}${type}`).classList.add('selected');
+
+    let ids = [`0${type}`, `1${type}`, `2${type}`, `3${type}`];
+    
+    ids = ids.filter(element => element !== `${num}${type}`);
+    ids.forEach(e => {
+      document.getElementById(e).classList.remove('selected');
+    });
+
+    type === 'beds'
+      ? setRequestedBeds(num === '0' ? '' : num)
+      : setRequestedBaths(num === '0' ? '' : num);
+  };
+
+  const submitRequestedPrice = () => {
+    
+  };
+
   const dropdowns = {
     Price:  <div className='dropdown'>
-              <input className='priceText' type='text' placeholder='Min'></input>
+              <input id='minPrice' className='priceText' type='text' defaultValue='Min'></input>
               <div style={{marginRight: '10px'}}>-</div>
-              <input className='priceText' type='text' placeholder='Max'></input>
+              <input id='maxPrice' className='priceText' type='text' defaultValue='Max'></input>
+              <div className='submitPrice' onClick={() => submitRequestedPrice()}>Done</div>
             </div>,
     Beds: <div className='dropdown'>
-            <div id='0beds' className='bedSelect' onClick={() => {setRequestedBeds(0); document.getElementById('0beds').classList.toggle('selected');}}>Any</div>
-            <div id='1beds' className='bedSelect' onClick={() => {setRequestedBeds(1); document.getElementById('1beds').classList.toggle('selected');}}>1+</div>
-            <div id='2beds' className='bedSelect' onClick={() => {setRequestedBeds(2); document.getElementById('2beds').classList.toggle('selected');}}>2+</div>
-            <div id='3beds' className='bedSelect' onClick={() => {setRequestedBeds(3); document.getElementById('3beds').classList.toggle('selected');}}>3+</div>
+            <div id='0beds' className='bedSelect' onClick={() => select('0','beds')}>Any</div>
+            <div id='1beds' className='bedSelect' onClick={() => select('1','beds')}>1+</div>
+            <div id='2beds' className='bedSelect' onClick={() => select('2','beds')}>2+</div>
+            <div id='3beds' className='bedSelect' onClick={() => select('3','beds')}>3+</div>
           </div>,
     Baths: <div className='dropdown'>
-            <div id='0baths' className='bathSelect' onClick={() => setRequestedBaths(0)}>Any</div>
-            <div id='1baths' className='bathSelect' onClick={() => setRequestedBaths(1)}>1+</div>
-            <div id='2baths' className='bathSelect' onClick={() => setRequestedBaths(2)}>2+</div>
-            <div id='3baths' className='bathSelect' onClick={() => setRequestedBaths(3)}>3+</div>
+            <div id='0baths' className='bathSelect' onClick={() => select('0','baths')}>Any</div>
+            <div id='1baths' className='bathSelect' onClick={() => select('1','baths')}>1+</div>
+            <div id='2baths' className='bathSelect' onClick={() => select('2','baths')}>2+</div>
+            <div id='3baths' className='bathSelect' onClick={() => select('3','baths')}>3+</div>
           </div>,
   };
 
   const [selectedFilter, setSelectedFilter] = useState(null);
   const [prevSelectedFilter, setPrevSelectedFilter] = useState(null);
-  // console.log(document.getElementsByClassName('main')[0]);
 
   document.onclick = (e) => {
     if (e.target.id.includes('toggle')) {
@@ -35,12 +54,12 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
       setSelectedFilter(e.target.id.replace('toggle', ''));
     } else {
       setPrevSelectedFilter(selectedFilter);
-      setSelectedFilter(null);
+      setSelectedFilter(e.target.className);
     }
   };
 
   useEffect(() => {
-      if (prevSelectedFilter !== selectedFilter) {
+      if (prevSelectedFilter !== selectedFilter && selectedFilter !== 'dropdown' && selectedFilter !== 'priceText') {
         let dropdowns = document.getElementsByClassName('dropdown-content');
         for (let i = 0; i < dropdowns.length; i++) {
           let openDropdown = dropdowns[i];
@@ -66,15 +85,14 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
               onClick={() => {
                 document.getElementById(filter).classList.toggle('show');
                 document.getElementById(`toggle${filter}`).classList.toggle(filter);
-                // setSelectedFilter(filter);
               }}
             >
               { filter === 'Beds'
-                  ? requestedBeds === 0
-                      ?  filter : `${requestedBeds} Beds`
+                  ? requestedBeds === ''
+                      ?  'All Beds' : `${requestedBeds} Beds`
                   : filter === 'Baths'
-                      ? requestedBaths === 0
-                          ?  filter : `${requestedBaths} Baths`
+                      ? requestedBaths === ''
+                          ?  'All Baths' : `${requestedBaths} Baths`
                       : filter
               }
               <img 

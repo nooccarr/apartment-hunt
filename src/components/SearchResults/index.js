@@ -5,12 +5,13 @@ import GoogleMap from './GoogleMap';
 import Results from './Results';
 import './styles.scss';
 import TopBanner from './TopBanner';
-import resultsArray from '../../../aptClean.json';
 
 const SearchResults = ({ searchValue, setSearchValue }) => {
   
-  const [requestedBeds, setRequestedBeds] = useState(0);
-  const [requestedBaths, setRequestedBaths] = useState(0);
+  const [requestedBeds, setRequestedBeds] = useState('');
+  const [requestedBaths, setRequestedBaths] = useState('');
+  const [requestedMinPrice, setRequestedMinPrice] = useState('Min');
+  const [requestedMaxPrice, setRequestedMaxPrice] = useState('Max');
 
   return (
     <div className='main'>
@@ -22,8 +23,12 @@ const SearchResults = ({ searchValue, setSearchValue }) => {
             setRequestedBeds={ setRequestedBeds } 
             requestedBaths={ requestedBaths }
             setRequestedBaths={ setRequestedBaths }
+            requestedMinPrice={ requestedMinPrice }
+            setRequestedMinPrice={ setRequestedMinPrice }
+            requestedMaxPrice={ requestedMaxPrice }
+            setRequestedMaxPrice={ setRequestedMaxPrice }
           />
-          <Results resultsArray={ resultsArray } requestedBaths={ requestedBaths } requestedBeds={ requestedBeds } />
+          <Results requestedBaths={ requestedBaths } requestedBeds={ requestedBeds } />
         </div>
         <div className='rightSide'>
           <GoogleMap />

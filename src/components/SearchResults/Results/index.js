@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ApartmentContext } from '../../HomePage/ApartmentContext'
 import Listings from './Listings/index';
 import './_results_styles.scss';
 
-const Results = ({ resultsArray, requestedBaths, requestedBeds }) => {
+const Results = ({ requestedBaths, requestedBeds }) => {
+  const { listings } = useContext(ApartmentContext);
 
-  if (resultsArray) {
+  if (listings) {
     return (
       <div className='results'>
-        {resultsArray.map(listing => (listing.beds >= requestedBeds) && (listing.baths >= requestedBaths) ? <Listings listing={ listing } /> : null)}
+        {listings.map(listing => (listing.beds >= requestedBeds) && (listing.baths >= requestedBaths) ? <Listings listing={ listing } /> : null)}
       </div>
     );
   } else {

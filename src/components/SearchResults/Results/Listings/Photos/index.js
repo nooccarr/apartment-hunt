@@ -6,7 +6,7 @@ const Photos = ({ pics }) => {
   const [currentPhoto, setCurrentPhoto] = useState(null);
 
   useEffect(() => {
-    if (pics) {
+    if (pics.length > 0) {
       pics.forEach(pic => {
         linkedListPhotos.addNode(pic);
         setCurrentPhoto(linkedListPhotos.head);
