@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const Admin = require('../models/adminModel');
 const Apts = require('../../database/Apartments.js');
+const Utils = require('../utils/auth.js');
 const bcrypt = require('bcrypt');
 const saltRounds = 12;
 
@@ -11,43 +12,50 @@ const login = (req, res) => {
   //res.redirect('http://localhost:3000/'); might not work w react router?
   //res.redirect('http://localhost:3000/');
   //bcrypt creds
-  //console.log(req.body);
+  console.log('incoming email', req.body.email);
 
   User.findOne({
-    where: {
-      email: req.body.email,
-    },
-  }).then(function (user) {
-    if (!user) {
-      res.redirect('/');
-    } else {
-      bcrypt.compare(req.body.password, user.password, function (err, result) {
-        if (result === true) {
-          console.log('successful login');
+    email: req.body.email,
+  })
+    .then(function (user) {
+      if (!user) {
+        console.log('is there no user? ', user);
+        res.sendStatus(200);
+      } else {
+        bcrypt.compare(
+          req.body.password,
+          user.password,
+          function (err, result) {
+            console.log(result);
+            if (result === true) {
+              console.log(result);
+              console.log('successful login');
 
-          let user = {
-            email: req.body.email, //or user.email
-            provider: 'standard login',
-          };
+              // let user = {
+              //   email: req.body.email, //or user.email
+              //   provider: 'standard login',
+              // };
+              let u = {
+                username: user.username,
+                email: user.email,
+              };
+              let token = Utils.newJWT(u);
 
-          let token = jwt.sign(
-            {
-              payload: user,
-            },
-            'secret',
-            { expiresIn: '2m' }
-          ); //increase after testing
-
-          res.cookie('jwt', token);
-          console.log('jwt token', token);
-          res.redirect('/profile');
-        } else {
-          res.send('Incorrect password');
-          res.redirect('/');
-        }
-      });
-    }
-  });
+              res.cookie('jwt', token);
+              console.log('jwt token', token);
+              res.send('verified');
+              //res.redirect('/profile');
+            } else {
+              res.send('Incorrect password');
+              //res.redirect('/');
+            }
+          }
+        );
+      }
+    })
+    .catch((err) => {
+      console.log('err on lookup', err);
+    });
 };
 
 //*****************ADMIN-LOGIN********************/
