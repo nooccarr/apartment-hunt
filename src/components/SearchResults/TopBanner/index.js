@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from '../SearchBar';
+import Navigation from '../../overview/navigation.jsx';
 
 const TopBanner = ({ searchValue, setSearchValue }) => {
   return (

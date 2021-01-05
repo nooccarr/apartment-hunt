@@ -1,5 +1,7 @@
 import React from 'react';
 import _ from 'underscore';
+import ReactPlayer from 'react-player';
+import './album-styles.scss';
 
 class Album extends React.Component {
 
@@ -28,13 +30,21 @@ class Album extends React.Component {
             case 'Virtual Tour':
                 return this.matterport();
             case 'Video Tour':
-                return null;
+                return this.video();
         }
     }
 
+    video () {
+        return <div className="videoContainer">
+            <ReactPlayer width="900px" height="500px" playing="true" controls="true"
+                url="https://nate-pruitt-test-bucket-0001
+                .s3.us-east-2.amazonaws.com/WIN_20200707_20_33_19_Pro.mp4"/>
+            </div>
+    }
+
     matterport () {
-        return <iframe width="900" height="500" frameBorder="0" allowFullScreen allow="xr-spatial-tracking"
-        src="https://my.matterport.com/show/?m=d25yC39miPY"></iframe>
+        return <iframe width="900px" height="500px" frameBorder="0" allowFullScreen allow="xr-spatial-tracking"
+            src="https://my.matterport.com/show/?m=d25yC39miPY"/>
     }
 
     shift (way, e) {

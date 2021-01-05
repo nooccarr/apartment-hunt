@@ -27,3 +27,8 @@ const Listings = ({listing: { photo, price, beds, baths, size, street, city, sta
 };
 
 export default Listings;
+
+// onClick={() => {
+//   window.history.pushState({path: '/apartment'}, '', '/apartment');
+//   window.location.reload(false);
+// }}
