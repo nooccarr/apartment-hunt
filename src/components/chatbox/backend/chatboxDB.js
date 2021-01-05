@@ -24,6 +24,7 @@ const chatMessageSchema = new mongoose.Schema({
   agentName: String,
   userId: String,
   agentId: String,
+  lastUpdate: Date,
   messages: [
     {
       message: String,
@@ -52,8 +53,6 @@ const conAgent = (message) => {
 
 const saveMsg = (message) => {
   return ChatMessage.findOne({ chatId: message.chatId }, function (err, data) {
-    console.log('data', data);
-    console.log('body_sender', message.body, message.sender);
     const newMessage = {
       message: message.body,
       sender: message.sender,
@@ -61,7 +60,7 @@ const saveMsg = (message) => {
     };
     const msgCol = data.messages;
     msgCol.push(newMessage);
-    console.log('data', data);
+    data.lastUpdate = new Date();
     return data.save();
   });
 };
@@ -69,20 +68,23 @@ const saveMsg = (message) => {
 // fetch message history by client/agent name
 const fetchChatsByUser = (query) => {
   console.log('query: ', query);
-  return ChatMessage.find({ userName: query.userName }).exec();
+  return ChatMessage.find({ userName: query.userName })
+    .sort('-lastUpdate')
+    .exec();
 };
 
 const fetchChatsByAgent = (query) => {
-  return ChatMessage.find({ agentName: query.userName }).exec();
+  return ChatMessage.find({ agentName: query.userName })
+    .sort('-lastUpdate')
+    .exec();
 };
 
-// fetch message by roomname/id...
-const fetchMsgById = (query) => {
-  return ChatMessage.findById(query.chatId, 'messages').exec();
-};
+// if multiple agents assigned to one property
+// const fetchMsgById = (query) => {
+//   return ChatMessage.findById(query.chatId, 'messages').exec();
+// };
 
 const fetchMsgByChatRoom = (query) => {
-  console.log('query: ', query);
   return ChatMessage.find({
     address: query.address,
     userName: query.userName,
@@ -92,6 +94,6 @@ const fetchMsgByChatRoom = (query) => {
 module.exports.saveMsg = saveMsg;
 module.exports.fetchChatsByUser = fetchChatsByUser;
 module.exports.fetchChatsByAgent = fetchChatsByAgent;
-module.exports.fetchMsgById = fetchMsgById;
+// module.exports.fetchMsgById = fetchMsgById;
 module.exports.conAgent = conAgent;
 module.exports.fetchMsgByChatRoom = fetchMsgByChatRoom;

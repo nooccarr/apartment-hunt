@@ -26,14 +26,10 @@ const Texts = (props) => {
   useEffect(() => {
     
     if (!inRoom) {
-      console.log('joining room');
-      console.log('roomId', props.chatId);
       socket.emit('join room', {room: props.chatId});
       setInRoom(true)
     }
     return () => {
-      console.log('leaving room');
-      // setInRoom(false)
         socket.emit('leave room', {
           room: props.chatId
         })
@@ -45,24 +41,16 @@ const Texts = (props) => {
   }, [receivedMessage]);
 
   useEffect(() => {
-    // console.log('render', firstRender)
-    // if (firstRender) {
-    //   setFirstRender(false)
-    // } else {
     socket.on('receive message', payload => {
-      console.log('payload', payload)
       setChatRoom(payload[1])
       setReceivedMessage(payload[0])
     })
-    // }
   }, []);
   
   
   function handleSubmit(e) {
     e.preventDefault();
 
-    // sendMessage()
-    console.log('loggedUser', props.loggedIn.user)
     socket.emit('new message', {
       room: props.chatId,
       messageObj: {
@@ -89,16 +77,14 @@ const Texts = (props) => {
         position: 'fixed',
         bottom: '0',
         backgroundColor: '#fff',
-        padding: '25px',
-        paddingBottom: '0',
-        left: '70%'
+        padding: '16px 0px 0px 15px',
+        right: '40px'
       }
     }>
       <button onClick={props.exitChat}>X</button>
       <div>{props.chatBox.address}</div>
       <div className='d-flex flex-grow-1 overflow-auto'>
-        <div>
-          {/* {console.log('chatBox', props.chatBox)} */}
+        <div style={{ maxHeight: '34vh', width: '24vh', marginRight: '7px' }}>
           {props.chatBox.messages.map((messageObj, index) => (
           <div 
             key={index}
@@ -123,7 +109,7 @@ const Texts = (props) => {
         </div>
       </div>
       <Form onSubmit={handleSubmit}>
-        <Form.Group style={{marginBottom: '10px'}}>
+        <Form.Group style={{margin: '0px 18px 10px 0px'}}>
           <InputGroup>
           <Form.Control
             as="textarea"

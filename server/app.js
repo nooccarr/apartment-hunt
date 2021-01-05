@@ -11,7 +11,7 @@ const {
   fetchChatsByUser,
   fetchChatsByAgent,
   conAgent,
-  fetchMsgById,
+  // fetchMsgById,
   fetchMsgByChatRoom,
 } = require('../src/components/ChatBox/backend/chatboxDB.js');
 
@@ -38,7 +38,6 @@ app.use('(/chatbox)?', express.static(path.join(__dirname, '../dist')));
 ////////////////ChatBox Logic/////////////////////////////////
 app.post('/msg', function (req, res) {
   // console.log('msg', req.body);
-
   saveMsg(req.body)
     .then(() => {
       res.sendStatus(200);
