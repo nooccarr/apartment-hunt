@@ -127,6 +127,16 @@ const applicants = (req, res) => {
     });
 };
 
+const addVideo = (req, res) => {
+  Apts.findByIdAndUpdate(req.query.id, {$push: {"videos": req.query.videos}})
+  .then(() => {
+    res.sendStatus(201);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  })
+}
+
 const apt = (req, res) => {
   let id = req.query.id;
   Apts.findById(id)
@@ -194,7 +204,7 @@ const listing = (req, res) => {
   console.log(aptObj);
   Apts.create(aptObj)
     .then(() => {
-      res.sendStatus(200);
+      res.sendStatus(201);
       console.log('meow');
     })
     .catch((err) => {
@@ -210,4 +220,5 @@ module.exports = {
   listing,
   apt,
   applicants,
+  addVideo
 };
