@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import HomePage from '../HomePage/HomePage.jsx';
-import SearchResults from '../SearchResults/index.js';
-// import './styles/homelogin.css';
+import HomePage from '../HomePage/HomePage';
+import SearchResults from '../SearchResults/index';
 
 const HomeLogin = () => {
+  const [searchValue, setSearchValue] = useState('');
 
-  const [searchValue, setSearchValue] = useState('New York, NY, USA');
-
-  return searchValue
-    ? <SearchResults searchValue={ searchValue } setSearchValue={ setSearchValue } />
-    : <HomePage setSearchValue={ setSearchValue } />;
+  return (
+    <>
+      {searchValue
+      ? <SearchResults searchValue={ searchValue } setSearchValue={ setSearchValue } />
+      : <HomePage setSearchValue={ setSearchValue } />}
+    </>
+  )
 };
 
 export default HomeLogin;
