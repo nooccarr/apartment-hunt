@@ -47,6 +47,9 @@ $text: 'comic-sans';
         width: 1px;
       }
     }
+    .filter:hover {
+      background-color: $color;
+    }
     .dropdown-content {
       display: none;
       position: absolute;
@@ -119,6 +122,9 @@ $text: 'comic-sans';
           right: 10px;
           // left: 10px;
         };
+      }
+      .selected {
+        background-color: pink;
       }
     }
     .show {

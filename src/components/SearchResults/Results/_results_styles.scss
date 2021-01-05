@@ -48,11 +48,12 @@ $text: 'comic-sans';
       grid-row: 1;
       background: {
         repeat: no-repeat;
-        size: cover;
+        size: 100% 100%;
       };
       display: flex;
       justify-content: space-between;
       align-items: center;
+      // border-radius: 5px;
 
       .arrows {
         background-color: white;
@@ -134,6 +135,7 @@ $text: 'comic-sans';
       }
       .arrows:hover {
         opacity: .6;
+        cursor: pointer;
       }
     }
   }

@@ -28,7 +28,7 @@ $text: 'comic-sans';
     justify-content: space-between;
     align-items: center;
     background-color: $color;
-    box-shadow: 0px 0px 5px black;
+    box-shadow: 0px 0px 2px black;
 
     .companyName {
       flex: 1;
@@ -51,6 +51,7 @@ $text: 'comic-sans';
       #searchBar {
         width: 55%;
         height: 100%;
+        max-height: 34px;
         // box-shadow: 0px 0px 5px rgba(0, 0, 0, .5);
         font-family: $text;
         margin: {
