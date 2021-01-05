@@ -31,6 +31,7 @@ const Signin = ({ handleSignUp, openModal }) => {
         password,
       })
       .then((res) => {
+        openModal(false);
         console.log(res);
       });
   };
@@ -74,13 +75,17 @@ const Signin = ({ handleSignUp, openModal }) => {
             </Button>
           </div>
           <div className='back-signin'>
-            <Button
-              className='admin-link-btn'
-              variant='contained'
-              onClick={() => loginAdmin(userEmail, userPassword)}
-              startIcon={<GrUserAdmin className='admin-icon' />}>
-              Admin Sign in
-            </Button>
+            <Router>
+              <Link to='/admin-dashboard'>
+                <Button
+                  className='admin-link-btn'
+                  variant='contained'
+                  onClick={() => loginAdmin(userEmail, userPassword)}
+                  startIcon={<GrUserAdmin className='admin-icon' />}>
+                  Admin Sign in
+                </Button>
+              </Link>
+            </Router>
           </div>
         </div>
       </div>

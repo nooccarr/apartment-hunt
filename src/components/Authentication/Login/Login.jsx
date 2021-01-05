@@ -17,7 +17,10 @@ const Login = ({ openModal }) => {
             />
           </div>
           <div className='back-login'>
-            <Signup handleSignIn={() => setSignUp(false)} />
+            <Signup
+              handleSignIn={() => setSignUp(false)}
+              openModal={openModal}
+            />
           </div>
         </div>
       </div>

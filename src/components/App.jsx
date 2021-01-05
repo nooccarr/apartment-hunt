@@ -8,7 +8,7 @@ import Overview from './overview/Overview.jsx';
 import UploadListing from './Agent/UploadListing';
 
 const App = () => {
-  const [tokens, setTokens] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({ name: 'dylan' });
   const [admin, setAdmin] = useState({});
   const [listings, getListings] = useState([]);
@@ -24,11 +24,15 @@ const App = () => {
           </Switch>
         </Router>
       </ApartmentContext.Provider>
-      <AuthContext.Provider value={tokens}>
+      <AuthContext.Provider value={isLoggedIn}>
         <Router>
           <Switch>
             <PrivateRoute component={UserProfile} user={user} path='/profile' />
-            <PrivateRoute component={AdminPortal} admin={admin} path='/admin' />
+            <PrivateRoute
+              component={AdminPortal}
+              admin={admin}
+              path='/admin-dashboard'
+            />
           </Switch>
         </Router>
       </AuthContext.Provider>

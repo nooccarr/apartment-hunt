@@ -40,7 +40,7 @@ const login = (req, res) => {
 
           res.cookie('jwt', token);
           console.log('jwt token', token);
-          res.redirect('/');
+          res.redirect('/profile');
         } else {
           res.send('Incorrect password');
           res.redirect('/');
