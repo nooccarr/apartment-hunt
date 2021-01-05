@@ -9,8 +9,8 @@ class Overview extends React.Component {
         this.state = {
 
         }
+    console.log(props.user)
     }
-
 
 
     render () {

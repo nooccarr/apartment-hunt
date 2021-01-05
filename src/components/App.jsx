@@ -46,7 +46,9 @@ const App = () => {
               <Route exact path='/admin-dashboard'>
                 <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
               </Route>
-              <Route exact path='/apartment' component={Overview} />
+                <Route exact path='/apartment'>
+                  <Overview user={user} admin={admin}/>
+                </Route>
               <Route exact path='/uploadlisting' component={UploadListing} />
             </Switch>
           </Router>
@@ -56,11 +58,9 @@ const App = () => {
           <div>
             <Route exact path='/chatbox' component={ChatApp} />
           </div>
-        </Router>
-        <Router>
-          <div>
-            <Route exact path='/aportal' component={AgentPortal} />
-          </div>
+            <Route exact path='/aportal'>
+              <Overview user={user} admin={admin}/>
+            </Route>
         </Router>
       </ApartmentContext.Provider>
     </div>

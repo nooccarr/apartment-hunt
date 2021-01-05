@@ -27,6 +27,7 @@ const ChatApp = (props) => {
     setChatIdx(id);
     setChatId(chatHist[id].chatId)
     // setConvos(false);
+    props.shutConvo()
     setTexts(true);
   }
 
@@ -34,15 +35,15 @@ const ChatApp = (props) => {
     setTexts(false)
   }
 
-  // useEffect(() => {
-  //     return axios.get(`/msg/client`, {
-  //       params: {
-  //         userName: loggedUser.user
-  //       }
-  //     }).then(({ data }) => {
-  //       setChatHist(data)
-  //     })
-  // }, [convos])
+  useEffect(() => {
+      return axios.get(`/msg/client`, {
+        params: {
+          userName: loggedUser.user
+        }
+      }).then(({ data }) => {
+        setChatHist(data)
+      })
+  }, [texts])
 
   ////////////////////////////Keep all socket connection/////////////
   // useEffect(() => {
@@ -139,7 +140,7 @@ const ChatApp = (props) => {
       <div>
         {props.convos ? <Convos chatHistory={chatHist} selectConvo={selectConvo} role={loggedUser.role}/> : null}
         {texts ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={loggedUser}/> : null}
-        <div onClick={() => setConAge(!conAge)}>Contact Agent</div>
+        {/* <div onClick={() => setConAge(!conAge)}>Contact Agent</div> */}
       </div>
     </div>
   );
