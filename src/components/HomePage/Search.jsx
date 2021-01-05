@@ -73,9 +73,10 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
         >
           {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
             <div>
-              <form 
+              <form
                 className='search-container' 
-                onSubmit={findApartments}>
+                onSubmit={findApartments}
+              >
                 <img 
                   className='pink-marker' 
                   src={pinkmarker} 
@@ -86,16 +87,17 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
                   className='search-bar'
                   onChange={setAddress}
                   {...getInputProps({placeholder: 'Enter an address, neighborhood, city, or ZIP code' })} 
-                  />
+                />
                 <img 
                   className='search-icon' 
                   src={searchicon}
                   alt='search-icon'
-                  onClick={findApartments}/>
+                  onClick={findApartments}
+                />
               </form>
               <div 
                 className='search-list'>
-                {loading && <div className='search-suggestions'>Loading...</div>}
+                {loading && <div className='search-suggestions' key='999'>Loading...</div>}
 
                 {suggestions.map((suggestion, index) => {
                   return (
