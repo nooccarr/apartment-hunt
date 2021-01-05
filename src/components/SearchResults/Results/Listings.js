@@ -3,10 +3,7 @@ import React from 'react';
 const Listings = ({listing: { photo, price, beds, baths, size, street, city, state }}) => {
 
   return (
-    <div className='listing' onClick={() => {
-      window.history.pushState({path: '/apartment'}, '', '/apartment');
-      window.location.reload(false);
-    }}>
+    <div className='listing'>
       <div 
         className='listingPhoto'
         style={{ backgroundImage: `url(${photo})` }}
@@ -30,3 +27,8 @@ const Listings = ({listing: { photo, price, beds, baths, size, street, city, sta
 };
 
 export default Listings;
+
+// onClick={() => {
+//   window.history.pushState({path: '/apartment'}, '', '/apartment');
+//   window.location.reload(false);
+// }}
