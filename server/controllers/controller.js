@@ -42,24 +42,16 @@ let long = parseFloat(req.query.long);
 let lat = parseFloat(req.query.lat);
 let ascOrDsc = req.query.order ? req.query.order : -1;
 let maxD = parseFloat(req.query.distance) / 1609.344;
-/*if (req.query.priceMin || req.query.priceMax) {
-  Apts.find({price: {$gte: req.query.priceMin, $lte: req.query.priceMax}}).sort({price: ascOrDsc})
-  .then((apts) => {
-    res.status(200).json(apts)
-  })
-  .catch((err) => {
-    res.sendStatus(500);
-  });
-}
+
 if (req.query.burrough) {
-  Apts.find({neighborhoods:})
+  Apts.find({neighborhoods: { $in: [req.query.burrough]}})
   .then((apts) => {
     res.status(200).json(apts)
   })
   .catch((err) => {
     res.sendStatus(500);
   });
-}*/
+} else {
 Apts.find().where('position').near({ center: [long, lat], maxDistance: maxD, spherical: true })
   .then((apts) => {
     res.status(200).json(apts);
@@ -68,6 +60,7 @@ Apts.find().where('position').near({ center: [long, lat], maxDistance: maxD, sph
     console.log(err);
     res.sendStatus(500);
   })
+}
 };
 
 const listing = (req, res) => {
