@@ -1,10 +1,13 @@
 import React, { useState, useContext } from 'react';
-import { ApartmentContext } from './ApartmentContext.jsx'
-import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { ApartmentContext } from './ApartmentContext.jsx';
+import PlacesAutoComplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
 import axios from 'axios';
-import regeneratorRuntime from "regenerator-runtime";
-import searchicon from './styles/images/search-icon.png'
-import pinkmarker from './styles/images/pink-marker.png'
+import regeneratorRuntime from 'regenerator-runtime';
+import searchicon from './styles/images/search-icon.png';
+import pinkmarker from './styles/images/pink-marker.png';
 
 const HomePageSearch = ({ searchValue, setSearchValue }) => {
   const [address, setAddress] = useState(searchValue);
@@ -13,7 +16,7 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     lng: null,
   });
   const [apartments, addApartments] = useState([]);
-  const {listings, getListings} = useContext(ApartmentContext)
+  const { listings, getListings } = useContext(ApartmentContext);
 
   const handleSelect = async (value) => {
     console.log(value);
@@ -27,47 +30,58 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
 
   const findApartments = () => {
     // API call with Coordinates
-    axios.get('/search', { 
-      params: {
-        distance: 0.25, 
-        lat: 40.69396233779667, 
-        long: -73.94443814752641}
+    axios
+      .get('/search', {
+        params: {
+          distance: 0.25,
+          lat: 40.69396233779667,
+          long: -73.94443814752641,
+        },
       })
-      .then((results) => { getListings(results.data); })
+      .then((results) => {
+        getListings(results.data);
+      })
       // after obtaining listings, persist search to allow data flow of search bar value to the next page
-      .then(() => { setSearchValue(address); })
-      .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
-  }
+      .then(() => {
+        setSearchValue(address);
+      })
+      .catch((error) => {
+        console.log('Error getting Apartments Nearby: ', error);
+      });
+  };
 
   const startGeolocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(getCoordinates, handleError);
     } else {
-      alert('Geolocation Not Available.')
+      alert('Geolocation Not Available.');
     }
-  }
+  };
 
   const getCoordinates = (position) => {
     console.log(position);
-    setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude})
-  }
+    setCoordinates({
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    });
+  };
 
   const handleError = (error) => {
-    switch(error.code) {
+    switch (error.code) {
       case error.PERMISSION_DENIED:
-        alert('User Denied Geolocation Permission.')
+        alert('User Denied Geolocation Permission.');
         break;
       case error.POSITION_UNAVAILABLE:
-        alert('Users Position Unavailable.')
+        alert('Users Position Unavailable.');
         break;
       case error.TIMEOUT:
-        alert('User Location Request Timeout.')
+        alert('User Location Request Timeout.');
         break;
       case error.UNKNOWN_ERROR:
-        alert('Unknown Error Has Ocurred With Geolocation.')
+        alert('Unknown Error Has Ocurred With Geolocation.');
         break;
     }
-  }
+  };
 
   return (
     <>
@@ -76,45 +90,52 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
         <PlacesAutoComplete
           value={address || ''}
           onChange={setAddress}
-          onSelect={handleSelect}
-        >
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          onSelect={handleSelect}>
+          {({
+            getInputProps,
+            suggestions,
+            getSuggestionItemProps,
+            loading,
+          }) => (
             <div>
-              <form 
-                className='search-container' 
-                onSubmit={findApartments}>
-                <img 
-                  className='pink-marker' 
-                  src={pinkmarker} 
+              <form className='search-container' onSubmit={findApartments}>
+                <img
+                  className='pink-marker'
+                  src={pinkmarker}
                   alt='pink-marker'
                   onClick={startGeolocation}
                 />
-                <input 
+                <input
                   className='search-bar'
                   onChange={setAddress}
-                  {...getInputProps({placeholder: 'Enter an address, neighborhood, city, or ZIP code' })} 
-                  />
-                <img 
-                  className='search-icon' 
+                  {...getInputProps({
+                    placeholder:
+                      'Enter an address, neighborhood, city, or ZIP code',
+                  })}
+                />
+                <img
+                  className='search-icon'
                   src={searchicon}
                   alt='search-icon'
-                  onClick={findApartments}/>
+                  onClick={findApartments}
+                />
               </form>
-              <div 
-                className='search-list'>
-                {loading && <div className='search-suggestions'>Loading...</div>}
+              <div className='search-list'>
+                {loading && (
+                  <div className='search-suggestions'>Loading...</div>
+                )}
 
                 {suggestions.map((suggestion, index) => {
                   return (
                     <>
-                      <div 
-                        {...getSuggestionItemProps(suggestion)} 
-                        className='search-suggestions' 
-                        key={index}
-                      >
+                      <div
+                        {...getSuggestionItemProps(suggestion)}
+                        className='search-suggestions'
+                        key={index}>
                         {suggestion.description}
                       </div>
-                    </>)
+                    </>
+                  );
                 })}
               </div>
             </div>

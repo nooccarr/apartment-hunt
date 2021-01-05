@@ -1,20 +1,39 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import { Card, Form, Input } from '../styles/AuthForm';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { FcGoogle } from 'react-icons/fc';
 import { GrUserAdmin } from 'react-icons/gr';
-import { login } from './Axios';
+import axios from 'axios';
 import '../styles/signin.css';
 
-const Signin = ({ handleSignUp }) => {
+const Signin = ({ handleSignUp, openModal }) => {
   const [adminClicked, setAdminClicked] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const [validated, setValidated] = useState(false);
 
-  const handleSubmit = () => {
-    login(userEmail, userPassword);
+  const login = (email, password) => {
+    axios
+      .post('/login', {
+        email,
+        password,
+      })
+      .then((res) => {
+        openModal(false);
+        console.log(res);
+      });
+  };
+
+  const loginAdmin = (email, password) => {
+    axios
+      .post('/login-admin', {
+        email,
+        password,
+      })
+      .then((res) => {
+        openModal(false);
+        console.log(res);
+      });
   };
 
   return (
@@ -33,12 +52,16 @@ const Signin = ({ handleSignUp }) => {
           placeholder='Password'
           onChange={(e) => setUserPassword(e.target.value)}
         />
-        <Button
-          className='login-btn'
-          variant='contained'
-          onClick={() => handleSubmit()}>
-          Sign In
-        </Button>
+        <Router>
+          <Link to='/profile'>
+            <Button
+              className='login-btn'
+              variant='contained'
+              onClick={() => login(userEmail, userPassword)}>
+              Sign In
+            </Button>
+          </Link>
+        </Router>
       </Form>
       <div className='or-group'>OR</div>
       <div className={adminClicked ? 'flip-container-signin' : ''}>
@@ -52,14 +75,17 @@ const Signin = ({ handleSignUp }) => {
             </Button>
           </div>
           <div className='back-signin'>
-            <Link to='/admin' style={{ textDecoration: 'none' }}>
-              <Button
-                className='admin-link-btn'
-                variant='contained'
-                startIcon={<GrUserAdmin className='admin-icon' />}>
-                Admin Sign in
-              </Button>
-            </Link>
+            <Router>
+              <Link to='/admin-dashboard'>
+                <Button
+                  className='admin-link-btn'
+                  variant='contained'
+                  onClick={() => loginAdmin(userEmail, userPassword)}
+                  startIcon={<GrUserAdmin className='admin-icon' />}>
+                  Admin Sign in
+                </Button>
+              </Link>
+            </Router>
           </div>
         </div>
       </div>
