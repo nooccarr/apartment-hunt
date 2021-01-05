@@ -1,7 +1,7 @@
 const User = require('../models/userModel.js');
 
-const updateUserDocs = (user_id, fileNameArray) => {
-  return User.findOneAndUpdate({user_id: user_id},
+const updateUserDocs = (username, fileNameArray) => {
+  return User.findOneAndUpdate({username: username},
     {$addToSet: { documents: fileNameArray } }).exec()
 }
 

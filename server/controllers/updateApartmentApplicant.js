@@ -1,8 +1,8 @@
 const Apartment = require('../../database/Apartments.js');
 
-const updateApartmentApplicant = (apartment_id, user_id) => {
-  return Apartment.findOneAndUpdate({apartment_id: apartment_id},
-    {$addToSet: { applicants: user_id } }).exec()
+const updateApartmentApplicant = (apartment_id, username) => {
+  return Apartment.findByIdAndUpdate(apartment_id,
+    {$addToSet: { applicants: username } }).exec()
 };
 
 exports.updateApartmentApplicant = updateApartmentApplicant;
