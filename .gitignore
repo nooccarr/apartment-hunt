@@ -115,3 +115,5 @@ src/components/SearchResults/config/google_api_key.js
 server/auth/credentials.js
 database/dbconfig.js
 
+# google key
+.googleApi.js

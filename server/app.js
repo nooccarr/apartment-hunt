@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require('axios');
 const path = require('path');
 const parser = require('body-parser');
 const cors = require('cors');
@@ -57,6 +58,27 @@ app.use('(/uploadlisting)?', express.static(path.join(__dirname, '../dist')));
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 app.use(cors());
+app.get('/restaurants', function (req, res) {
+  var query = req.url.slice(14)
+  axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?` + query)
+    .then((response) => {
+      res.status(200).send(response.data.results)
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+})
+
+app.get('/schools', function (req, res) {
+  var query = req.url.slice(10)
+  axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?` + query)
+    .then((response) => {
+      res.status(200).send(response.data.results)
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+})
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
