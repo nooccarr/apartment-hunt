@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { Card, Form, Input } from '../styles/AuthForm';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { FcGoogle } from 'react-icons/fc';
 import { GrUserAdmin } from 'react-icons/gr';
 import axios from 'axios';
 import '../styles/signin.css';
+import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
 
-const Signin = ({ handleSignUp, openModal }) => {
+const Signin = ({ handleSignUp, openModal, getUserInfo }) => {
   const [adminClicked, setAdminClicked] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
+  const [notValid, setNotValid] = useState(false);
 
   const login = (email, password) => {
     axios
@@ -19,8 +22,17 @@ const Signin = ({ handleSignUp, openModal }) => {
         password,
       })
       .then((res) => {
-        openModal(false);
-        console.log(res);
+        if (res.data === 'verified') {
+          openModal(false);
+          let token = jwtDecode(Cookies.get('jwt'));
+          getUserInfo(token.payload.username, token.payload.email);
+        } else {
+          openModal(false);
+          setNotValid(true);
+        }
+      })
+      .catch((err) => {
+        console.log('is there error in promise', err);
       });
   };
 
@@ -35,6 +47,10 @@ const Signin = ({ handleSignUp, openModal }) => {
         console.log(res);
       });
   };
+
+  if (notValid) {
+    return <Redirect to='/' />;
+  }
 
   return (
     <Card className='login-group'>

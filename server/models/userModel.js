@@ -5,7 +5,7 @@ let user = new Schema({
   id: Number,
   date: { type: Date, default: Date.now },
   username: String,
-  email: String,
+  email: { type: String, index: { unique: true } },
   password: String,
   documents: Array,
 });
