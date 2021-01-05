@@ -53,7 +53,11 @@ const GoogleMap = () => {
         new google.maps.Marker({
           position: { lat: apartment.position.coordinates[1], lng: apartment.position.coordinates[0] },
           map,
-          title: "Hello World!",
+          title: "Apartment Listing",
+          // icon: {
+          //   url: "",
+          //   scaledSize: new window.google.maps.Size(45, 25)
+          // }
         });
       })
     })
