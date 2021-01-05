@@ -1,11 +1,18 @@
 import React from 'react';
+import HomeLogin from './HomeLogin';
 
-function UserProfile(props) {
+const UserProfile = ({ getUserInfo, userID, userName }) => {
+  console.log(userName);
+
   return (
-    <div style={{ color: 'white', fontSize: '50px' }}>
-      Protected Route User Profile
+    <div>
+      <HomeLogin
+        getUserInfo={getUserInfo}
+        userID={userID}
+        userName={userName}
+      />
     </div>
   );
-}
+};
 
 export default UserProfile;
