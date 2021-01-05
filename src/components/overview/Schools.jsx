@@ -28,11 +28,14 @@ class Schools extends React.Component {
 
     render() {
         if (this.state.schoolList !== undefined) {
+            const empty = '☆'
+            const star = '★'
             return (
                 <div>
                     {this.state.schoolList.map((school, index) => {
                         return (
-                            <div key={index}>{school.name} Rating:{school.rating}</div>
+                            <div key={index}>{school.name}<br></br> 
+                            Rating:{school.rating} {star.repeat(Math.round(school.rating))}{empty.repeat(5-Math.round(school.rating))}</div>
                         )
                     })}
                 </div>
