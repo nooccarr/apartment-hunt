@@ -70,6 +70,7 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
   return (
     <>
       <div>
+        {console.log(listings)}
         <PlacesAutoComplete
           value={address || ''}
           onChange={setAddress}
