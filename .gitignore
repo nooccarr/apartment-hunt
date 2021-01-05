@@ -114,3 +114,6 @@ src/components/SearchResults/config/google_api_key.js
 # sercret keys
 server/auth/credentials.js
 database/dbconfig.js
+
+# google key
+src/components/overview/googleApi.js

@@ -2,7 +2,6 @@
 
 .sign-up-group {
   font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif !important;
-  margin-top: -60px !important;
 }
 
 .title-signup {
@@ -43,7 +42,7 @@ span {
 
 .google-icon-signup {
   background-color: rgb(255, 255, 255);
-  padding: 8px;
+  padding: 8.7px;
   position: absolute;
   border-radius: 3px;
   left: 1px;
@@ -81,34 +80,4 @@ span {
 .link {
   text-decoration: none !important;
   color: #555;
-}
-
-@media only screen and (max-width: 1273px) {
-  .title-signup {
-    font-size: 20px;
-  }
-
-  .input-label-signup {
-    font-size: 10px;
-  }
-
-  .or-group-signup {
-    font-size: 10px;
-  }
-
-  .login-btn-signup {
-    font-size: 10px !important;
-    padding: 3px 30px !important;
-    line-height: 30px !important;
-  }
-
-  .google-icon-signup {
-    padding: 6px;
-  }
-
-  .admin-link-btn-signup {
-    font-size: 10px !important;
-    padding: 3px 30px !important;
-    line-height: 30px !important;
-  }
 }
