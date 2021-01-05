@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import React from 'react';
-// import google_api_key from '../config/google_api_key';
-=======
 import React, {useContext} from 'react';
 import { ApartmentContext } from '../../HomePage/ApartmentContext'
 import google_api_key from '../config/google_api_key';
->>>>>>> staging
 import { Loader } from '@googlemaps/js-api-loader';
 import lightMap from './MapStyles/lightmap.js';
 import darkMap from './MapStyles/darkmap.js';
