@@ -71,6 +71,58 @@ File Upload/ Video Upload Fonts
   padding: 10px;
 }
 
+/* For pdf
+*/
+.react-pdf__Page {
+  /*margin-top: 10px; */
+  position: relative;
+ /* overflow: scroll; */
+ /*
+ width: 630px;
+  height: 650px;
+  background-color: white
+  */
+
+}
+.react-pdf__Page__textContent {
+
+  border: 1px solid darkgrey;
+  box-shadow: 5px 5px 5px 1px #ccc;
+  border-radius: 5px;
+
+}
+
+.react-pdf__Page__annotations.annotationLayer {
+  /*padding: 20px;*/
+}
+
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+  /*
+  display: block;
+  user-select: none;
+  width: 612px;
+  height: 792px;
+  */
+}
+
+.all-page-container {
+  height: 100%;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.apartment-entry-container {
+  display: flex;
+}
+.apartment-entry-container > div {
+  padding: 10px;
+}
+.documents-container {
+  display:flex;
+  flex-direction: column;
+}
+
 /******* End of File Upload/ Video Upload Font ******/
 
 
