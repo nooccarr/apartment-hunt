@@ -22,7 +22,6 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     const latLng = await getLatLng(results[0]);
     setAddress(value);
     setCoordinates(latLng);
-    console.log(latLng);
   };
 
   const findApartments = () => {
@@ -48,7 +47,6 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
   }
 
   const getCoordinates = (position) => {
-    console.log(position);
     setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude})
   }
 

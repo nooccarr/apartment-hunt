@@ -43,7 +43,7 @@ const GoogleMap = () => {
   loader.load()
     .then(() => {
       map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 40.730610, lng: -73.935242 },
+        center: { lat: 40.69396233779667, lng: -73.94443814752641 },
         zoom: 10,
         options: { styles: lightMap }
       }); 
