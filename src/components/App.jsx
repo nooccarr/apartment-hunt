@@ -5,6 +5,7 @@ import { AuthContext } from './Authentication/Auth/AuthContext';
 import { HomeLogin, UserProfile } from './pages/index';
 import Overview from './overview/Overview.jsx';
 import ChatApp from './ChatBox/frontend/ChatApp.jsx'
+import AgentPortal from './Portal/AgentPortal.jsx'
 
 const App = () => {
   return (
@@ -26,6 +27,11 @@ const App = () => {
       <Router>
         <div>
           <Route exact path='/chatbox' component={ChatApp} />
+        </div>
+      </Router>
+      <Router>
+        <div>
+          <Route exact path='/aportal' component={AgentPortal} />
         </div>
       </Router>
     </div>

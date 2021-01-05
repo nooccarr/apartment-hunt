@@ -24,11 +24,13 @@ const ChatApp = () => {
   const [chatIdx, setChatIdx] = useState(null);
   const [chatHist, setChatHist] = useState([]);
   const [chatId, setChatId] = useState(null);
-  // const [chatHistId, setChatHistId] = useState(null)
+  const [firstRender, setFirstRender] = useState(false);
+
   const [conAge, setConAge] = useState(false);
   const [getChatHist, setGetChatHist] = useState(false);
   const [getIndvChat, setGetIndvChat] = useState(false);
-
+  
+  // const [chatHistId, setChatHistId] = useState(null)
 
   const selectConvo = (id) => {
     setChatIdx(id);
@@ -100,10 +102,15 @@ const ChatApp = () => {
   // }
 
   useEffect(() => {
+    console.log('effect', firstRender)
+    if (!firstRender) {
+      setFirstRender(true)
+      return;
+    }
     console.log('hit:');
     axios.post('/chatRoom', {
       address: '47382 Please Ave',
-      userName: 'Phil54356',
+      userName: 'LOLA64739',
       agentName: 'harvey83924',
       userId: '573272',
       agentId: '273849',
@@ -114,6 +121,11 @@ const ChatApp = () => {
   }, [conAge])
 
   useEffect(() => {
+    console.log('effect2', firstRender)
+    if (!firstRender) {
+      // setFirstRender(true)
+      return;
+    }
     console.log('hit2:');
     return axios.get(`/msg/client`, {
       params: {
@@ -128,8 +140,12 @@ const ChatApp = () => {
   }, [getChatHist])
 
   useEffect(() => {
+    if (!firstRender) {
+      // setFirstRender(true)
+      return;
+    }
     console.log('firstHistory: ', chatHist);
-    let chatInfo = {address: '47382 Please Ave', userName: 'Phil54356'}
+    let chatInfo = {address: '47382 Please Ave', userName: 'LOLA64739'}
     return axios.get('/chatRoom', { 
       params: {
         address: chatInfo.address,
@@ -155,6 +171,7 @@ const ChatApp = () => {
         }
     })
   }, [getIndvChat])
+
 
   // useEffect(() => {
   //   console.log('convo: ', data);
@@ -204,14 +221,14 @@ const ChatApp = () => {
   //   })
   //   .then(({ data }) => {
   //     console.log('here', data)
-  //     // setChatHist(data)
-  //     // console.log('firstHistory: ', chatHist);
+  //     setChatHist(data)
+  //     console.log('firstHistory: ', chatHist);
   //     // setHistChat(!histChat)
   //     // let chatHistChange = await changeHist(data)
-  //     changeHist(data);
+  //     // changeHist(data);
   //     // console.log(chatHistChange)
   //   }).then(() => {
-  //     console.log('firstHistory: ', chatHist);
+  //     console.log('secondHistory: ', chatHist);
   //     let chatInfo = {address: '47382 Please Ave', userName: 'Phil54356'}
   //     return axios.get('/chatRoom', { 
   //       params: {
@@ -254,8 +271,8 @@ const ChatApp = () => {
       </nav>
       <div>
         {convos ? <Convos chatHistory={chatHist} selectConvo={selectConvo} role={loggedUser.role}/> : null}
-        {texts ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId}/> : null}
-        <div onClick={() => {setConAge(!conAge)}}>Contact Agent</div>
+        {texts ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={loggedUser}/> : null}
+        <div onClick={() => setConAge(!conAge)}>Contact Agent</div>
       </div>
     </div>
   );
