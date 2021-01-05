@@ -62,13 +62,7 @@ if (req.query.burrough) {
 }*/
 Apts.find().where('position').near({ center: [long, lat], maxDistance: maxD, spherical: true })
   .then((apts) => {
-    let filteredApts = [];
-    for (let i = 0; i < apts.length; i++){
-      if (apts[i].beds > 2) {
-        filteredApts.push(apts[i]);
-      }
-    }
-    res.status(200).json(filteredApts);
+    res.status(200).json(apts);
   })
   .catch((err) => {
     console.log(err);
