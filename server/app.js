@@ -53,6 +53,7 @@ app.use(passport.session());
 
 // Serve static assets from 'dist' folder
 app.use('(/apartment)?', express.static(path.join(__dirname, '../dist')));
+app.use('(/uploadlisting)?', express.static(path.join(__dirname, '../dist')));
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 app.use(cors());

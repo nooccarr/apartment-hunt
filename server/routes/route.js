@@ -7,6 +7,9 @@ router.post('/login', controller.login);
 router.post('/login-admin', controller.loginAdmin);
 router.post('/signup', controller.signup);
 router.get('/search', controller.search);
+router.get('/apt', controller.apt);
+router.get('/applicants', controller.applicants);
+router.post('/listing', controller.listing);
 
 //matt's test
 //8router.get('/login', controller.loginGet);
