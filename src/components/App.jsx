@@ -7,6 +7,8 @@ import { HomeLogin, UserProfile, AdminPortal } from './pages/index';
 import Overview from './overview/Overview.jsx';
 import UploadListing from './Agent/UploadListing';
 import About from './overview/aboutus.jsx';
+import ChatApp from './ChatBox/frontend/ChatApp.jsx'
+import AgentPortal from './Portal/AgentPortal.jsx'
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,6 +40,17 @@ const App = () => {
           </Switch>
         </Router>
       </AuthContext.Provider>
+      {/* ///////////FIXME:ChatBox/////////// */}
+      <Router>
+        <div>
+          <Route exact path='/chatbox' component={ChatApp} />
+        </div>
+      </Router>
+      <Router>
+        <div>
+          <Route exact path='/aportal' component={AgentPortal} />
+        </div>
+      </Router>
     </div>
   );
 };

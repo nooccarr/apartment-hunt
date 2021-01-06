@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon server/app.js",
+    "start-sock": "nodemon src/components/ChatBox/backend/chatbox_server.js",
     "build-dev": "npx webpack --mode development --config webpack.config.js --watch",
     "build-prod": "npx webpack --mode production --config webpack.config.js --watch"
   },
@@ -28,6 +29,7 @@
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
@@ -38,6 +40,7 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.0",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
     "react-icons": "^4.1.0",
     "react-places-autocomplete": "^7.3.0",
@@ -48,7 +51,10 @@
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "styled-components": "^5.2.1",
-    "underscore": "^1.12.0"
+    "socket.io": "^3.0.4",
+    "socket.io-client": "^3.0.4",
+    "underscore": "^1.12.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -60,8 +66,8 @@
     "enzyme": "^3.11.0",
     "file-loader": "^6.2.0",
     "jest": "^26.6.3",
-    "url-loader": "^4.1.0",
     "style-loader": "^2.0.0",
+    "url-loader": "^4.1.0",
     "webpack": "^5.11.0",
     "webpack-cli": "^4.3.0"
   }
