@@ -1,3 +1,3 @@
-let logUser = { user: 'harvey83924', role: 'agent' };
+let logUser = { user: 'laura90', role: 'agent' };
 
 export default logUser;
