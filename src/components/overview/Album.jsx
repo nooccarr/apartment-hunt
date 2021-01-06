@@ -37,8 +37,7 @@ class Album extends React.Component {
     video () {
         return <div className="videoContainer">
             <ReactPlayer width="900px" height="500px" playing="true" controls="true"
-                url="https://nate-pruitt-test-bucket-0001
-                .s3.us-east-2.amazonaws.com/WIN_20200707_20_33_19_Pro.mp4"/>
+                url="https://nate-pruitt-test-bucket-0001.s3.us-east-2.amazonaws.com/WIN_20200707_20_33_19_Pro.mp4"/>
             </div>
     }
 
