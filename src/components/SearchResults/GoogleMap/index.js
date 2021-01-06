@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import { ApartmentContext } from '../../HomePage/ApartmentContext'
-import google_api_key from '../config/google_api_key';
+import { ApartmentContext } from '../../HomePage/ApartmentContext.jsx'
+import google_api_key from '../config/google_api_key.js';
 import { Loader } from '@googlemaps/js-api-loader';
 import lightMap from './MapStyles/lightmap.js';
 import darkMap from './MapStyles/darkmap.js';
@@ -23,7 +23,7 @@ const GoogleMap = () => {
         center: { lat: 40.69396233779667, lng: -73.94443814752641 },
         zoom: 14,
         options: { styles: lightMap }
-      }); 
+      });
     })
     .then(() => {
       marker = listings.map((apartment) => {
@@ -45,7 +45,7 @@ const GoogleMap = () => {
       //   let marker = createHTMLMapMarker({
       //     latlng: new google.maps.LatLng(lat, long),
       //     map:map,
-      //     html: 
+      //     html:
       //     `<div class='wrapper'>
       //       <div class='neon-wrapper'>
       //         <span class='${className}'>${city}</span>

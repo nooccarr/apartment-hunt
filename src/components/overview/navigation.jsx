@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import { Login, LoginModal } from '../Authentication/index';
+import { Login, LoginModal } from '../Authentication/index.jsx';
 import logo from '../../images/logo.png';
 import '../HomePage/styles/main.scss';
 import './navigation-style.scss';
 import SearchBar from '../SearchResults/SearchBar/index.js';
+import axios from 'axios';
 
 const Navigation = ({ searchValue, setSearchValue, getUserInfo, user }) => {
   const [clickedLogin, setClickedLogin] = useState(false);

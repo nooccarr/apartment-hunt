@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import './uploadlisting.scss';
 import TopBanner from '../SearchResults/TopBanner';
+import VideoUpload from '../FileUpload/VideoUpload.jsx'
 import axios from 'axios';
 import DoneIcon from '@material-ui/icons/Done';
 
@@ -27,6 +27,13 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
     baths: null,
     agent: ''
 });
+
+
+const updateVideo = (videoName) => {
+    setListing(prevState => ({...prevState, ['videos']: [...prevState['videos'], videoName]}));
+}
+
+
 
 const addUrl = (e) => {
     e.preventDefault();
@@ -98,15 +105,15 @@ const getPos = async (e) => {
     });
   };
 
-  
+
   const handlePets = (e) => {
     e.preventDefault();
     if(e.target.value === 'yes') {
-        
+
         setListing(prevState => ({...prevState, pets: {...prevState.pets, [e.target.name]: true}}));
     }
     if(e.target.value === 'no') {
-        
+
         setListing(prevState => ({...prevState, pets: {...prevState.pets, [e.target.name]: false}}));
     }
   };
@@ -120,7 +127,7 @@ const getPos = async (e) => {
                 <input type="text" name="agent" onChange={agentChange}></input>
               </form>
               </div>
-          </div>*/ 
+          </div>*/
   return (
     <div className='main'>
       <TopBanner searchValue={ searchValue } setSearchValue={ setSearchValue } />
@@ -151,7 +158,7 @@ const getPos = async (e) => {
                   <label>Description: </label>
                   <textarea name="description" onChange={handleChange}></textarea>
               </div>
-              
+
               <div>
                   <label>Agent: </label>
                   <input type="text" name="agent" onChange={handleChange}></input>
@@ -178,33 +185,33 @@ const getPos = async (e) => {
                   <input className='yesButton' type="button"  name="cats" value='yes' onClick={handlePets}></input><input className='noButton' type="button"  name="cats" value='no' onClick={handlePets}></input><br></br>
                   <label>Dogs? </label>
                   <input className='yesButton' type="button"  name="dogs" value='yes'  onClick={handlePets}></input><input className='noButton' type="button"  name="dogs" value='no'  onClick={handlePets}></input><br></br>
-                
+
               </div>
               <div>
-                  
+
                   <label>Neighborhoods (ADD BORROUGH TO HERE AS WELL, SUBMIT ONE AT A TIME): </label><br></br>
                   <input type="text" id="hoods" name="neighborhoods" onChange={handleUrl}></input>
                   <input className='submitButton' type="submit" value="Add" name="neighborhoods" onClick={addUrl}></input>
-                  
+
               </div>
               <div>
-                  
+
                   <label>Pictures: </label>
                   <input type="url" id="picIn" name="pics" onChange={handleUrl}></input>
                   <input className='submitButton' type="submit" value="Submit" name="pics" onClick={addUrl}></input>
-                  
+
               </div>
               <div>
-                  
+                  <VideoUpload setVideoName={updateVideo} />
                   <label>Videos: </label>
                   <input type="url" id="vidIn" name="videos" onChange={handleUrl}></input>
                   <input className='submitButton' type="submit" value="Submit" name="videos" onClick={addUrl}></input>
-                
+
               </div>
               <input id='finalSubmit' type="submit" value="Submit Listing" onClick={handleSubmit}></input>
           </form>
           </div>
-          
+
         </div>
       </div>
   );
