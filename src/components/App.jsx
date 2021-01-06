@@ -16,8 +16,10 @@ const App = () => {
   const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
-    let token = jwtDecode(Cookies.get('jwt'));
-    getUserInfo(token.payload.username, token.payload.email);
+    if (Cookies.get('jwt')) {
+      let token = jwtDecode(Cookies.get('jwt'));
+      getUserInfo(token.payload.username, token.payload.email);
+    }
   }, []);
 
   const getUserInfo = (name, email) => {
