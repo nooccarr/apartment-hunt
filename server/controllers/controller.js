@@ -147,6 +147,7 @@ const userController = (req, res) => {
   .catch((err) => {
     res.sendStatus(500);
   });
+}
 
 const addVideo = (req, res) => {
   Apts.findByIdAndUpdate(req.query.id, {$push: {"videos": req.query.videos}})
@@ -245,5 +246,5 @@ module.exports = {
   signout,
   applicants,
   userController,
-  addVideo
+  addVideo,
 };
