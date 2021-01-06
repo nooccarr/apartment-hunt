@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ApartmentContext } from './HomePage/ApartmentContext';
-import { HomeLogin, AdminPortal } from './pages/index';
+import { ApartmentContext } from './HomePage/ApartmentContext.jsx';
+import { HomeLogin, AdminPortal } from './pages/index.jsx';
 import Overview from './overview/Overview.jsx';
 import ChatApp from './ChatBox/frontend/ChatApp.jsx'
 import AgentPortal from './Portal/AgentPortal.jsx'

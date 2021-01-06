@@ -1,5 +1,12 @@
 const express = require('express');
 const controller = require('../controllers/controller');
+const {
+  downloadRoute,
+  uploadRoute,
+  videoRoute,
+} = require('./fileUploadRoutes.js');
+const multer = require('multer');
+const upload = multer();
 
 const router = express.Router();
 
@@ -18,7 +25,12 @@ router.get('/msg/agent', controller.fetchChatsByAgent);
 router.post('/chatRoom', controller.conAgent);
 router.get('/chatRoom', controller.fetchMsgByChatRoom);
 //////ChatBox After////////
-router.post('/video', controller.addVideo);
+// File Upload Routes
+router.get('/user', controller.userController);
+router.get('/download', downloadRoute);
+router.post('/upload', upload.any(), uploadRoute);
+router.post('/video', upload.any(), videoRoute);
+router.post('/addVideo', controller.addVideo);
 
 //matt's test
 //8router.get('/login', controller.loginGet);

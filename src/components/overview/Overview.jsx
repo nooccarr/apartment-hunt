@@ -27,8 +27,7 @@ class Overview extends React.Component {
         // {console.log('hello', this.props.admin)}         
         return (
         <div>
-            {/* <Navigation userLoggin={userLoggin}/> */}
-            <Album/>
+            <Album />
             <Description/>
         </div>
         )

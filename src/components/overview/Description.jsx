@@ -2,6 +2,7 @@ import React from 'react';
 import sampleApts from './sampleData';
 import Restaurants from './Restaurants.jsx';
 import Schools from './Schools.jsx';
+import FileUploadOverlay from '../FileUpload/FileUploadOverlay.jsx';
 import './detail.style.scss';
 
 class Description extends React.Component {
@@ -161,7 +162,7 @@ class Description extends React.Component {
                     </div>
                     <div className='desAct'>
                         <div className='contactAgent'>Contact Agent</div>
-                        <div className='subApp'>Submit Application</div>
+                        <FileUploadOverlay username={"username"} apartment_id={"5ff48f80f8d9ecaff9eb3545"} />
                     </div>
                 </div>
                 <div className='desContainer'>
