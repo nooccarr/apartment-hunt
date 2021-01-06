@@ -26,8 +26,15 @@ body{
  position: absolute;
  z-index: 1;
  width: 100%;
- background: rgb(254,218,218);
+ height: 15%;
 }
+.header_top_home{
+  padding:15px 0;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+ }
+
  .logo{
  text-align:left;
 }
