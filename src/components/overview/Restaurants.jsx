@@ -13,7 +13,7 @@ class Restaurants extends React.Component {
     componentDidMount() {
         const fakeRequest = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.692390,-73.914880&radius=2000&type=restaurant&key=${googleKey}`
         const frontReq = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-        axios({method: 'get', url: `/restaurants/?location=${this.props.location.latitude},${this.props.location.longitude}&radius=2000&type=restaurant&key=${googleKey}`, headers: { "Access-Control-Allow-Origin": '*'} })
+        axios({method: 'get', url: `/restaurants/?location=${this.props.location.position.coordinates[1]},${this.props.location.position.coordinates[0]}&radius=2000&type=restaurant&key=${googleKey}`, headers: { "Access-Control-Allow-Origin": '*'} })
             .then((response) => {
                 console.log('request made and recieved', response)
                 this.setState({
@@ -36,14 +36,14 @@ class Restaurants extends React.Component {
                         const star = '★'
                         return (
                             <div key={index} className='singleSchool'>
-                            {restaurant.name} <br></br>
+                            <p className='placeName'>{restaurant.name}</p> <br></br>
                             <img src={restaurant.photos === undefined ?
                             'https://visualsound.com/wp-content/uploads/2019/05/unavailable-image.jpg' :
                             `https://maps.googleapis.com/maps/api/place/photo?maxheight=100&photoreference=
                             ${restaurant.photos[0].photo_reference}&key=${googleKey}`}
                             className='modalImage'></img><br></br>
-                            Price Level:{money.repeat(restaurant.price_level)} <br></br>
-                            Rating: {restaurant.rating} {star.repeat(Math.round(restaurant.rating))}{empty.repeat(5-Math.round(restaurant.rating))}<br></br>
+                            <b>Price Level:</b> {money.repeat(restaurant.price_level)} <br></br>
+                            <b>Rating:</b> {restaurant.rating} {star.repeat(Math.round(restaurant.rating))}{empty.repeat(5-Math.round(restaurant.rating))}<br></br>
                             </div>
                         )
                     })}

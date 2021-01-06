@@ -28,8 +28,6 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
           distance: 0.25,
           lat: 40.69396233779667, 
           long: -73.94443814752641,
-          // lat: coordinates.lat,
-          // long: coordinates.lng
         }
         })
         .then((results) => { getListings(results.data); })
