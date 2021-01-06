@@ -3,6 +3,7 @@ import Description from './Description.jsx';
 import Album from './Album.jsx';
 import Navigation from './navigation.jsx';
 import axios from 'axios';
+import './album-styles.scss';
 
 class Overview extends React.Component {
     constructor(props) {
@@ -21,8 +22,10 @@ class Overview extends React.Component {
     render () {
         return (
         <div>
-            {this.state.details === null ? null : <Album details={this.state.details}/>}
-            {this.state.details === null ? null : <Description details={this.state.details}/>}
+            {this.state.details === null ? null : <div className='detailPage'>
+                <Album details={this.state.details}/>
+                <Description details={this.state.details}/>
+                </div>}
         </div>
         )
     }
