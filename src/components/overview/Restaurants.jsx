@@ -13,7 +13,7 @@ class Restaurants extends React.Component {
     componentDidMount() {
         const fakeRequest = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.692390,-73.914880&radius=2000&type=restaurant&key=${googleKey}`
         const frontReq = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-        axios({method: 'get', url: `/restaurants/?location=${this.props.location.latitude},${this.props.location.longitude}&radius=2000&type=restaurant&key=${googleKey}`, headers: { "Access-Control-Allow-Origin": '*'} })
+        axios({method: 'get', url: `/restaurants/?location=${this.props.location.position.coordinates[1]},${this.props.location.position.coordinates[0]}&radius=2000&type=restaurant&key=${googleKey}`, headers: { "Access-Control-Allow-Origin": '*'} })
             .then((response) => {
                 console.log('request made and recieved', response)
                 this.setState({

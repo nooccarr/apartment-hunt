@@ -10,8 +10,8 @@ class CrimeMap extends React.Component {
 
     componentDidMount() {
         const scriptTag = document.getElementById('crimeometer-google-maps-control-v2')
-        scriptTag.setAttribute('data-lon', this.props.location.longitude)
-        scriptTag.setAttribute('data-lat', this.props.location.latitude)
+        scriptTag.setAttribute('data-lon', this.props.location.position.coordinates[0])
+        scriptTag.setAttribute('data-lat', this.props.location.position.coordinates[1])
         crimeometer_map()
         // var script = document.createElement('script');
         // script['data-xak']='TgHCbQ0Zv41lfemssPwQk1xI82q3PM5Q8bZsrwfX'
@@ -78,7 +78,8 @@ class CrimeMap extends React.Component {
                     }}
                     // 'height:100%; width:100%;'
                     ></div>
-                     The drop pins represent crimes that have been committed within the past year, click them to see the type of incident.
+
+                     <p style={{'width': '620px'}}>The drop pins represent crimes that have been committed within the past year, click them to see the type of incident.</p>
                 </div>
             </div>
         )
