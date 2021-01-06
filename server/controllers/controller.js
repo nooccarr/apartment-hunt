@@ -150,7 +150,7 @@ const userController = (req, res) => {
 }
 
 const addVideo = (req, res) => {
-  Apts.findByIdAndUpdate(req.query.id, {$push: {"videos": req.query.videos}})
+  Apts.findByIdAndUpdate(req.query.id, {$addToSet: {"videos": req.query.videos}})
   .then(() => {
     res.sendStatus(201);
   })
