@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Login, LoginModal } from '../Authentication/index';
+import axios from 'axios';
 import logo from '../../images/logo.png';
 import '../HomePage/styles/main.scss';
 import './navigation-style.scss';

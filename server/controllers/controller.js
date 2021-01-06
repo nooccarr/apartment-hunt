@@ -134,14 +134,14 @@ const applicants = (req, res) => {
 };
 
 const addVideo = (req, res) => {
-  Apts.findByIdAndUpdate(req.query.id, {$push: {"videos": req.query.videos}})
-  .then(() => {
-    res.sendStatus(201);
-  })
-  .catch((err) => {
-    res.sendStatus(500);
-  })
-}
+  Apts.findByIdAndUpdate(req.query.id, { $push: { videos: req.query.videos } })
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+};
 
 const apt = (req, res) => {
   let id = req.query.id;
@@ -229,5 +229,5 @@ module.exports = {
   apt,
   signout,
   applicants,
-  addVideo
+  addVideo,
 };
