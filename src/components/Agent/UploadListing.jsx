@@ -22,11 +22,11 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
     price: null,
     pics: [],
     videos: [],
-    pets: {dogs: false, cats: false},
+    pets: { dogs: false, cats: false },
     beds: null,
     baths: null,
-    agent: ''
-});
+    agent: '',
+  });
 
 
 const updateVideo = (videoName) => {
@@ -37,71 +37,81 @@ const updateVideo = (videoName) => {
 
 const addUrl = (e) => {
     e.preventDefault();
-    setListing(prevState => ({...prevState, [e.target.name]: [...prevState[e.target.name], url]}));
+    setListing((prevState) => ({
+      ...prevState,
+      [e.target.name]: [...prevState[e.target.name], url],
+    }));
     setUrl('');
     if (e.target.name === 'pics') {
-      let reset = document.getElementById("picIn");
+      let reset = document.getElementById('picIn');
       reset.value = '';
     } else if (e.target.name === 'videos') {
-        let reset = document.getElementById("vidIn");
-        reset.value = '';
+      let reset = document.getElementById('vidIn');
+      reset.value = '';
     } else {
-        let reset = document.getElementById("hoods");
-        reset.value = '';
+      let reset = document.getElementById('hoods');
+      reset.value = '';
     }
   };
 
-const getPos = async (e) => {
+  const getPos = async (e) => {
     e.preventDefault();
     // converts location value to coordinates for API call
     let address = `${listing.address}, ${listing.city}, NY, USA`;
     const results = await geocodeByAddress(address);
     const latLng = await getLatLng(results[0]);
     console.log(latLng);
-    setListing(prevState => ({...prevState,  position: {type: "Point", coordinates: [latLng.lng, latLng.lat]}}));
+    setListing((prevState) => ({
+      ...prevState,
+      position: { type: 'Point', coordinates: [latLng.lng, latLng.lat] },
+    }));
   };
 
   const handleChange = (e) => {
-      setListing(prevState => ({...prevState, [e.target.name]: e.target.value}));
+    setListing((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const agentChange = (e) => {
-      setAgent(e.target.value);
-  }
+    setAgent(e.target.value);
+  };
 
   const handleUrl = (e) => {
     e.preventDefault();
-      setUrl(e.target.value);
+    setUrl(e.target.value);
   };
 
   const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log(listing);
-      axios.post('http://localhost:3000/listing', listing)
+    e.preventDefault();
+    console.log(listing);
+    axios
+      .post('http://localhost:3000/listing', listing)
       .then(() => {
-          console.log("success meow!");
+        console.log('success meow!');
       })
       .catch((err) => {
-          console.log("Fail meow", err);
-      })
-      setListing({
-        address: '',
-        listingName: '',
-        state: 'NY',
-        zipCode: '',
-        city: '',
-        country: 'USA',
-        description: '',
-        sqft: null,
-        neighborhoods: [],
-        position: {},
-        price: null,
-        pics: [],
-        videos: [],
-        pets: {dogs: false, cats: false},
-        beds: null,
-        baths: null,
-        agent: ''
+        console.log('Fail meow', err);
+      });
+    setListing({
+      address: '',
+      listingName: '',
+      state: 'NY',
+      zipCode: '',
+      city: '',
+      country: 'USA',
+      description: '',
+      sqft: null,
+      neighborhoods: [],
+      position: {},
+      price: null,
+      pics: [],
+      videos: [],
+      pets: { dogs: false, cats: false },
+      beds: null,
+      baths: null,
+      agent: '',
     });
   };
 
@@ -118,7 +128,6 @@ const getPos = async (e) => {
     }
   };
 
-
   /*<div className='rightSide'>
           <h2 className="appSearch">APPLICANT SEARCH</h2>
           <div>
@@ -130,7 +139,7 @@ const getPos = async (e) => {
           </div>*/
   return (
     <div className='main'>
-      <TopBanner searchValue={ searchValue } setSearchValue={ setSearchValue } />
+      <TopBanner searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className='bottomContainer'>
           <div >
               <h2 className="aptForm">UPLOAD APARTMENT LISTING</h2>
@@ -211,9 +220,9 @@ const getPos = async (e) => {
               <input id='finalSubmit' type="submit" value="Submit Listing" onClick={handleSubmit}></input>
           </form>
           </div>
-
         </div>
       </div>
+    </div>
   );
 };
 
