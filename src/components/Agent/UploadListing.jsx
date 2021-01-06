@@ -5,6 +5,7 @@ import PlacesAutoComplete, {
 } from 'react-places-autocomplete';
 import TopBanner from '../SearchResults/TopBanner';
 import VideoUpload from '../FileUpload/VideoUpload.jsx';
+import PhotoUpload from '../FileUpload/PhotoUpload.jsx';
 import axios from 'axios';
 import './uploadlisting.scss'
 
@@ -12,6 +13,8 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
   const [agent, setAgent] = useState('');
   const [url, setUrl] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isCatChecked, setCatChecked] = useState('no');
+  const [isDogChecked, setDogChecked] = useState('no')
   const [listing, setListing] = useState({
     address: '',
     listingName: '',
@@ -59,7 +62,7 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
   };
 
   const getPos = async (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     // converts location value to coordinates for API call
     let address = `${listing.address}, ${listing.city}, NY, USA`;
     const results = await geocodeByAddress(address);
@@ -89,6 +92,7 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    getPos();
     console.log(listing);
     axios
       .post('http://localhost:3000/listing', listing)
@@ -123,12 +127,24 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
   const handlePets = (e) => {
     e.preventDefault();
     if (e.target.value === 'yes') {
+      if (e.target.name === 'cats') {
+        setCatChecked('yes');
+      }
+      if (e.target.name === 'dogs') {
+        setDogChecked('yes');
+      }
       setListing((prevState) => ({
         ...prevState,
         pets: { ...prevState.pets, [e.target.name]: true },
       }));
     }
     if (e.target.value === 'no') {
+      if (e.target.name === 'cats') {
+        setCatChecked('no');
+      }
+      if (e.target.name === 'dogs') {
+        setDogChecked('no');
+      }
       setListing((prevState) => ({
         ...prevState,
         pets: { ...prevState.pets, [e.target.name]: false },
@@ -146,97 +162,107 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
               </div>
           </div>*/
   return (
-    <div className='main'>
-      <div className='bottomContainer'>
+    <div className='main' style={{'overflow': 'scroll'}}  >
         <div>
           <h2 className='aptForm'>UPLOAD APARTMENT LISTING</h2>
           {isSuccess && <p style={{'color':'green'}}>Your upload is successful!</p>}
           <form className='listingForm'>
             <div>
-              <label>City: </label>
+              <div>City: </div>
               <input type='text' name='city' onChange={handleChange}></input>
             </div>
             <div>
-              <label>Listing Name: </label>
+              <div>Listing Name: </div>
               <input
                 type='text'
                 name='listingName'
                 onChange={handleChange}></input>
             </div>
             <div>
-              <label>Address(DO NOT ABBREVIATE STREET TYPE): </label>
+              <div>Address(Do not abbreviate): </div>
               <input type='text' name='address' onChange={handleChange}></input>
             </div>
             <div>
-              <label>Zip Code: </label>
+              <div>Zip Code: </div>
               <input type='text' name='zipCode' onChange={handleChange}></input>
             </div>
             <div>
+              {/*
               <button className='submitButton' onClick={getPos}>
                 GET GEOLOCATION FOR MAPPING
               </button>
+              */}
             </div>
             <div>
-              <label>Description: </label>
+              <div>Description: </div>
               <textarea name='description' onChange={handleChange}></textarea>
             </div>
 
             <div>
-              <label>Agent: </label>
+
+              <div>Agent: </div>
               <input type='text' name='agent' onChange={handleChange}></input>
             </div>
             <div>
-              <label>Beds: </label>
+              <div>Beds: </div>
               <input type='number' name='beds' onChange={handleChange}></input>
             </div>
             <div>
-              <label>Baths: </label>
+              <div>Baths: </div>
               <input type='number' name='baths' onChange={handleChange}></input>
             </div>
             <div>
-              <label>Price: </label>
+              <div>Price: </div>
               <input type='number' name='price' onChange={handleChange}></input>
             </div>
             <div>
-              <label>Square Feet: </label>
+              <div>Square Feet: </div>
               <input type='number' name='sqft' onChange={handleChange}></input>
             </div>
             <div>
-              <div>PETS?</div>
-              <label>Cats? </label>
+              <div style={{'font-weight':'bold'}}>Pet Friendly?</div>
+              <div>Cats</div>
               <input
-                className='yesButton'
-                type='button'
+              id='catChoice1'
+                type='radio'
                 name='cats'
                 value='yes'
-                onClick={handlePets}></input>
+                checked={isCatChecked === 'yes'}
+                onChange={handlePets}></input>
+                <label for='catChoice1'>Yes</label>
               <input
-                className='noButton'
-                type='button'
+                id='catChoice2'
+                type='radio'
                 name='cats'
                 value='no'
-                onClick={handlePets}></input>
+                checked={isCatChecked === 'no'}
+                onChange={handlePets}></input>
+                <label for='catChoice2'>No</label>
               <br></br>
-              <label>Dogs? </label>
+              <div>Dogs</div>
               <input
-                className='yesButton'
-                type='button'
+                id='dogChoice1'
+                type='radio'
                 name='dogs'
                 value='yes'
-                onClick={handlePets}></input>
+                checked={isDogChecked === 'yes'}
+                onChange={handlePets}></input>
+                <label for='dogChoice1'>Yes</label>
               <input
-                className='noButton'
-                type='button'
+                id='dogChoice2'
+                type='radio'
                 name='dogs'
                 value='no'
-                onClick={handlePets}></input>
+                checked={isDogChecked === 'no'}
+                onChange={handlePets}></input>
+                <label for='dogChoice2'>No</label>
               <br></br>
             </div>
             <div>
-              <label>
+              <div>
                 Neighborhoods (ADD BORROUGH TO HERE AS WELL, SUBMIT ONE AT A
                 TIME):{' '}
-              </label>
+              </div>
               <br></br>
               <input
                 type='text'
@@ -251,7 +277,8 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
                 onClick={addUrl}></input>
             </div>
             <div>
-              <label>Pictures: </label>
+              <PhotoUpload />
+              <div>Pictures: </div>
               <input
                 type='url'
                 id='picIn'
@@ -266,18 +293,6 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
             </div>
             <div>
               <VideoUpload setVideoName={updateVideo} />
-              <label>Videos: </label>
-              <input
-                type='url'
-                id='vidIn'
-                name='videos'
-                onChange={handleUrl}></input>
-              <input
-                className='submitButton'
-                type='submit'
-                value='Submit'
-                name='videos'
-                onClick={addUrl}></input>
             </div>
             <input
               id='finalSubmit'
@@ -286,7 +301,6 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
               onClick={handleSubmit}></input>
           </form>
         </div>
-      </div>
     </div>
   );
 };
