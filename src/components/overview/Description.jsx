@@ -155,8 +155,8 @@ class Description extends React.Component {
                         <div className='desAddress'>{sampleApts[1].address}, {sampleApts[1].city}, {sampleApts[1].state}, {sampleApts[1].zipCode}</div>
                         <div className='desAptDet'>
                             <div className='desEle1'>${sampleApts[1].price}/Month</div>
-                            <div className='desEle2'>{sampleApts[1].beds} Bedrooms</div>
-                            <div className='desEle3'>{sampleApts[1].baths} Bathrooms</div>
+                            <div className='desEle2'>Bedrooms:{sampleApts[1].beds}</div>
+                            <div className='desEle3'>Bathrooms:{sampleApts[1].baths}</div>
                         </div>
                         <div className='desDes'>{sampleApts[1].description}</div>
                     </div>

@@ -67,9 +67,7 @@ class CrimeMap extends React.Component {
                     height: '600px',
                     width: '800px',
                     margin: '10px',
-                    border: '2px solid',
-                    borderColor: 'rgba(100,100,100,100,0.7',
-                    borderRadius: '4px'
+                    color: 'pink'
                 }}
                 // 'height:600px; width:800px margin:10px border:2px solid; border-color:rgba(100,100,100,.7); border-radius:4px;'
                 >
@@ -80,6 +78,7 @@ class CrimeMap extends React.Component {
                     }}
                     // 'height:100%; width:100%;'
                     ></div>
+                     The drop pins represent crimes that have been committed, click them to see the type of incident.
                 </div>
             </div>
         )

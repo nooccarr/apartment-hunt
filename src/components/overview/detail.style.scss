@@ -10,6 +10,7 @@
     padding: 20px;
     bottom: 0px;
     left: -83px;
+    background-color: white;
   }
   
   .criteria {
@@ -78,6 +79,7 @@
     flex: 0 1 auto;
     align-self: auto;
     padding-top: 20px;
+    width: 120%;
   }
   
   .desDetail {
@@ -130,6 +132,8 @@
   }
   
   .desDes {
+    padding: 15px;
+    border-radius: 20px;
     background-color: pink;
     color: white;
     order: 0;
@@ -152,6 +156,7 @@
   
   /* Modal Content/Box */
   .modal-content {
+    border-radius: 20px;
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
@@ -177,4 +182,13 @@
   
   .singleSchool {
     margin-bottom: 15px;
+    border: 2px solid pink;
+    border-radius: 20px;
+    color: pink;
+    padding-left: 20px;
+    width: 80%;
+  }
+
+  .placeName {
+    font-size: 20px;
   }
