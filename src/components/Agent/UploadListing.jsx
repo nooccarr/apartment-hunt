@@ -222,7 +222,6 @@ const addUrl = (e) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

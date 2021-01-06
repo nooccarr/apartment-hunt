@@ -14,10 +14,8 @@ class Overview extends React.Component {
 
 
     render () {
-
         return (
         <div>
-            <Navigation/>
             <Album />
             <Description/>
         </div>
