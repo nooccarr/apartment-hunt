@@ -3,7 +3,7 @@ import axios from 'axios';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import css from './styles/styles.css'
-const VideoUpload = () => {
+const VideoUpload = ({apartment_id, setVideoName}) => {
 
   const fileInput = useRef(null);
   const [video, setVideo] = useState();
@@ -26,13 +26,21 @@ const VideoUpload = () => {
     setLoading('uploading');
     const formData = new FormData();
     formData.append('myVideo', video);
-    axios.post('/video', formData)
+    const promises = [axios.post('/video', formData)];
+    if (apartment_id) {
+      // append promise to upload apartment_id to database
+    }
+    Promise.all(promises)
     .then((result) => {
       console.log('All done uploading!');
       setLoading('complete');
+      if (setVideoName) {
+        setVideoName(video.name)
+      }
     })
     .catch((err) => {
       console.log("Error in video upload! Error: ", err);
+      setLoading('none');
     })
 
   };
