@@ -7,7 +7,7 @@ let newJWT = (user) => {
       payload: user,
     },
     'secret',
-    { expiresIn: '3m' }
+    { expiresIn: '1h' }
   );
 
   return token;

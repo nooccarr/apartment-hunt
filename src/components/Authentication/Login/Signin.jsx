@@ -87,7 +87,9 @@ const Signin = ({ handleSignUp, openModal, getUserInfo }) => {
               className='login-btn'
               variant='contained'
               startIcon={<FcGoogle className='google-icon' />}>
+              <a href="/auth/google">
               Login with Google
+             </a>
             </Button>
           </div>
           <div className='back-signin'>

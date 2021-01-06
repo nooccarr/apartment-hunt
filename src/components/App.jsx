@@ -5,6 +5,8 @@ import { HomeLogin, AdminPortal } from './pages/index.jsx';
 import Overview from './overview/Overview.jsx';
 import UploadListing from './Agent/UploadListing.jsx';
 import Navigation from './overview/navigation.jsx';
+import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -16,6 +18,13 @@ const App = () => {
   useEffect(() => {
     console.log(user);
   }, [user]);
+
+  useEffect(() => {
+    if (Cookies.get('jwt')) {
+      let token = jwtDecode(Cookies.get('jwt'));
+      getUserInfo(token.payload.username, token.payload.email);
+    }
+  }, []);
 
   const getUserInfo = (name, email) => {
     setUser({
