@@ -131,7 +131,7 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
                                   : `$0-$${requestedMaxPrice}`
                               : requestedMaxPrice === ''
                                   ? `$${requestedMinPrice}+`
-                                  : `$${requestedMinPrice}-${requestedMaxPrice}`
+                                  : `$${requestedMinPrice}-$${requestedMaxPrice}`
                           : filter
               }
               <img 

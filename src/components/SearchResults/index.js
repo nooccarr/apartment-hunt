@@ -15,7 +15,7 @@ const SearchResults = ({ searchValue, setSearchValue }) => {
 
   return (
     <div className='main'>
-      <TopBanner searchValue={ searchValue } setSearchValue={ setSearchValue } />
+      {/* <TopBanner searchValue={ searchValue } setSearchValue={ setSearchValue } /> */}
       <div className='bottomContainer'>
         <div className='leftSide'>
           <Filters 

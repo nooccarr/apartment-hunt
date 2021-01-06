@@ -1,12 +1,5 @@
-// @use '../styles.scss';
-@font-face {
-  font-family: "comic-sans";
-  src: url('../../pages/styles/fonts/LDFComicSans.otf') format("opentype");
-  font-style: normal;
-}
-
 $color: #ffebea;
-$text: 'comic-sans';
+$text: helvetica;
 
 .allFiltersContainer {
   grid-row: 1;
@@ -75,7 +68,7 @@ $text: 'comic-sans';
     .dropdown {
       display: flex;
       flex-direction: row;
-      font-family: 'comic-sans';
+      font-family: $text;
       align-items: center;
       padding: {
         // right: 10px;
@@ -103,7 +96,7 @@ $text: 'comic-sans';
         };
         font: {
           size: 18px;
-          family: 'comic-sans';
+          family: $text;
         }
       }
       .submitPrice {
