@@ -81,7 +81,6 @@ const AgentPortal = (props) => {
   
   return (
     <div>
-      <nav>It Rendered the agent Portal!</nav>
       <div style={{
                     width: "40%",
                     maxWidth: '475px',

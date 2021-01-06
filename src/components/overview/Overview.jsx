@@ -17,17 +17,17 @@ class Overview extends React.Component {
         //     email: 'Lonnie567@gmail.com',
         //     role: 'client'
         //   }
-
-        let userLoggin = {
-            name: 'laura90',
-            email: 'laura90@gmail.com',
-            role: 'agent'
-          }
+        
+        // let userLoggin = {
+        //     name: 'laura90',
+        //     email: 'laura90@gmail.com',
+        //     role: 'agent'
+        //   }
         // {console.log('hello', this.props.user)}         
         // {console.log('hello', this.props.admin)}         
         return (
         <div>
-            <Navigation userLoggin={userLoggin}/>
+            {/* <Navigation userLoggin={userLoggin}/> */}
             <Album/>
             <Description/>
         </div>

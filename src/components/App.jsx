@@ -35,9 +35,21 @@ const App = () => {
     });
   };
 
+  let userLoggin = {
+    name: 'Lonnie567',
+    email: 'Lonnie567@gmail.com',
+    role: 'client'
+  }
+
+// let userLoggin = {
+//     name: 'laura90',
+//     email: 'laura90@gmail.com',
+//     role: 'agent'
+//   }
+
   return (
     <div>
-      <Navigation user={user} getUserInfo={getUserInfo} />
+      <Navigation getUserInfo={getUserInfo} user={user} admin={admin} userLoggin={userLoggin}/>
       <ApartmentContext.Provider value={{listings, getListings, coordinates, setCoordinates}}>
           <Router>
             <Switch>
@@ -48,7 +60,7 @@ const App = () => {
                 <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
               </Route>
                 <Route exact path='/apartment'>
-                  <Overview user={user} admin={admin}/>
+                  <Overview />
                 </Route>
               <Route exact path='/uploadlisting' component={UploadListing} />
               <Route exact path='/aportal'>

@@ -4,10 +4,9 @@ const Convos = (props) => {
 
 
     return (
-      <div style={{backgroundColor: 'rgb(213 11 160)', width: '29%', float: 'right'}}>
-        <h4 style={{textDecoration: 'underline'}}>CHAT HISTORY</h4>
+      <div style={{backgroundColor: 'rgb(245 144 162)'}}>
         {props.chatHistory.map((chat, idx) => (
-          <div key={chat.chatId} onClick={() => props.selectConvo(idx)}>
+          <div style={{padding: '20px 10px'}} key={chat.chatId} onClick={() => props.selectConvo(idx)}>
             <div>{chat.address}</div>
             <div>{'Agent'}: {chat.agentName}</div>
           </div>
