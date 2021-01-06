@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Form, Input } from '../styles/AuthForm';
+import { Card, Form, Input } from '../styles/AuthForm.jsx';
 import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { FcGoogle } from 'react-icons/fc';
