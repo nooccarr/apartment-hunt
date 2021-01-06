@@ -6,6 +6,11 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+
+# Distribution Files
+dist/bundle.worker.js
+dist/bundle.worker.js.LICENSE.txt
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -40,6 +45,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+package-lock.json
 
 # TypeScript v1 declaration files
 typings/
@@ -80,7 +86,9 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+dist/bundle.js
+dist/bundle.js.LICENSE.txt
+
 
 # Gatsby files
 .cache/
@@ -102,3 +110,16 @@ dist
 
 # TernJS port file
 .tern-port
+
+database/173142_1.txt
+
+# Google Maps API Key
+src/components/SearchResults/config/google_api_key.js
+
+# secret keys
+server/auth/credentials.js
+util/s3Config.js
+database/dbconfig.js
+
+# google key
+src/components/overview/googleApi.js

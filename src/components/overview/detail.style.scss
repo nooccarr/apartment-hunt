@@ -1,0 +1,202 @@
+.pink {
+    color: pink;
+  }
+  
+  .desContainer {
+    position: relative;
+    margin-right: 0px auto;
+    justify-content: left;
+    display: flex;
+    padding: 20px;
+    bottom: 0px;
+    left: -83px;
+    background-color: white;
+  }
+  
+  .criteria {
+    height: 200px;
+    width: 200px;
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .criteria:hover {
+      border: 5px solid rgb(255, 0, 234);
+      border-radius: 110px;
+      margin-left: 65px;
+      margin-right: 65px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+  }
+  
+  .desMain {
+    width: 100%;
+    height: 520px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: stretch;
+  
+  }
+  
+  .desDetail {
+    background-color: white;
+    order: 0;
+    flex: 2 1 auto;
+    align-self: auto;
+  }
+  
+  .desAct {
+    background-color: white;
+    order: 0;
+    flex: 1 1 auto;
+    align-self: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-end;
+    align-items: center;
+  }
+  
+  .contactAgent {
+    color: pink;
+    font-size: 45px;
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    padding-top: 20px;
+  }
+  
+  .subApp {
+    color: pink;
+    font-size: 45px;
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    padding-top: 20px;
+    width: 120%;
+  }
+  
+  .desDetail {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+  }
+  
+  .desAddress {
+    font-size: 35px;
+    color: pink;
+    order: 0;
+    flex: 1 1 auto;
+    align-self: auto;
+  }
+  
+  .desAptDet {
+    font-size: 35px;
+    color: pink;
+    order: 0;
+    flex: 1 1 auto;
+    align-self: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: stretch;
+  }
+  
+  .desEle1 {
+    order: 0;
+    flex: 1 1 auto;
+    align-self: auto;
+  }
+  
+  .desEle2 {
+    order: 0;
+    flex: 1 1 auto;
+    align-self: auto;
+  }
+  
+  .desEle3 {
+    order: 0;
+    flex: 1 1 auto;
+    align-self: auto;
+  }
+  
+  .desDes {
+    padding: 15px;
+    border-radius: 20px;
+    background-color: pink;
+    color: white;
+    order: 0;
+    flex: 3 1 auto;
+    align-self: auto;
+  }
+  
+  .modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    border-radius: 20px;
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .restaurantList {
+    overflow: scroll;
+  }
+  
+  .modalImage {
+    height: 100px
+  }
+  
+  .singleSchool {
+    margin-bottom: 15px;
+    border: 2px solid pink;
+    border-radius: 20px;
+    color: pink;
+    padding-left: 20px;
+    width: 80%;
+  }
+
+  .placeName {
+    font-size: 20px;
+  }
+
+  .neighborhoodName {
+      color: pink;
+  }
+
+  .neighborhoodDes {
+      color: rgb(184, 5, 201);
+  }

@@ -1,0 +1,24 @@
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+@mixin iconFocus() {
+  outline: none;
+  transform: scale(1.2);
+  transition: all 0.1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.1
+  }
+  100% {
+    opacity: 1;
+  }
+}
