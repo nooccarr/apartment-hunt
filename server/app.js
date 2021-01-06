@@ -19,6 +19,8 @@ const jwt = require('jsonwebtoken');
 var JwTStrategy = require('passport-jwt').Strategy;
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const key = require('./googleAuth/conf');
+const Utils = require('./utils/auth');
 
 var opts = {};
 opts.jwtFromRequest = function (req) {
@@ -28,6 +30,57 @@ opts.jwtFromRequest = function (req) {
   }
   return token;
 };
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: key.google.clientID,
+      clientSecret: key.google.clientSecret,
+      callbackURL: '/auth/google/redirect',
+    },
+    (accessToken, refreshToken, profile, done) => {
+      console.log('access token: ', accessToken);
+      done(null, profile);
+    }
+  )
+);
+
+app.get(
+  '/auth/google',
+  passport.authenticate('google', {
+    scope: ['email'],
+    //scope: ["profile, email"]
+  }),
+  (req, res) => {}
+);
+
+app.get(
+  '/auth/google/redirect',
+  passport.authenticate('google', { session: false }),
+  (req, res) => {
+    console.log('from google', req.user);
+
+    let defaultUsername = req.user._json.email.substring(
+      0,
+      req.user._json.email.indexOf('@')
+    );
+
+    let googleUser = {
+      username: defaultUsername,
+      email: req.user._json.email,
+      provider: req.user.provider,
+    };
+
+    let token = Utils.newJWT(googleUser);
+
+    res.cookie('jwt', token);
+    console.log('jwt token', token);
+    //res.send('verified');
+
+    res.redirect('http://localhost:3000/');
+  }
+);
+
 opts.secretOrKey = 'secret';
 passport.use(
   new JwTStrategy(opts, function (jwt_payload, done) {
@@ -70,7 +123,11 @@ const {
 
 // Serve static assets from 'dist' folder
 app.use('(/apartment)?', express.static(path.join(__dirname, '../dist')));
+<<<<<<< HEAD
 app.use('(/listings)?', express.static(path.join(__dirname, '../dist')));
+=======
+app.use('(/profile)?', express.static(path.join(__dirname, '../dist')));
+>>>>>>> staging
 app.use('(/uploadlisting)?', express.static(path.join(__dirname, '../dist')));
 app.use('(/aboutus)?', express.static(path.join(__dirname, '../dist')));
 app.use(parser.json());
@@ -103,8 +160,11 @@ app.get('/schools', function (req, res) {
       console.log(err.message);
     });
 });
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> staging
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
