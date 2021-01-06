@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.png';
 import './navigation-style.scss';
-import SearchBar from '../SearchResults/SearchBar/index.js';
+import SearchBar from './SearchBar/index.js';
 import Login from '../Authentication/Login/Login.jsx';
 
 const Navigation  = ({ searchValue, setSearchValue }) => {
