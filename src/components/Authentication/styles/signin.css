@@ -64,6 +64,7 @@ span {
 }
 
 .sign-up-link {
+  /* margin-top: 10px; */
   margin-top: 120px;
   display: flex;
   align-items: center;

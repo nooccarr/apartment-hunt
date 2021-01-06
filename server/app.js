@@ -109,6 +109,8 @@ app.get("/auth/google", passport.authenticate("google", {
 }), (req, res) => {}
 );
 
+
+app.use('(/profile)?', express.static(path.join(__dirname, '../dist')));
 app.get("/auth/google/redirect", passport.authenticate('google', {session: false}), (req, res) => {
  
   console.log('from google', req.user);
@@ -128,7 +130,7 @@ app.get("/auth/google/redirect", passport.authenticate('google', {session: false
   console.log('jwt token', token);
   //res.send('verified');
 
-  res.redirect("http://localhost:3000/")
+  res.redirect("http://localhost:3000/profile")
 });
 
 

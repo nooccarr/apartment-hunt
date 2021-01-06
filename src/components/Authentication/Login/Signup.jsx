@@ -61,14 +61,6 @@ const Signup = ({ handleSignIn, openModal }) => {
           </Link>
         </Router>
       </Form>
-      <div className="or-group-signup">OR</div>
-      <Button
-        className="login-btn-signup"
-        variant="contained"
-        startIcon={<FcGoogle className="google-icon-signup" />}
-      >
-        Sign Up with Google
-      </Button>
       <div className="sign-in-link">
         <div className="link">Already Registered?</div>
       </div>
