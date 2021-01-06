@@ -51,7 +51,7 @@ let userLoggin = {
     email: 'laura90@gmail.com',
     role: 'agent'
   }
-
+console.log(window.location);
   return (
     <div>
       <Navigation getUserInfo={getUserInfo} user={user} admin={admin} userLoggin={userLoggin}/>
