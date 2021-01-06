@@ -3,6 +3,7 @@ import sampleApts from './sampleData';
 import Restaurants from './Restaurants.jsx';
 import Schools from './Schools.jsx';
 import './detail.style.scss';
+import CrimeMap from './CrimeMap.jsx'
 
 class Description extends React.Component {
     constructor(props) {
@@ -119,7 +120,7 @@ class Description extends React.Component {
                 <div id="crimeModal" className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={() => {this.flipCrimeModal()}}>&times;</span>
-                        <p>Hopefully a map displaying crimes in the area</p>
+                        <CrimeMap location={sampleApts[1]}/>
                     </div>
                 </div>
             )

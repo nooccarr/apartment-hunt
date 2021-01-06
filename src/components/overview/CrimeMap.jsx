@@ -9,30 +9,34 @@ class CrimeMap extends React.Component {
     }
 
     componentDidMount() {
-        var script = document.createElement('script');
+        const scriptTag = document.getElementById('crimeometer-google-maps-control-v2')
+        scriptTag.setAttribute('data-lon', this.props.location.longitude)
+        scriptTag.setAttribute('data-lat', this.props.location.latitude)
+        crimeometer_map()
+        // var script = document.createElement('script');
         // script['data-xak']='TgHCbQ0Zv41lfemssPwQk1xI82q3PM5Q8bZsrwfX'
-        script.setAttribute('data-xak', 'TgHCbQ0Zv41lfemssPwQk1xI82q3PM5Q8bZsrwfX')
+        // script.setAttribute('data-xak', 'TgHCbQ0Zv41lfemssPwQk1xI82q3PM5Q8bZsrwfX')
         // script['data-zoom'] = '15'
-        script.setAttribute('data-zoom','15')
+        // script.setAttribute('data-zoom','15')
         // script['data-lat']= `${this.props.location.latitude}`
-        script.setAttribute('data-lat', `${this.props.location.latitude}`)
+        // script.setAttribute('data-lat', `${this.props.location.latitude}`)
         // script['data-lon']= `${this.props.location.longitude}`
-        script.setAttribute('data-lon',`${this.props.location.longitude}`)
+        // script.setAttribute('data-lon',`${this.props.location.longitude}`)
         // script['data-distance']= '2mi'
-        script.setAttribute('data-distance', '2mi')
+        // script.setAttribute('data-distance', '2mi')
         // script['data-datetime-ini']= '2020-01-01 00:00:00'
-        script.setAttribute('data-datetime-ini','2020-01-01 00:00:00')
+        // script.setAttribute('data-datetime-ini','2020-01-01 00:00:00')
         // script['data-datetime-end']= '2020-11-24 00:00:00'
-        script.setAttribute('data-datetime-end', '2020-11-24 00:00:00')
+        // script.setAttribute('data-datetime-end', '2020-11-24 00:00:00')
         // script['data-max-incidents']= '500'
-        script.setAttribute('data-max-incidents', '500')
-        cript.src = 'https:dvk.crimeometer.com/crimeometer-google-maps-control-v2.js'
+        // script.setAttribute('data-max-incidents', '500')
+        // cript.src = 'https:dvk.crimeometer.com/crimeometer-google-maps-control-v2.js'
 
         // var scriptTwo = document.createElement('script')
         // scriptTwo.src= `https://maps.googleapis.com/maps/api/js?key=${googleKey}&callback=crimeometer_map`
 
-        console.log('what we are looking for', document.getElementById('crime-map'))
-        document.getElementById('crimeometer-container').appendChild(script)
+        // console.log('what we are looking for', document.getElementById('crime-map'))
+        // document.getElementById('crimeometer-container').appendChild(script)
         // document.getElementById('crimeometer-container').appendChild(scriptTwo)
     }
 
@@ -71,25 +75,12 @@ class CrimeMap extends React.Component {
                 >
                     <div id='crime-map' style=
                     {{
-                        height: '100%',
-                        width: '100%'
+                        height: '80%',
+                        width: '80%'
                     }}
                     // 'height:100%; width:100%;'
                     ></div>
                 </div>
-                {/* <script id='crimeometer-google-maps-control-v2'
-                    data-xak='TgHCbQ0Zv41lfemssPwQk1xI82q3PM5Q8bZsrwfX'
-                    // data-pxak=''
-                    data-zoom='15'
-                    data-lat={`${this.props.location.latitude}`}
-                    data-lon={`${this.props.location.longitude}`}
-                    data-distance='2mi'
-                    data-datetime-ini='2020-01-01 00:00:00'
-                    data-datetime-end='2020-11-24 00:00:00'
-                    data-max-incidents='500'
-                    src='https:dvk.crimeometer.com/crimeometer-google-maps-control-v2.js'>
-                </script>
-                <script src={`https://maps.googleapis.com/maps/api/js?key=${googleKey}&callback=crimeometer_map`}></script> */}
             </div>
         )
     }
