@@ -11,6 +11,7 @@ const App = () => {
   const [user, setUser] = useState({});
   const [admin, setAdmin] = useState({});
   const [listings, getListings] = useState([]);
+  const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
     console.log(user);
@@ -33,7 +34,7 @@ const App = () => {
   return (
     <div>
       <Navigation user={user} getUserInfo={getUserInfo} />
-      <ApartmentContext.Provider value={{ listings, getListings }}>
+      <ApartmentContext.Provider value={{listings, getListings, coordinates, setCoordinates}}>
         <Router>
           <Switch>
             <Route exact path='/'>

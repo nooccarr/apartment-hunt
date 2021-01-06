@@ -11,29 +11,6 @@ const GoogleMap = () => {
   // const [light, setLighting] = useState(true)
   let map, marker;
   const { listings } = useContext(ApartmentContext)
-  // const cities = [
-  //   {
-  //     city: 'new york',
-  //     lat: 40.7128,
-  //     long: -74.0060,
-  //     gradient: 'linear-gradient(125.93262699301636deg, rgba(244, 72, 105,1) 5.209302325581396%,rgba(159, 1, 234,1) 97.30232558139534%)',
-  //     className: 'ny',
-  //   },
-  //   {
-  //     city: 'Bronx',
-  //     lat: 40.8448,
-  //     long: -73.8648,
-  //     gradient: 'linear-gradient(125.93262699301636deg, rgba(224, 247, 135,1) 5.209302325581396%,rgba(78, 227, 250,1) 97.30232558139534%)',
-  //     className: 'bronx',
-  //   },
-  //   {
-  //     city: 'Brooklyn',
-  //     lat: 40.6782,
-  //     long: -73.9442,
-  //     gradient: 'linear-gradient(125.93262699301636deg, rgba(146, 195, 93,1) 5.209302325581396%,rgba(234, 220, 34,1) 97.30232558139534%)',
-  //     className: 'brooklyn',
-  //   }
-  // ]
 
   const loader = new Loader({
     apiKey: google_api_key,
@@ -43,8 +20,8 @@ const GoogleMap = () => {
   loader.load()
     .then(() => {
       map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 40.730610, lng: -73.935242 },
-        zoom: 10,
+        center: { lat: 40.69396233779667, lng: -73.94443814752641 },
+        zoom: 14,
         options: { styles: lightMap }
       }); 
     })

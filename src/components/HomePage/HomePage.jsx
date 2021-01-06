@@ -3,7 +3,8 @@ import HomePageSearch from './Search.jsx';
 // import './styles/homelogin.css';
 import './styles/main.scss';
 
-const HomePage = ({ setSearchValue }) => {
+const HomePage = ({ setSearchValue}) => {
+
   return (
     <div className='homepage-container'>
       <div className='top-container'>

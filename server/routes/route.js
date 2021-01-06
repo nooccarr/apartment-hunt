@@ -11,6 +11,7 @@ router.get('/search', controller.search);
 router.get('/apt', controller.apt);
 router.get('/applicants', controller.applicants);
 router.post('/listing', controller.listing);
+router.post('/video', controller.addVideo);
 
 //matt's test
 //8router.get('/login', controller.loginGet);
