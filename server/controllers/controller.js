@@ -1,9 +1,12 @@
 const User = require('../models/userModel');
 const Admin = require('../models/adminModel');
+const ChatMessage = require('../models/chatRoomModel');
 const Apts = require('../../database/Apartments.js');
 const Utils = require('../utils/auth.js');
 const bcrypt = require('bcrypt');
 const saltRounds = 12;
+
+const { v4: uuidv4 } = require('uuid');
 
 //*****************USER-SIGN-IN********************/
 const login = (req, res) => {
@@ -140,25 +143,27 @@ Query for users by username
 *****/
 
 const userController = (req, res) => {
-  User.findOne({username: req.query.username}).exec()
-  .then((user) => {
-    res.status(200).json(user);
-  })
-  .catch((err) => {
-    res.sendStatus(500);
-  });
-}
+  User.findOne({ username: req.query.username })
+    .exec()
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+};
 
 const addVideo = (req, res) => {
-  Apts.findByIdAndUpdate(req.query.id, {$addToSet: {"videos": req.query.videos}})
-  .then(() => {
-    res.sendStatus(201);
+  Apts.findByIdAndUpdate(req.query.id, {
+    $addToSet: { videos: req.query.videos },
   })
-  .catch((err) => {
-    res.sendStatus(500);
-  })
-}
-
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+};
 
 const apt = (req, res) => {
   let id = req.query.id;
@@ -237,6 +242,89 @@ const listing = (req, res) => {
     });
 };
 
+//////////////////////////////////CHATBOX Controller//////////////////////////////////////
+const conAgent = (req, res) => {
+  return ChatMessage.findOne(
+    { address: req.body.address, userName: req.body.userName },
+    function (err, data) {
+      if (data) {
+        return;
+      } else {
+        req.body.chatId = uuidv4();
+        return ChatMessage.create(req.body);
+      }
+    }
+  )
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+};
+
+const saveMsg = (req, res) => {
+  return ChatMessage.findOne({ chatId: req.body.chatId }, function (err, data) {
+    const newMessage = {
+      message: req.body.body,
+      sender: req.body.sender,
+      createdAt: new Date(),
+    };
+    const msgCol = data.messages;
+    msgCol.push(newMessage);
+    data.lastUpdate = new Date();
+    return data.save();
+  })
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+};
+
+const fetchChatsByUser = (req, res) => {
+  return ChatMessage.find({ userName: req.query.userName })
+    .sort('-lastUpdate')
+    .exec()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+      console.log(err);
+    });
+};
+
+const fetchChatsByAgent = (req, res) => {
+  return ChatMessage.find({ agentName: req.query.userName })
+    .sort('-lastUpdate')
+    .exec()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+      console.log(err);
+    });
+};
+
+const fetchMsgByChatRoom = (req, res) => {
+  return ChatMessage.find({
+    address: req.query.address,
+    userName: req.query.userName,
+  })
+    .exec()
+    .then((chatterRoom) => {
+      console.log('chatterRoom: ', chatterRoom);
+      res.json(chatterRoom);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+};
+//////////////////////////////////CHATBOX Controller//////////////////////////////////////
+
 module.exports = {
   login,
   signup,
@@ -246,6 +334,11 @@ module.exports = {
   apt,
   signout,
   applicants,
-  userController,
+  saveMsg,
+  fetchChatsByUser,
+  fetchChatsByAgent,
+  conAgent,
+  fetchMsgByChatRoom,
   addVideo,
+  userController,
 };
