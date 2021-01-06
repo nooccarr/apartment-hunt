@@ -93,6 +93,12 @@ const signup = (req, res) => {
   res.sendStatus(200);
 };
 
+//*****************SIGN-OUT********************/
+const signout = (req, res) => {
+  res.clearCookie('jwt');
+  res.send('cleared cookie');
+};
+
 //*****************SEARCH********************/
 // const search = (req, res) => {
 //   console.log(req.params);
@@ -145,24 +151,26 @@ const search = (req, res) => {
   let ascOrDsc = req.query.order ? req.query.order : -1;
   let maxD = parseFloat(req.query.distance) / 1609.344;
 
-if (req.query.burrough) {
-  Apts.find({neighborhoods: { $in: [req.query.burrough]}})
-  .then((apts) => {
-    res.status(200).json(apts)
-  })
-  .catch((err) => {
-    res.sendStatus(500);
-  });
-} else {
-Apts.find().where('position').near({ center: [long, lat], maxDistance: maxD, spherical: true })
-  .then((apts) => {
-    res.status(200).json(apts);
-  })
-  .catch((err) => {
-    console.log(err);
-    res.sendStatus(500);
-  })
-}
+  if (req.query.burrough) {
+    Apts.find({ neighborhoods: { $in: [req.query.burrough] } })
+      .then((apts) => {
+        res.status(200).json(apts);
+      })
+      .catch((err) => {
+        res.sendStatus(500);
+      });
+  } else {
+    Apts.find()
+      .where('position')
+      .near({ center: [long, lat], maxDistance: maxD, spherical: true })
+      .then((apts) => {
+        res.status(200).json(apts);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  }
 };
 
 const listing = (req, res) => {
@@ -209,5 +217,6 @@ module.exports = {
   loginAdmin,
   listing,
   apt,
+  signout,
   applicants,
 };
