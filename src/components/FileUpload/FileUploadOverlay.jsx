@@ -31,7 +31,7 @@ const FileUploadOverlay = () => {
   return (
     <div>
       <div onClick={() => {updateOverlay()}} >
-        Click me! Beneath the milky twilight
+        Submit Application
       </div>
       <Modal open={open} onClose={updateOverlay}>
         <div style={getModalStyle()}>

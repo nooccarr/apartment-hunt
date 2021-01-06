@@ -42,19 +42,6 @@ const FileUpload = () => {
     })
   }
 
-  const onClickDownload = (e) => {
-    /*
-   getFile('test_four_pdf.pdf', setSamplefile);
-    */
-    axios.get('/download')
-    .then((data) => {
-      console.log(data);
-      setSamplefile({'data':data.data.Body.data});
-    })
-    .catch((err) => {
-      console.log("Error with 'onClick' download! Error: ", err);
-    })
-  }
   const deleteFile = (name) => {
     var newFiles = files;
     setFile(newFiles.filter((file) => file.name !== name));
@@ -84,9 +71,6 @@ const FileUpload = () => {
       }
     </div>
     {files.length > 0 && <div className='upload-cancel-container'>
-      <div onClick={(e) => {onClickDownload(e)}}>
-        Download
-      </div>
       <div onClick={(e) => {onClickCancel(e)}}>
         Cancel
       </div>
@@ -94,9 +78,6 @@ const FileUpload = () => {
         Upload Files
       </div>
     </div>}
-    <Document file={sampleFile} onLoadError={console.error} onLoadSucces={console.log("Successfully loaded pdf!")}>
-      <Page pageNumber={1} />
-    </Document>
   </div>
   )
 }
