@@ -46,7 +46,11 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
         }
         })
         .then((results) => { getListings(results.data); })
-        .then(() => { setSearchValue(address || 'Current Location'); })
+        .then(() => { 
+          setSearchValue(address || 'Current Location');  
+          window.history.pushState({path: `/listings`}, '', `/listings`);
+          window.location.reload(false);
+        })
         .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
     }
   }

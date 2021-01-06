@@ -7,6 +7,7 @@ import Overview from './overview/Overview.jsx';
 import About from './overview/aboutus.jsx';
 import ChatApp from './ChatBox/frontend/ChatApp.jsx';
 import AgentPortal from './Portal/AgentPortal.jsx';
+import SearchResults from './SearchResults/index.js';
  
  
 import UploadListing from './Agent/UploadListing.jsx';
@@ -20,6 +21,7 @@ const App = () => {
   const [admin, setAdmin] = useState({});
   const [listings, getListings] = useState([]);
   const [coordinates, setCoordinates] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     if (Cookies.get('jwt')) {
@@ -55,7 +57,8 @@ let userLoggin = {
     email: 'laura90@gmail.com',
     role: 'agent'
   }
-console.log(window.location);
+
+
   return (
     <div>
       <Navigation getUserInfo={getUserInfo} user={user}/>
@@ -64,7 +67,12 @@ console.log(window.location);
             <Switch>
               <Route exact path='/'>
                 <HomeLogin user={user} />
-              </Route>
+              </Route>    
+              <Route exact path='/listings'>
+        <SearchResults
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        /></Route>
               <Route exact path='/admin-dashboard'>
                 <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
               </Route>

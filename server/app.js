@@ -70,7 +70,7 @@ const {
 
 // Serve static assets from 'dist' folder
 app.use('(/apartment)?', express.static(path.join(__dirname, '../dist')));
-// app.use('(/home)?', express.static(path.join(__dirname, '../dist')));
+app.use('(/listings)?', express.static(path.join(__dirname, '../dist')));
 app.use('(/uploadlisting)?', express.static(path.join(__dirname, '../dist')));
 app.use('(/aboutus)?', express.static(path.join(__dirname, '../dist')));
 app.use(parser.json());
