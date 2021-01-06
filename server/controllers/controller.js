@@ -93,6 +93,12 @@ const signup = (req, res) => {
   res.sendStatus(200);
 };
 
+//*****************SIGN-OUT********************/
+const signout = (req, res) => {
+  res.clearCookie('jwt');
+  res.send('cleared cookie');
+};
+
 //*****************SEARCH********************/
 // const search = (req, res) => {
 //   console.log(req.params);
@@ -140,6 +146,15 @@ const userController = (req, res) => {
   })
   .catch((err) => {
     res.sendStatus(500);
+  });
+
+const addVideo = (req, res) => {
+  Apts.findByIdAndUpdate(req.query.id, {$push: {"videos": req.query.videos}})
+  .then(() => {
+    res.sendStatus(201);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
   })
 }
 
@@ -161,24 +176,26 @@ const search = (req, res) => {
   let ascOrDsc = req.query.order ? req.query.order : -1;
   let maxD = parseFloat(req.query.distance) / 1609.344;
 
-if (req.query.burrough) {
-  Apts.find({neighborhoods: { $in: [req.query.burrough]}})
-  .then((apts) => {
-    res.status(200).json(apts)
-  })
-  .catch((err) => {
-    res.sendStatus(500);
-  });
-} else {
-Apts.find().where('position').near({ center: [long, lat], maxDistance: maxD, spherical: true })
-  .then((apts) => {
-    res.status(200).json(apts);
-  })
-  .catch((err) => {
-    console.log(err);
-    res.sendStatus(500);
-  })
-}
+  if (req.query.burrough) {
+    Apts.find({ neighborhoods: { $in: [req.query.burrough] } })
+      .then((apts) => {
+        res.status(200).json(apts);
+      })
+      .catch((err) => {
+        res.sendStatus(500);
+      });
+  } else {
+    Apts.find()
+      .where('position')
+      .near({ center: [long, lat], maxDistance: maxD, spherical: true })
+      .then((apts) => {
+        res.status(200).json(apts);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  }
 };
 
 const listing = (req, res) => {
@@ -210,7 +227,7 @@ const listing = (req, res) => {
   console.log(aptObj);
   Apts.create(aptObj)
     .then(() => {
-      res.sendStatus(200);
+      res.sendStatus(201);
       console.log('meow');
     })
     .catch((err) => {
@@ -225,6 +242,11 @@ module.exports = {
   loginAdmin,
   listing,
   apt,
+  signout,
   applicants,
+<<<<<<< HEAD
   userController
+=======
+  addVideo
+>>>>>>> staging
 };
