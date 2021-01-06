@@ -25,8 +25,10 @@ const uploadRoute = (req, res) => {
     promises.push(uploadFile(file));
     fileNames.push(file.originalname);
   })
-  promises.push(updateUserDocs("username", fileNames));
-  promises.push(updateApartmentApplicant("5ff48f80f8d9ecaff9eb3545", "username"));
+  //promises.push(updateUserDocs("username", fileNames));
+  //promises.push(updateApartmentApplicant("5ff48f80f8d9ecaff9eb3545", "username"));
+  promises.push(updateUserDocs(req.query.username, fileNames));
+  promises.push(updateApartmentApplicant(req.query.apartment_id, req.query.apartment_id));
   Promise.all(promises)
   .then((result) => {
     res.sendStatus(200);
