@@ -72,7 +72,7 @@ class Album extends React.Component {
             <div className="gallery-container" style={this.props.details.pics.length < 18 ? {left: 450 - 25 * this.props.details.pics.length} : {}}>
                     {_.map(this.props.details.pics, (src) => {
                         j++;
-                        return <img key={j} id={`gallery${j}`} className="gallery-photo"
+                        return <img key={j} id={j} className="gallery-photo"
                             style={j === this.state.current ? {opacity: 1} : {}}
                             src={src} onClick={(e) => this.shift(null, e)}/>
                     })}
