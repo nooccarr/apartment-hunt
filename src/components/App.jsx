@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PrivateRoute from './Authentication/Auth/PrivateRoute';
 import { ApartmentContext } from './HomePage/ApartmentContext';
-import { AuthContext } from './Authentication/Auth/AuthContext';
-import { HomeLogin, UserProfile, AdminPortal } from './pages/index';
+import { HomeLogin, AdminPortal } from './pages/index';
 import Overview from './overview/Overview.jsx';
 import ChatApp from './ChatBox/frontend/ChatApp.jsx'
 import AgentPortal from './Portal/AgentPortal.jsx'
 import UploadListing from './Agent/UploadListing';
-
+import Navigation from './overview/navigation';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [user, setUser] = useState({});
   const [admin, setAdmin] = useState({});
   const [listings, getListings] = useState([]);
+  const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
     console.log(user);
@@ -38,8 +37,8 @@ const App = () => {
 
   return (
     <div>
-      <ApartmentContext.Provider value={{ listings, getListings }}>
-        <AuthContext.Provider>
+      <Navigation user={user} getUserInfo={getUserInfo} />
+      <ApartmentContext.Provider value={{listings, getListings, coordinates, setCoordinates}}>
           <Router>
             <Switch>
               <Route exact path='/'>
@@ -52,18 +51,11 @@ const App = () => {
                   <Overview user={user} admin={admin}/>
                 </Route>
               <Route exact path='/uploadlisting' component={UploadListing} />
+              <Route exact path='/aportal'>
+                <AgentPortal admin={admin}/>
+              </Route>
             </Switch>
           </Router>
-        </AuthContext.Provider>
-        {/* ///////////FIXME:ChatBox/////////// */}
-        <Router>
-          <div>
-            <Route exact path='/chatbox' component={ChatApp} />
-          </div>
-            <Route exact path='/aportal'>
-              <AgentPortal user={user} admin={admin}/>
-            </Route>
-        </Router>
       </ApartmentContext.Provider>
     </div>
   );

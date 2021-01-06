@@ -11,44 +11,45 @@ import pinkmarker from './styles/images/pink-marker.png';
 
 const HomePageSearch = ({ searchValue, setSearchValue }) => {
   const [address, setAddress] = useState(searchValue);
-  const [coordinates, setCoordinates] = useState({
-    lat: null,
-    lng: null,
-  });
-  const [apartments, addApartments] = useState([]);
-  const { listings, getListings } = useContext(ApartmentContext);
+  const {listings, getListings, coordinates, setCoordinates} = useContext(ApartmentContext)
 
   const handleSelect = async (value) => {
-    console.log(value);
-    // converts location value to coordinates for API call
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     setAddress(value);
     setCoordinates(latLng);
-    console.log(latLng);
   };
 
   const findApartments = () => {
     // API call with Coordinates
-    axios
-      .get('/search', {
+    if (address === undefined) {
+      axios.get('/search', { 
         params: {
           distance: 0.25,
-          lat: 40.69396233779667,
+          lat: 40.69396233779667, 
           long: -73.94443814752641,
-        },
-      })
-      .then((results) => {
-        getListings(results.data);
-      })
-      // after obtaining listings, persist search to allow data flow of search bar value to the next page
-      .then(() => {
-        setSearchValue(address);
-      })
-      .catch((error) => {
-        console.log('Error getting Apartments Nearby: ', error);
-      });
-  };
+          // lat: coordinates.lat,
+          // long: coordinates.lng
+        }
+        })
+        .then((results) => { getListings(results.data); })
+        .then(() => { setSearchValue(address || 'Current Location'); })
+        .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
+    } else {
+      axios.get('/search', { 
+        params: {
+          distance: 0.25,
+          lat: 40.69396233779667, 
+          long: -73.94443814752641,
+          // lat: coordinates.lat,
+          // long: coordinates.lng
+        }
+        })
+        .then((results) => { getListings(results.data); })
+        .then(() => { setSearchValue(address || 'Current Location'); })
+        .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
+    }
+  }
 
   const startGeolocation = () => {
     if (navigator.geolocation) {
@@ -58,13 +59,10 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
     }
   };
 
-  const getCoordinates = (position) => {
-    console.log(position);
-    setCoordinates({
-      lat: position.coords.latitude,
-      lng: position.coords.longitude,
-    });
-  };
+  const getCoordinates = async (position) => {
+    await setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude});
+    findApartments();
+  }
 
   const handleError = (error) => {
     switch (error.code) {
@@ -86,7 +84,6 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
   return (
     <>
       <div>
-        {console.log(listings)}
         <PlacesAutoComplete
           value={address || ''}
           onChange={setAddress}
@@ -98,32 +95,31 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
             loading,
           }) => (
             <div>
-              <form className='search-container' onSubmit={findApartments}>
-                <img
-                  className='pink-marker'
-                  src={pinkmarker}
+              <form
+                className='search-container' 
+                onSubmit={findApartments}
+              >
+                <img 
+                  className='pink-marker' 
+                  src={pinkmarker} 
                   alt='pink-marker'
                   onClick={startGeolocation}
                 />
                 <input
                   className='search-bar'
                   onChange={setAddress}
-                  {...getInputProps({
-                    placeholder:
-                      'Enter an address, neighborhood, city, or ZIP code',
-                  })}
+                  {...getInputProps({placeholder: 'Enter an address, neighborhood, city, or ZIP code' })} 
                 />
-                <img
-                  className='search-icon'
+                <img 
+                  className='search-icon' 
                   src={searchicon}
                   alt='search-icon'
                   onClick={findApartments}
                 />
               </form>
-              <div className='search-list'>
-                {loading && (
-                  <div className='search-suggestions'>Loading...</div>
-                )}
+              <div 
+                className='search-list'>
+                {loading && <div className='search-suggestions' key='999'>Loading...</div>}
 
                 {suggestions.map((suggestion, index) => {
                   return (
