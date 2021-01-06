@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Card, Form, Input } from '../styles/AuthForm.jsx';
 import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
