@@ -123,11 +123,8 @@ const {
 
 // Serve static assets from 'dist' folder
 app.use('(/apartment)?', express.static(path.join(__dirname, '../dist')));
-<<<<<<< HEAD
 app.use('(/listings)?', express.static(path.join(__dirname, '../dist')));
-=======
 app.use('(/profile)?', express.static(path.join(__dirname, '../dist')));
->>>>>>> staging
 app.use('(/uploadlisting)?', express.static(path.join(__dirname, '../dist')));
 app.use('(/aboutus)?', express.static(path.join(__dirname, '../dist')));
 app.use(parser.json());
@@ -160,11 +157,6 @@ app.get('/schools', function (req, res) {
       console.log(err.message);
     });
 });
-<<<<<<< HEAD
-
-
-=======
->>>>>>> staging
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
