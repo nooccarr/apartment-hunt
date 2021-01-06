@@ -3,7 +3,7 @@ import FileUpload from './FileUpload.jsx';
 import Modal from '@material-ui/core/Modal';
 import css from './styles/styles.css'
 
-const FileUploadOverlay = () => {
+const FileUploadOverlay = ({username, apartment_id}) => {
   // conditional that turn it on and off??
 
   const [open, setOpen] = useState(false)
@@ -35,7 +35,7 @@ const FileUploadOverlay = () => {
       </div>
       <Modal open={open} onClose={updateOverlay}>
         <div style={getModalStyle()}>
-          <FileUpload updateOveray={updateOverlay}/>
+          <FileUpload username={username} apartment_id={apartment_id} updateOveray={updateOverlay}/>
         </div>
 
       </Modal>

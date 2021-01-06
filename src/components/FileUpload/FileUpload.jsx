@@ -6,7 +6,7 @@ import { Document, Page} from 'react-pdf/dist/umd/entry.webpack';
 import { faFileAlt } from '@fortawesome/free-regular-svg-icons'
 import css from './styles/styles.css'
 
-const FileUpload = () => {
+const FileUpload = ({username, apartment_id}) => {
   const fileInput = useRef(null)
   const [files, setFile] = useState([]);
   const [sampleFile, setSamplefile] = useState('testDocument.pdf');
@@ -29,7 +29,7 @@ const FileUpload = () => {
     files.forEach(file => {
       formData.append("files", file);
     });
-    axios.post('/upload', formData, {
+    axios.post(`/upload?username=${username}&apartment_id=${apartment_id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
         }

@@ -29,6 +29,7 @@ const VideoUpload = ({apartment_id, setVideoName}) => {
     const promises = [axios.post('/video', formData)];
     if (apartment_id) {
       // append promise to upload apartment_id to database
+      promises.push(axios.post(`/addVideo?id=${apartment_id}&videos=${video.name}`))
     }
     Promise.all(promises)
     .then((result) => {
