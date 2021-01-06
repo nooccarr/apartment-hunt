@@ -18,7 +18,7 @@ class Neighborhood extends React.Component {
                     return (
                         <div key={index}>
                             <h3 className='neighborhoodName'>{neighborhood}</h3>
-                            <p className='neighborhoodDes'>{neighborhoods[neighborhood]}</p>
+                            <p className='neighborhoodDes'>{neighborhoods[`${neighborhood}`]}</p>
                         </div>
                     )
                 })}
