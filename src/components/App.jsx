@@ -1,42 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PrivateRoute from './Authentication/Auth/PrivateRoute';
-import { ApartmentContext } from './HomePage/ApartmentContext';
-import { AuthContext } from './Authentication/Auth/AuthContext';
-import { HomeLogin, UserProfile, AdminPortal } from './pages/index';
+import { ApartmentContext } from './HomePage/ApartmentContext.jsx';
+import { HomeLogin, AdminPortal } from './pages/index.jsx';
 import Overview from './overview/Overview.jsx';
-import UploadListing from './Agent/UploadListing';
-
+import UploadListing from './Agent/UploadListing.jsx';
+import Navigation from './overview/navigation.jsx';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({ name: 'dylan' });
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [user, setUser] = useState({});
   const [admin, setAdmin] = useState({});
   const [listings, getListings] = useState([]);
+  const [coordinates, setCoordinates] = useState([]);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
+  const getUserInfo = (name, email) => {
+    setUser({
+      name: name,
+      email: email,
+    });
+  };
+
+  const getAdminInfo = (name, email) => {
+    setAdmin({
+      name: name,
+      email: email,
+    });
+  };
 
   return (
     <div>
-      <ApartmentContext.Provider value={{ listings, getListings }}>
+      <Navigation user={user} getUserInfo={getUserInfo} />
+      <ApartmentContext.Provider value={{listings, getListings, coordinates, setCoordinates}}>
         <Router>
           <Switch>
-            <Route exact path='/' component={HomeLogin} />
+            <Route exact path='/'>
+              <HomeLogin user={user} />
+            </Route>
+            <Route exact path='/admin-dashboard'>
+              <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
+            </Route>
             <Route exact path='/apartment' component={Overview} />
             <Route exact path='/uploadlisting' component={UploadListing} />
           </Switch>
         </Router>
       </ApartmentContext.Provider>
-      <AuthContext.Provider value={isLoggedIn}>
-        <Router>
-          <Switch>
-            <PrivateRoute component={UserProfile} user={user} path='/profile' />
-            <PrivateRoute
-              component={AdminPortal}
-              admin={admin}
-              path='/admin-dashboard'
-            />
-          </Switch>
-        </Router>
-      </AuthContext.Provider>
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import React from 'react';
-import HomeLogin from './HomeLogin';
+import HomeLogin from './HomeLogin.jsx';
 
-const UserProfile = () => {
+const UserProfile = ({ user }) => {
   return (
     <div>
-      <HomeLogin />
+      <HomeLogin user={user} />
     </div>
   );
 };

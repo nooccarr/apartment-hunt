@@ -6,6 +6,11 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+
+# Distribution Files
+dist/bundle.worker.js
+dist/bundle.worker.js.LICENSE.txt
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -111,9 +116,11 @@ database/173142_1.txt
 # Google Maps API Key
 src/components/SearchResults/config/google_api_key.js
 
-# sercret keys
+# secret keys
 server/auth/credentials.js
+util/s3Config.js
 database/dbconfig.js
 
 # google key
 src/components/overview/googleApi.js
+src/components/Agent/uploadlisting.scss

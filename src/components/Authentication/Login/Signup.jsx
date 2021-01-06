@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Card, Form, Input } from '../styles/AuthForm';
+import React, {useState} from 'react';
+import { Card, Form, Input } from '../styles/AuthForm.jsx';
 import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
@@ -25,50 +25,55 @@ const Signup = ({ handleSignIn, openModal }) => {
   };
 
   return (
-    <Card className='sign-up-group'>
-      <div className='title-signup'>Sign Up</div>
+    <Card className="sign-up-group">
+      <div className="title-signup">Sign Up</div>
       <Form>
-        <span className='input-label-signup'>Username</span>
+        <span className="input-label-signup">Username</span>
         <Input
-          type='name'
-          placeholder='Username'
+          type="name"
+          placeholder="Username"
+          required
           onChange={(e) => setUserName(e.target.value)}
         />
-        <span className='input-label-signup'>Email</span>
+        <span className="input-label-signup">Email</span>
         <Input
-          type='email'
-          placeholder='Email'
+          type="email"
+          required
+          placeholder="Email"
           onChange={(e) => setUserEmail(e.target.value)}
         />
-        <span className='input-label-signup'>Password</span>
+        <span className="input-label-signup">Password</span>
         <Input
-          type='password'
-          placeholder='Password'
+          type="password"
+          placeholder="Password"
+          required
           onChange={(e) => setUserPassword(e.target.value)}
         />
         <Router>
-          <Link to='/profile'>
+          <Link to="/profile">
             <Button
-              className='login-btn-signup'
-              variant='contained'
-              onClick={() => signUp(userEmail, userPassword, userName)}>
+              className="login-btn-signup"
+              variant="contained"
+              onClick={() => signUp(userEmail, userPassword, userName)}
+            >
               Sign Up
             </Button>
           </Link>
         </Router>
       </Form>
-      <div className='or-group-signup'>OR</div>
+      <div className="or-group-signup">OR</div>
       <Button
-        className='login-btn-signup'
-        variant='contained'
-        startIcon={<FcGoogle className='google-icon-signup' />}>
+        className="login-btn-signup"
+        variant="contained"
+        startIcon={<FcGoogle className="google-icon-signup" />}
+      >
         Sign Up with Google
       </Button>
-      <div className='sign-in-link'>
-        <div className='link'>Already Registered?</div>
+      <div className="sign-in-link">
+        <div className="link">Already Registered?</div>
       </div>
-      <div className='sign-up-link-signup'>
-        <div onClick={() => handleSignIn()} className='link-signup'>
+      <div className="sign-up-link-signup">
+        <div onClick={() => handleSignIn()} className="link-signup">
           Sign In
         </div>
       </div>

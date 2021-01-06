@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import HomePage from '../HomePage/HomePage';
-import SearchResults from '../SearchResults/index';
+import HomePage from '../HomePage/HomePage.jsx';
+import SearchResults from '../SearchResults/index.js';
 
-const HomeLogin = () => {
+const HomeLogin = ({ user, getUserInfo }) => {
   const [searchValue, setSearchValue] = useState('');
 
   return (
@@ -13,7 +13,11 @@ const HomeLogin = () => {
           setSearchValue={setSearchValue}
         />
       ) : (
-        <HomePage setSearchValue={setSearchValue} />
+        <HomePage
+          setSearchValue={setSearchValue}
+          user={user}
+          getUserInfo={getUserInfo}
+        />
       )}
     </>
   );

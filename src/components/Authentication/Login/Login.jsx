@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Signin from './Signin';
-import Signup from './Signup';
+import Signin from './Signin.jsx';
+import Signup from './Signup.jsx';
 import '../styles/login.css';
 
-const Login = ({ openModal }) => {
+const Login = ({ openModal, getUserInfo }) => {
   const [signUp, setSignUp] = useState(false);
 
   return (
@@ -14,12 +14,14 @@ const Login = ({ openModal }) => {
             <Signin
               handleSignUp={() => setSignUp(true)}
               openModal={openModal}
+              getUserInfo={getUserInfo}
             />
           </div>
           <div className='back-login'>
             <Signup
               handleSignIn={() => setSignUp(false)}
               openModal={openModal}
+              getUserInfo={getUserInfo}
             />
           </div>
         </div>

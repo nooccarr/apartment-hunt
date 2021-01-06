@@ -23,7 +23,7 @@
   }
 
   .criteria:hover {
-      border: 5px solid cyan;
+      border: 5px solid rgb(255, 0, 234);
       border-radius: 110px;
       margin-left: 65px;
       margin-right: 65px;
@@ -191,4 +191,12 @@
 
   .placeName {
     font-size: 20px;
+  }
+
+  .neighborhoodName {
+      color: pink;
+  }
+
+  .neighborhoodDes {
+      color: rgb(184, 5, 201);
   }

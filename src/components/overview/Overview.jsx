@@ -16,9 +16,9 @@ class Overview extends React.Component {
     render () {
 
         return (
-        <div>
-            <Navigation/>
-            <Album/>
+        <div style={{backgroundColor: 'white'}}>
+            {/* <Navigation/> */}
+            <Album />
             <Description/>
         </div>
         )

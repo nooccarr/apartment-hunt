@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const Admin = require('../models/adminModel');
 const Apts = require('../../database/Apartments.js');
+const Utils = require('../utils/auth.js');
 const bcrypt = require('bcrypt');
 const saltRounds = 12;
 
@@ -11,43 +12,50 @@ const login = (req, res) => {
   //res.redirect('http://localhost:3000/'); might not work w react router?
   //res.redirect('http://localhost:3000/');
   //bcrypt creds
-  //console.log(req.body);
+  console.log('incoming email', req.body.email);
 
   User.findOne({
-    where: {
-      email: req.body.email,
-    },
-  }).then(function (user) {
-    if (!user) {
-      res.redirect('/');
-    } else {
-      bcrypt.compare(req.body.password, user.password, function (err, result) {
-        if (result === true) {
-          console.log('successful login');
+    email: req.body.email,
+  })
+    .then(function (user) {
+      if (!user) {
+        console.log('is there no user? ', user);
+        res.sendStatus(200);
+      } else {
+        bcrypt.compare(
+          req.body.password,
+          user.password,
+          function (err, result) {
+            console.log(result);
+            if (result === true) {
+              console.log(result);
+              console.log('successful login');
 
-          let user = {
-            email: req.body.email, //or user.email
-            provider: 'standard login',
-          };
+              // let user = {
+              //   email: req.body.email, //or user.email
+              //   provider: 'standard login',
+              // };
+              let u = {
+                username: user.username,
+                email: user.email,
+              };
+              let token = Utils.newJWT(u);
 
-          let token = jwt.sign(
-            {
-              payload: user,
-            },
-            'secret',
-            { expiresIn: '2m' }
-          ); //increase after testing
-
-          res.cookie('jwt', token);
-          console.log('jwt token', token);
-          res.redirect('/profile');
-        } else {
-          res.send('Incorrect password');
-          res.redirect('/');
-        }
-      });
-    }
-  });
+              res.cookie('jwt', token);
+              console.log('jwt token', token);
+              res.send('verified');
+              //res.redirect('/profile');
+            } else {
+              res.send('Incorrect password');
+              //res.redirect('/');
+            }
+          }
+        );
+      }
+    })
+    .catch((err) => {
+      console.log('err on lookup', err);
+    });
 };
 
 //*****************ADMIN-LOGIN********************/
@@ -85,6 +93,12 @@ const signup = (req, res) => {
   res.sendStatus(200);
 };
 
+//*****************SIGN-OUT********************/
+const signout = (req, res) => {
+  res.clearCookie('jwt');
+  res.send('cleared cookie');
+};
+
 //*****************SEARCH********************/
 // const search = (req, res) => {
 //   console.log(req.params);
@@ -119,6 +133,33 @@ const applicants = (req, res) => {
     });
 };
 
+/*****
+
+Query for users by username
+
+*****/
+
+const userController = (req, res) => {
+  User.findOne({username: req.query.username}).exec()
+  .then((user) => {
+    res.status(200).json(user);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  });
+}
+
+const addVideo = (req, res) => {
+  Apts.findByIdAndUpdate(req.query.id, {$addToSet: {"videos": req.query.videos}})
+  .then(() => {
+    res.sendStatus(201);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  })
+}
+
+
 const apt = (req, res) => {
   let id = req.query.id;
   Apts.findById(id)
@@ -137,24 +178,26 @@ const search = (req, res) => {
   let ascOrDsc = req.query.order ? req.query.order : -1;
   let maxD = parseFloat(req.query.distance) / 1609.344;
 
-if (req.query.burrough) {
-  Apts.find({neighborhoods: { $in: [req.query.burrough]}})
-  .then((apts) => {
-    res.status(200).json(apts)
-  })
-  .catch((err) => {
-    res.sendStatus(500);
-  });
-} else {
-Apts.find().where('position').near({ center: [long, lat], maxDistance: maxD, spherical: true })
-  .then((apts) => {
-    res.status(200).json(apts);
-  })
-  .catch((err) => {
-    console.log(err);
-    res.sendStatus(500);
-  })
-}
+  if (req.query.burrough) {
+    Apts.find({ neighborhoods: { $in: [req.query.burrough] } })
+      .then((apts) => {
+        res.status(200).json(apts);
+      })
+      .catch((err) => {
+        res.sendStatus(500);
+      });
+  } else {
+    Apts.find()
+      .where('position')
+      .near({ center: [long, lat], maxDistance: maxD, spherical: true })
+      .then((apts) => {
+        res.status(200).json(apts);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  }
 };
 
 const listing = (req, res) => {
@@ -186,7 +229,7 @@ const listing = (req, res) => {
   console.log(aptObj);
   Apts.create(aptObj)
     .then(() => {
-      res.sendStatus(200);
+      res.sendStatus(201);
       console.log('meow');
     })
     .catch((err) => {
@@ -201,5 +244,8 @@ module.exports = {
   loginAdmin,
   listing,
   apt,
+  signout,
   applicants,
+  userController,
+  addVideo,
 };

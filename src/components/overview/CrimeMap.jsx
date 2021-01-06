@@ -78,7 +78,7 @@ class CrimeMap extends React.Component {
                     }}
                     // 'height:100%; width:100%;'
                     ></div>
-                     The drop pins represent crimes that have been committed, click them to see the type of incident.
+                     The drop pins represent crimes that have been committed within the past year, click them to see the type of incident.
                 </div>
             </div>
         )

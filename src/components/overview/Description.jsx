@@ -2,8 +2,10 @@ import React from 'react';
 import sampleApts from './sampleData';
 import Restaurants from './Restaurants.jsx';
 import Schools from './Schools.jsx';
+import FileUploadOverlay from '../FileUpload/FileUploadOverlay.jsx';
 import './detail.style.scss';
 import CrimeMap from './CrimeMap.jsx'
+import Neighborhood from './Neighborhood.jsx'
 
 class Description extends React.Component {
     constructor(props) {
@@ -21,7 +23,7 @@ class Description extends React.Component {
                 <div id="areaModal" className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={() => {this.flipAreaModal()}}>&times;</span>
-                        <p>blurb about neighborhood</p>
+                        <Neighborhood/>
                     </div>
                 </div>
             )
@@ -162,7 +164,7 @@ class Description extends React.Component {
                     </div>
                     <div className='desAct'>
                         <div className='contactAgent'>Contact Agent</div>
-                        <div className='subApp'>Submit Application</div>
+                        <FileUploadOverlay username={"username"} apartment_id={"5ff48f80f8d9ecaff9eb3545"} />
                     </div>
                 </div>
                 <div className='desContainer'>
