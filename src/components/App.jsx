@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ApartmentContext } from './HomePage/ApartmentContext';
-import { HomeLogin, AdminPortal } from './pages/index';
+import { ApartmentContext } from './HomePage/ApartmentContext.jsx';
+import { HomeLogin, AdminPortal } from './pages/index.jsx';
 import Overview from './overview/Overview.jsx';
-import UploadListing from './Agent/UploadListing';
+ 
 import About from './overview/aboutus.jsx';
 import ChatApp from './ChatBox/frontend/ChatApp.jsx';
 import AgentPortal from './Portal/AgentPortal.jsx';
-import Navigation from './overview/navigation';
-import {AuthContext} from '../components/Authentication/Auth/AuthContext.jsx';
-import {PrivateRoute} from '../components/Authentication/Auth/PrivateRoute.jsx';
+ 
+ 
+import UploadListing from './Agent/UploadListing.jsx';
+import Navigation from './overview/navigation.jsx';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -49,12 +50,12 @@ const App = () => {
               <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
             </Route>
             <Route exact path='/apartment' component={Overview} />
-            <Route exact path='/aboutus' component={About} />
             <Route exact path='/uploadlisting' component={UploadListing} />
+            <Route exact path='/aboutus' component={About} />
           </Switch>
         </Router>
       </ApartmentContext.Provider>
-      <AuthContext.Provider value={isLoggedIn}>
+      {/* <AuthContext.Provider value={isLoggedIn}>
         <Router>
           <Switch>
             <PrivateRoute component={UserProfile} user={user} path='/profile' />
@@ -65,7 +66,7 @@ const App = () => {
             />
           </Switch>
         </Router>
-      </AuthContext.Provider>
+      </AuthContext.Provider> */}
       {/* ///////////FIXME:ChatBox/////////// */}
       <Router>
         <div>
