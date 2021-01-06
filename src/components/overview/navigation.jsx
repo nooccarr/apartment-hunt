@@ -4,7 +4,7 @@ import { Login, LoginModal } from '../Authentication/index.jsx';
 import logo from '../../images/logo.png';
 import '../HomePage/styles/main.scss';
 import './navigation-style.scss';
-import SearchBar from '../SearchResults/SearchBar/index.js';
+import SearchBar from '../overview/SearchBar/index';
 import axios from 'axios';
 import { Home } from '@material-ui/icons';
 
