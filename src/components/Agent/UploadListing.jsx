@@ -3,7 +3,7 @@ import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-au
 import TopBanner from '../SearchResults/TopBanner';
 import VideoUpload from '../FileUpload/VideoUpload.jsx'
 import axios from 'axios';
-import DoneIcon from '@material-ui/icons/Done';
+import './uploadlisting.scss'
 
 const UploadListing = ({ searchValue, setSearchValue }) => {
   const [agent, setAgent] = useState('');

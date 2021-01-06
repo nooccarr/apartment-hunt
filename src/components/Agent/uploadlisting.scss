@@ -1,0 +1,48 @@
+@font-face {
+    font-family: "herbarium";
+    src: url('../pages/styles/fonts/Herbarium.otf') format("opentype");
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "comic-sans";
+    src: url('../pages/styles/fonts/LDFComicSans.otf') format("opentype");
+    font-style: normal;
+  }
+
+  $color: #ffebea;
+$text: 'comic-sans';
+
+        .aptForm {
+            margin-left: 2%;
+            grid-row: 1;
+            font-size: 30px;
+            font-family: $text;
+        }
+        .listingForm {
+            grid-row: 2;
+            margin-left: 15%;
+            margin-top: 5%;
+            font-family: $text;
+        }
+.submitButton{
+    font-family: $text;
+    background-color: $color;
+}
+
+#finalSubmit{
+    margin-top: 1%;
+    font-family: $text;
+    background-color: $color;
+    font-size: 22px;
+    margin-left: 25%;
+}
+
+.yesButton {
+    background-color: green;
+    font-family: $text;
+}
+
+.noButton {
+    font-family: $text;
+    background-color: red;
+}
