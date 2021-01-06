@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logUser from './logUser.js'
 import axios from 'axios';
 import Texts from '../ChatBox/frontend/Texts.jsx';
+import AppliedApartments from '../Agent/AppliedApartments.jsx';
 
 
 
@@ -25,7 +26,7 @@ const AgentPortal = (props) => {
   useEffect(() => {
       return axios.get(`/msg/agent`, {
         params: {
-          userName: logUser.user
+          userName: props.userLoggin.name
         }
       }).then(({ data }) => {
         // console.log('here', data)
@@ -90,7 +91,7 @@ const AgentPortal = (props) => {
                     position: 'fixed',
                     backgroundColor: '#fff',
                     top: '30vh',
-                    left: '30%',
+                    left: '10%',
                     padding: '25px'
                   }}>
         <h2>Property Inquiries</h2>
@@ -113,8 +114,20 @@ const AgentPortal = (props) => {
         </div>
         </div>
       </div>
-
-      {texts ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={logUser}/> : null}
+      <div style={{width: "40%",
+                    maxWidth: '475px',
+                    height: '515px',
+                    border: '1px solid black',
+                    display: 'inline-block',
+                    position: 'fixed',
+                    backgroundColor: '#fff',
+                    top: '30vh',
+                    right: '10%',
+                    padding: '25px'}}>
+        <h2>Document Upload</h2>
+        <AppliedApartments agentName="Noah Sondheim"/>
+      </div>
+      {texts ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={props.userLoggin}/> : null}
     </div>
   );
 }

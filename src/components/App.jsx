@@ -5,8 +5,8 @@ import { HomeLogin, AdminPortal } from './pages/index.jsx';
 import Overview from './overview/Overview.jsx';
 import ChatApp from './ChatBox/frontend/ChatApp.jsx'
 import AgentPortal from './Portal/AgentPortal.jsx'
-import UploadListing from './Agent/UploadListing';
-import Navigation from './overview/navigation';
+import UploadListing from './Agent/UploadListing.jsx';
+import Navigation from './overview/navigation.jsx';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -64,7 +64,7 @@ let userLoggin = {
                 </Route>
               <Route exact path='/uploadlisting' component={UploadListing} />
               <Route exact path='/aportal'>
-                <AgentPortal admin={admin}/>
+                <AgentPortal admin={admin} userLoggin={userLoggin}/>
               </Route>
             </Switch>
           </Router>
