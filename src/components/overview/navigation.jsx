@@ -96,25 +96,34 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user }) => {
                     ) : (
                       ''
                     )}
-                    <div className='search-form'>
+                    
 
-                      {window.location.pathname === '/' ? null:<form
+                      {window.location.pathname === '/' ? null: <div className='search-form'>
+                        
+                        <form
                         method='get'
                         action='/homelist'
                         id='search'
                         className='f-right'>
+                          <ul>
+                            <li>
                         <SearchBar
                           searchValue={searchValue}
                           setSearchValue={setSearchValue}
                         />
-
+                            </li>
+                            <li>
                         <button type='submit' className='searchButton'>
                           {' '}
                           Search
                         </button>
-                      </form>}
+                         </li>
+                        </ul>
+                      </form>
+                      
+                      </div>}
 
-                    </div>
+                    
                   </div>
                 </div>
               </div>
