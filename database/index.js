@@ -7,3 +7,6 @@ const db = mongoose.connect(
 );
 
 module.exports = db;
+// const db = mongoose.connect('mongodb://localhost/apartmentHunt', {promiseLibrary: global.Promise});
+
+// module.exports = db;

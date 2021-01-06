@@ -4,6 +4,8 @@ import Restaurants from './Restaurants.jsx';
 import Schools from './Schools.jsx';
 import FileUploadOverlay from '../FileUpload/FileUploadOverlay.jsx';
 import './detail.style.scss';
+import CrimeMap from './CrimeMap.jsx'
+import Neighborhood from './Neighborhood.jsx'
 
 class Description extends React.Component {
     constructor(props) {
@@ -21,7 +23,7 @@ class Description extends React.Component {
                 <div id="areaModal" className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={() => {this.flipAreaModal()}}>&times;</span>
-                        <p>blurb about neighborhood</p>
+                        <Neighborhood location={this.props.details}/>
                     </div>
                 </div>
             )
@@ -120,7 +122,7 @@ class Description extends React.Component {
                 <div id="crimeModal" className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={() => {this.flipCrimeModal()}}>&times;</span>
-                        <p>Hopefully a map displaying crimes in the area</p>
+                        <CrimeMap location={sampleApts[1]}/>
                     </div>
                 </div>
             )
@@ -155,8 +157,8 @@ class Description extends React.Component {
                         <div className='desAddress'>{sampleApts[1].address}, {sampleApts[1].city}, {sampleApts[1].state}, {sampleApts[1].zipCode}</div>
                         <div className='desAptDet'>
                             <div className='desEle1'>${sampleApts[1].price}/Month</div>
-                            <div className='desEle2'>{sampleApts[1].beds} Bedrooms</div>
-                            <div className='desEle3'>{sampleApts[1].baths} Bathrooms</div>
+                            <div className='desEle2'>Bedrooms:{sampleApts[1].beds}</div>
+                            <div className='desEle3'>Bathrooms:{sampleApts[1].baths}</div>
                         </div>
                         <div className='desDes'>{sampleApts[1].description}</div>
                     </div>
@@ -166,10 +168,10 @@ class Description extends React.Component {
                     </div>
                 </div>
                 <div className='desContainer'>
-                    <div className='criteria' onClick={() => {this.flipAreaModal()}}>Area</div>
-                    <div className='criteria' onClick={() => {this.flipSchoolsModal()}}>Schools</div>
-                    <div className='criteria' onClick={() => {this.flipDiningModal()}}>Dining</div>
-                    <div className='criteria' onClick={() => {this.flipCrimeModal()}}>Crime</div>
+                    <img src='./neighborhood.png' className='criteria' onClick={() => {this.flipAreaModal()}}></img>
+                    <img src='./schools.png' className='criteria' onClick={() => {this.flipSchoolsModal()}}></img>
+                    <img src='./restaurants.png' className='criteria' onClick={() => {this.flipDiningModal()}}></img>
+                    <img src='./crime.png' className='criteria' onClick={() => {this.flipCrimeModal()}}></img>
                 </div>
                 {this.areaModal()}
                 {this.diningModal()}

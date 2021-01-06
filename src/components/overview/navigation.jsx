@@ -6,6 +6,7 @@ import '../HomePage/styles/main.scss';
 import './navigation-style.scss';
 import SearchBar from '../SearchResults/SearchBar/index.js';
 import axios from 'axios';
+import { Home } from '@material-ui/icons';
 
 const Navigation = ({ searchValue, setSearchValue, getUserInfo, user }) => {
   const [clickedLogin, setClickedLogin] = useState(false);
@@ -33,16 +34,16 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user }) => {
   return (
     <Router>
       <div>
-        <div className='navheader'>
+      {window.location.pathname === '/' ? <div className='navheader_home'></div> : <div className='navheader'></div>}
           <div className='header' id='home'>
-            <div className='header_top'>
+          {window.location.pathname === '/' ? <div className='header_top_home'></div> : <div className='header_top'></div>}
               <div className='wrap'>
                 <div className='col-1-3'>
-                  <div className='logo'>
+                  {window.location.pathname === '/' ? null: <div className='logo'>
                     <a href='/'>
                       <img src={logo} />
                     </a>
-                  </div>
+                  </div> }
                 </div>
 
                 <div className='navigation-search-bar'>
@@ -55,9 +56,10 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user }) => {
                           </a>
                         </li>
                         <li>
-                          <a href='/aboutus' className='scroll'>
+                          {/* <a href='/aboutus' className='scroll'>
                             About Us
-                          </a>
+                          </a> */}
+                          <Link to ='/aboutus' >About Us</Link>
                         </li>
 
                         <li className='chatButton'>
@@ -76,7 +78,7 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user }) => {
                               <Link to='/'> Logout</Link>
                             </span>
                           </button>
-                          <div>{user === undefined ? '' : user.name || ''}</div>
+                          <div>{user.name ? user.name : ''}</div>
                         </li>
                       </ul>
                     </div>
@@ -95,7 +97,8 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user }) => {
                       ''
                     )}
                     <div className='search-form'>
-                      <form
+
+                      {window.location.pathname === '/' ? null:<form
                         method='get'
                         action='/homelist'
                         id='search'
@@ -109,14 +112,15 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user }) => {
                           {' '}
                           Search
                         </button>
-                      </form>
+                      </form>}
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+         {/* </div>  */}
         <Route
           path='/login'
           render={(props) => {
@@ -127,7 +131,8 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user }) => {
             />;
           }}
         />
-      </div>
+      {/* </div> */}
+      {window.location.pathname === '/' ? <div className='navheader_home'></div> : <div className='navheader_bottom'></div>}
     </Router>
   );
 };
