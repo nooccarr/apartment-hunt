@@ -82,6 +82,10 @@ $text: 'comic-sans';
         left: 10px;
       };
 
+      #minPrice:invalid, #maxPrice:invalid {
+        color: red;
+      }
+
       .priceText {
         outline: none;
         background-color: white;

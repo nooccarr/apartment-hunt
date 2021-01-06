@@ -21,14 +21,45 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
   };
 
   const submitRequestedPrice = () => {
-    
+    const min = document.getElementById('minPrice').value;
+    const max = document.getElementById('maxPrice').value;
+
+    if (min !== requestedMinPrice) {
+      setRequestedMinPrice(min);
+    }
+    if (max !== requestedMaxPrice) {
+      setRequestedMaxPrice(max);
+    }
   };
+  
+  const numbercheck = (e) => {
+    if ((47 < e.charCode && e.charCode < 58) || e.charCode === 8 || e.charCode === 46) {
+      return true;
+    } else {
+      e.preventDefault();
+      // alert('Numbers Only Please!');
+    }
+  }
 
   const dropdowns = {
     Price:  <div className='dropdown'>
-              <input id='minPrice' className='priceText' type='text' defaultValue='Min'></input>
+              $<input 
+                id='minPrice' 
+                className='priceText' 
+                type='text' 
+                placeholder='Min' 
+                maxLength='6'
+                onKeyPress={ numbercheck }
+              />
               <div style={{marginRight: '10px'}}>-</div>
-              <input id='maxPrice' className='priceText' type='text' defaultValue='Max'></input>
+              $<input 
+                id='maxPrice' 
+                className='priceText' 
+                type='text' 
+                placeholder='Max' 
+                maxLength='6'
+                onKeyPress={ numbercheck }
+              />
               <div className='submitPrice' onClick={() => submitRequestedPrice()}>Done</div>
             </div>,
     Beds: <div className='dropdown'>
@@ -93,7 +124,15 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
                   : filter === 'Baths'
                       ? requestedBaths === ''
                           ?  'All Baths' : `${requestedBaths} Baths`
-                      : filter
+                      : filter === 'Price'
+                          ? requestedMinPrice === ''
+                              ? requestedMaxPrice === ''
+                                  ? 'Any Price'
+                                  : `$0-$${requestedMaxPrice}`
+                              : requestedMaxPrice === ''
+                                  ? `$${requestedMinPrice}+`
+                                  : `$${requestedMinPrice}-${requestedMaxPrice}`
+                          : filter
               }
               <img 
                 src="https://img.icons8.com/ios/24/000000/chevron-down.png"
@@ -106,9 +145,9 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
           </div>
         );
       })}
-      <div className='singleFilterContainer'>
+      {/* <div className='singleFilterContainer'>
         <div className='filter'>Save</div>
-      </div>
+      </div> */}
     </div>
   );
 };
