@@ -10,12 +10,12 @@ const SearchResults = ({ searchValue, setSearchValue }) => {
   
   const [requestedBeds, setRequestedBeds] = useState('');
   const [requestedBaths, setRequestedBaths] = useState('');
-  const [requestedMinPrice, setRequestedMinPrice] = useState('Min');
-  const [requestedMaxPrice, setRequestedMaxPrice] = useState('Max');
+  const [requestedMinPrice, setRequestedMinPrice] = useState('');
+  const [requestedMaxPrice, setRequestedMaxPrice] = useState('');
 
   return (
     <div className='main'>
-      <TopBanner searchValue={ searchValue } setSearchValue={ setSearchValue } />
+      {/* <TopBanner searchValue={ searchValue } setSearchValue={ setSearchValue } /> */}
       <div className='bottomContainer'>
         <div className='leftSide'>
           <Filters 
@@ -28,7 +28,12 @@ const SearchResults = ({ searchValue, setSearchValue }) => {
             requestedMaxPrice={ requestedMaxPrice }
             setRequestedMaxPrice={ setRequestedMaxPrice }
           />
-          <Results requestedBaths={ requestedBaths } requestedBeds={ requestedBeds } />
+          <Results 
+            requestedBaths={ requestedBaths } 
+            requestedBeds={ requestedBeds } 
+            requestedMinPrice={ requestedMinPrice }
+            requestedMaxPrice={ requestedMaxPrice }
+          />
         </div>
         <div className='rightSide'>
           <GoogleMap />
