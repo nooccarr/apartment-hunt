@@ -3,7 +3,7 @@ import HomePage from '../HomePage/HomePage.jsx';
 import SearchResults from '../SearchResults/index.js';
 
 const HomeLogin = ({ user, getUserInfo }) => {
-  const [setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
 
   return (
         <HomePage
