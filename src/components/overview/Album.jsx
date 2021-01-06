@@ -9,19 +9,20 @@ class Album extends React.Component {
         super(props);
         this.state = {
             selection: 'Photo Album',
-            options: ['Photo Album','Virtual Tour','Video Tour'],
-            images: [],
+            options: [],
             current: 0
+        }
+        if (props.details.videos.length > 0) {
+            this.state.options.push('Video Tour');
+        }
+        if (props.details._id === "5ff49505449bf536739e212c") {
+            this.state.options.push('Virtual Tour');
+        }
+        if (props.details.pics.length > 0) {
+            this.state.options.push('Photo Album');
         }
     }
 
-    componentDidMount() {
-        var imgs=["https://www.trulia.com/pictures/thumbs_5/zillowstatic/fp/c642f5487c2888ba52ce47414851dd34-full.jpg","https://www.trulia.com/pictures/thumbs_5/zillowstatic/fp/c306e58c2da48890b1a16f4bd1c90909-full.jpg","https://www.trulia.com/pictures/thumbs_5/zillowstatic/fp/dbd316134027445b6c9a4ab16be79011-full.jpg"];
-        imgs = imgs.concat(imgs);
-        imgs = imgs.concat(imgs);
-        imgs = imgs.concat(imgs);
-        this.setState({images: imgs});
-    }
 
     display (option) {
         switch (option) {
@@ -37,8 +38,7 @@ class Album extends React.Component {
     video () {
         return <div className="videoContainer">
             <ReactPlayer width="900px" height="500px" playing="true" controls="true"
-                url="https://nate-pruitt-test-bucket-0001
-                .s3.us-east-2.amazonaws.com/WIN_20200707_20_33_19_Pro.mp4"/>
+                url={`https://hr-blue-ocean-video-file-bucket.s3.us-east-2.amazonaws.com/${this.props.details.videos[0]}`}/>
             </div>
     }
 
@@ -53,8 +53,8 @@ class Album extends React.Component {
             current = Number(e.target.id);
         } else {
             if (current === 0 && !way) {
-                current = this.state.images.length - 1;
-            } else if (current === this.state.images.length - 1 && way) {
+                current = this.props.details.pics.length - 1;
+            } else if (current === this.props.details.pics.length - 1 && way) {
                 current = 0;
             } else {
                 current += way ? 1 : -1;
@@ -66,11 +66,11 @@ class Album extends React.Component {
     carousel () {
         var j = -1;
         return <div className="carousel">
-            <img className="main-image" src={this.state.images[this.state.current]}/>
+            <img className="main-image" src={this.props.details.pics[this.state.current]}/>
             <div className="arrow right" onClick={() => this.shift(true)}/>
             <div className="arrow left" onClick={() => this.shift(false)}/>
-            <div className="gallery-container">
-                    {_.map(this.state.images, (src) => {
+            <div className="gallery-container" style={this.props.details.pics.length < 18 ? {left: 450 - 25 * this.props.details.pics.length} : {}}>
+                    {_.map(this.props.details.pics, (src) => {
                         j++;
                         return <img key={j} id={j} className="gallery-photo"
                             style={j === this.state.current ? {opacity: 1} : {}}
@@ -83,11 +83,11 @@ class Album extends React.Component {
     render () {
         var i = -1;
         return (
-            <div className="album-container" style={{height: 555 + 50*Math.floor(this.state.images.length / 18)}}>
+            <div className="album-container" style={{height: 555 + 50*Math.floor(this.props.details.pics.length / 18)}}>
         <div className="album">
             {_.map(this.state.options, (option) => {
                 i++;
-                return <a className="options" key={option} style={{left: 600 + 110 * i}}
+                return <a className="options" key={option} style={{right: 10 + 110 * i}}
                     onClick={() => this.setState({selection: option})}>
                         {option}
                     </a>
