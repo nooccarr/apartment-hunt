@@ -3,10 +3,10 @@ const { v4: uuidv4 } = require('uuid');
 // if (process.env.MONGODB_URI) {
 //   mongoose.connect(process.env.MONGODB_URI);
 // } else {
-mongoose.connect('mongodb://localhost:27017/ApartmentHunt', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect('mongodb://localhost:27017/ApartmentHunt', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 // }
 
 const db = mongoose.connection;
@@ -17,24 +17,24 @@ db.once('open', () => {
   console.log('Connected to db...');
 });
 
-const chatMessageSchema = new mongoose.Schema({
-  chatId: { type: String, unique: true },
-  address: String,
-  userName: String,
-  agentName: String,
-  userId: String,
-  agentId: String,
-  lastUpdate: Date,
-  messages: [
-    {
-      message: String,
-      sender: String,
-      createdAt: String,
-    },
-  ],
-});
+// const chatMessageSchema = new mongoose.Schema({
+//   chatId: { type: String, unique: true },
+//   address: String,
+//   userName: String,
+//   agentName: String,
+//   userId: String,
+//   agentId: String,
+//   lastUpdate: Date,
+//   messages: [
+//     {
+//       message: String,
+//       sender: String,
+//       createdAt: String,
+//     },
+//   ],
+// });
 
-const ChatMessage = mongoose.model('ChatMessage', chatMessageSchema);
+// const ChatMessage = mongoose.model('ChatMessage', chatMessageSchema);
 
 // save or create messages that sent from user
 const conAgent = (message) => {
@@ -65,7 +65,6 @@ const saveMsg = (message) => {
   });
 };
 
-// fetch message history by client/agent name
 const fetchChatsByUser = (query) => {
   console.log('query: ', query);
   return ChatMessage.find({ userName: query.userName })
@@ -79,11 +78,6 @@ const fetchChatsByAgent = (query) => {
     .exec();
 };
 
-// if multiple agents assigned to one property
-// const fetchMsgById = (query) => {
-//   return ChatMessage.findById(query.chatId, 'messages').exec();
-// };
-
 const fetchMsgByChatRoom = (query) => {
   return ChatMessage.find({
     address: query.address,
@@ -91,9 +85,8 @@ const fetchMsgByChatRoom = (query) => {
   }).exec();
 };
 
-module.exports.saveMsg = saveMsg;
-module.exports.fetchChatsByUser = fetchChatsByUser;
-module.exports.fetchChatsByAgent = fetchChatsByAgent;
-// module.exports.fetchMsgById = fetchMsgById;
-module.exports.conAgent = conAgent;
-module.exports.fetchMsgByChatRoom = fetchMsgByChatRoom;
+// module.exports.saveMsg = saveMsg;
+// module.exports.fetchChatsByUser = fetchChatsByUser;
+// module.exports.fetchChatsByAgent = fetchChatsByAgent;
+// module.exports.conAgent = conAgent;
+// module.exports.fetchMsgByChatRoom = fetchMsgByChatRoom;

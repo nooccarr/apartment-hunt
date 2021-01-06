@@ -6,7 +6,7 @@ import SearchBar from '../SearchResults/SearchBar/index.js';
 import Login from '../Authentication/Login/Login.jsx';
 import ChatApp from '../ChatBox/frontend/ChatApp.jsx'
 
-const Navigation  = ({ searchValue, setSearchValue }) => {
+const Navigation  = ({ searchValue, setSearchValue, userLoggin }) => {
 
   const [convos, setConvos] = useState(false);
 
@@ -22,7 +22,7 @@ const Navigation  = ({ searchValue, setSearchValue }) => {
           
             <div className="header_top" style={{overflow: 'visible'}}>
               <div style={{position: 'absolute'}}>
-                <ChatApp convos={convos} shutConvo={shutConvo}/>
+                <ChatApp convos={convos} shutConvo={shutConvo} userLoggin={userLoggin}/>
               </div>
               <div className="wrap">
               <div className="col-1-3">
@@ -36,11 +36,13 @@ const Navigation  = ({ searchValue, setSearchValue }) => {
                     <ul>
                       <li><a href="/" className="scroll">Find Apartments</a></li>
                       <li><a href="/aboutus" className="scroll">About Us</a></li>	
-                      
+                      {/* {userLoggin.role !== 'client' || userLoggin.role !== 'agent' ?
+                      null : */}
                       <li className="chatButton" >
-                        {/* <div id="chatButton"><a href="#" id="chatButton"><span>Chat Button</span></a></div>*/}
-                        <div onClick={() => setConvos(!convos)}>OpenChat</div>
-                      </li>		    
+                      {userLoggin.role === 'client' ?
+                        <div onClick={() => setConvos(!convos)}><span>OpenChat</span></div> :
+                        <div id="chatButton"><a href="/aportal" id="chatButton"><span>AgentPortal</span></a></div>}
+                      </li>	    
                       <li className="login" >
                         <button type="submit" id="loginButton"> <span>Login</span></button>
                       </li>
@@ -64,7 +66,7 @@ const Navigation  = ({ searchValue, setSearchValue }) => {
       </div>
     </div>
         );
-    
-};
-
-export default Navigation;
+      };
+      
+      export default Navigation;
+      

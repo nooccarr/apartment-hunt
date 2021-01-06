@@ -1,9 +1,12 @@
 const User = require('../models/userModel');
 const Admin = require('../models/adminModel');
+const ChatMessage = require('../models/chatRoomModel');
 const Apts = require('../../database/Apartments.js');
 const Utils = require('../utils/auth.js');
 const bcrypt = require('bcrypt');
 const saltRounds = 12;
+
+const { v4: uuidv4 } = require('uuid');
 
 //*****************USER-SIGN-IN********************/
 const login = (req, res) => {
@@ -145,24 +148,26 @@ const search = (req, res) => {
   let ascOrDsc = req.query.order ? req.query.order : -1;
   let maxD = parseFloat(req.query.distance) / 1609.344;
 
-if (req.query.burrough) {
-  Apts.find({neighborhoods: { $in: [req.query.burrough]}})
-  .then((apts) => {
-    res.status(200).json(apts)
-  })
-  .catch((err) => {
-    res.sendStatus(500);
-  });
-} else {
-Apts.find().where('position').near({ center: [long, lat], maxDistance: maxD, spherical: true })
-  .then((apts) => {
-    res.status(200).json(apts);
-  })
-  .catch((err) => {
-    console.log(err);
-    res.sendStatus(500);
-  })
-}
+  if (req.query.burrough) {
+    Apts.find({ neighborhoods: { $in: [req.query.burrough] } })
+      .then((apts) => {
+        res.status(200).json(apts);
+      })
+      .catch((err) => {
+        res.sendStatus(500);
+      });
+  } else {
+    Apts.find()
+      .where('position')
+      .near({ center: [long, lat], maxDistance: maxD, spherical: true })
+      .then((apts) => {
+        res.status(200).json(apts);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  }
 };
 
 const listing = (req, res) => {
@@ -202,6 +207,89 @@ const listing = (req, res) => {
     });
 };
 
+//////////////////////////////////CHATBOX Controller//////////////////////////////////////
+const conAgent = (req, res) => {
+  return ChatMessage.findOne(
+    { address: req.body.address, userName: req.body.userName },
+    function (err, data) {
+      if (data) {
+        return;
+      } else {
+        req.body.chatId = uuidv4();
+        return ChatMessage.create(req.body);
+      }
+    }
+  )
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+};
+
+const saveMsg = (req, res) => {
+  return ChatMessage.findOne({ chatId: req.body.chatId }, function (err, data) {
+    const newMessage = {
+      message: req.body.body,
+      sender: req.body.sender,
+      createdAt: new Date(),
+    };
+    const msgCol = data.messages;
+    msgCol.push(newMessage);
+    data.lastUpdate = new Date();
+    return data.save();
+  })
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+};
+
+const fetchChatsByUser = (req, res) => {
+  return ChatMessage.find({ userName: req.query.userName })
+    .sort('-lastUpdate')
+    .exec()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+      console.log(err);
+    });
+};
+
+const fetchChatsByAgent = (req, res) => {
+  return ChatMessage.find({ agentName: req.query.userName })
+    .sort('-lastUpdate')
+    .exec()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+      console.log(err);
+    });
+};
+
+const fetchMsgByChatRoom = (req, res) => {
+  return ChatMessage.find({
+    address: req.query.address,
+    userName: req.query.userName,
+  })
+    .exec()
+    .then((chatterRoom) => {
+      console.log('chatterRoom: ', chatterRoom);
+      res.json(chatterRoom);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+};
+//////////////////////////////////CHATBOX Controller//////////////////////////////////////
+
 module.exports = {
   login,
   signup,
@@ -210,4 +298,9 @@ module.exports = {
   listing,
   apt,
   applicants,
+  saveMsg,
+  fetchChatsByUser,
+  fetchChatsByAgent,
+  conAgent,
+  fetchMsgByChatRoom,
 };

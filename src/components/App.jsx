@@ -24,6 +24,7 @@ const App = () => {
     setUser({
       name: name,
       email: email,
+      role: 'client'
     });
   };
 
@@ -31,6 +32,7 @@ const App = () => {
     setAdmin({
       name: name,
       email: email,
+      role: 'agent'
     });
   };
 
@@ -59,7 +61,7 @@ const App = () => {
             <Route exact path='/chatbox' component={ChatApp} />
           </div>
             <Route exact path='/aportal'>
-              <Overview user={user} admin={admin}/>
+              <AgentPortal user={user} admin={admin}/>
             </Route>
         </Router>
       </ApartmentContext.Provider>

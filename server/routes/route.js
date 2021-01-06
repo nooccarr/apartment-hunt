@@ -10,6 +10,13 @@ router.get('/search', controller.search);
 router.get('/apt', controller.apt);
 router.get('/applicants', controller.applicants);
 router.post('/listing', controller.listing);
+//////ChatBox Below////////
+router.post('/msg', controller.saveMsg);
+router.get('/msg/client', controller.fetchChatsByUser);
+router.get('/msg/agent', controller.fetchChatsByAgent);
+router.post('/chatRoom', controller.conAgent);
+router.get('/chatRoom', controller.fetchMsgByChatRoom);
+//////ChatBox After////////
 
 //matt's test
 //8router.get('/login', controller.loginGet);
