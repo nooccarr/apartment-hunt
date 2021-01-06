@@ -16,8 +16,11 @@ const App = () => {
   const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    if (Cookies.get('jwt')) {
+      let token = jwtDecode(Cookies.get('jwt'));
+      getUserInfo(token.payload.username, token.payload.email);
+    }
+  }, []);
 
   useEffect(() => {
     if (Cookies.get('jwt')) {
@@ -43,7 +46,8 @@ const App = () => {
   return (
     <div>
       <Navigation user={user} getUserInfo={getUserInfo} />
-      <ApartmentContext.Provider value={{listings, getListings, coordinates, setCoordinates}}>
+      <ApartmentContext.Provider
+        value={{ listings, getListings, coordinates, setCoordinates }}>
         <Router>
           <Switch>
             <Route exact path='/'>
