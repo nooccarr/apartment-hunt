@@ -34,7 +34,7 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user }) => {
   return (
     <Router>
       <div>
-        <div className='navheader'>
+      {window.location.pathname === '/' ? <div className='navheader_home'></div> : <div className='navheader'></div>}
           <div className='header' id='home'>
           {window.location.pathname === '/' ? <div className='header_top_home'></div> : <div className='header_top'></div>}
               <div className='wrap'>
@@ -131,7 +131,8 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user }) => {
             />;
           }}
         />
-      </div>
+      {/* </div> */}
+      {window.location.pathname === '/' ? <div className='navheader_home'></div> : <div className='navheader_bottom'></div>}
     </Router>
   );
 };

@@ -3,14 +3,27 @@
 .col-2-3{width:100%;}
 img{max-width:100%;}
 
+.navheader_home {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 20px;
+}
 .navheader {
   position: relative;
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 170px;
   border-top: 15px solid rgb(239,174,170);
-  border-bottom: 10px solid rgb(239,174,170);
+
+}
+.navheader_bottom {
+  position: relative;
+  top: 15px;
+  left: 0px;
+  width: 100%;
+  border-top: 5px solid rgb(239,174,170);
 }
 
 body{
@@ -106,16 +119,17 @@ body{
 }
 
 .search-form{
+  position: relative;
   padding-top: 27px;
   font-size:1em;
 }
 
 .searchButton {
-  position: absolute;
+  position: relative;
   box-shadow:inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 1px 1px rgb(203,117,120);
   background: rgb(239,174,170);
-   top:105px;
-   margin-left: 170px;
+  width: 70px;
+   margin-left: 0px;
    border: 1px solid rgb(239,174,170);
    font-weight:normal;
    color: rgb(0, 0, 0);
