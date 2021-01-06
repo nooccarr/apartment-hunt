@@ -3,8 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ApartmentContext } from './HomePage/ApartmentContext.jsx';
 import { HomeLogin, AdminPortal } from './pages/index.jsx';
 import Overview from './overview/Overview.jsx';
-import ChatApp from './ChatBox/frontend/ChatApp.jsx'
-import AgentPortal from './Portal/AgentPortal.jsx'
+ 
+import About from './overview/aboutus.jsx';
+import ChatApp from './ChatBox/frontend/ChatApp.jsx';
+import AgentPortal from './Portal/AgentPortal.jsx';
+ 
+ 
 import UploadListing from './Agent/UploadListing.jsx';
 import Navigation from './overview/navigation.jsx';
 import jwtDecode from 'jwt-decode';
@@ -54,7 +58,7 @@ let userLoggin = {
 console.log(window.location);
   return (
     <div>
-      <Navigation getUserInfo={getUserInfo} user={user} admin={admin} userLoggin={userLoggin}/>
+      <Navigation getUserInfo={getUserInfo} user={user}/>
       <ApartmentContext.Provider value={{listings, getListings, coordinates, setCoordinates}}>
           <Router>
             <Switch>
@@ -68,12 +72,14 @@ console.log(window.location);
                   <Overview />
                 </Route>
               <Route exact path='/uploadlisting' component={UploadListing} />
+            <Route exact path='/aboutus' component={About} />
               <Route exact path='/aportal'>
                 <AgentPortal admin={admin} userLoggin={userLoggin}/>
               </Route>
             </Switch>
           </Router>
       </ApartmentContext.Provider>
+      
     </div>
   );
 };

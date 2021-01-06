@@ -59,10 +59,20 @@ app.use(passport.initialize());
 //.session() for persistent login sessions
 //can probably disable
 app.use(passport.session());
+const {
+  saveMsg,
+  fetchChatsByUser,
+  fetchChatsByAgent,
+  conAgent,
+  // fetchMsgById,
+  fetchMsgByChatRoom,
+} = require('../src/components/ChatBox/backend/chatboxDB.js');
 
 // Serve static assets from 'dist' folder
 app.use('(/apartment)?', express.static(path.join(__dirname, '../dist')));
+// app.use('(/home)?', express.static(path.join(__dirname, '../dist')));
 app.use('(/uploadlisting)?', express.static(path.join(__dirname, '../dist')));
+app.use('(/aboutus)?', express.static(path.join(__dirname, '../dist')));
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 app.use(cors());

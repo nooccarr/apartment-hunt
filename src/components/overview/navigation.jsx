@@ -7,6 +7,7 @@ import './navigation-style.scss';
 import SearchBar from '../SearchResults/SearchBar/index.js';
 import ChatApp from '../ChatBox/frontend/ChatApp.jsx'
 import axios from 'axios';
+import { Home } from '@material-ui/icons';
 
 
 const Navigation = ({ searchValue, setSearchValue, getUserInfo, user, admin, userLoggin}) => {
@@ -45,14 +46,14 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user, admin, use
         {console.log('userLoggin', userLoggin)}
         <div className='navheader'>
           <div className='header' id='home'>
-            <div className='header_top'>
+          {window.location.pathname === '/' ? <div className='header_top_home'></div> : <div className='header_top'></div>}
               <div className='wrap'>
                 <div className='col-1-3'>
-                  <div className='logo'>
+                  {window.location.pathname === '/' ? null: <div className='logo'>
                     <a href='/'>
                       <img src={logo} />
                     </a>
-                  </div>
+                  </div> }
                 </div>
 
                 <div className='navigation-search-bar'>
@@ -65,9 +66,10 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user, admin, use
                           </a>
                         </li>
                         <li>
-                          <a href='/aboutus' className='scroll'>
+                          {/* <a href='/aboutus' className='scroll'>
                             About Us
-                          </a>
+                          </a> */}
+                          <Link to ='/aboutus' >About Us</Link>
                         </li>
 
                         <li className="chatButton" >
@@ -109,7 +111,8 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user, admin, use
                       ''
                     )}
                     <div className='search-form'>
-                      <form
+
+                      {window.location.pathname === '/' ? null:<form
                         method='get'
                         action='/homelist'
                         id='search'
@@ -123,14 +126,15 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user, admin, use
                           {' '}
                           Search
                         </button>
-                      </form>
+                      </form>}
+
                     </div>
                   </div>
                 </div>
               </div>        
             </div>
           </div>
-        </div>
+         {/* </div>  */}
         <Route
           path='/login'
           render={(props) => {
