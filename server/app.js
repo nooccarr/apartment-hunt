@@ -66,7 +66,7 @@ const {
   conAgent,
   // fetchMsgById,
   fetchMsgByChatRoom,
-} = require('../src/components/ChatBox/backend/chatboxDB.js');
+} = require('../src/components/chatbox/backend/chatboxDB.js');
 
 // Serve static assets from 'dist' folder
 app.use('(/apartment)?', express.static(path.join(__dirname, '../dist')));
