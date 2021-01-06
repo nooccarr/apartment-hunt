@@ -23,7 +23,7 @@ class Description extends React.Component {
                 <div id="areaModal" className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={() => {this.flipAreaModal()}}>&times;</span>
-                        <Neighborhood/>
+                        <Neighborhood location={this.props.details}/>
                     </div>
                 </div>
             )
