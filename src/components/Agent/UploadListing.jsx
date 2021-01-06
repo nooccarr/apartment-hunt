@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import '../SearchResults/styles.scss';
 import TopBanner from '../SearchResults/TopBanner';
+import VideoUpload from '../FileUpload/VideoUpload.jsx'
 import axios from 'axios';
 
 const UploadListing = ({ searchValue, setSearchValue }) => {
-    const [url, setUrl] = useState('');
+  const [url, setUrl] = useState('');
+  const [videoName, setVideoName] = useState('');
   const [listing, setListing] = useState({
     address: '',
     applicants: [],
@@ -26,6 +28,13 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
     baths: null,
     agent: ''
 });
+
+
+const updateVideo = (videoName) => {
+    setListing(prevState => ({...prevState, ['videos']: [...prevState['videos'], videoName]}));
+}
+
+
 
 const addUrl = (e) => {
     e.preventDefault();
@@ -159,7 +168,7 @@ const getPos = async () => {
 
               </div>
               <div>
-
+                  <VideoUpload setVideoName={updateVideo} />
                   <label>Videos: </label>
                   <input type="url" id="vidIn" name="videos" onChange={handleUrl}></input>
                   <input type="submit" value="Submit" name="videos" onClick={addUrl}></input>
