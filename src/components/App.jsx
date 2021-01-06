@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ApartmentContext } from './HomePage/ApartmentContext';
-import { HomeLogin, AdminPortal } from './pages/index';
+import { ApartmentContext } from './HomePage/ApartmentContext.jsx';
+import { HomeLogin, AdminPortal } from './pages/index.jsx';
 import Overview from './overview/Overview.jsx';
-import UploadListing from './Agent/UploadListing';
-import Navigation from './overview/navigation';
+import UploadListing from './Agent/UploadListing.jsx';
+import Navigation from './overview/navigation.jsx';
+import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -14,8 +16,11 @@ const App = () => {
   const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    if (Cookies.get('jwt')) {
+      let token = jwtDecode(Cookies.get('jwt'));
+      getUserInfo(token.payload.username, token.payload.email);
+    }
+  }, []);
 
   const getUserInfo = (name, email) => {
     setUser({
@@ -34,7 +39,8 @@ const App = () => {
   return (
     <div>
       <Navigation user={user} getUserInfo={getUserInfo} />
-      <ApartmentContext.Provider value={{listings, getListings, coordinates, setCoordinates}}>
+      <ApartmentContext.Provider
+        value={{ listings, getListings, coordinates, setCoordinates }}>
         <Router>
           <Switch>
             <Route exact path='/'>

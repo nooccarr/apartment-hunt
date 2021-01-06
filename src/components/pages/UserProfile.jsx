@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeLogin from './HomeLogin';
+import HomeLogin from './HomeLogin.jsx';
 
 const UserProfile = ({ user }) => {
   return (

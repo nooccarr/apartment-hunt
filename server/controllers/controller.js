@@ -133,8 +133,24 @@ const applicants = (req, res) => {
     });
 };
 
+/*****
+
+Query for users by username
+
+*****/
+
+const userController = (req, res) => {
+  User.findOne({username: req.query.username}).exec()
+  .then((user) => {
+    res.status(200).json(user);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  });
+}
+
 const addVideo = (req, res) => {
-  Apts.findByIdAndUpdate(req.query.id, {$push: {"videos": req.query.videos}})
+  Apts.findByIdAndUpdate(req.query.id, {$addToSet: {"videos": req.query.videos}})
   .then(() => {
     res.sendStatus(201);
   })
@@ -142,6 +158,7 @@ const addVideo = (req, res) => {
     res.sendStatus(500);
   })
 }
+
 
 const apt = (req, res) => {
   let id = req.query.id;
@@ -229,5 +246,6 @@ module.exports = {
   apt,
   signout,
   applicants,
-  addVideo
+  userController,
+  addVideo,
 };

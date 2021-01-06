@@ -1,0 +1,42 @@
+@font-face {
+    font-family: "herbarium";
+    src: url('../pages/styles/fonts/Herbarium.otf') format("opentype");
+    font-style: normal;
+  }
+
+  $color: rgb(245, 31, 156);
+
+        .aptForm {
+            margin-left: 2%;
+            grid-row: 1;
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .listingForm {
+            grid-row: 2;
+            margin-left: 15%;
+            margin-top: 5%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+.submitButton{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: $color;
+}
+
+#finalSubmit{
+    margin-top: 1%;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: $color;
+    font-size: 22px;
+    margin-left: 25%;
+}
+
+.yesButton {
+    background-color: green;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.noButton {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: red;
+}

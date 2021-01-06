@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Signin from './Signin';
-import Signup from './Signup';
+import Signin from './Signin.jsx';
+import Signup from './Signup.jsx';
 import '../styles/login.css';
 
 const Login = ({ openModal, getUserInfo }) => {
