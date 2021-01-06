@@ -6,7 +6,7 @@ import PlacesAutoComplete, {
 import TopBanner from '../SearchResults/TopBanner';
 import VideoUpload from '../FileUpload/VideoUpload.jsx';
 import axios from 'axios';
-import DoneIcon from '@material-ui/icons/Done';
+import './uploadlisting.scss'
 
 const UploadListing = ({ searchValue, setSearchValue }) => {
   const [agent, setAgent] = useState('');
@@ -145,7 +145,6 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
           </div>*/
   return (
     <div className='main'>
-      <TopBanner searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className='bottomContainer'>
         <div>
           <h2 className='aptForm'>UPLOAD APARTMENT LISTING</h2>
@@ -285,7 +284,7 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
           </form>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 

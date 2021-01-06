@@ -36,13 +36,13 @@ class Schools extends React.Component {
                     {this.state.schoolList.map((school, index) => {
                         return (
                             <div key={index} className='singleSchool'>
-                                {school.name}<br></br> 
+                                <p className='placeName'>{school.name}</p><br></br> 
                                 <img src={school.photos === undefined ?
                                 'https://visualsound.com/wp-content/uploads/2019/05/unavailable-image.jpg' : 
                                 `https://maps.googleapis.com/maps/api/place/photo?maxheight=100&photoreference=
                                 ${school.photos[0].photo_reference}&key=${googleKey}`}
                                 className='modalImage'></img><br></br>
-                                Rating:{school.rating} {star.repeat(Math.round(school.rating))}{empty.repeat(5-Math.round(school.rating))}<br/>
+                                <b>Rating:</b> {school.rating} {star.repeat(Math.round(school.rating))}{empty.repeat(5-Math.round(school.rating))}<br/>
                             </div>
                         )
                     })}

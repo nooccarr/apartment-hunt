@@ -1,10 +1,4 @@
-@font-face {
-  font-family: "comic-sans";
-  src: url('../../pages/styles/fonts/LDFComicSans.otf') format("opentype");
-  font-style: normal;
-}
-
-$text: 'comic-sans';
+$text: helvetica;
 
 .results {
   grid-row: 2;
@@ -19,7 +13,8 @@ $text: 'comic-sans';
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  // align-items: flex-start;
   overflow: scroll;
 
   .listing {
