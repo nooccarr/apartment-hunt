@@ -8,6 +8,7 @@ import DoneIcon from '@material-ui/icons/Done';
 const UploadListing = ({ searchValue, setSearchValue }) => {
   const [agent, setAgent] = useState('');
   const [url, setUrl] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
   const [listing, setListing] = useState({
     address: '',
     listingName: '',
@@ -79,6 +80,7 @@ const getPos = async (e) => {
       console.log(listing);
       axios.post('http://localhost:3000/listing', listing)
       .then(() => {
+          setIsSuccess(true);
           console.log("success meow!");
       })
       .catch((err) => {
@@ -134,6 +136,7 @@ const getPos = async (e) => {
       <div className='bottomContainer'>
           <div >
               <h2 className="aptForm">UPLOAD APARTMENT LISTING</h2>
+              {isSuccess && <p style={{'color':'green'}}>Your upload is successful!</p>}
           <form className="listingForm">
           <div>
                   <label>City: </label>
@@ -203,9 +206,6 @@ const getPos = async (e) => {
               </div>
               <div>
                   <VideoUpload setVideoName={updateVideo} />
-                  <label>Videos: </label>
-                  <input type="url" id="vidIn" name="videos" onChange={handleUrl}></input>
-                  <input className='submitButton' type="submit" value="Submit" name="videos" onClick={addUrl}></input>
 
               </div>
               <input id='finalSubmit' type="submit" value="Submit Listing" onClick={handleSubmit}></input>
