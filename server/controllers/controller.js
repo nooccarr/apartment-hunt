@@ -135,7 +135,7 @@ const applicants = (req, res) => {
 
 /*****
 
-Query for users by usernam
+Query for users by username
 
 *****/
 
@@ -244,9 +244,6 @@ module.exports = {
   apt,
   signout,
   applicants,
-<<<<<<< HEAD
-  userController
-=======
+  userController,
   addVideo
->>>>>>> staging
 };
