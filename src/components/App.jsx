@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PrivateRoute from './Authentication/Auth/PrivateRoute';
 import { ApartmentContext } from './HomePage/ApartmentContext';
-import { AuthContext } from './Authentication/Auth/AuthContext';
-import { HomeLogin, UserProfile, AdminPortal } from './pages/index';
+import { HomeLogin, AdminPortal } from './pages/index';
 import Overview from './overview/Overview.jsx';
 import UploadListing from './Agent/UploadListing';
-
+import Navigation from './overview/navigation';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -35,11 +33,12 @@ const App = () => {
 
   return (
     <div>
+      <Navigation user={user} getUserInfo={getUserInfo} />
       <ApartmentContext.Provider value={{listings, getListings, coordinates, setCoordinates}}>
         <Router>
           <Switch>
             <Route exact path='/'>
-              <HomeLogin user={user} getUserInfo={getUserInfo} />
+              <HomeLogin user={user} />
             </Route>
             <Route exact path='/admin-dashboard'>
               <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
