@@ -9,29 +9,28 @@
     font-style: normal;
   }
 
-  $color: #ffebea;
-$text: 'comic-sans';
+  $color: rgb(245, 31, 156);
 
         .aptForm {
             margin-left: 2%;
             grid-row: 1;
             font-size: 30px;
-            font-family: $text;
+            font-family: Arial, Helvetica, sans-serif;
         }
         .listingForm {
             grid-row: 2;
             margin-left: 15%;
             margin-top: 5%;
-            font-family: $text;
+            font-family: Arial, Helvetica, sans-serif;
         }
 .submitButton{
-    font-family: $text;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: $color;
 }
 
 #finalSubmit{
     margin-top: 1%;
-    font-family: $text;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: $color;
     font-size: 22px;
     margin-left: 25%;
@@ -39,10 +38,10 @@ $text: 'comic-sans';
 
 .yesButton {
     background-color: green;
-    font-family: $text;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .noButton {
-    font-family: $text;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: red;
 }

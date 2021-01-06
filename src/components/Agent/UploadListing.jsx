@@ -139,7 +139,6 @@ const addUrl = (e) => {
           </div>*/
   return (
     <div className='main'>
-      <TopBanner searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className='bottomContainer'>
           <div >
               <h2 className="aptForm">UPLOAD APARTMENT LISTING</h2>
