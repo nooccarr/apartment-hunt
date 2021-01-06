@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import '../SearchResults/styles.scss';
+//import './uploadlisting.scss';
 import TopBanner from '../SearchResults/TopBanner';
 import axios from 'axios';
+import DoneIcon from '@material-ui/icons/Done';
 
 const UploadListing = ({ searchValue, setSearchValue }) => {
-    const [url, setUrl] = useState('');
+  const [agent, setAgent] = useState('');
+  const [url, setUrl] = useState('');
   const [listing, setListing] = useState({
     address: '',
-    applicants: [],
     listingName: '',
     state: 'NY',
     zipCode: '',
@@ -43,7 +44,8 @@ const addUrl = (e) => {
     }
   };
 
-const getPos = async () => {
+const getPos = async (e) => {
+    e.preventDefault();
     // converts location value to coordinates for API call
     let address = `${listing.address}, ${listing.city}, NY, USA`;
     const results = await geocodeByAddress(address);
@@ -55,6 +57,10 @@ const getPos = async () => {
   const handleChange = (e) => {
       setListing(prevState => ({...prevState, [e.target.name]: e.target.value}));
   };
+
+  const agentChange = (e) => {
+      setAgent(e.target.value);
+  }
 
   const handleUrl = (e) => {
     e.preventDefault();
@@ -71,6 +77,25 @@ const getPos = async () => {
       .catch((err) => {
           console.log("Fail meow", err);
       })
+      setListing({
+        address: '',
+        listingName: '',
+        state: 'NY',
+        zipCode: '',
+        city: '',
+        country: 'USA',
+        description: '',
+        sqft: null,
+        neighborhoods: [],
+        position: {},
+        price: null,
+        pics: [],
+        videos: [],
+        pets: {dogs: false, cats: false},
+        beds: null,
+        baths: null,
+        agent: ''
+    });
   };
 
   
@@ -86,10 +111,22 @@ const getPos = async () => {
     }
   };
 
+
+  /*<div className='rightSide'>
+          <h2 className="appSearch">APPLICANT SEARCH</h2>
+          <div>
+              <form>
+                <label>Agent: </label>
+                <input type="text" name="agent" onChange={agentChange}></input>
+              </form>
+              </div>
+          </div>*/ 
   return (
     <div className='main'>
       <TopBanner searchValue={ searchValue } setSearchValue={ setSearchValue } />
       <div className='bottomContainer'>
+          <div >
+              <h2 className="aptForm">UPLOAD APARTMENT LISTING</h2>
           <form className="listingForm">
           <div>
                   <label>City: </label>
@@ -108,8 +145,7 @@ const getPos = async () => {
                   <input type="text" name="zipCode" onChange={handleChange}></input>
               </div>
               <div>
-                  <label>Get Position </label>
-                  <input type="button" name="getPos" value="get coordinates" onClick={getPos}></input>
+                  <button className='submitButton' onClick={getPos}>GET GEOLOCATION FOR MAPPING</button>
               </div>
               <div>
                   <label>Description: </label>
@@ -139,34 +175,36 @@ const getPos = async () => {
               <div>
               <div>PETS?</div>
                   <label>Cats? </label>
-                  <input type="button"  name="cats" value='yes' onClick={handlePets}></input><input type="button"  name="cats" value='no' onClick={handlePets}></input><br></br>
+                  <input className='yesButton' type="button"  name="cats" value='yes' onClick={handlePets}></input><input className='noButton' type="button"  name="cats" value='no' onClick={handlePets}></input><br></br>
                   <label>Dogs? </label>
-                  <input type="button"  name="dogs" value='yes'  onClick={handlePets}></input><input type="button"  name="dogs" value='no'  onClick={handlePets}></input><br></br>
+                  <input className='yesButton' type="button"  name="dogs" value='yes'  onClick={handlePets}></input><input className='noButton' type="button"  name="dogs" value='no'  onClick={handlePets}></input><br></br>
                 
               </div>
               <div>
                   
-                  <label>Neighborhoods (ADD BORROUGH TO HERE AS WELL): </label>
+                  <label>Neighborhoods (ADD BORROUGH TO HERE AS WELL, SUBMIT ONE AT A TIME): </label><br></br>
                   <input type="text" id="hoods" name="neighborhoods" onChange={handleUrl}></input>
-                  <input type="submit" value="Add" name="neighborhoods" onClick={addUrl}></input>
+                  <input className='submitButton' type="submit" value="Add" name="neighborhoods" onClick={addUrl}></input>
                   
               </div>
               <div>
                   
                   <label>Pictures: </label>
                   <input type="url" id="picIn" name="pics" onChange={handleUrl}></input>
-                  <input type="submit" value="Submit" name="pics" onClick={addUrl}></input>
+                  <input className='submitButton' type="submit" value="Submit" name="pics" onClick={addUrl}></input>
                   
               </div>
               <div>
                   
                   <label>Videos: </label>
                   <input type="url" id="vidIn" name="videos" onChange={handleUrl}></input>
-                  <input type="submit" value="Submit" name="videos" onClick={addUrl}></input>
+                  <input className='submitButton' type="submit" value="Submit" name="videos" onClick={addUrl}></input>
                 
               </div>
-              <input type="submit" value="Submit Listing" onClick={handleSubmit}></input>
+              <input id='finalSubmit' type="submit" value="Submit Listing" onClick={handleSubmit}></input>
           </form>
+          </div>
+          
         </div>
       </div>
   );

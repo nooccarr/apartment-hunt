@@ -17,7 +17,6 @@ const SearchBar = ({ searchValue, setSearchValue }) => {
         id='searchBar'
         defaultValue={ searchValue }
         onKeyPress={onSearchEnter}
-        // style={{backgroundImage: 'url(./images/search.png)' }} 
       />
     </div>
   );

@@ -117,3 +117,4 @@ database/dbconfig.js
 
 # google key
 src/components/overview/googleApi.js
+src/components/Agent/uploadlisting.scss

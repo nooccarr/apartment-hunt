@@ -2,6 +2,7 @@ import React from 'react';
 import sampleApts from './sampleData';
 import Restaurants from './Restaurants.jsx';
 import Schools from './Schools.jsx';
+import './detail.style.scss';
 
 class Description extends React.Component {
     constructor(props) {
