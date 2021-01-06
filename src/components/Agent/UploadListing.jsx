@@ -285,7 +285,6 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
           </form>
         </div>
       </div>
-    </div>
   );
 };
 
