@@ -69,7 +69,7 @@ app.get(
     console.log('jwt token', token);
     //res.send('verified');
 
-    res.redirect('http://localhost:3000/profile');
+    res.redirect('http://localhost:3000/');
   }
 );
 
