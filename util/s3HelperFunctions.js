@@ -45,7 +45,7 @@ const uploadFile = (fileName) => {
 
 const uploadVideo = (fileName) => {
   const params = {
-    Bucket: 'nate-pruitt-test-bucket-0001',
+    Bucket: 'hr-blue-ocean-video-file-bucket',
     Key: fileName.originalname,
     Body: fileName.buffer, // Can this be binary files? Does it have to be a buffer? S
     ContentType: 'video/mp4'
