@@ -123,3 +123,4 @@ database/dbconfig.js
 
 # google key
 src/components/overview/googleApi.js
+server/googleAuth/conf.js
