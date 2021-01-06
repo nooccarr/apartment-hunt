@@ -90,7 +90,7 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, user, admin, use
                               <Link to='/'> Logout</Link>
                             </span>
                           </button>
-                          {/* <div>{user.name}</div> */}
+                          <div>{user.name ? user.name : ''}</div>
                         </li>
                       </ul>
                     </div>

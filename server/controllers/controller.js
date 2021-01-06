@@ -340,5 +340,4 @@ module.exports = {
   conAgent,
   fetchMsgByChatRoom,
   addVideo,
-  userController,
 };

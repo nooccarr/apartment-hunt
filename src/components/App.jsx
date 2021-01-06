@@ -7,6 +7,8 @@ import ChatApp from './ChatBox/frontend/ChatApp.jsx'
 import AgentPortal from './Portal/AgentPortal.jsx'
 import UploadListing from './Agent/UploadListing.jsx';
 import Navigation from './overview/navigation.jsx';
+import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -16,8 +18,11 @@ const App = () => {
   const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    if (Cookies.get('jwt')) {
+      let token = jwtDecode(Cookies.get('jwt'));
+      getUserInfo(token.payload.username, token.payload.email);
+    }
+  }, []);
 
   const getUserInfo = (name, email) => {
     setUser({
@@ -54,7 +59,7 @@ let userLoggin = {
           <Router>
             <Switch>
               <Route exact path='/'>
-                <HomeLogin user={user} getUserInfo={getUserInfo} />
+                <HomeLogin user={user} />
               </Route>
               <Route exact path='/admin-dashboard'>
                 <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
