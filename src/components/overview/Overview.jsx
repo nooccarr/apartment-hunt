@@ -21,7 +21,6 @@ class Overview extends React.Component {
     render () {
         return (
         <div>
-            <Navigation/>
             {this.state.details === null ? null : <Album details={this.state.details}/>}
             <Description/>
         </div>

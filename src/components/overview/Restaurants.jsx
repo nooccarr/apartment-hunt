@@ -40,7 +40,7 @@ class Restaurants extends React.Component {
                             <img src={restaurant.photos === undefined ?
                             'https://visualsound.com/wp-content/uploads/2019/05/unavailable-image.jpg' :
                             `https://maps.googleapis.com/maps/api/place/photo?maxheight=100&photoreference=
-                            ${restaurant.photos[0].photo_reference}&key=${googleKey}`} 
+                            ${restaurant.photos[0].photo_reference}&key=${googleKey}`}
                             className='modalImage'></img><br></br>
                             Price Level:{money.repeat(restaurant.price_level)} <br></br>
                             Rating: {restaurant.rating} {star.repeat(Math.round(restaurant.rating))}{empty.repeat(5-Math.round(restaurant.rating))}<br></br>
