@@ -19,6 +19,9 @@ const jwt = require('jsonwebtoken');
 var JwTStrategy = require('passport-jwt').Strategy;
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const key = require('./googleAuth/conf');
+const Utils = require('./utils/auth');
+const User = require('./models/userModel');
 
 var opts = {};
 opts.jwtFromRequest = function (req) {
@@ -28,6 +31,68 @@ opts.jwtFromRequest = function (req) {
   }
   return token;
 };
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: key.google.clientID,
+      clientSecret: key.google.clientSecret,
+      callbackURL: '/auth/google/redirect',
+    },
+    (accessToken, refreshToken, profile, done) => {
+      console.log('access token: ', accessToken);
+      done(null, profile);
+    }
+  )
+);
+
+app.get(
+  '/auth/google',
+  passport.authenticate('google', {
+    scope: ['email'],
+    //scope: ["profile, email"]
+  }),
+  (req, res) => {}
+);
+
+app.get(
+  '/auth/google/redirect',
+  passport.authenticate('google', { session: false }),
+  (req, res) => {
+    console.log('from google', req.user);
+
+    let defaultUsername = req.user._json.email.substring(
+      0,
+      req.user._json.email.indexOf('@')
+    );
+
+    let googleUser = {
+      username: defaultUsername,
+      email: req.user._json.email,
+      provider: req.user.provider,
+    };
+
+    let token = Utils.newJWT(googleUser);
+
+    res.cookie('jwt', token);
+    console.log('jwt token', token);
+    //res.send('verified');
+
+    res.redirect('http://localhost:3000/');
+
+    User.create({
+      username: defaultUsername,
+      email: req.user._json.email,
+      password: 'google authenticated',
+    }).then(function (data) {
+      if (data) {
+        console.log('sign up test');
+        // res.redirect('/apartments');
+      }
+    });
+  }
+);
+
 opts.secretOrKey = 'secret';
 passport.use(
   new JwTStrategy(opts, function (jwt_payload, done) {
@@ -59,10 +124,21 @@ app.use(passport.initialize());
 //.session() for persistent login sessions
 //can probably disable
 app.use(passport.session());
+const {
+  saveMsg,
+  fetchChatsByUser,
+  fetchChatsByAgent,
+  conAgent,
+  // fetchMsgById,
+  fetchMsgByChatRoom,
+} = require('../src/components/chatbox/backend/chatboxDB.js');
 
 // Serve static assets from 'dist' folder
 app.use('(/apartment)?', express.static(path.join(__dirname, '../dist')));
+app.use('(/listings)?', express.static(path.join(__dirname, '../dist')));
+app.use('(/profile)?', express.static(path.join(__dirname, '../dist')));
 app.use('(/uploadlisting)?', express.static(path.join(__dirname, '../dist')));
+app.use('(/aboutus)?', express.static(path.join(__dirname, '../dist')));
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 app.use(cors());
@@ -93,8 +169,6 @@ app.get('/schools', function (req, res) {
       console.log(err.message);
     });
 });
-
-
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);

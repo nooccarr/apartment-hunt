@@ -15,6 +15,7 @@ class Overview extends React.Component {
         axios(`/apt${window.location.search}`).then(({data}) => {
             this.setState({details: data});
             console.log(data);
+            console.log(window.location);
         }).catch(() => console.log('No data'));
     }
 

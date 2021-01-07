@@ -41,6 +41,7 @@ const login = (req, res) => {
               let u = {
                 username: user.username,
                 email: user.email,
+                role: 'user',
               };
               let token = Utils.newJWT(u);
 
@@ -63,18 +64,51 @@ const login = (req, res) => {
 
 //*****************ADMIN-LOGIN********************/
 const loginAdmin = (req, res) => {
-  // bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
-  //   Admin.findOne({
-  //     email: req.body.email,
-  //     password: hash,
-  //   }).then(function (data) {
-  //     if (data) {
-  //       console.log('sign in admin');
-  //       // res.redirect('/apartments');
-  //     }
-  //   });
-  // });
-  res.sendStatus(200);
+  console.log('incoming email', req.body.email);
+
+  Admin.findOne({
+    email: req.body.email,
+  })
+    .then(function (user) {
+      if (!user) {
+        console.log('is there no user? ', user);
+        res.sendStatus(200);
+      } else {
+        bcrypt.compare(
+          req.body.password,
+          user.password,
+          function (err, result) {
+            console.log(result);
+            if (result === true) {
+              console.log(result);
+              console.log('successful login');
+
+              // let user = {
+              //   email: req.body.email, //or user.email
+              //   provider: 'standard login',
+              // };
+              let u = {
+                username: user.username,
+                email: user.email,
+                role: 'admin',
+              };
+              let token = Utils.newJWT(u);
+
+              res.cookie('jwt', token);
+              console.log('jwt token', token);
+              res.send('verified');
+              //res.redirect('/profile');
+            } else {
+              res.send('Incorrect password');
+              //res.redirect('/');
+            }
+          }
+        );
+      }
+    })
+    .catch((err) => {
+      console.log('err on lookup', err);
+    });
 };
 
 //*****************SIGN-UP********************/

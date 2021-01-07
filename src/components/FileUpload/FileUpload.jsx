@@ -6,11 +6,11 @@ import { Document, Page} from 'react-pdf/dist/umd/entry.webpack';
 import { faFileAlt } from '@fortawesome/free-regular-svg-icons'
 import css from './styles/styles.css'
 
-const FileUpload = ({username, apartment_id}) => {
+const FileUpload = ({username, apartment_id, setPhotosNames}) => {
   const fileInput = useRef(null)
   const [files, setFile] = useState([]);
-  const [sampleFile, setSamplefile] = useState('testDocument.pdf');
   const [uploadStatus, setUploadStatus] = useState('');
+  const AWSLink = 'https://hr-blue-ocean-photos-file-bucket.s3.us-east-2.amazonaws.com/'
 
   const updateFile = (e) => {
     // write code to prevent unneccessarily large megabyte files
@@ -26,20 +26,37 @@ const FileUpload = ({username, apartment_id}) => {
     // Change upload file to return a promise
     // Run 'Promise.all' to resolve when all are done resolving.
     var formData = new FormData();
+    var fileNames = [];
     files.forEach(file => {
       formData.append("files", file);
+      fileNames.push(AWSLink + file.name);
     });
-    axios.post(`/upload?username=${username}&apartment_id=${apartment_id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-        }
-    })
-    .then(() => {
-      setUploadStatus('success');
-    })
-    .catch(() => {
-      setUploadStatus('failure');
-    })
+    if (username && apartment_id) {
+      axios.post(`/upload?username=${username}&apartment_id=${apartment_id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+          }
+      })
+      .then(() => {
+        setUploadStatus('success');
+      })
+      .catch(() => {
+        setUploadStatus('failure');
+      })
+    } else {
+      axios.post('/photos', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+          }
+      })
+      .then(() => {
+        setPhotosNames(fileNames);
+        setUploadStatus('success');
+      })
+      .catch(() => {
+        setUploadStatus('failure');
+      })
+    }
   }
 
   const deleteFile = (name) => {

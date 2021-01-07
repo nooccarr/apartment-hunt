@@ -1,8 +1,8 @@
 $client-color: pink;
 $client-font: 'Palatino';
-// $client-font: 'comic-sans';
 
 @import 'fonts';
+@import 'colors';
 @import 'utils';
 @import 'searchbar';
 @import 'responsive';
@@ -23,6 +23,8 @@ body {
 }
 
 .homepage-container {
+  top: -130px;
+  position: relative;
 
   .container {
     position: relative;
@@ -45,7 +47,7 @@ body {
   }
 
   .Logo {
-    font-family: 'herbariumregular';
+    font-family: 'quentinregular';
     font-size: 5rem;
     line-height: 10rem;
     font-weight: lighter;

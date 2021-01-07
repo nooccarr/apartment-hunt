@@ -5,12 +5,16 @@ import PlacesAutoComplete, {
 } from 'react-places-autocomplete';
 import TopBanner from '../SearchResults/TopBanner';
 import VideoUpload from '../FileUpload/VideoUpload.jsx';
+import FileUploadOverlay from '../FileUpload/FileUploadOverlay.jsx';
 import axios from 'axios';
 import './uploadlisting.scss'
 
 const UploadListing = ({ searchValue, setSearchValue }) => {
   const [agent, setAgent] = useState('');
   const [url, setUrl] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isCatChecked, setCatChecked] = useState('no');
+  const [isDogChecked, setDogChecked] = useState('no')
   const [listing, setListing] = useState({
     address: '',
     listingName: '',
@@ -35,6 +39,13 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
     setListing((prevState) => ({
       ...prevState,
       ['videos']: [...prevState['videos'], videoName],
+    }));
+  };
+
+  const updatePhotos = (photos) => {
+    setListing((prevState) => ({
+      ...prevState,
+      ['pics']: [...prevState['pics'], ...photos],
     }));
   };
 
@@ -88,11 +99,13 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    getPos();
     console.log(listing);
     axios
       .post('http://localhost:3000/listing', listing)
       .then(() => {
-        console.log('success meow!');
+          setIsSuccess(true);
+          console.log("success meow!");
       })
       .catch((err) => {
         console.log('Fail meow', err);
@@ -121,18 +134,39 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
   const handlePets = (e) => {
     e.preventDefault();
     if (e.target.value === 'yes') {
+      if (e.target.name === 'cats') {
+        setCatChecked('yes');
+      }
+      if (e.target.name === 'dogs') {
+        setDogChecked('yes');
+      }
       setListing((prevState) => ({
         ...prevState,
         pets: { ...prevState.pets, [e.target.name]: true },
       }));
     }
     if (e.target.value === 'no') {
+      if (e.target.name === 'cats') {
+        setCatChecked('no');
+      }
+      if (e.target.name === 'dogs') {
+        setDogChecked('no');
+      }
       setListing((prevState) => ({
         ...prevState,
         pets: { ...prevState.pets, [e.target.name]: false },
       }));
     }
   };
+
+  const deleteNeighborhood = (neighborhood) => {
+    var newNeighborhoods = listing['neighborhoods'];
+    newNeighborhoods = newNeighborhoods.filter((hood) => hood !== neighborhood)
+    setListing((prevState) => ({
+        ...prevState,
+        ['neighborhoods']: newNeighborhoods,
+      }));
+  }
 
   /*<div className='rightSide'>
           <h2 className="appSearch">APPLICANT SEARCH</h2>
@@ -144,98 +178,116 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
               </div>
           </div>*/
   return (
-    <div className='main'>
-      <div className='bottomContainer'>
+    <div className='main' style={{'overflow': 'scroll'}}  >
         <div>
           <h2 className='aptForm'>UPLOAD APARTMENT LISTING</h2>
+          {isSuccess && <p style={{'color':'green'}}>Your upload is successful!</p>}
           <form className='listingForm'>
             <div>
-              <label>City: </label>
-              <input type='text' name='city' onChange={handleChange}></input>
+              <div>City: </div>
+              <input className='upload-listing-textbox' type='text' name='city' onChange={handleChange}></input>
             </div>
             <div>
-              <label>Listing Name: </label>
-              <input
+              <div>Listing Name: </div>
+              <input className='upload-listing-textbox'
                 type='text'
                 name='listingName'
                 onChange={handleChange}></input>
             </div>
-            <div>
-              <label>Address(DO NOT ABBREVIATE STREET TYPE): </label>
-              <input type='text' name='address' onChange={handleChange}></input>
+            <div >
+              <div>Address (Do not abbreviate): </div>
+              <input className='upload-listing-textbox' type='text' name='address' onChange={handleChange}></input>
             </div>
             <div>
-              <label>Zip Code: </label>
-              <input type='text' name='zipCode' onChange={handleChange}></input>
+              <div>Zip Code: </div>
+              <input className='upload-listing-textbox' type='text' name='zipCode' onChange={handleChange}></input>
             </div>
             <div>
+
               <button className='submitButton' onClick={getPos}>
                 GET GEOLOCATION FOR MAPPING
               </button>
+              <div>
+                <div>Latitude</div>
+                <input type='text' className='upload-listing-textbox' value={!listing['position']['coordinates'] ? '' : listing['position']['coordinates'][0]}></input>
+              </div>
+              <div>
+                <div>Longitude</div>
+                <input type='text' className='upload-listing-textbox' value={!listing['position']['coordinates'] ? '' : listing['position']['coordinates'][1]}></input>
+              </div>
             </div>
             <div>
-              <label>Description: </label>
+              <div>Description: </div>
               <textarea name='description' onChange={handleChange}></textarea>
             </div>
 
             <div>
-              <label>Agent: </label>
-              <input type='text' name='agent' onChange={handleChange}></input>
+
+              <div>Agent: </div>
+              <input className='upload-listing-textbox' type='text' name='agent' onChange={handleChange}></input>
             </div>
             <div>
-              <label>Beds: </label>
-              <input type='number' name='beds' onChange={handleChange}></input>
+              <div>Beds: </div>
+              <input className='upload-listing-numberbox' type='number' name='beds' onChange={handleChange}></input>
             </div>
             <div>
-              <label>Baths: </label>
-              <input type='number' name='baths' onChange={handleChange}></input>
+              <div>Baths: </div>
+              <input className='upload-listing-numberbox' type='number' name='baths' onChange={handleChange}></input>
             </div>
             <div>
-              <label>Price: </label>
-              <input type='number' name='price' onChange={handleChange}></input>
+              <div>Price: </div>
+              <input className='upload-listing-numberbox' type='number' name='price' onChange={handleChange}></input>
             </div>
             <div>
-              <label>Square Feet: </label>
-              <input type='number' name='sqft' onChange={handleChange}></input>
+              <div>Square Feet: </div>
+              <input className='upload-listing-numberbox' type='number' name='sqft' onChange={handleChange}></input>
             </div>
             <div>
-              <div>PETS?</div>
-              <label>Cats? </label>
+              <div style={{'font-weight':'bold'}}>Pet Friendly?</div>
+              <div>Cats</div>
               <input
-                className='yesButton'
-                type='button'
+              id='catChoice1'
+                type='radio'
                 name='cats'
                 value='yes'
-                onClick={handlePets}></input>
+                checked={isCatChecked === 'yes'}
+                onChange={handlePets}></input>
+                <label for='catChoice1'>Yes</label>
               <input
-                className='noButton'
-                type='button'
+                id='catChoice2'
+                type='radio'
                 name='cats'
                 value='no'
-                onClick={handlePets}></input>
+                checked={isCatChecked === 'no'}
+                onChange={handlePets}></input>
+                <label for='catChoice2'>No</label>
               <br></br>
-              <label>Dogs? </label>
+              <div>Dogs</div>
               <input
-                className='yesButton'
-                type='button'
+                id='dogChoice1'
+                type='radio'
                 name='dogs'
                 value='yes'
-                onClick={handlePets}></input>
+                checked={isDogChecked === 'yes'}
+                onChange={handlePets}></input>
+                <label for='dogChoice1'>Yes</label>
               <input
-                className='noButton'
-                type='button'
+                id='dogChoice2'
+                type='radio'
                 name='dogs'
                 value='no'
-                onClick={handlePets}></input>
+                checked={isDogChecked === 'no'}
+                onChange={handlePets}></input>
+                <label for='dogChoice2'>No</label>
               <br></br>
             </div>
             <div>
-              <label>
-                Neighborhoods (ADD BORROUGH TO HERE AS WELL, SUBMIT ONE AT A
-                TIME):{' '}
-              </label>
+              <div>
+                Neighborhoods/Burrough (Click to delete):{' '}
+              </div>
               <br></br>
               <input
+              className='upload-listing-textbox'
                 type='text'
                 id='hoods'
                 name='neighborhoods'
@@ -245,36 +297,13 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
                 type='submit'
                 value='Add'
                 name='neighborhoods'
-                onClick={addUrl}></input>
+                onClick={addUrl}></input>{listing.neighborhoods.map((neighborhood) => (<span onClick={() => {deleteNeighborhood(neighborhood)}}>{neighborhood}, </span>))}
             </div>
             <div>
-              <label>Pictures: </label>
-              <input
-                type='url'
-                id='picIn'
-                name='pics'
-                onChange={handleUrl}></input>
-              <input
-                className='submitButton'
-                type='submit'
-                value='Submit'
-                name='pics'
-                onClick={addUrl}></input>
+              <FileUploadOverlay setPhotosNames={updatePhotos} />
             </div>
             <div>
               <VideoUpload setVideoName={updateVideo} />
-              <label>Videos: </label>
-              <input
-                type='url'
-                id='vidIn'
-                name='videos'
-                onChange={handleUrl}></input>
-              <input
-                className='submitButton'
-                type='submit'
-                value='Submit'
-                name='videos'
-                onClick={addUrl}></input>
             </div>
             <input
               id='finalSubmit'
@@ -283,7 +312,6 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
               onClick={handleSubmit}></input>
           </form>
         </div>
-      </div>
     </div>
   );
 };

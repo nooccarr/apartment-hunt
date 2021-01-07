@@ -24,7 +24,6 @@ class About extends React.Component {
   //   }
 
     return (
-
       <div>
      
           {/* <Navigation userLoggin={userLoggin}/> */}

@@ -264,7 +264,7 @@ class Description extends React.Component {
                         {'client' === 'client' ? 
                         <div onClick={this.contactAge} className='contactAgent'>Contact Agent</div> :
                         null}
-                        <FileUploadOverlay username={"username"} apartment_id={"5ff48f80f8d9ecaff9eb3545"} />
+                        <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
                     </div>
                 </div>
                 <div className='desContainer'>
