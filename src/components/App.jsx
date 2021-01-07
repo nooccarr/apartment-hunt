@@ -67,6 +67,8 @@ const App = () => {
   return (
     <div>
       <Navigation
+      setSearchValue={setSearchValue}
+      searchValue={searchValue}
         getAdminInfo={getAdminInfo}
         getUserInfo={getUserInfo}
         signOut={signOut}
