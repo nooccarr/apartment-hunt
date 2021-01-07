@@ -51,10 +51,9 @@ const Navigation = ({
   const checkCurrentRole = () => {
     if (Cookies.get('jwt')) {
       let token = jwtDecode(Cookies.get('jwt'));
-
       if (
         token.payload.role === 'client' ||
-        token.payload.provider === 'google'
+        token.payload.provider === 'google' || token.payload.role === 'user'
       ) {
         return (
           <li className='chatButton'>
@@ -88,7 +87,7 @@ const Navigation = ({
           </li>
         );
       } else {
-        return <div>''</div>;
+        return <div></div>;
       }
     }
   };
@@ -113,7 +112,6 @@ const Navigation = ({
                   </div>
                 )}
               </div>
-
               <div className='navigation-search-bar'>
                 <div className='col-2-3'>
                   <div className='menu'>
