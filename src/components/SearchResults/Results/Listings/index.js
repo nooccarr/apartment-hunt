@@ -3,17 +3,9 @@ import Photos from './Photos/index';
 
 const Listings = ({listing: { pics, price, beds, baths, sqft, address, city, state, _id}}) => {
 
-  const arrowsOrNot = (e) => {
-    if (e.target.className !== 'arrows') {
-      window.history.pushState({path: `/apartment?id=${_id}`}, '', `/apartment?id=${_id}`);
-      window.location.reload(false);
-    }
-  };
-
-
   if (address) {
     return (
-      <div className='listing' onClick={(e) => arrowsOrNot(e)}>
+      <div className='listing' onClick={(e) => e.target.className !== 'arrows' ? window.history.pushState({path: `/apartment?id=${_id}`}, '', `/apartment?id=${_id}`) &  window.location.reload(false): null}>
         <Photos pics={ pics } />
         <div className='listingInfo'>
           <div className='price'>${ price }</div>
