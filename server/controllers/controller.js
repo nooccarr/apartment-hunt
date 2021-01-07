@@ -279,7 +279,7 @@ const listing = (req, res) => {
 //////////////////////////////////CHATBOX Controller//////////////////////////////////////
 const conAgent = (req, res) => {
   return ChatMessage.findOne(
-    { address: req.body.address, userName: req.body.userName },
+    { address: req.body.address, userEmail: req.body.userEmail },
     function (err, data) {
       if (data) {
         return;
@@ -318,7 +318,8 @@ const saveMsg = (req, res) => {
 };
 
 const fetchChatsByUser = (req, res) => {
-  return ChatMessage.find({ userName: req.query.userName })
+  console.log('jiefbn', req.query);
+  return ChatMessage.find({ userEmail: req.query.userEmail })
     .sort('-lastUpdate')
     .exec()
     .then((result) => {
@@ -331,7 +332,7 @@ const fetchChatsByUser = (req, res) => {
 };
 
 const fetchChatsByAgent = (req, res) => {
-  return ChatMessage.find({ agentName: req.query.userName })
+  return ChatMessage.find({ agentEmail: req.query.agentEmail })
     .sort('-lastUpdate')
     .exec()
     .then((result) => {

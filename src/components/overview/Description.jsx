@@ -57,13 +57,15 @@ class Description extends React.Component {
         return axios.post('/chatRoom', {
             aptId: this.props.details._id,
             address: this.props.details.address,
-            userName: 'FreddieMercury',
+            userName: this.props.user.name,
+            userEmail: this.props.user.email,
             agentName: this.props.details.agent,
+            agentEmail: this.props.details.email,
             messages: [],
         }).then(() => {
             return axios.get(`/msg/client`, {
                 params: {
-                    userName: 'FreddieMercury'
+                    userEmail: this.props.user.email
                 }
             })
         }).then(({ data }) => {
@@ -91,7 +93,7 @@ class Description extends React.Component {
         return axios.get('/chatRoom', { 
             params: {
                 address: this.props.details.address,
-                userName: 'FreddieMercury',
+                userName: this.props.user.name,
             }
         }).then(({ data }) => {
             // console.log('chatHist', this.state.chatHist)
@@ -277,7 +279,7 @@ class Description extends React.Component {
                 {this.diningModal()}
                 {this.schoolsModal()}
                 {this.crimeModal()}
-                {this.props.texts === 'conAge' ? <Texts chatBox={this.state.chatHist[this.state.idx]} updateConvo={this.updateConvo} chatId={this.state.chatId} loggedIn={{name: 'FreddieMercury', email: 'FreddieMercury@gmail.com', role: 'client'}} exitChat={this.exitChat}/> : null}
+                {this.props.texts === 'conAge' ? <Texts chatBox={this.state.chatHist[this.state.idx]} updateConvo={this.updateConvo} chatId={this.state.chatId} loggedIn={this.props.user} exitChat={this.exitChat}/> : null}
             </>
         )
     }

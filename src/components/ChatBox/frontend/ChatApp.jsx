@@ -31,13 +31,19 @@ const ChatApp = (props) => {
   }
 
   useEffect(() => {
-    return axios
-      .get(`/msg/client`, {
-        params: {
-          userName: props.user.name,
-        },
-      })
-  }, [textUpdate])
+    console.log('props', props)
+    if (props.user.hasOwnProperty('email')) {
+      console.log('props.user', props.user)
+      return axios
+        .get(`/msg/client`, {
+          params: {
+            userEmail: props.user.email,
+          },
+        }).then(({ data }) => {
+          setChatHist(data)
+        })
+    }
+  }, [textUpdate, props.user])
 
 
   // useEffect(() => {
@@ -47,7 +53,7 @@ const ChatApp = (props) => {
   // }, [])
 
   useEffect(() => {
-    console.log('chatHist[i].chatId', chatHist)
+    console.log('chatHist', chatHist)
     console.log('props.chatKey', props.chatKey)
     if (chatHist.length > 0) {
       for (let i = 0; i < chatHist.length; i++) {
@@ -96,10 +102,11 @@ const ChatApp = (props) => {
   
   return (
     <div>
+      {console.log('props.convos', props.convos)}
       <div>
         {props.convos ? <Convos chatHistory={chatHist} selectConvo={selectConvo} /> : null}
-        {props.texts === 'nav' ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={props.userLoggin}/> : null}
-        {props.texts === 'alt' ? <Texts chatBox={currChatRoom} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={props.userLoggin}/> : null}
+        {props.texts === 'nav' ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={props.user}/> : null}
+        {props.texts === 'alt' ? <Texts chatBox={currChatRoom} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={props.user}/> : null}
       </div>
     </div>
   );

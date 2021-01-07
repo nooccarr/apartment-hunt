@@ -22,7 +22,7 @@ const AgentPortal = (props) => {
     return axios
       .get(`/msg/agent`, {
         params: {
-          userName: props.admin.name,
+          userName: props.admin.email,
         },
       })
       .then(({ data }) => {
@@ -172,7 +172,7 @@ const AgentPortal = (props) => {
           padding: '25px',
         }}>
         <h2>Document Upload</h2>
-        <AppliedApartments agentName='Noah Sondheim' />
+        <AppliedApartments agentName={props.admin} />
       </div>
       {texts ? (
         <Texts
@@ -180,7 +180,7 @@ const AgentPortal = (props) => {
           exitChat={exitChat}
           updateConvo={updateConvo}
           chatId={chatId}
-          loggedIn={props.userLoggin}
+          loggedIn={props.admin}
         />
       ) : null}
     </div>

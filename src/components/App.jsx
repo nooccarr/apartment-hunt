@@ -72,17 +72,21 @@ const App = () => {
     });
   };
 
-  let userLoggin = {
-    name: 'FreddieMercury',
-    email: 'FreddieMercury@gmail.com',
-    role: 'client'
-  }
+  // let userLoggin = {
+  //   name: 'FreddieMercury',
+  //   email: 'FreddieMercury@gmail.com',
+  //   role: 'client'
+  // }
 
 // let userLoggin = {
 //     name: 'Shotaro Tanaka',
 //     email: 'Shotaro Tanaka@gmail.com',
 //     role: 'agent'
 //   }
+
+  const switchChat = (key) => {
+    setTexts(key)
+  } 
 
   return (
     <div>
@@ -113,12 +117,12 @@ const App = () => {
               <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
             </Route>
             <Route exact path='/apartment'>
-              <Overview switchChat={switchChat} texts={texts}/>
+              <Overview switchChat={switchChat} texts={texts} user={user}/>
             </Route>
             <Route exact path='/uploadlisting' component={UploadListing} />
             <Route exact path='/aboutus' component={About} />
             <Route exact path='/aportal'>
-              <AgentPortal admin={admin} user={user} />
+              <AgentPortal admin={admin} />
             </Route>
           </Switch>
         </Router>
