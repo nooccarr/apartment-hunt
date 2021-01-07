@@ -81,12 +81,30 @@ export default [
       ]
   },
   {
+    "featureType": "transit.line",
+    "elementType": "geometry.fill",
+    "stylers": [
+        {
+            "color": "#ffccff"
+        }
+        ]
+    },
+    {
+    "featureType": "transit.station.rail",
+    "elementType": "labels.text.fill",
+    "stylers": [
+        {
+            "color": "#003366"
+        }
+        ]
+    },
+    {
     "featureType": "water",
     "elementType": "geometry",
     "stylers": [
         {
             "color": "#b3daff"
         }
-    ]
-  },
+        ]
+    },
 ]

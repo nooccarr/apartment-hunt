@@ -37,6 +37,7 @@ const App = () => {
   }, []);
 
   const signOut = () => {
+    window.location.href = '/';
     setUser({});
     setAdmin({});
   };
@@ -63,18 +64,11 @@ const App = () => {
   //   role: 'client'
   // }
 
-  let userLoggin = {
-    name: 'laura90',
-    email: 'laura90@gmail.com',
-    role: 'agent',
-  };
-
   return (
     <div>
       <Navigation
         getAdminInfo={getAdminInfo}
         getUserInfo={getUserInfo}
-        userLoggin={userLoggin}
         signOut={signOut}
         user={user}
         admin={admin}
@@ -101,7 +95,7 @@ const App = () => {
             <Route exact path='/uploadlisting' component={UploadListing} />
             <Route exact path='/aboutus' component={About} />
             <Route exact path='/aportal'>
-              <AgentPortal admin={admin} userLoggin={userLoggin} />
+              <AgentPortal admin={admin} user={user} />
             </Route>
           </Switch>
         </Router>
