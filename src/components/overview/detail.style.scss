@@ -12,6 +12,7 @@
     display: flex;
     padding: 20px;
     bottom: 0px;
+    height: 100px
     // left: 200px;
     // background-color: white;
   }
@@ -137,6 +138,7 @@
     position: relative;
     bottom: 25px;
     left: 0px;
+    width: 800px;
     height: 10px;
   }
   
@@ -166,7 +168,8 @@
     order: 0;
     flex: 3 1 auto;
     align-self: auto;
-    font-size: 25px;
+    font-size: 18px;
+    width: 700px;
     border: 2px solid $mid-pink
   }
   
@@ -251,7 +254,7 @@
 
   .neighborhoodDes {
       font-family: Arial, Helvetica, sans-serif;
-      color: $mid-pink;
+      color: black;
   }
 
   #crimeometer-container {
@@ -268,4 +271,16 @@
     position: relative;
     right: 0px;
     width: 1400px;
+    height: 0px
+  }
+
+  .twoButtons1 {
+      position: relative;
+      left: 680px;
+      bottom: 150px;
+  }
+
+  .twoButtons2 {
+      position: relative;
+      bottom: 400px;
   }
