@@ -5,7 +5,6 @@ import PlacesAutoComplete, {
 } from 'react-places-autocomplete';
 import TopBanner from '../SearchResults/TopBanner';
 import VideoUpload from '../FileUpload/VideoUpload.jsx';
-import PhotoUpload from '../FileUpload/PhotoUpload.jsx';
 import FileUploadOverlay from '../FileUpload/FileUploadOverlay.jsx';
 import axios from 'axios';
 import './uploadlisting.scss'
