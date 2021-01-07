@@ -6,6 +6,7 @@ import PlacesAutoComplete, {
 import TopBanner from '../SearchResults/TopBanner';
 import VideoUpload from '../FileUpload/VideoUpload.jsx';
 import PhotoUpload from '../FileUpload/PhotoUpload.jsx';
+import FileUploadOverlay from '../FileUpload/FileUploadOverlay.jsx';
 import axios from 'axios';
 import './uploadlisting.scss'
 
@@ -42,6 +43,13 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
     }));
   };
 
+  const updatePhotos = (photos) => {
+    setListing((prevState) => ({
+      ...prevState,
+      ['pics']: [...prevState['pics'], ...photos],
+    }));
+  };
+
   const addUrl = (e) => {
     e.preventDefault();
     setListing((prevState) => ({
@@ -62,7 +70,7 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
   };
 
   const getPos = async (e) => {
-    //e.preventDefault();
+    e.preventDefault();
     // converts location value to coordinates for API call
     let address = `${listing.address}, ${listing.city}, NY, USA`;
     const results = await geocodeByAddress(address);
@@ -188,7 +196,7 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
                 onChange={handleChange}></input>
             </div>
             <div >
-              <div>Address(Do not abbreviate): </div>
+              <div>Address (Do not abbreviate): </div>
               <input className='upload-listing-textbox' type='text' name='address' onChange={handleChange}></input>
             </div>
             <div>
@@ -196,11 +204,18 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
               <input className='upload-listing-textbox' type='text' name='zipCode' onChange={handleChange}></input>
             </div>
             <div>
-              {/*
+
               <button className='submitButton' onClick={getPos}>
                 GET GEOLOCATION FOR MAPPING
               </button>
-              */}
+              <div>
+                <div>Latitude</div>
+                <input type='text' className='upload-listing-textbox' value={!listing['position']['coordinates'] ? '' : listing['position']['coordinates'][0]}></input>
+              </div>
+              <div>
+                <div>Longitude</div>
+                <input type='text' className='upload-listing-textbox' value={!listing['position']['coordinates'] ? '' : listing['position']['coordinates'][1]}></input>
+              </div>
             </div>
             <div>
               <div>Description: </div>
@@ -286,7 +301,7 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
                 onClick={addUrl}></input>{listing.neighborhoods.map((neighborhood) => (<span onClick={() => {deleteNeighborhood(neighborhood)}}>{neighborhood}, </span>))}
             </div>
             <div>
-              <PhotoUpload />
+              <FileUploadOverlay setPhotosNames={updatePhotos} />
             </div>
             <div>
               <VideoUpload setVideoName={updateVideo} />
