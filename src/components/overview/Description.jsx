@@ -154,7 +154,11 @@ class Description extends React.Component {
             <>
                 <div className='desMain'>
                     <div className='desDetail'>
-                        <div className='desAddress'>{this.props.details.address}, {this.props.details.city}, {this.props.details.state}, {this.props.details.zipCode}</div>
+                        <div className='desAddress'>
+                            {this.props.details.address}, {this.props.details.city}, {this.props.details.state}, {this.props.details.zipCode}
+                            <button className='contactAgent'>Contact Agent</button>
+                            <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
+                            </div>
                         <div className='desAptDet'>
                             <div className='desEle1'>${this.props.details.price}/Month</div>
                             <div className='desEle2'>Bedrooms:{this.props.details.beds}</div>
@@ -162,10 +166,10 @@ class Description extends React.Component {
                         </div>
                         <div className='desDes'>{this.props.details.description}</div>
                     </div>
-                    <div className='desAct'>
+                    {/* <div className='desAct'>
                         <button className='contactAgent'>Contact Agent</button>
                         <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
-                    </div>
+                    </div> */}
                 </div>
                 <div className='desContainer'>
                     <img src='./neighborhood.png' className='criteria' onClick={() => {this.flipAreaModal()}}></img>
