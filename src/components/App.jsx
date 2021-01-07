@@ -37,6 +37,7 @@ const App = () => {
   }, []);
 
   const signOut = () => {
+    window.location.href = '/';
     setUser({});
     setAdmin({});
   };
