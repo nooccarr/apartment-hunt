@@ -9,7 +9,7 @@ import '../styles/signin.css';
 import jwtDecode from 'jwt-decode';
 import Cookies from 'js-cookie';
 
-const Signin = ({ handleSignUp, openModal, getUserInfo }) => {
+const Signin = ({ handleSignUp, openModal, getUserInfo, getAdminInfo }) => {
   const [adminClicked, setAdminClicked] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -43,8 +43,17 @@ const Signin = ({ handleSignUp, openModal, getUserInfo }) => {
         password,
       })
       .then((res) => {
-        openModal(false);
-        console.log(res);
+        if (res.data === 'verified') {
+          openModal(false);
+          let token = jwtDecode(Cookies.get('jwt'));
+          getAdminInfo(token.payload.username, token.payload.email);
+        } else {
+          openModal(false);
+          setNotValid(true);
+        }
+      })
+      .catch((err) => {
+        console.log('is there error in promise', err);
       });
   };
 
@@ -69,7 +78,7 @@ const Signin = ({ handleSignUp, openModal, getUserInfo }) => {
           onChange={(e) => setUserPassword(e.target.value)}
         />
         <Router>
-          <Link to='/profile'>
+          <Link to='/profile' style={{ textDecoration: 'none' }}>
             <Button
               className='login-btn'
               variant='contained'
@@ -87,12 +96,16 @@ const Signin = ({ handleSignUp, openModal, getUserInfo }) => {
               className='login-btn'
               variant='contained'
               startIcon={<FcGoogle className='google-icon' />}>
-              <a href='/auth/google'>Login with Google</a>
+              <a
+                href='/auth/google'
+                style={{ textDecoration: 'none', color: '#fff' }}>
+                Login with Google
+              </a>
             </Button>
           </div>
           <div className='back-signin'>
             <Router>
-              <Link to='/admin-dashboard'>
+              <Link to='/admin-dashboard' style={{ textDecoration: 'none' }}>
                 <Button
                   className='admin-link-btn'
                   variant='contained'

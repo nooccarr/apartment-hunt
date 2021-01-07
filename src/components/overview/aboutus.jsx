@@ -8,13 +8,25 @@ class About extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  
   render() {
+    let userLoggin = {
+      name: 'Lonnie567',
+      email: 'Lonnie567@gmail.com',
+      role: 'client'
+    }
+  
+  // let userLoggin = {
+  //     name: 'laura90',
+  //     email: 'laura90@gmail.com',
+  //     role: 'agent'
+  //   }
 
     return (
-
       <div>
      
-          <Navigation/>
+          {/* <Navigation userLoggin={userLoggin}/> */}
       
         <div className="about-us-container">
         this is aboutus

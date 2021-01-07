@@ -1,11 +1,9 @@
 
-const { uploadFile, getFile, decryptMessage, uploadVideo} = require('../../util/s3HelperFunctions.js');
+const { uploadFile, getFile, decryptMessage, uploadVideo, uploadPhoto} = require('../../util/s3HelperFunctions.js');
 const { updateUserDocs } = require('../controllers/updateUserDocs.js');
 const { updateApartmentApplicant } = require('../controllers/updateApartmentApplicant.js');
 
 const downloadRoute = (req, res) => {
-  console.log('Request object', req);
-  console.log('Req file name: ', req.query.filename);
   getFile(req.query.filename)
   .then((data) => {
     data['Body'] = decryptMessage(data['Body']);
@@ -28,7 +26,7 @@ const uploadRoute = (req, res) => {
   //promises.push(updateUserDocs("username", fileNames));
   //promises.push(updateApartmentApplicant("5ff48f80f8d9ecaff9eb3545", "username"));
   promises.push(updateUserDocs(req.query.username, fileNames));
-  promises.push(updateApartmentApplicant(req.query.apartment_id, req.query.apartment_id));
+  promises.push(updateApartmentApplicant(req.query.apartment_id, req.query.username));
   Promise.all(promises)
   .then((result) => {
     res.sendStatus(200);
@@ -51,6 +49,23 @@ const videoRoute = (req, res) => {
   })
 }
 
+const uploadPhotosRoute = (req, res) => {
+  // route ONLY needs to go to S3 bucket
+  var promises = [];
+  req.files.forEach((photo) => {
+    promises.push(uploadPhoto(photo));
+  })
+  Promise.all(promises)
+  .then((result) => {
+    res.sendStatus(200);
+  })
+  .catch((err) => {
+    console.log("Error in post route! Errror: ", err);
+    res.sendStatus(500);
+  })
+}
+
 exports.downloadRoute = downloadRoute;
 exports.uploadRoute = uploadRoute;
 exports.videoRoute = videoRoute;
+exports.uploadPhotosRoute = uploadPhotosRoute;

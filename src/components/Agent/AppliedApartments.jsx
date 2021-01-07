@@ -1,23 +1,30 @@
-import React, {useEffect, useState} from 'react'
-import axios from 'axios'
-import ApplicantListContainer from './ApplicantListContainer.jsx'
-import css from '../FileUpload/styles/styles.css'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import ApplicantListContainer from './ApplicantListContainer.jsx';
+import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
+import css from '../FileUpload/styles/styles.css';
 
-
-const AppliedApartments = ({agentName}) => {
-
+const AppliedApartments = ({ agentName }) => {
   var [apartmentsApplied, setApartmentsApplied] = useState([]);
 
   useEffect(() => {
-    axios.get(`/applicants?agent=${agentName}`)
-    .then(({data}) => {
-      console.log(data);
-      setApartmentsApplied(data);
-    })
-    .catch((err) => {
-      console.log("Error in fetching apartments by agent! Error: ", err);
-    })
-  }, [])
+    let token = jwtDecode(Cookies.get('jwt'));
+
+    if (token.payload.role !== 'admin') {
+      return (window.location.href = '/');
+    } else {
+      axios
+        .get(`/applicants?agent=${agentName}`)
+        .then(({ data }) => {
+          console.log(data);
+          setApartmentsApplied(data);
+        })
+        .catch((err) => {
+          console.log('Error in fetching apartments by agent! Error: ', err);
+        });
+    }
+  }, []);
 
   return (
     <div>
@@ -25,7 +32,7 @@ const AppliedApartments = ({agentName}) => {
         <ApplicantListContainer apartment={apartment} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default AppliedApartments
+export default AppliedApartments;

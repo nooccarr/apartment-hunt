@@ -6,20 +6,11 @@ const HomeLogin = ({ user, getUserInfo }) => {
   const [searchValue, setSearchValue] = useState('');
 
   return (
-    <>
-      {searchValue ? (
-        <SearchResults
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-        />
-      ) : (
         <HomePage
           setSearchValue={setSearchValue}
           user={user}
           getUserInfo={getUserInfo}
         />
-      )}
-    </>
   );
 };
 
