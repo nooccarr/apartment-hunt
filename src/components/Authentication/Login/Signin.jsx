@@ -78,7 +78,7 @@ const Signin = ({ handleSignUp, openModal, getUserInfo, getAdminInfo }) => {
           onChange={(e) => setUserPassword(e.target.value)}
         />
         <Router>
-          <Link to='/profile'>
+          <Link to='/profile' style={{ textDecoration: 'none' }}>
             <Button
               className='login-btn'
               variant='contained'
@@ -96,12 +96,16 @@ const Signin = ({ handleSignUp, openModal, getUserInfo, getAdminInfo }) => {
               className='login-btn'
               variant='contained'
               startIcon={<FcGoogle className='google-icon' />}>
-              <a href='/auth/google'>Login with Google</a>
+              <a
+                href='/auth/google'
+                style={{ textDecoration: 'none', color: '#fff' }}>
+                Login with Google
+              </a>
             </Button>
           </div>
           <div className='back-signin'>
             <Router>
-              <Link to='/admin-dashboard'>
+              <Link to='/admin-dashboard' style={{ textDecoration: 'none' }}>
                 <Button
                   className='admin-link-btn'
                   variant='contained'
