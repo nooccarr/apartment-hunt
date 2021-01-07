@@ -56,7 +56,7 @@ class Description extends React.Component {
                 <div id="diningModal" className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={() => {this.flipDiningModal()}}>&times;</span>
-                        <Restaurants location={sampleApts[1]}/>
+                        <Restaurants location={this.props.details}/>
                     </div>
                 </div>
             )
@@ -89,7 +89,7 @@ class Description extends React.Component {
                 <div id="schoolsModal" className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={() => {this.flipSchoolsModal()}}>&times;</span>
-                        <Schools location={sampleApts[1]}/>
+                        <Schools location={this.props.details}/>
                     </div>
                 </div>
             )
@@ -122,7 +122,7 @@ class Description extends React.Component {
                 <div id="crimeModal" className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={() => {this.flipCrimeModal()}}>&times;</span>
-                        <CrimeMap location={sampleApts[1]}/>
+                        <CrimeMap location={this.props.details}/>
                     </div>
                 </div>
             )
@@ -154,13 +154,13 @@ class Description extends React.Component {
             <>
                 <div className='desMain'>
                     <div className='desDetail'>
-                        <div className='desAddress'>{sampleApts[1].address}, {sampleApts[1].city}, {sampleApts[1].state}, {sampleApts[1].zipCode}</div>
+                        <div className='desAddress'>{this.props.details.address}, {this.props.details.city}, {this.props.details.state}, {this.props.details.zipCode}</div>
                         <div className='desAptDet'>
-                            <div className='desEle1'>${sampleApts[1].price}/Month</div>
-                            <div className='desEle2'>Bedrooms:{sampleApts[1].beds}</div>
-                            <div className='desEle3'>Bathrooms:{sampleApts[1].baths}</div>
+                            <div className='desEle1'>${this.props.details.price}/Month</div>
+                            <div className='desEle2'>Bedrooms:{this.props.details.beds}</div>
+                            <div className='desEle3'>Bathrooms:{this.props.details.baths}</div>
                         </div>
-                        <div className='desDes'>{sampleApts[1].description}</div>
+                        <div className='desDes'>{this.props.details.description}</div>
                     </div>
                     <div className='desAct'>
                         <div className='contactAgent'>Contact Agent</div>

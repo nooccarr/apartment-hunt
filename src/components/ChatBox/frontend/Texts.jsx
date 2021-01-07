@@ -55,10 +55,10 @@ const Texts = (props) => {
       room: props.chatId,
       messageObj: {
         message: text,
-        sender: props.loggedIn.user
+        sender: props.loggedIn.name
     }})
     
-    storeMessageObj(props.chatBox.chatId, text, props.loggedIn.user)
+    storeMessageObj(props.chatBox.chatId, text, props.loggedIn.name)
 
     setText('')
   }
@@ -84,21 +84,21 @@ const Texts = (props) => {
       <button onClick={props.exitChat}>X</button>
       <div>{props.chatBox.address}</div>
       <div className='d-flex flex-grow-1 overflow-auto'>
-        <div style={{ maxHeight: '34vh', width: '24vh', marginRight: '7px' }}>
+        <div style={{ maxHeight: '34vh', width: '31vh', marginRight: '7px' }}>
           {props.chatBox.messages.map((messageObj, index) => (
           <div 
             key={index}
-            className={`my-1 d-flex flex-column ${props.loggedIn.user === messageObj.sender ? 'align-items-end' : 'align-items-start'} justified-content-end`}>
-              {(() => { if (messageObj.sender === props.loggedIn.user) {
+            className={`my-1 d-flex flex-column ${props.loggedIn.name === messageObj.sender ? 'align-items-end' : 'align-items-start'} justified-content-end`}>
+              {(() => { if (messageObj.sender === props.loggedIn.name) {
                 return (
                   <div className="text-right">
-                    <div className={'rounded px-2 py-1 bg-primary text-white'}>{messageObj.message}</div>
+                    <div style={{overflowWrap: 'anywhere', marginLeft: '50px'}} className={'rounded px-2 py-1 bg-primary text-white'}>{messageObj.message}</div>
                     <div className={'text-muted small'}>You</div>
                   </div>
                 )} else {
                   return (
                   <div>
-                    <div className={'rounded px-2 py-1 border'}>{messageObj.message}</div>
+                    <div style={{overflowWrap: 'anywhere', marginRight: '50px'}} className={'rounded px-2 py-1 border'}>{messageObj.message}</div>
                     <div className={'text-muted small'}>{messageObj.sender}</div>
                   </div>
                   )

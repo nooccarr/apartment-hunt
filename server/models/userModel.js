@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 let user = new Schema({
   id: Number,
   date: { type: Date, default: Date.now },
-  username: String,
+  username: { type: String, index: { unique: true } },
   email: { type: String, index: { unique: true } },
   password: String,
   documents: Array,
-  name: String
+  name: String,
 });
 
 let User = mongoose.model('user', user);

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// const db = mongoose.connect('mongodb://localhost/apartmentHunt', {promiseLibrary: global.Promise});
 
 const { user, password } = require('./dbconfig.js');
 const db = mongoose.connect(
@@ -7,6 +8,3 @@ const db = mongoose.connect(
 );
 
 module.exports = db;
-// const db = mongoose.connect('mongodb://localhost/apartmentHunt', {promiseLibrary: global.Promise});
-
-// module.exports = db;
