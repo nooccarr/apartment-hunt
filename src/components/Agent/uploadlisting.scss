@@ -15,7 +15,11 @@
         }
 .submitButton{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: $color;
+    background-color: deeppink;
+    color:white;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 #finalSubmit{
@@ -47,14 +51,16 @@ textarea {
     font-size: 16px;
     resize: none;
 }
-input[type=text] {
+
+.upload-listing-textbox {
     width: 10%;
     padding: 10px;
     box-sizing: border-box;
     border-radius: 10px
 }
 
-input[type=number] {
+
+.upload-listing-numberbox {
     width:5%;
     padding: 10px;
     box-sizing: border-box;
