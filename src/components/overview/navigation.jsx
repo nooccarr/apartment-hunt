@@ -47,7 +47,8 @@ const Navigation = ({
   };
 
   return (
-    <Router>
+    <div>
+      <Router>  {/* we should use the parent router */}
       <div>
       {window.location.pathname === '/' ? <div className='navheader_home'></div> : <div className='navheader'></div>}
          {/* <div className='navheader'> */}
@@ -78,10 +79,10 @@ const Navigation = ({
                         </a>
                       </li>
                       <li>
-                        {/* <a href='/aboutus' className='scroll'>
+                        <a href='/aboutus' className='scroll'>
                             About Us
-                          </a> */}
-                        <Link to='/aboutus'>About Us</Link>
+                          </a>
+                        {/* <Link to='/aboutus'>About Us</Link> */}
                       </li>
 
                       <li className='chatButton'>
@@ -192,7 +193,8 @@ const Navigation = ({
         />
       {/* </div> */}
       {window.location.pathname === '/' ? <div className='navheader_home'></div> : <div className='navheader_bottom'></div>}
-    </Router>
+    </Router> 
+    </div> 
   );
 };
 

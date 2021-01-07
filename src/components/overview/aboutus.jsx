@@ -28,10 +28,10 @@ class About extends React.Component {
      
           {/* <Navigation userLoggin={userLoggin}/> */}
       
-        <div className="about-us-container">
-        this is aboutus
+        {/* <div className="about-us-container">
         
-        <div>
+        
+         <div>
           <h2>Overview</h2>
           <p>Stunning Contemporary in the Murray Hill Estate area with dramatic street presence crafted by Scarsdale's most prestigious builder,  KOSL Building. Set on level, private .50 acre lot with room for a pool. Time to customize. Built with the highest quality materials and  craftsmanship, this five bedroom, five-and-a-half bathroom, 6,820 square feet, including a dramatic finished basement.  10' foot ceilings on the first floor, 9' foot ceilings on the second floor and lower level. Level back yard, room for pool (not included) and 2 car garage.</p>
           <h2>Facts and features</h2>
@@ -64,7 +64,7 @@ class About extends React.Component {
             <h4><a href="#">Consetetur sadipscing elitr nonumy</a></h4>
         </div>
   
-      </div>
+      </div>  */}
     </div>
 
     );

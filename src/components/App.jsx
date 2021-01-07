@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { ApartmentContext } from './HomePage/ApartmentContext.jsx';
 import { HomeLogin, AdminPortal } from './pages/index.jsx';
 import Overview from './overview/Overview.jsx';
@@ -71,6 +71,7 @@ const App = () => {
 
   return (
     <div>
+      
       <Navigation
         getAdminInfo={getAdminInfo}
         getUserInfo={getUserInfo}
@@ -81,7 +82,7 @@ const App = () => {
       />
       <ApartmentContext.Provider
         value={{ listings, getListings, coordinates, setCoordinates }}>
-        <Router>
+          <Router>  {/*  we wanna do client side routing  */}
           <Switch>
             <Route exact path='/'>
               <HomeLogin user={user} />
@@ -99,12 +100,12 @@ const App = () => {
               <Overview />
             </Route>
             <Route exact path='/uploadlisting' component={UploadListing} />
-            <Route exact path='/aboutus' component={About} />
+            <Route exact path='/aboutus' component={About} userLoggin={userLoggin}/>
             <Route exact path='/aportal'>
               <AgentPortal admin={admin} userLoggin={userLoggin} />
             </Route>
           </Switch>
-        </Router>
+          </Router>
       </ApartmentContext.Provider>
     </div>
   );
