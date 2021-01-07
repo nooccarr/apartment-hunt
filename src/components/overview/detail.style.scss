@@ -77,8 +77,6 @@
     width: 200px;
     font-size: 20px;
     border-radius: 30px;
-    left: 1000px;
-    top: -82px;
     // order: 0;
     // flex: 0 1 auto;
     // align-self: auto;
@@ -86,6 +84,10 @@
     margin-bottom: 20px;
     padding-top: 10px;
     text-align: center;
+  }
+
+  .contactAgent:hover {
+    cursor: pointer;
   }
   
   .subApp {
@@ -130,10 +132,8 @@
     justify-content: space-between;
     align-content: stretch;
     align-items: stretch;
-    position: relative;
     bottom: 25px;
     left: 0px;
-    width: 800px;
     height: 10px;
   }
   
