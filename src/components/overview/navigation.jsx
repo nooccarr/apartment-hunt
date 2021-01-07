@@ -13,6 +13,7 @@ import Cookies from 'js-cookie';
 import { Home } from '@material-ui/icons';
 import About from './aboutus.jsx';
 import UploadListing from '../Agent/UploadListing.jsx';
+import AgentPortal from '../Portal/AgentPortal.jsx';
 
 const Navigation = ({
   searchValue,
@@ -99,28 +100,16 @@ const Navigation = ({
                           </button>
                           <div id="agentPages" className="agentContent">
                             <p>
-
                               <Link to="/uploadlisting">Upload Listing</Link>
                             </p>
-                            <p
-                              onClick={() => {
-                                window.history.pushState(
-                                  { path: `/aportal` },
-                                  "",
-                                  `/aportal`
-                                );
-                                window.location.reload(false);
-                              }}
-                            >
-                              Agent Chat Portal
+                            <p>
+                              <Link to="/aportal">Agent Chat Portal</Link>
                             </p>
                           </div>
                         </div>
                       </li>
                       <li>
-                        <a href="/" className="scroll">
-                          Find Apartments
-                        </a>
+                        <a href="/">Find Apartments</a>
                       </li>
                       <li>
                         <Link to="/aboutus">About Us</Link>
@@ -221,6 +210,25 @@ const Navigation = ({
         <Route path="/aboutus">
           <About/>
         </Route>
+        <Route path="/aportal">
+          <AgentPortal/>
+        </Route>
+        <Route
+          path="/login"
+          render={(props) => {
+            <LoginModal
+              Login={
+                <Login
+                  openModal={openModal}
+                  getUserInfo={getUserInfo}
+                  getAdminInfo={getAdminInfo}
+                />
+              }
+              modalOpen={modalOpen}
+              openModal={openModal}
+            />;
+          }}
+        />
       </Switch>
     </Router>
   );
