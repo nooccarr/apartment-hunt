@@ -4,6 +4,7 @@ const {
   downloadRoute,
   uploadRoute,
   videoRoute,
+  uploadPhotosRoute,
 } = require('./fileUploadRoutes.js');
 const multer = require('multer');
 const upload = multer();
@@ -31,6 +32,7 @@ router.get('/download', downloadRoute);
 router.post('/upload', upload.any(), uploadRoute);
 router.post('/video', upload.any(), videoRoute);
 router.post('/addVideo', controller.addVideo);
+router.post('/photos', upload.any(), uploadPhotosRoute);
 
 //matt's test
 //8router.get('/login', controller.loginGet);

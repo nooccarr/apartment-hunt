@@ -9,15 +9,16 @@ File Upload/ Video Upload Fonts
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 .select-video-button {
-  color: #FF6EC7;
+  color: white;
   border: 1px solid pink;
   width: 100px;
   border-radius: 5px;
   padding: 10px;
-  background-color: deeppink
+  background-color: deeppink;
+  cursor: pointer;
 }
 .upload-video-button {
-  color:#FF6EC7;
+  color:white;
   border: 1px solid pink;
   border-radius: 5px;
   background-color: deeppink;
