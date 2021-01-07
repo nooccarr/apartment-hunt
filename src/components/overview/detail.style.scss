@@ -6,37 +6,33 @@
   }
   
   .desContainer {
-    position: relative;
+    width: 300px;
+    height: 300px;
+    position: absolute;
     margin-right: 0px auto;
     justify-content: middle;
     display: flex;
-    padding: 20px;
-    bottom: 0px;
-    left: 100px;
+    top: 0px;
+    right: 0px;
     background-color: white;
   }
   
   .criteria {
-    height: 200px;
-    width: 200px;
-    margin-left: 70px;
-    margin-right: 70px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    position: absolute;
+
+    height: 100px;
+    width: 100px;
+    margin: 20px;
   }
 
   .criteria:hover {
-      border: 5px solid rgb(255, 0, 234);
-      border-radius: 110px;
-      margin-left: 65px;
-      margin-right: 65px;
-      margin-top: 0px;
-      margin-bottom: 0px;
+      border: 2px solid rgb(255, 0, 234);
+      border-radius: 55px;
   }
   
   .desMain {
     margin: auto;
-    width: 1400px;
+    width: 1000px;
     height: 520px;
     display: flex;
     flex-direction: row;
@@ -54,26 +50,26 @@
   }
   
   .desAct {
-    background-color: white;
-    order: 0;
-    flex: 1 1 auto;
-    align-self: auto;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: flex-end;
-    align-items: center;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 0px;
+    right: 0px;
   }
   
   .contactAgent {
     color: $dark-pink;
-    font-size: 30px;
+    height: 40px;
+    width: 200px;
+    font-size: 20px;
     border-radius: 30px;
     // order: 0;
     // flex: 0 1 auto;
     // align-self: auto;
     background-color: $light-pink;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    text-align: center;
   }
   
   .subApp {
@@ -96,17 +92,18 @@
   }
   
   .desAddress {
-    width: 1400px;
+    width: 800px;
     font-size: 35px;
     color: $dark-pink;
     order: 0;
     flex: 1 1 auto;
     align-self: auto;
-    position: relative;
+    margin-bottom: 20px;
   }
   
   .desAptDet {
-    font-size: 35px;
+    font-size: 25px;
+    width: 800px;
     color: $dark-pink;
     order: 0;
     flex: 1 1 auto;
@@ -136,8 +133,14 @@
     flex: 1 1 auto;
     align-self: auto;
   }
+  .desHeader {
+    width: 1000px;
+    height: 150px;
+    position: relative;
+  }
   
   .desDes {
+    position:relative;
     padding: 15px;
     border-radius: 20px;
     background-color: white;
@@ -145,8 +148,10 @@
     order: 0;
     flex: 3 1 auto;
     align-self: auto;
-    font-size: 25px;
-    border: 2px solid $mid-pink
+    font-size: 18px;
+    border: 2px solid $mid-pink;
+    width: 650px;
+    height: 300px;
   }
   
   .modal {
@@ -247,4 +252,9 @@
     position: absolute;
     right: 0px;
     width: 100px;
+  }
+  .desTail {
+    position: relative;
+    width: 1000px;
+    height: 500px;
   }

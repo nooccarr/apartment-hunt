@@ -154,28 +154,30 @@ class Description extends React.Component {
             <>
                 <div className='desMain'>
                     <div className='desDetail'>
+                        <div className='desHeader'>
                         <div className='desAddress'>
                             {this.props.details.address}, {this.props.details.city}, {this.props.details.state}, {this.props.details.zipCode}
-                            <button className='contactAgent'>Contact Agent</button>
-                            <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
                             </div>
+                    <div className='desAct'>
+                        <div className='contactAgent'>Contact Agent</div>
+                        <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
+                    </div>
                         <div className='desAptDet'>
                             <div className='desEle1'>${this.props.details.price}/Month</div>
                             <div className='desEle2'>Bedrooms:{this.props.details.beds}</div>
                             <div className='desEle3'>Bathrooms:{this.props.details.baths}</div>
                         </div>
+                        </div>
+                        <div className='desTail'>
                         <div className='desDes'>{this.props.details.description}</div>
-                    </div>
-                    {/* <div className='desAct'>
-                        <button className='contactAgent'>Contact Agent</button>
-                        <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
-                    </div> */}
-                </div>
                 <div className='desContainer'>
-                    <img src='./neighborhood.png' className='criteria' onClick={() => {this.flipAreaModal()}}></img>
-                    <img src='./schools.png' className='criteria' onClick={() => {this.flipSchoolsModal()}}></img>
-                    <img src='./restaurants.png' className='criteria' onClick={() => {this.flipDiningModal()}}></img>
-                    <img src='./crime.png' className='criteria' onClick={() => {this.flipCrimeModal()}}></img>
+                    <img src='./neighborhood.png' style={{top:20, left:20}} className='criteria' onClick={() => {this.flipAreaModal()}}></img>
+                    <img src='./schools.png' style={{top:20, left:160}} className='criteria' onClick={() => {this.flipSchoolsModal()}}></img>
+                    <img src='./restaurants.png' style={{top:160, left:20}} className='criteria' onClick={() => {this.flipDiningModal()}}></img>
+                    <img src='./crime.png' style={{top:160, left:160}} className='criteria' onClick={() => {this.flipCrimeModal()}}></img>
+                </div>
+                </div>
+                    </div>
                 </div>
                 {this.areaModal()}
                 {this.diningModal()}
