@@ -10,7 +10,7 @@
     height: 300px;
     position: absolute;
     margin-right: 0px auto;
-    justify-content: middle;
+    justify-content: center;
     display: flex;
     top: 0px;
     right: 0px;
@@ -57,12 +57,28 @@
     right: 0px;
   }
   
+  .contactAgent1 {
+    position: relative;
+    color: $dark-pink;
+    font-size: 30px;
+    border-radius: 30px;
+    left: 770px;
+    top: -40px;
+    // order: 0;
+    // flex: 0 1 auto;
+    // align-self: auto;
+    background-color: $light-pink;
+  }
+
   .contactAgent {
+    position: relative;
     color: $dark-pink;
     height: 40px;
     width: 200px;
     font-size: 20px;
     border-radius: 30px;
+    left: 1000px;
+    top: -82px;
     // order: 0;
     // flex: 0 1 auto;
     // align-self: auto;
@@ -114,6 +130,11 @@
     justify-content: space-between;
     align-content: stretch;
     align-items: stretch;
+    position: relative;
+    bottom: 25px;
+    left: 0px;
+    width: 800px;
+    height: 10px;
   }
   
   .desEle1 {
@@ -235,7 +256,7 @@
 
   .neighborhoodDes {
       font-family: Arial, Helvetica, sans-serif;
-      color: $mid-pink;
+      color: black;
   }
 
   #crimeometer-container {
@@ -249,7 +270,7 @@
   }
 
   .desButtons {
-    position: absolute;
+    position: relative;
     right: 0px;
     width: 100px;
   }
