@@ -84,11 +84,37 @@ const Navigation = ({
         );
       } else if (token.payload.role === 'admin') {
         return (
-          <li className='chatButton'>
-            <div id='chatButton'>
-              <a href='/aportal' id='chatButton'>
-                <span>AgentPortal</span>
-              </a>
+          <li>
+            <div className="agentDrop">
+              <button className="agentButton" onClick={showDrop}>
+                            Agent Portal
+              </button>
+              <div id="agentPages" className="agentContent">
+                <p
+                  onClick={() => {
+                    window.history.pushState(
+                      { path: `/uploadlisting` },
+                        "",
+                        `/uploadlisting`
+                      );
+                    window.location.reload(false);
+                  }}
+                >
+                Upload Listing
+                </p>
+                <p
+                  onClick={() => {
+                    window.history.pushState(
+                      { path: `/aportal` },
+                      "",
+                      `/aportal`
+                    );
+                    window.location.reload(false);
+                  }}
+                >
+                Agent Portal
+                </p>
+             </div>
             </div>
           </li>
         );
