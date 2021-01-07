@@ -50,7 +50,7 @@ const VideoUpload = ({apartment_id, setVideoName}) => {
     <div className='primary-font'>
       <input type='file' style={{display:'none'}} onChange={(e) => {selectVideo(e)}} ref={fileInput}></input>
       <div onClick={(e) => {onInputButtonClick(e)}} className='select-video-button'>
-        Select Video
+        Upload Video
       </div>
       {video && isLoading === 'none' && <div className='video-file-container'>
         <div>
@@ -63,8 +63,8 @@ const VideoUpload = ({apartment_id, setVideoName}) => {
           Upload
         </div>
       </div>}
-      {isLoading === 'uploading' && <div> Please wait... Your files are uploading</div>}
-      {isLoading === 'complete' && <div style={{color: 'green'}}> Your file has finished uploading! </div>}
+      {isLoading === 'uploading' && <div> Please wait... Your video is uploading</div>}
+      {isLoading === 'complete' && <div style={{color: 'green'}}> Your video has finished uploading! </div>}
     </div>
   )
 }
