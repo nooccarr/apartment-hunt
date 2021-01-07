@@ -60,13 +60,7 @@ const Navigation = ({
             )}
             <div className='wrap'>
               <div className='col-1-3'>
-                {window.location.pathname === '/' ? null : (
-                  <div className='logo'>
-                    <a href='/'>
-                      <img src={logo} />
-                    </a>
-                  </div>
-                )}
+              
               </div>
 
               <div className='navigation-search-bar'>
@@ -74,8 +68,23 @@ const Navigation = ({
                   <div className='menu'>
                     <ul>
                       <li>
+                      {window.location.pathname === '/' ? null : (
+                        <div className='logo'>
+                          <a href='/'>
+
+                            <img src={logo} />
+                          </a>
+                        </div>
+                      )}
+                      </li>
+                      <li>
                         <a href='/' className='scroll'>
                           Find Apartments
+                        </a>
+                      </li>
+                      <li>
+                        <a href='/UploadListing' className='scroll'>
+                          UploadListing
                         </a>
                       </li>
                       <li>
