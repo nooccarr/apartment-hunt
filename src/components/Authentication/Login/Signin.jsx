@@ -9,7 +9,7 @@ import '../styles/signin.css';
 import jwtDecode from 'jwt-decode';
 import Cookies from 'js-cookie';
 
-const Signin = ({ handleSignUp, openModal, getUserInfo }) => {
+const Signin = ({ handleSignUp, openModal, getUserInfo, getAdminInfo }) => {
   const [adminClicked, setAdminClicked] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -43,8 +43,17 @@ const Signin = ({ handleSignUp, openModal, getUserInfo }) => {
         password,
       })
       .then((res) => {
-        openModal(false);
-        console.log(res);
+        if (res.data === 'verified') {
+          openModal(false);
+          let token = jwtDecode(Cookies.get('jwt'));
+          getAdminInfo(token.payload.username, token.payload.email);
+        } else {
+          openModal(false);
+          setNotValid(true);
+        }
+      })
+      .catch((err) => {
+        console.log('is there error in promise', err);
       });
   };
 
