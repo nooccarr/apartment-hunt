@@ -152,6 +152,15 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
     }
   };
 
+  const deleteNeighborhood = (neighborhood) => {
+    var newNeighborhoods = listing['neighborhoods'];
+    newNeighborhoods = newNeighborhoods.filter((hood) => hood !== neighborhood)
+    setListing((prevState) => ({
+        ...prevState,
+        ['neighborhoods']: newNeighborhoods,
+      }));
+  }
+
   /*<div className='rightSide'>
           <h2 className="appSearch">APPLICANT SEARCH</h2>
           <div>
@@ -169,22 +178,22 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
           <form className='listingForm'>
             <div>
               <div>City: </div>
-              <input type='text' name='city' onChange={handleChange}></input>
+              <input className='upload-listing-textbox' type='text' name='city' onChange={handleChange}></input>
             </div>
             <div>
               <div>Listing Name: </div>
-              <input
+              <input className='upload-listing-textbox'
                 type='text'
                 name='listingName'
                 onChange={handleChange}></input>
             </div>
-            <div>
+            <div >
               <div>Address(Do not abbreviate): </div>
-              <input type='text' name='address' onChange={handleChange}></input>
+              <input className='upload-listing-textbox' type='text' name='address' onChange={handleChange}></input>
             </div>
             <div>
               <div>Zip Code: </div>
-              <input type='text' name='zipCode' onChange={handleChange}></input>
+              <input className='upload-listing-textbox' type='text' name='zipCode' onChange={handleChange}></input>
             </div>
             <div>
               {/*
@@ -201,23 +210,23 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
             <div>
 
               <div>Agent: </div>
-              <input type='text' name='agent' onChange={handleChange}></input>
+              <input className='upload-listing-textbox' type='text' name='agent' onChange={handleChange}></input>
             </div>
             <div>
               <div>Beds: </div>
-              <input type='number' name='beds' onChange={handleChange}></input>
+              <input className='upload-listing-numberbox' type='number' name='beds' onChange={handleChange}></input>
             </div>
             <div>
               <div>Baths: </div>
-              <input type='number' name='baths' onChange={handleChange}></input>
+              <input className='upload-listing-numberbox' type='number' name='baths' onChange={handleChange}></input>
             </div>
             <div>
               <div>Price: </div>
-              <input type='number' name='price' onChange={handleChange}></input>
+              <input className='upload-listing-numberbox' type='number' name='price' onChange={handleChange}></input>
             </div>
             <div>
               <div>Square Feet: </div>
-              <input type='number' name='sqft' onChange={handleChange}></input>
+              <input className='upload-listing-numberbox' type='number' name='sqft' onChange={handleChange}></input>
             </div>
             <div>
               <div style={{'font-weight':'bold'}}>Pet Friendly?</div>
@@ -260,11 +269,11 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
             </div>
             <div>
               <div>
-                Neighborhoods (ADD BORROUGH TO HERE AS WELL, SUBMIT ONE AT A
-                TIME):{' '}
+                Neighborhoods/Burrough (Click to delete):{' '}
               </div>
               <br></br>
               <input
+              className='upload-listing-textbox'
                 type='text'
                 id='hoods'
                 name='neighborhoods'
@@ -274,24 +283,12 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
                 type='submit'
                 value='Add'
                 name='neighborhoods'
-                onClick={addUrl}></input>
+                onClick={addUrl}></input>{listing.neighborhoods.map((neighborhood) => (<span onClick={() => {deleteNeighborhood(neighborhood)}}>{neighborhood}, </span>))}
             </div>
             <div>
               <PhotoUpload />
-              <div>Pictures: </div>
-              <input
-                type='url'
-                id='picIn'
-                name='pics'
-                onChange={handleUrl}></input>
-              <input
-                className='submitButton'
-                type='submit'
-                value='Submit'
-                name='pics'
-                onClick={addUrl}></input>
             </div>
-            <div>git
+            <div>
               <VideoUpload setVideoName={updateVideo} />
             </div>
             <input
