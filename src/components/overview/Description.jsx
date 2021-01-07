@@ -163,7 +163,7 @@ class Description extends React.Component {
                         <div className='desDes'>{this.props.details.description}</div>
                     </div>
                     <div className='desAct'>
-                        <div className='contactAgent'>Contact Agent</div>
+                        <button className='contactAgent'>Contact Agent</button>
                         <FileUploadOverlay username={"username"} apartment_id={"5ff48f80f8d9ecaff9eb3545"} />
                     </div>
                 </div>
