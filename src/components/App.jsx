@@ -3,13 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ApartmentContext } from './HomePage/ApartmentContext.jsx';
 import { HomeLogin, AdminPortal } from './pages/index.jsx';
 import Overview from './overview/Overview.jsx';
- 
+
 import About from './overview/aboutus.jsx';
 import ChatApp from './ChatBox/frontend/ChatApp.jsx';
 import AgentPortal from './Portal/AgentPortal.jsx';
 import SearchResults from './SearchResults/index.js';
- 
- 
+
 import UploadListing from './Agent/UploadListing.jsx';
 import Navigation from './overview/navigation.jsx';
 import jwtDecode from 'jwt-decode';
@@ -26,15 +25,27 @@ const App = () => {
   useEffect(() => {
     if (Cookies.get('jwt')) {
       let token = jwtDecode(Cookies.get('jwt'));
-      getUserInfo(token.payload.username, token.payload.email);
+      if (
+        token.payload.role === 'user' ||
+        token.payload.provider === 'google'
+      ) {
+        getUserInfo(token.payload.username, token.payload.email);
+      } else if (token.payload.role === 'admin') {
+        getAdminInfo(token.payload.username, token.payload.email);
+      }
     }
   }, []);
+
+  const signOut = () => {
+    setUser({});
+    setAdmin({});
+  };
 
   const getUserInfo = (name, email) => {
     setUser({
       name: name,
       email: email,
-      role: 'client'
+      role: 'client',
     });
   };
 
@@ -42,7 +53,7 @@ const App = () => {
     setAdmin({
       name: name,
       email: email,
-      role: 'agent'
+      role: 'agent',
     });
   };
 
@@ -52,42 +63,49 @@ const App = () => {
   //   role: 'client'
   // }
 
-let userLoggin = {
+  let userLoggin = {
     name: 'laura90',
     email: 'laura90@gmail.com',
-    role: 'agent'
-  }
-
+    role: 'agent',
+  };
 
   return (
     <div>
-      <Navigation getUserInfo={getUserInfo} user={user}/>
-      <ApartmentContext.Provider value={{listings, getListings, coordinates, setCoordinates}}>
-          <Router>
-            <Switch>
-              <Route exact path='/'>
-                <HomeLogin user={user} />
-              </Route>    
-              <Route exact path='/listings'>
-        <SearchResults
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-        /></Route>
-              <Route exact path='/admin-dashboard'>
-                <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
-              </Route>
-                <Route exact path='/apartment'>
-                  <Overview />
-                </Route>
-              <Route exact path='/uploadlisting' component={UploadListing} />
+      <Navigation
+        getAdminInfo={getAdminInfo}
+        getUserInfo={getUserInfo}
+        userLoggin={userLoggin}
+        signOut={signOut}
+        user={user}
+        admin={admin}
+      />
+      <ApartmentContext.Provider
+        value={{ listings, getListings, coordinates, setCoordinates }}>
+        <Router>
+          <Switch>
+            <Route exact path='/'>
+              <HomeLogin user={user} />
+            </Route>
+            <Route exact path='/listings'>
+              <SearchResults
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+              />
+            </Route>
+            <Route exact path='/admin-dashboard'>
+              <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
+            </Route>
+            <Route exact path='/apartment'>
+              <Overview />
+            </Route>
+            <Route exact path='/uploadlisting' component={UploadListing} />
             <Route exact path='/aboutus' component={About} />
-              <Route exact path='/aportal'>
-                <AgentPortal admin={admin} userLoggin={userLoggin}/>
-              </Route>
-            </Switch>
-          </Router>
+            <Route exact path='/aportal'>
+              <AgentPortal admin={admin} userLoggin={userLoggin} />
+            </Route>
+          </Switch>
+        </Router>
       </ApartmentContext.Provider>
-      
     </div>
   );
 };
