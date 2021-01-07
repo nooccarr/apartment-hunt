@@ -7,9 +7,9 @@ import axios from 'axios';
 
 
 const ChatApp = (props) => {
+  // not used const [convos, setConvos] = useState(false);
 
-  // const [convos, setConvos] = useState(false);
-  const [texts, setTexts] = useState(false);
+  // const [texts, setTexts] = useState(false);
   const [chatIdx, setChatIdx] = useState(null);
   const [chatHist, setChatHist] = useState([]);
   const [chatId, setChatId] = useState(null);
@@ -19,6 +19,8 @@ const ChatApp = (props) => {
   const [getChatHist, setGetChatHist] = useState(false);
   const [getIndvChat, setGetIndvChat] = useState(false);
 
+  const [textUpdate, getTextUpdate] = useState(false);
+
   // const [inRoom, setInRoom] = useState(false);
   
 
@@ -27,11 +29,15 @@ const ChatApp = (props) => {
     setChatId(chatHist[id].chatId)
     // setConvos(false);
     props.shutConvo()
-    setTexts(true);
+    // setTexts(true);
+    getTextUpdate(true);
+    props.switchChat('nav')
   }
 
   const exitChat = () => {
-    setTexts(false)
+    // setTexts(false)
+    getTextUpdate(false)
+    props.switchChat(null)
   }
 
   useEffect(() => {
@@ -42,7 +48,7 @@ const ChatApp = (props) => {
       }).then(({ data }) => {
         setChatHist(data)
       })
-  }, [texts])
+  }, [textUpdate])
 
   ////////////////////////////Keep all socket connection/////////////
   // useEffect(() => {
@@ -76,64 +82,64 @@ const ChatApp = (props) => {
     }
   }
 
-  useEffect(() => {
-    if (!firstRender) {
-      setFirstRender(true)
-      return;
-    }
-    axios.post('/chatRoom', {
-      address: '13 Sun Ave',
-      userName: 'FreddieMercury',
-      agentName: 'Smith',
-      messages: [],
-    }).then(() => {
-      setGetChatHist(!getChatHist)
-    })
-  }, [conAge])
+  // useEffect(() => {
+  //   if (!firstRender) {
+  //     setFirstRender(true)
+  //     return;
+  //   }
+  //   axios.post('/chatRoom', {
+  //     address: '13 Sun Ave',
+  //     userName: 'FreddieMercury',
+  //     agentName: 'Smith',
+  //     messages: [],
+  //   }).then(() => {
+  //     setGetChatHist(!getChatHist)
+  //   })
+  // }, [conAge])
 
-  useEffect(() => {
-    if (!firstRender) {
-      return;
-    }
-    console.log('hit2:');
-    return axios.get(`/msg/client`, {
-      params: {
-        userName: props.userLoggin.name
-      }
-    }).then(({ data }) => {
-      setChatHist(data)
-      setGetIndvChat(!getIndvChat)
-    })
-  }, [getChatHist])
+  // useEffect(() => {
+  //   if (!firstRender) {
+  //     return;
+  //   }
+  //   console.log('hit2:');
+  //   return axios.get(`/msg/client`, {
+  //     params: {
+  //       userName: props.userLoggin.name
+  //     }
+  //   }).then(({ data }) => {
+  //     setChatHist(data)
+  //     setGetIndvChat(!getIndvChat)
+  //   })
+  // }, [getChatHist])
 
-  useEffect(() => {
-    if (!firstRender) {
-      return;
-    }
-    let chatInfo = {address: '13 Sun Ave', userName: 'FreddieMercury'}
-    return axios.get('/chatRoom', { 
-      params: {
-        address: chatInfo.address,
-        userName: chatInfo.userName,
-      }
-    }).then(({ data }) => {
-        for (let i = 0; i < chatHist.length; i++) {
-          if (chatHist[i].chatId === data[0].chatId) {
-            setChatIdx(i);
-            setChatId(data[0].chatId)
-            setTexts(true);
-          }
-        }
-    })
-  }, [getIndvChat])
+  // useEffect(() => {
+  //   if (!firstRender) {
+  //     return;
+  //   }
+  //   let chatInfo = {address: '13 Sun Ave', userName: 'FreddieMercury'}
+  //   return axios.get('/chatRoom', { 
+  //     params: {
+  //       address: chatInfo.address,
+  //       userName: chatInfo.userName,
+  //     }
+  //   }).then(({ data }) => {
+  //       for (let i = 0; i < chatHist.length; i++) {
+  //         if (chatHist[i].chatId === data[0].chatId) {
+  //           setChatIdx(i);
+  //           setChatId(data[0].chatId)
+  //           // setTexts(true);
+  //           props.switchChat('conAge')
+  //         }
+  //       }
+  //   })
+  // }, [getIndvChat])
     
   
   return (
     <div>
       <div>
         {props.convos ? <Convos chatHistory={chatHist} selectConvo={selectConvo} /> : null}
-        {texts ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={props.userLoggin}/> : null}
-        <div onClick={() => setConAge(!conAge)}>Contact Agent</div>
+        {props.texts === 'nav' ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={props.userLoggin}/> : null}
       </div>
     </div>
   );

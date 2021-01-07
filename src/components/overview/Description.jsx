@@ -6,6 +6,8 @@ import FileUploadOverlay from '../FileUpload/FileUploadOverlay.jsx';
 import './detail.style.scss';
 import CrimeMap from './CrimeMap.jsx'
 import Neighborhood from './Neighborhood.jsx'
+import axios from 'axios';
+import Texts from '../ChatBox/frontend/Texts.jsx';
 
 class Description extends React.Component {
     constructor(props) {
@@ -13,9 +15,104 @@ class Description extends React.Component {
         this.state = {
             areaModal: false,
             diningModal: false,
-            schoolsModal: false
+            schoolsModal: false,
+            chatHist: [],
+            idx: null,
+            chatId: null,
+            // texts: false,
         }
+        this.contactAge = this.contactAge.bind(this)
+        this.exitChat = this.exitChat.bind(this)
+        this.updateConvo = this.updateConvo.bind(this)
     }
+
+
+    exitChat() {
+        // this.setState({
+        //     texts: false
+        // })
+        this.props.switchChat(null)
+    }
+
+    updateConvo(messageObj, chatRoomId) {
+        if (chatRoomId === null) {
+          return;
+        }
+        
+        let outdatedChat = [...this.state.chatHist];
+        for (let i = 0; i < outdatedChat.length; i++) {
+          if (outdatedChat[i].chatId === chatRoomId) {
+            let chatRoom = outdatedChat[i]
+            chatRoom.messages.push(messageObj)
+            this.setState(
+                {
+                    chatHist: outdatedChat
+                }
+            )
+          }
+        }
+      }
+
+    contactAge() {
+        return axios.post('/chatRoom', {
+            address: this.props.details.address,
+            userName: 'FreddieMercury',
+            agentName: this.props.details.agent,
+            messages: [],
+        }).then(() => {
+            return axios.get(`/msg/client`, {
+                params: {
+                    userName: 'FreddieMercury'
+                }
+            })
+        }).then(({ data }) => {
+            this.setState({
+                chatHist: data
+            })
+        })
+    }
+        
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.chatHist !== this.state.chatHist) {
+            console.log('chatHist state has changed.')
+            this.getChatRoom()
+        } 
+        // else if (prevState.chatId !== this.state.chatId) {
+        //     // console.log('idx state has changed.', prevState.chatId)
+        //     console.log('idx state has changed.', this.state.idx)
+        //     console.log('chatHist state has changed.', this.state.chatHist)
+        //     console.log('new chatId state has changed.', this.state.chatId)
+        //     this.props.switchChat('conAge')
+        // }
+    }
+    
+    getChatRoom() {
+        return axios.get('/chatRoom', { 
+            params: {
+                address: this.props.details.address,
+                userName: 'FreddieMercury',
+            }
+        }).then(({ data }) => {
+            // console.log('chatHist', this.state.chatHist)
+            // console.log('this.state.chatHist[i].chatId', this.state.chatHist)
+            // console.log('data[0].chatId', data[0])
+            for (let i = 0; i < this.state.chatHist.length; i++) {
+                if (this.state.chatHist[i].chatId === data[0].chatId) {
+                    this.setState({
+                        idx: i,
+                        chatId: data[0].chatId,
+                        // texts: true,
+                    })
+                }
+            }
+            this.props.switchChat('conAge')
+        })
+    }
+
+
+
+
+
 
     areaModal () {
         if (this.state.areaModal === true){
@@ -163,7 +260,9 @@ class Description extends React.Component {
                         <div className='desDes'>{this.props.details.description}</div>
                     </div>
                     <div className='desAct'>
-                        <div className='contactAgent'>Contact Agent</div>
+                        {'client' === 'client' ? 
+                        <div onClick={this.contactAge} className='contactAgent'>Contact Agent</div> :
+                        null}
                         <FileUploadOverlay username={"username"} apartment_id={"5ff48f80f8d9ecaff9eb3545"} />
                     </div>
                 </div>
@@ -177,6 +276,7 @@ class Description extends React.Component {
                 {this.diningModal()}
                 {this.schoolsModal()}
                 {this.crimeModal()}
+                {this.props.texts === 'conAge' ? <Texts chatBox={this.state.chatHist[this.state.idx]} updateConvo={this.updateConvo} chatId={this.state.chatId} loggedIn={{name: 'FreddieMercury', email: 'FreddieMercury@gmail.com', role: 'client'}} exitChat={this.exitChat}/> : null}
             </>
         )
     }

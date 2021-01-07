@@ -24,7 +24,7 @@ class Overview extends React.Component {
         <div>
             {this.state.details === null ? null : <div className='detailPage'>
                 <Album details={this.state.details}/>
-                <Description details={this.state.details}/>
+                <Description details={this.state.details} switchChat={this.props.switchChat} texts={this.props.texts}/>
                 </div>}
         </div>
         )

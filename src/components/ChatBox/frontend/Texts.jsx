@@ -83,24 +83,27 @@ const Texts = (props) => {
       }
     }>
       <button onClick={props.exitChat}>X</button>
+      {console.log('props.chatBox', props.chatBox)}
+      {console.log('props.example', props.example)}
+      {console.log('props', props)}
       <div>{props.chatBox.address}</div>
       <div className='d-flex flex-grow-1 overflow-auto'>
         <div style={{ maxHeight: '34vh', width: '31vh', marginRight: '7px' }}>
           {props.chatBox.messages.map((messageObj, index) => (
-          <div 
+            <div 
             key={index}
             className={`my-1 d-flex flex-column ${props.loggedIn.name === messageObj.sender ? 'align-items-end' : 'align-items-start'} justified-content-end`}>
               {(() => { if (messageObj.sender === props.loggedIn.name) {
                 return (
-                  <div className="text-right">
-                    <div style={{overflowWrap: 'anywhere', marginLeft: '50px'}} className={'rounded px-2 py-1 bg-primary text-white'}>{messageObj.message}</div>
-                    <div className={'text-muted small'}>You</div>
+                  <div style={{textAlign: 'right'}}>
+                    <div style={{overflowWrap: 'anywhere', marginLeft: '50px', borderRadius: '5px', padding: '8px', background: '#1982FC', color:'#fff'}}>{messageObj.message}</div>
+                    <div style={{color: 'rgb(148 145 145)', fontWeight: '100'}}>You</div>
                   </div>
                 )} else {
                   return (
                   <div>
-                    <div style={{overflowWrap: 'anywhere', marginRight: '50px'}} className={'rounded px-2 py-1 border'}>{messageObj.message}</div>
-                    <div className={'text-muted small'}>{messageObj.sender}</div>
+                    <div style={{overflowWrap: 'anywhere', marginRight: '50px', borderRadius: '5px', padding: '8px', border: '1px solid #d2cccc'}} className={'rounded px-2 py-1 border'}>{messageObj.message}</div>
+                    <div style={{color: 'rgb(148 145 145)', fontWeight: '100'}}>{messageObj.sender}</div>
                   </div>
                   )
                 }
@@ -109,22 +112,20 @@ const Texts = (props) => {
           ))}
         </div>
       </div>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group style={{margin: '0px 18px 10px 0px'}}>
-          <InputGroup>
-          <Form.Control
-            as="textarea"
+      <form onSubmit={handleSubmit}>
+        <div style={{margin: '0px 18px 10px 0px'}}>
+          <div>
+          <input
+            type="textarea"
             required
             value={text}
             onChange={e => setText(e.target.value)}
             style={{height: '50px', resize: 'none'}}
           />
-          <InputGroup.Append>
-            <Button type='submit'>Send</Button>
-          </InputGroup.Append>
-          </InputGroup>
-        </Form.Group>
-      </Form>
+          <button type='submit'>Send</button>
+          </div>
+        </div>
+      </form>
     </div>
   )
 }

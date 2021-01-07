@@ -16,6 +16,8 @@ const App = () => {
   const [admin, setAdmin] = useState({});
   const [listings, getListings] = useState([]);
   const [coordinates, setCoordinates] = useState([]);
+  const [texts, setTexts] = useState(null);
+  // const [textsCon, setTextsCon] = useState(false);
 
   useEffect(() => {
     if (Cookies.get('jwt')) {
@@ -40,21 +42,28 @@ const App = () => {
     });
   };
 
-  let userLoggin = {
-    name: 'FreddieMercury',
-    email: 'FreddieMercury@gmail.com',
-    role: 'client'
+  // let userLoggin = {
+  //   name: 'FreddieMercury',
+  //   email: 'FreddieMercury@gmail.com',
+  //   role: 'client'
+  // }
+
+let userLoggin = {
+    name: 'Shotaro Tanaka',
+    email: 'Shotaro Tanaka@gmail.com',
+    role: 'agent'
   }
 
-// let userLoggin = {
-//     name: 'laura90',
-//     email: 'laura90@gmail.com',
-//     role: 'agent'
-//   }
+  const switchChat = (key) => {
+    // setTexts(bool);
+    setTexts(key)
+  }
+
+
 
   return (
     <div>
-      <Navigation getUserInfo={getUserInfo} user={user} admin={admin} userLoggin={userLoggin}/>
+      <Navigation getUserInfo={getUserInfo} user={user} admin={admin} userLoggin={userLoggin} switchChat={switchChat} texts={texts}/>
       <ApartmentContext.Provider value={{listings, getListings, coordinates, setCoordinates}}>
           <Router>
             <Switch>
@@ -65,7 +74,7 @@ const App = () => {
                 <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
               </Route>
                 <Route exact path='/apartment'>
-                  <Overview />
+                  <Overview switchChat={switchChat} texts={texts}/>
                 </Route>
               <Route exact path='/uploadlisting' component={UploadListing} />
               <Route exact path='/aportal'>
