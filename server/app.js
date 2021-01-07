@@ -21,6 +21,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const key = require('./googleAuth/conf');
 const Utils = require('./utils/auth');
+const User = require('./models/userModel');
 
 var opts = {};
 opts.jwtFromRequest = function (req) {
@@ -78,6 +79,17 @@ app.get(
     //res.send('verified');
 
     res.redirect('http://localhost:3000/');
+
+    User.create({
+      username: defaultUsername,
+      email: req.user._json.email,
+      password: 'google authenticated',
+    }).then(function (data) {
+      if (data) {
+        console.log('sign up test');
+        // res.redirect('/apartments');
+      }
+    });
   }
 );
 
