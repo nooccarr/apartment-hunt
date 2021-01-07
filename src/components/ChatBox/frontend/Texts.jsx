@@ -1,7 +1,5 @@
 import React, { useState, useEffect }  from 'react'
 // import loggedUser from './sampleUser'
-
-import { Form, InputGroup, Button } from 'react-bootstrap'
 import axios from 'axios';
 const io = require('socket.io-client');
 
@@ -83,10 +81,16 @@ const Texts = (props) => {
       }
     }>
       <button onClick={props.exitChat}>X</button>
+      {/* {console.log('props.texts', props.texts)} */}
       {console.log('props.chatBox', props.chatBox)}
-      {console.log('props.example', props.example)}
-      {console.log('props', props)}
-      <div>{props.chatBox.address}</div>
+      <div onClick={() => {
+        var path = `/apartment?id=${props.chatBox.aptId}&chatId=${props.chatBox.chatId}`
+        window.history.pushState({
+          path: path}, '', path);        
+        window.location.reload(false);
+      }}>
+        {props.chatBox.address}              
+      </div>
       <div className='d-flex flex-grow-1 overflow-auto'>
         <div style={{ maxHeight: '34vh', width: '31vh', marginRight: '7px' }}>
           {props.chatBox.messages.map((messageObj, index) => (

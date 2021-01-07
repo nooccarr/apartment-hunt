@@ -21,6 +21,9 @@ const ChatApp = (props) => {
 
   const [textUpdate, getTextUpdate] = useState(false);
 
+  const [currChatRoom, getCurrChatRoom] = useState({});
+  // const [textRoom, renderTextRoom] = useState(false);
+
   // const [inRoom, setInRoom] = useState(false);
   
 
@@ -49,6 +52,28 @@ const ChatApp = (props) => {
         setChatHist(data)
       })
   }, [textUpdate])
+
+
+  // useEffect(() => {
+  //   if (props.texts === 'alt') {
+  //     getTextUpdate(true);
+  //   }
+  // }, [])
+
+  useEffect(() => {
+    console.log('chatHist[i].chatId', chatHist)
+    console.log('props.chatKey', props.chatKey)
+    if (chatHist.length > 0) {
+      for (let i = 0; i < chatHist.length; i++) {
+        if (chatHist[i].chatId === props.chatKey) {
+          getCurrChatRoom(chatHist[i])
+        }
+      }
+      if (props.chatKey) {
+        props.switchChat('alt');
+      }
+    }
+  }, [chatHist])
 
   ////////////////////////////Keep all socket connection/////////////
   // useEffect(() => {
@@ -137,9 +162,12 @@ const ChatApp = (props) => {
   
   return (
     <div>
+      {/* {console.log('textRoom', textRoom)} */}
+      {console.log('props.texts', props.texts)}
       <div>
         {props.convos ? <Convos chatHistory={chatHist} selectConvo={selectConvo} /> : null}
         {props.texts === 'nav' ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={props.userLoggin}/> : null}
+        {props.texts === 'alt' ? <Texts chatBox={currChatRoom} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={props.userLoggin}/> : null}
       </div>
     </div>
   );

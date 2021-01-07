@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const chatMessageSchema = new mongoose.Schema({
+  aptId: String,
   chatId: { type: String, unique: true },
   address: String,
   userName: String,

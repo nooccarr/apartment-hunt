@@ -55,6 +55,7 @@ class Description extends React.Component {
 
     contactAge() {
         return axios.post('/chatRoom', {
+            aptId: this.props.details._id,
             address: this.props.details.address,
             userName: 'FreddieMercury',
             agentName: this.props.details.agent,

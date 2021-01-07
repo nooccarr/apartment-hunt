@@ -17,12 +17,24 @@ const App = () => {
   const [listings, getListings] = useState([]);
   const [coordinates, setCoordinates] = useState([]);
   const [texts, setTexts] = useState(null);
-  // const [textsCon, setTextsCon] = useState(false);
+  const [chatId, setChatId] = useState(null);
 
   useEffect(() => {
     if (Cookies.get('jwt')) {
       let token = jwtDecode(Cookies.get('jwt'));
       getUserInfo(token.payload.username, token.payload.email);
+    }
+    console.log('lol', window.location)
+    if (window.location.search.includes('chatId')) {
+        let test = window.location.search.split('&')
+        for (var keyId of test) {
+          if (keyId.includes('chatId')) {
+            console.log('chunk', keyId.split('=')[1])
+            let key = keyId.split('=')[1]
+            setChatId(key)
+            // setTexts('alt')
+          }
+        }
     }
   }, []);
 
@@ -42,17 +54,17 @@ const App = () => {
     });
   };
 
-  // let userLoggin = {
-  //   name: 'FreddieMercury',
-  //   email: 'FreddieMercury@gmail.com',
-  //   role: 'client'
-  // }
-
-let userLoggin = {
-    name: 'Shotaro Tanaka',
-    email: 'Shotaro Tanaka@gmail.com',
-    role: 'agent'
+  let userLoggin = {
+    name: 'FreddieMercury',
+    email: 'FreddieMercury@gmail.com',
+    role: 'client'
   }
+
+// let userLoggin = {
+//     name: 'Shotaro Tanaka',
+//     email: 'Shotaro Tanaka@gmail.com',
+//     role: 'agent'
+//   }
 
   const switchChat = (key) => {
     // setTexts(bool);
@@ -63,7 +75,9 @@ let userLoggin = {
 
   return (
     <div>
-      <Navigation getUserInfo={getUserInfo} user={user} admin={admin} userLoggin={userLoggin} switchChat={switchChat} texts={texts}/>
+      {console.log('llll', chatId)}
+      {console.log('texts', texts)}
+      <Navigation getUserInfo={getUserInfo} user={user} admin={admin} userLoggin={userLoggin} switchChat={switchChat} texts={texts} chatKey={chatId}/>
       <ApartmentContext.Provider value={{listings, getListings, coordinates, setCoordinates}}>
           <Router>
             <Switch>
