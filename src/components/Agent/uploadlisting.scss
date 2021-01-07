@@ -7,20 +7,19 @@
   $color: rgb(245, 31, 156);
 
         .aptForm {
-            margin-left: 2%;
-            grid-row: 1;
             font-size: 30px;
             font-family: Arial, Helvetica, sans-serif;
         }
         .listingForm {
-            grid-row: 2;
-            margin-left: 15%;
-            margin-top: 5%;
             font-family: Arial, Helvetica, sans-serif;
         }
 .submitButton{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: $color;
+    background-color: deeppink;
+    color:white;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 #finalSubmit{
@@ -28,7 +27,8 @@
     font-family: Arial, Helvetica, sans-serif;
     background-color: $color;
     font-size: 22px;
-    margin-left: 25%;
+    margin-left: 20%;
+    margin-bottom: 3%;
 }
 
 .yesButton {
@@ -39,4 +39,40 @@
 .noButton {
     font-family: Arial, Helvetica, sans-serif;
     background-color: red;
+}
+textarea {
+    width:25%;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
+
+.upload-listing-textbox {
+    width: 10%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px
+}
+
+
+.upload-listing-numberbox {
+    width:5%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.listingForm > div {
+    font-family: 'Helvetica', Arial, sans-serif;
+    padding: 10px
+
+}
+
+.main {
+    background-color: white;
 }

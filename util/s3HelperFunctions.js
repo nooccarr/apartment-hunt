@@ -47,12 +47,23 @@ const uploadVideo = (fileName) => {
   const params = {
     Bucket: 'hr-blue-ocean-video-file-bucket',
     Key: fileName.originalname,
-    Body: fileName.buffer, // Can this be binary files? Does it have to be a buffer? S
+    Body: fileName.buffer,
     ContentType: 'video/mp4'
   };
 
   return s3.upload(params).promise();
 }
+const uploadPhoto = (fileName) => {
+
+  const params = {
+    Bucket: 'hr-blue-ocean-photos-file-bucket',
+    Key: fileName.originalname,
+    Body: fileName.buffer,
+    ContentType: 'image/jpeg'
+  };
+
+  return s3.upload(params).promise(); // return promise
+};
 
 const getFile = (fileName) => {
   //const fileContent = fs.readFileSync(fileName);
@@ -87,3 +98,4 @@ exports.uploadFile = uploadFile;
 exports.getFile = getFile;
 exports.decryptMessage = decryptMessage;
 exports.uploadVideo = uploadVideo;
+exports.uploadPhoto = uploadPhoto;

@@ -164,7 +164,7 @@ class Description extends React.Component {
                     </div>
                     <div className='desAct'>
                         <div className='contactAgent'>Contact Agent</div>
-                        <FileUploadOverlay username={"username"} apartment_id={"5ff48f80f8d9ecaff9eb3545"} />
+                        <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
                     </div>
                 </div>
                 <div className='desContainer'>
