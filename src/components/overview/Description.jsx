@@ -21,7 +21,7 @@ class Description extends React.Component {
         if (this.state.areaModal === true){
             return (
                 <div id="areaModal" className="modal">
-                    <div className="modal-content">
+                    <div className="modal-content3">
                         <span className="close" onClick={() => {this.flipAreaModal()}}>&times;</span>
                         <Neighborhood location={this.props.details}/>
                     </div>
@@ -120,7 +120,7 @@ class Description extends React.Component {
         if (this.state.crimeModal === true){
             return (
                 <div id="crimeModal" className="modal">
-                    <div className="modal-content">
+                    <div className="modal-content2">
                         <span className="close" onClick={() => {this.flipCrimeModal()}}>&times;</span>
                         <CrimeMap location={this.props.details}/>
                     </div>
