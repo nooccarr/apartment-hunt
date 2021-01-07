@@ -167,42 +167,6 @@ const Navigation = ({
                           </a> */}
                         <Link to="/aboutus">About Us</Link>
                       </li>
-<<<<<<< HEAD
-
-                      <li className="chatButton">
-                        {userLoggin === undefined ? null : userLoggin.role ===
-                          "client" ? (
-                          <div style={{ overflow: "visible" }}>
-                            <span onClick={() => setConvos(!convos)}>
-                              <img
-                                width="25"
-                                height="30"
-                                src="data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGc+PHBhdGggZD0ibTAgMzQ5LjAyMmMwIDEyLjE4NyAxMy44MDggMTkuMjc3IDIzLjcxMSAxMi4yMTFsODIuNDcxLTU4LjgzMmM2LjkxNy00LjkzNCAxNS4wNjUtNy41NDIgMjMuNTYzLTcuNTQyaDE4MS4zODJjMzEuOTI4IDAgNTcuOTAyLTI1Ljk3NSA1Ny45MDItNTcuOTAydi0xOTAuMzMxYzAtOC4yODQtNi43MTYtMTUtMTUtMTVoLTI5Ni4xMjdjLTMxLjkyNyAwLTU3LjkwMiAyNS45NzQtNTcuOTAyIDU3LjkwMnptMzAtMjU5LjQ5NGMwLTE1LjM4NiAxMi41MTctMjcuOTAyIDI3LjkwMi0yNy45MDJoMjgxLjEyNnYxNzUuMzMxYzAgMTUuMzg2LTEyLjUxNyAyNy45MDItMjcuOTAyIDI3LjkwMmgtMTgxLjM4MmMtMTQuNzggMC0yOC45NTIgNC41MzctNDAuOTg0IDEzLjEybC01OC43NiA0MS45MTd6Ii8+PHBhdGggZD0ibTUxMiAyMDUuODc2YzAtMzEuOTMyLTI1Ljk3NC01Ny45MS01Ny45LTU3LjkxaC00MC4wN2MtOC4yODQgMC0xNSA2LjcxNi0xNSAxNXM2LjcxNiAxNSAxNSAxNWg0MC4wN2MxNS4zODUgMCAyNy45IDEyLjUyMSAyNy45IDI3LjkxdjIzMC4zNjRsLTU4Ljc1OS00MS45MTVjLTEyLjAzMS04LjU4My0yNi4yMDItMTMuMTE5LTQwLjk4MS0xMy4xMTloLTE4MS4zOWMtMTUuMzg1IDAtMjcuOS0xMi41MjEtMjcuOS0yNy45MXYtMTMuNDM5YzAtOC4yODQtNi43MTYtMTUtMTUtMTVzLTE1IDYuNzE2LTE1IDE1djEzLjQzOWMwIDMxLjkzMiAyNS45NzQgNTcuOTEgNTcuOSA1Ny45MWgxODEuMzljOC40OTcgMCAxNi42NDQgMi42MDcgMjMuNTYgNy41NDFsODIuNDcgNTguODNjOS44NTMgNy4wMzEgMjMuNzExLjAxNSAyMy43MTEtMTIuMjExdi0yNTkuNDl6Ii8+PHBhdGggZD0ibTEwNy44NjIgMTQzLjMzOWgxNzMuMzA0YzguMjg0IDAgMTUtNi43MTYgMTUtMTVzLTYuNzE2LTE1LTE1LTE1aC0xNzMuMzA0Yy04LjI4NCAwLTE1IDYuNzE2LTE1IDE1czYuNzE2IDE1IDE1IDE1eiIvPjxwYXRoIGQ9Im0xMDcuODYyIDIxMy4zMzloMTczLjMwNGM4LjI4NCAwIDE1LTYuNzE2IDE1LTE1cy02LjcxNi0xNS0xNS0xNWgtMTczLjMwNGMtOC4yODQgMC0xNSA2LjcxNi0xNSAxNXM2LjcxNiAxNSAxNSAxNXoiLz48L2c+PC9zdmc+"
-                              />
-                            </span>
-                            <div style={{ position: "absolute" }}>
-                              <ChatApp
-                                convos={convos}
-                                shutConvo={shutConvo}
-                                userLoggin={userLoggin}
-                              />
-                            </div>
-                          </div>
-                        ) : (
-                          <div id="chatButton">
-                            <a href="/aportal" id="chatButton">
-                              <span>AgentPortal</span>
-                            </a>
-                          </div>
-                        )}
-                      </li>
-
-                      <li className="login">
-                        <button type="submit" id="loginButton">
-                          <span onClick={() => openModal(true)}>
-                            <Link to="/login"> Login</Link>
-                          </span>
-=======
                       {checkCurrentRole()}
                       <li className='login'>
                         <Button>
@@ -216,18 +180,10 @@ const Navigation = ({
                         </Button>
                         <Button>
                           {user.name ? user.name : admin.name ? admin.name : ''}
->>>>>>> staging
                           <span onClick={() => signout(true)}>
                             <Link to="/"> Logout</Link>
                           </span>
-<<<<<<< HEAD
-                        </button>
-                        <div>
-                          {user.name ? user.name : admin.name ? admin.name : ""}
-                        </div>
-=======
                         </Button>
->>>>>>> staging
                       </li>
                     </ul>
                   </div>
