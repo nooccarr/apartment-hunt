@@ -156,8 +156,10 @@ class Description extends React.Component {
                     <div className='desDetail'>
                         <div className='desAddress'>
                             {this.props.details.address}, {this.props.details.city}, {this.props.details.state}, {this.props.details.zipCode}
-                            <button className='contactAgent'>Contact Agent</button>
-                            <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
+                                <div className='desButtons'>
+                                    <button className='contactAgent1'>Contact Agent</button>
+                                    <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
+                                </div>
                             </div>
                         <div className='desAptDet'>
                             <div className='desEle1'>${this.props.details.price}/Month</div>
