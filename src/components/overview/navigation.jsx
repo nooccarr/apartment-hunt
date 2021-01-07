@@ -7,6 +7,7 @@ import './navigation-style.scss';
 import SearchBar from './SearchBar/index.js';
 import ChatApp from '../ChatBox/frontend/ChatApp.jsx';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
 import { Home } from '@material-ui/icons';
 
 const Navigation = ({
@@ -112,17 +113,21 @@ const Navigation = ({
                       </li>
 
                       <li className='login'>
-                        <button type='submit' id='loginButton'>
-                          <span onClick={() => openModal(true)}>
-                            <Link to='/login'> Login</Link>
-                          </span>
+                        <Button>
+                          {user.name || admin.name ? (
+                            ''
+                          ) : (
+                            <span onClick={() => openModal(true)}>
+                              <Link to='/login'> Login</Link>
+                            </span>
+                          )}
+                        </Button>
+                        <Button>
+                          {user.name ? user.name : admin.name ? admin.name : ''}
                           <span onClick={() => signout(true)}>
                             <Link to='/'> Logout</Link>
                           </span>
-                        </button>
-                        <div>
-                          {user.name ? user.name : admin.name ? admin.name : ''}
-                        </div>
+                        </Button>
                       </li>
                     </ul>
                   </div>
