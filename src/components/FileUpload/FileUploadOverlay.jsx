@@ -3,7 +3,7 @@ import FileUpload from './FileUpload.jsx';
 import Modal from '@material-ui/core/Modal';
 import css from './styles/styles.css'
 
-const FileUploadOverlay = ({username, apartment_id}) => {
+const FileUploadOverlay = ({username, apartment_id, setPhotosNames}) => {
   // conditional that turn it on and off??
 
   const [open, setOpen] = useState(false)
@@ -31,11 +31,13 @@ const FileUploadOverlay = ({username, apartment_id}) => {
   return (
     <div>
       <div onClick={() => {updateOverlay()}} >
-        Submit Application
+        {username && apartment_id && <span className='select-video-button primary-font'>Submit Application</span>}
+        {setPhotosNames &&<span className='select-video-button primary-font'>Upload Photos</span>}
       </div>
       <Modal open={open} onClose={updateOverlay}>
         <div style={getModalStyle()}>
-          <FileUpload username={username} apartment_id={apartment_id} updateOveray={updateOverlay}/>
+          {username && apartment_id && <FileUpload username={username} apartment_id={apartment_id} updateOveray={updateOverlay}/>}
+          {setPhotosNames && <FileUpload setPhotosNames={setPhotosNames} updateOverlay={updateOverlay} />}
         </div>
 
       </Modal>
