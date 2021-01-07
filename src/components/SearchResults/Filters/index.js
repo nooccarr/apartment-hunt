@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './_filterStyle.scss';
 
-const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequestedBaths, requestedMinPrice, setRequestedMinPrice, requestedMaxPrice, setRequestedMaxPrice }) => {
+const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequestedBaths, requestedMinPrice, setRequestedMinPrice, requestedMaxPrice, setRequestedMaxPrice, requestedDogs, setRequestedDogs, requestedCats, setRequestedCats }) => {
 
   const categories = ['Price', 'Beds', 'Baths', 'More'];
 
   const select = (num, type) => {
+
     document.getElementById(`${num}${type}`).classList.add('selected');
 
     let ids = [`0${type}`, `1${type}`, `2${type}`, `3${type}`];
@@ -37,7 +38,6 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
       return true;
     } else {
       e.preventDefault();
-      // alert('Numbers Only Please!');
     }
   }
 
@@ -63,7 +63,7 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
               <div className='submitPrice' onClick={() => submitRequestedPrice()}>Done</div>
             </div>,
     Beds: <div className='dropdown'>
-            <div id='0beds' className='bedSelect' onClick={() => select('0','beds')}>Any</div>
+            <div id='0beds' className='bedSelect' onClick={(e) => select('0','beds')}>Any</div>
             <div id='1beds' className='bedSelect' onClick={() => select('1','beds')}>1+</div>
             <div id='2beds' className='bedSelect' onClick={() => select('2','beds')}>2+</div>
             <div id='3beds' className='bedSelect' onClick={() => select('3','beds')}>3+</div>
@@ -74,6 +74,19 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
             <div id='2baths' className='bathSelect' onClick={() => select('2','baths')}>2+</div>
             <div id='3baths' className='bathSelect' onClick={() => select('3','baths')}>3+</div>
           </div>,
+    More: <div 
+            className='dropdown' 
+            id='moreDropDown'
+            style={{
+              width: `${document.getElementById('toggleMore')?.offsetWidth - 12}px`,
+            }}
+    >
+            <input type='checkbox' id='dogs' className='checkbox' value={requestedDogs} onChange={() => setRequestedDogs(!requestedDogs)} />
+            <label for='dogs' className='checkbox' onChange={() => setRequestedDogs(!requestedDogs)}>Allow Dogs</label>
+            <br />
+            <input type='checkbox' id='cats' className='checkbox' onChange={() => setRequestedCats(!requestedCats)} />
+            <label for='cats' className='checkbox' onChange={() => setRequestedCats(!requestedCats)}>Allow Cats</label>
+          </div>
   };
 
   const [selectedFilter, setSelectedFilter] = useState(null);
@@ -90,7 +103,8 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
   };
 
   useEffect(() => {
-      if (prevSelectedFilter !== selectedFilter && selectedFilter !== 'dropdown' && selectedFilter !== 'priceText') {
+    const arr = ['dropdown', 'priceText', 'checkbox', 'bedSelect selected', 'bathSelect selected'];
+      if ((prevSelectedFilter !== selectedFilter) && (!arr.includes(selectedFilter))) {
         let dropdowns = document.getElementsByClassName('dropdown-content');
         for (let i = 0; i < dropdowns.length; i++) {
           let openDropdown = dropdowns[i];
@@ -145,9 +159,6 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
           </div>
         );
       })}
-      {/* <div className='singleFilterContainer'>
-        <div className='filter'>Save</div>
-      </div> */}
     </div>
   );
 };
