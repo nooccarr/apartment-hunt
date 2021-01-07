@@ -149,4 +149,49 @@ input.search-input{
   color:pink;
 }
 
+.agentButton {
+  font-size: 16px;
+  border: none;
+  background: transparent;
+  text-decoration: underline;
+  outline: none;
+  cursor: pointer;
+}
+
+
+.agentButton:hover, .agentButton:focus {
+  text-shadow: 2px 2px 5px rgb(228, 8, 162);
+}
+
+/* The container <div> - needed to position the dropdown content */
+.agentDrop {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.agentContent {
+  display: none;
+  position: absolute;
+  background-color: transparent;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.agentContent p {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: underline;
+  display: block;
+  cursor: pointer;
+}
+
+/* Change color of dropdown links on hover */
+.agentContent a:hover {text-shadow: 2px 2px 5px rgb(228, 8, 162);}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
  
