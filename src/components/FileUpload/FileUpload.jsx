@@ -10,14 +10,32 @@ const FileUpload = ({username, apartment_id, setPhotosNames}) => {
   const fileInput = useRef(null)
   const [files, setFile] = useState([]);
   const [uploadStatus, setUploadStatus] = useState('');
+  const [isValidFileType, setValidFileType] = useState(true);
   const AWSLink = 'https://hr-blue-ocean-photos-file-bucket.s3.us-east-2.amazonaws.com/'
 
   const updateFile = (e) => {
     // write code to prevent unneccessarily large megabyte files
     // Do so by checking size of files.
     // Check if file is of type 'application/pdf'
-    setFile(e.target.files[0] === undefined ? files : files.concat(e.target.files[0]))
-    setUploadStatus('');
+    if (username && apartment_id) {
+      if (e.target.files[0]['type'] !== "application/pdf") {
+        setValidFileType(false);
+      } else {
+        setFile(e.target.files[0] === undefined ? files : files.concat(e.target.files[0]))
+        setUploadStatus('');
+        setValidFileType(true);
+      }
+    } else {
+      if (!(e.target.files[0]['type'] === "image/jpeg" || e.target.files[0]['type'] === "image/png")) {
+        setValidFileType(false);
+      } else {
+        setFile(e.target.files[0] === undefined ? files : files.concat(e.target.files[0]))
+        setUploadStatus('');
+        setValidFileType(true);
+      }
+    }
+
+
   }
   const onButtonClick = (e) => {
     fileInput.current.click();
@@ -78,7 +96,10 @@ const FileUpload = ({username, apartment_id, setPhotosNames}) => {
        style={{'color':'green'}} className='status-message'>Upload Success!
        </div>}
       {uploadStatus === 'failure' && <div
-      style={{'color':'red'}} className='status-message'> Upload failed. Please try again </div>
+      style={{'color':'red'}} className='status-message'> Upload failed. Please try again.</div>
+      }
+      {isValidFileType === false && <div
+      style={{'color':'red'}} className='status-message'> Invalid File Type. Please upload a {username && apartment_id ? <span>PDF</span> : <span>.JPG or .PNG</span>}.</div>
       }
     </div>
     <div className='preview-file-container'>
