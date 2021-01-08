@@ -66,15 +66,18 @@ const App = () => {
 
   return (
     <div>
-      <Navigation
+      
+      <ApartmentContext.Provider
+        value={{ listings, getListings, coordinates, setCoordinates }}>
+          <Navigation
+      setSearchValue={setSearchValue}
+      searchValue={searchValue}
         getAdminInfo={getAdminInfo}
         getUserInfo={getUserInfo}
         signOut={signOut}
         user={user}
         admin={admin}
       />
-      <ApartmentContext.Provider
-        value={{ listings, getListings, coordinates, setCoordinates }}>
         <Router>
           <Switch>
             <Route exact path='/'>
@@ -86,9 +89,9 @@ const App = () => {
                 setSearchValue={setSearchValue}
               />
             </Route>
-            <Route exact path='/admin-dashboard'>
+            {/*<Route exact path='/admin-dashboard'>
               <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
-            </Route>
+  </Route>*/}
             <Route exact path='/apartment'>
               <Overview />
             </Route>

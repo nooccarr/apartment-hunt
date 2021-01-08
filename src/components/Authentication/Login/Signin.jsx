@@ -78,7 +78,7 @@ const Signin = ({ handleSignUp, openModal, getUserInfo, getAdminInfo }) => {
           onChange={(e) => setUserPassword(e.target.value)}
         />
         <Router>
-          <Link to='/profile' style={{ textDecoration: 'none' }}>
+          <Link to='/' style={{ textDecoration: 'none' }}>
             <Button
               className='login-btn'
               variant='contained'
@@ -105,7 +105,7 @@ const Signin = ({ handleSignUp, openModal, getUserInfo, getAdminInfo }) => {
           </div>
           <div className='back-signin'>
             <Router>
-              <Link to='/admin-dashboard' style={{ textDecoration: 'none' }}>
+              <Link to='/' style={{ textDecoration: 'none' }}>
                 <Button
                   className='admin-link-btn'
                   variant='contained'

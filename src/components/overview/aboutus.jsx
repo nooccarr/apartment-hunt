@@ -58,11 +58,7 @@ class About extends React.Component {
               Village: Scarsdale</p>
         </div>
         
-        <div className="widget">
-          <h5>Recommanded</h5>
-            <a href="#"><img src={image3} /></a>
-            <h4><a href="#">Consetetur sadipscing elitr nonumy</a></h4>
-        </div>
+  
   
       </div>
     </div>
