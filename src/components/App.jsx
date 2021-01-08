@@ -85,7 +85,12 @@ const App = () => {
 //   }
 
   const switchChat = (key) => {
+    if (texts !== 'alt') {
+      setChatId(null)
+    }
+
     setTexts(key)
+
   } 
 
   return (

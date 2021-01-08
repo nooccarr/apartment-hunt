@@ -18,15 +18,16 @@ const ChatApp = (props) => {
     setChatIdx(id);
     setChatId(chatHist[id].chatId);
     // setConvos(false);
+    getTextUpdate(true);
     props.shutConvo()
     // setTexts(true);
-    getTextUpdate(true);
     props.switchChat('nav')
   }
 
   const exitChat = () => {
     // setTexts(false)
-    getTextUpdate(false)
+    // getTextUpdate(false)
+    props.shutConvo()
     props.switchChat(null)
   }
 
@@ -54,7 +55,7 @@ const ChatApp = (props) => {
 
   useEffect(() => {
     console.log('chatHist', chatHist)
-    console.log('props.chatKey', props.chatKey)
+    console.log('props', props)
     if (chatHist.length > 0) {
       for (let i = 0; i < chatHist.length; i++) {
         if (chatHist[i].chatId === props.chatKey) {
@@ -62,6 +63,7 @@ const ChatApp = (props) => {
         }
       }
       if (props.chatKey) {
+        console.log('hithti')
         props.switchChat('alt');
       }
     }
