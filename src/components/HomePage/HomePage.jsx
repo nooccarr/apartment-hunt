@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import HomePageSearch from './Search.jsx';
-// import './styles/homelogin.css';
 import './styles/main.scss';
 
 const HomePage = ({ setSearchValue}) => {
