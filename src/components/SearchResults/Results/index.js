@@ -25,7 +25,6 @@ const Results = ({ requestedBaths, requestedBeds, requestedMinPrice, requestedMa
     if (listings) {
       return (
         <div className='results'>
-          {console.log(listings)}
           { listings.map(listing => {
             if ((requestedMaxPrice === '' && listing.price >= requestedMinPrice) && ((listing.beds >= requestedBeds) && (listing.baths >= requestedBaths))) {
               if (requestedDogs && requestedCats) {

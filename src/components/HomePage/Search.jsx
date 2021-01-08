@@ -22,24 +22,23 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
 
   const findApartments = () => {
     // API call with Coordinates
-    if (address === undefined) {
-      return;
-    } else {
-      // axios.get('/search', { 
-      //   params: {
-      //     distance: 0.25,
-      //     lat: 40.69396233779667, 
-      //     long: -73.94443814752641,
-      //   }
-      //   })
-      //   .then((results) => { getListings(results.data); })
-      //   .then(() => { setSearchValue(address || 'Current Location'); })
-      //   .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
+    axios.get('/search', { 
+      params: {
+        distance: 0.25,
+        lat: coordinates.lat, 
+        long: coordinates.lng,
+      }
+    })
+      .then((results) => { getListings(results.data); })
+      .then(() => {
         let path = `/listings?distance=${0.25}&lat=${coordinates.lat}&long=${coordinates.lng}`;
         window.history.pushState({path: path}, '', path);
         window.location.reload(false);
-    }
+      })
+      // .then(() => { setSearchValue(address || 'Current Location'); })
+      .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
   }
+  
 
   const startGeolocation = () => {
     if (navigator.geolocation) {
