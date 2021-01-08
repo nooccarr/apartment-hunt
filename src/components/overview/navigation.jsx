@@ -137,7 +137,7 @@ const Navigation = ({
             )}
             <div className='wrap'>
               <div className='col-1-3'>
-              
+
               </div>
 
               <div className="navigation-search-bar">
@@ -154,47 +154,10 @@ const Navigation = ({
                         </div>
                       )}
                       </li>
-                      <li>
-                        <div className="agentDrop">
-                          <button className="agentButton" onClick={showDrop}>
-                            Agent Portal
-                          </button>
-                          <div id="agentPages" className="agentContent">
-                            <p
-                              onClick={() => {
-                                window.history.pushState(
-                                  { path: `/uploadlisting` },
-                                  "",
-                                  `/uploadlisting`
-                                );
-                                window.location.reload(false);
-                              }}
-                            >
-                              Upload Listing
-                            </p>
-                            <p
-                              onClick={() => {
-                                window.history.pushState(
-                                  { path: `/aportal` },
-                                  "",
-                                  `/aportal`
-                                );
-                                window.location.reload(false);
-                              }}
-                            >
-                              Agent Portal
-                            </p>
-                          </div>
-                        </div>
-                      </li>
+
                       <li>
                         <a href="/" className="scroll">
                           Find Apartments
-                        </a>
-                      </li>
-                      <li>
-                        <a href='/UploadListing' className='scroll'>
-                          UploadListing
                         </a>
                       </li>
                       <li>
@@ -238,7 +201,7 @@ const Navigation = ({
                   ) : (
                     ""
                   )}
-                  {window.location.pathname === '/' ? null: <div className='search-form'> 
+                  {window.location.pathname === '/' ? null: <div className='search-form'>
                         <form
                         method='get'
                         action='/homelist'
@@ -259,10 +222,10 @@ const Navigation = ({
                          </li>
                         </ul>
                       </form>
-                      
+
                       </div>}
 
-                    
+
                   </div>
                 </div>
               </div>
@@ -288,8 +251,8 @@ const Navigation = ({
         />
       {/* </div> */}
       {window.location.pathname === '/' ? <div className='navheader_home'></div> : <div className='navheader_bottom'></div>}
-    </Router> 
-    </div> 
+    </Router>
+    </div>
   );
 };
 
