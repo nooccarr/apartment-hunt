@@ -15,7 +15,9 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
   let token = jwtDecode(Cookies.get('jwt'));
   const [agent, setAgent] = useState('');
   const [url, setUrl] = useState('');
+  const [isPhotoUploadSuccess, setIsPhotoUploadSuccess] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isFailure, setIsFailure] = useState(false);
   const [isCatChecked, setCatChecked] = useState('no');
   const [isDogChecked, setDogChecked] = useState('no')
   const [listing, setListing] = useState({
@@ -51,6 +53,7 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
       ...prevState,
       ['pics']: [...prevState['pics'], ...photos],
     }));
+    setIsPhotoUploadSuccess(true);
   };
 
   const addUrl = (e) => {
@@ -107,9 +110,10 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
     axios
       .post('http://localhost:3000/listing', listing)
       .then(() => {
-          setIsSuccess(true);
+        setIsSuccess(true);
       })
       .catch((err) => {
+        setIsFailure(true);
       });
     setListing({
       address: '',
@@ -181,7 +185,7 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
   return (
     <div className='main' style={{'overflow': 'scroll'}}  >
         <div>
-          <h2 className='aptForm'>UPLOAD APARTMENT LISTING</h2>
+          <h2 className='aptForm'>Upload New Apartment Listing</h2>
           {isSuccess && <p style={{'color':'green'}}>Your upload is successful!</p>}
           <form className='listingForm'>
             <div>
@@ -206,13 +210,13 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
             <div>
 
               <button className='submitButton' onClick={getPos}>
-                GET GEOLOCATION FOR MAPPING
+                Add Geolocation (Required)
               </button>
-              <div>
+              <div style={{'padding':'10px 0px'}}>
                 <div>Latitude</div>
                 <input type='text' className='upload-listing-textbox' value={!listing['position']['coordinates'] ? '' : listing['position']['coordinates'][0]}></input>
               </div>
-              <div>
+              <div style={{'padding':'10px 0px'}}>
                 <div>Longitude</div>
                 <input type='text' className='upload-listing-textbox' value={!listing['position']['coordinates'] ? '' : listing['position']['coordinates'][1]}></input>
               </div>
@@ -236,14 +240,14 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
               <input className='upload-listing-numberbox' type='number' name='baths' onChange={handleChange}></input>
             </div>
             <div>
-              <div>Price: </div>
+              <div>Price/month: </div>
               <input className='upload-listing-numberbox' type='number' name='price' onChange={handleChange}></input>
             </div>
             <div>
               <div>Square Feet: </div>
               <input className='upload-listing-numberbox' type='number' name='sqft' onChange={handleChange}></input>
             </div>
-            <div>
+            <div className='pets-container'>
               <div style={{'font-weight':'bold'}}>Pet Friendly?</div>
               <div>Cats</div>
               <input
@@ -294,6 +298,7 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
                 name='neighborhoods'
                 onChange={handleUrl}></input>
               <input
+                style={{width: '50px', 'marginLeft': '10px'}}
                 className='submitButton'
                 type='submit'
                 value='Add'
@@ -302,7 +307,9 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
             </div>
             <div>
               <FileUploadOverlay setPhotosNames={updatePhotos} />
+
             </div>
+            {isPhotoUploadSuccess && <div style={{'color':'green', 'fontStyle':'italic'}}>Your photos have been uploaded!</div>}
             <div>
               <VideoUpload setVideoName={updateVideo} />
             </div>
@@ -311,6 +318,8 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
               type='submit'
               value='Submit Listing'
               onClick={handleSubmit}></input>
+              {isSuccess && <span style={{'color':'green', 'fontStyle':'italic'}}>Thank you! Your listing has been posted!</span>}
+              {isFailure && <span style={{'color':'red', 'fontStyle':'italic'}}>Error! Did your remember to add the Geolocation?</span>}
           </form>
         </div>
     </div>

@@ -19,17 +19,21 @@ const AgentPortal = (props) => {
   const [resetId, setResetId] = useState(false);
 
   useEffect(() => {
+    console.log('hit', props.admin)
+    if (props.admin.hasOwnProperty('email')) {
+      console.log('hit2', props.admin)
     return axios
       .get(`/msg/agent`, {
         params: {
-          userName: props.admin.name,
+          agentEmail: props.admin.email,
         },
       })
       .then(({ data }) => {
-        // console.log('here', data)
+        console.log('here', data)
         setChatHist(data);
       });
-  }, [resetId]);
+    }
+  }, [resetId, props.admin]);
 
   useEffect(() => {
     if (!firstRender) {
@@ -93,12 +97,12 @@ const AgentPortal = (props) => {
         }}>
         <h2>Property Inquiries</h2>
         <div>
-          <div>
+          <div style={{marginBottom: "10px"}}>
             <div style={{ display: 'inline-block', width: '33.3%' }}>From</div>
             <div style={{ display: 'inline-block', width: '33.3%' }}>
               Address
             </div>
-            <div style={{ display: 'inline-block', width: '33.3%' }}>
+            <div style={{ display: 'inline-block', width: '33.3%', position:'relative', top:'11px'}}>
               <img
                 width='25'
                 height='30'
@@ -106,7 +110,8 @@ const AgentPortal = (props) => {
               />
             </div>
           </div>
-          <div>
+          <div style={{marginBottom: "10px"}}>
+            {console.log('chatHist', chatHist)}
             {chatHist.map((inQs, idx) => (
               <React.Fragment>
                 {(() => {
@@ -124,7 +129,7 @@ const AgentPortal = (props) => {
                             display: 'inline-block',
                             width: '33.3%',
                             verticalAlign: 'top',
-                            maxHeight: '50px',
+                            maxHeight: '40px',
                             overflowWrap: 'anywhere',
                           }}>
                           {inQs.userName}
@@ -134,7 +139,7 @@ const AgentPortal = (props) => {
                             display: 'inline-block',
                             width: '33.3%',
                             verticalAlign: 'top',
-                            maxHeight: '50px',
+                            maxHeight: '40px',
                             overflowWrap: 'anywhere',
                           }}>
                           {inQs.address}
@@ -144,7 +149,7 @@ const AgentPortal = (props) => {
                             display: 'inline-block',
                             width: '33.3%',
                             verticalAlign: 'top',
-                            maxHeight: '50px',
+                            maxHeight: '40px',
                             overflowWrap: 'anywhere',
                           }}>
                           {inQs.messages[inQs.messages.length - 1].message}
@@ -181,7 +186,7 @@ const AgentPortal = (props) => {
           exitChat={exitChat}
           updateConvo={updateConvo}
           chatId={chatId}
-          loggedIn={props.userLoggin}
+          loggedIn={props.admin}
         />
       ) : null}
     </div>
