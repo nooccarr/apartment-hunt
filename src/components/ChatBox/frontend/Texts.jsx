@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react'
+import React, { useState, useEffect, useCallback }  from 'react'
 // import loggedUser from './sampleUser'
 import axios from 'axios';
 const io = require('socket.io-client');
@@ -8,12 +8,12 @@ const io = require('socket.io-client');
 const Texts = (props) => {
   var connectionOptions =  {
     "force new connection" : true,
-    "reconnectionAttempts": "Infinity", //avoid having user reconnect manually in order to prevent dead clients after a server restart
+    "reconnectionAttempts": "10", //avoid having user reconnect manually in order to prevent dead clients after a server restart
     "timeout" : 10000,                  //before connect_error and connect_timeout are emitted.
     "transports" : ["websocket"]
 };
 
-  const socket = io('http://localhost:3000', connectionOptions);
+  const socket = io('http://18.224.228.145:80', connectionOptions);
 
   //Hooks--------------------------------------------------------
   const [text, setText] = useState('');
@@ -22,6 +22,22 @@ const Texts = (props) => {
   const [chatRoom, setChatRoom] = useState(null);
   const [render, letRender] = useState(false);
 
+  //scroll to bottom---------------------------------------------------
+  
+  const setRef = useCallback(node => {
+    if (node) {
+      node.scrollIntoView({ smooth: true })
+    }
+  }, [])
+  
+  
+  
+  
+  
+  
+  
+  
+  
   //EffectHook---------------------------------------------------
   useEffect(() => {
     
@@ -89,9 +105,7 @@ const Texts = (props) => {
       <div style={{display: 'flex', justifyContent:'flex-end', marginRight: '10px'}}>
         <button style={{backgroundColor:'#EFAEAA', color:'#fff', border:'1px solid #EFAEAA', borderRadius:'50%', cursor: 'pointer'}} onClick={props.exitChat}>X</button>
       </div>
-      {/* {console.log('props.chatBox', props.chatBox)} */}
       <div style={{cursor:"pointer", margin:"20px 0", fontSize: '26px'}} onClick={() => {
-      {console.log('hit')}
         var path = `/apartment?id=${props.chatBox.aptId}&chatId=${props.chatBox.chatId}`
         window.history.pushState({
           path: path}, '', path);        
