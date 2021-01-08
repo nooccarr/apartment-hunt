@@ -124,7 +124,7 @@ const Navigation = ({
   };
 
   return (
-    <div>
+    <div className="navigationbar">
       <Router>  {/* we should use the parent router */}
       <div>
       {window.location.pathname === '/' ? <div className='navheader_home'></div> : <div className='navheader'></div>}
