@@ -142,8 +142,11 @@ body {
   position: absolute;
   left: 20px;
   padding-top: 25px;
-  font-size: 1em;
-  display: inline;
+  font-size:1em;
+  display:inline;
+  width: 100%;
+  max-width: 500px;
+
 }
 .search-form ul li {
   list-style-type: none;

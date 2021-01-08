@@ -96,21 +96,20 @@ const App = () => {
 
   return (
     <div>
-
-      <Navigation
-        getAdminInfo={getAdminInfo}
-        getUserInfo={getUserInfo}
-        signOut={signOut}
-        user={user}
-        admin={admin}
-        switchChat={switchChat} 
-        texts={texts} 
-        chatKey={chatId}
-        routed={routed}
-      />
       <ApartmentContext.Provider
         value={{ listings, getListings, coordinates, setCoordinates }}>
-          <Router>  {/*  we wanna do client side routing  */}
+        <Navigation
+          getAdminInfo={getAdminInfo}
+          getUserInfo={getUserInfo}
+          signOut={signOut}
+          user={user}
+          admin={admin}
+          switchChat={switchChat} 
+          texts={texts} 
+          chatKey={chatId}
+          routed={routed}
+        />
+        <Router>
           <Switch>
             <Route exact path='/'>
               <HomeLogin user={user} />

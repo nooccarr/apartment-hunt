@@ -201,6 +201,15 @@ export default [
       ]
   },
   {
+    "featureType": "transit.line",
+    "elementType": "geometry.fill",
+    "stylers": [
+        {
+            "color": "#ffccff"
+        }
+        ]
+    },
+  {
       "featureType": "transit.station",
       "elementType": "all",
       "stylers": [
