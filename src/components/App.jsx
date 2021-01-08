@@ -94,7 +94,7 @@ const App = () => {
               <Overview />
             </Route>
             <Route exact path='/uploadlisting' component={UploadListing} />
-            <Route exact path='/aboutus' component={About} userLoggin={userLoggin}/>
+            <Route exact path='/aboutus' component={About}/>
             <Route exact path='/aportal'>
               <AgentPortal admin={admin} user={user} />
             </Route>
