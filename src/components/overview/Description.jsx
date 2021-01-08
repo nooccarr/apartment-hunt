@@ -4,13 +4,21 @@ import Restaurants from './Restaurants.jsx';
 import Schools from './Schools.jsx';
 import FileUploadOverlay from '../FileUpload/FileUploadOverlay.jsx';
 import './detail.style.scss';
-import CrimeMap from './CrimeMap.jsx'
-import Neighborhood from './Neighborhood.jsx'
+import CrimeMap from './CrimeMap.jsx';
+import Neighborhood from './Neighborhood.jsx';
+import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import Texts from '../ChatBox/frontend/Texts.jsx';
+import Cookies from 'js-cookie';
+let token = false;
+if (Cookies.get('jwt')) {
+    token = jwtDecode(Cookies.get('jwt'));
+}
 
 class Description extends React.Component {
     constructor(props) {
+        let token = Cookies.get('jwt') ? jwtDecode(Cookies.get('jwt')) : undefined;
+
         super(props);
         this.state = {
             areaModal: false,
@@ -20,6 +28,7 @@ class Description extends React.Component {
             idx: null,
             chatId: null,
             // texts: false,
+            username: token ? token.payload.username : undefined,
         }
         this.contactAge = this.contactAge.bind(this)
         this.exitChat = this.exitChat.bind(this)
@@ -258,12 +267,14 @@ class Description extends React.Component {
                         <div className='desAddress'>
                             {this.props.details.address}, {this.props.details.city}, {this.props.details.state}, {this.props.details.zipCode}
                             </div>
+                            {token ?
                     <div className='desAct'>
                         {this.props.user.role === 'client' ? 
                         <div onClick={this.contactAge} className='contactAgent'>Contact Agent</div> :
                         null}
                         <FileUploadOverlay username={this.state.username} apartment_id={this.props.details._id} />
                     </div>
+                    : null}
                         <div className='desAptDet'>
                             <div className='desEle1'>${this.props.details.price}/Month</div>
                             <div className='desEle2'>Bedrooms:{this.props.details.beds}</div>

@@ -170,9 +170,10 @@ const AgentPortal = (props) => {
           top: '30vh',
           right: '10%',
           padding: '25px',
+          overflow: 'scroll'
         }}>
         <h2>Document Upload</h2>
-        <AppliedApartments agentName={props.admin} />
+        <AppliedApartments />
       </div>
       {texts ? (
         <Texts

@@ -50,14 +50,13 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
   const checkCurrentRole = () => {
     if (Cookies.get('jwt')) {
       let token = jwtDecode(Cookies.get('jwt'));
-      
       if (
-        token.payload.role === 'user' ||
-        token.payload.provider === 'google'
-        ) {
-          return (
-            <li style={{zIndex: '11', cursor: 'pointer'}} className='chatButton'>
-            <div style={{ overflow: 'visible' } }>
+        token.payload.role === 'client' ||
+        token.payload.provider === 'google' || token.payload.role === 'user'
+      ) {
+        return (
+          <li style={{zIndex: '11', cursor: 'pointer'}} className='chatButton'>
+            <div style={{ overflow: 'visible' }}>
                 <img onClick={() => setConvos(!convos)}
                   width='25'
                   height='25'
@@ -115,7 +114,8 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
           </li>
         );
       } else {
-        return null;
+        // return null;
+        return <div></div>;
       }
     }
   };
