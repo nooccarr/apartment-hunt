@@ -8,8 +8,11 @@ import VideoUpload from '../FileUpload/VideoUpload.jsx';
 import FileUploadOverlay from '../FileUpload/FileUploadOverlay.jsx';
 import axios from 'axios';
 import './uploadlisting.scss'
+import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 const UploadListing = ({ searchValue, setSearchValue }) => {
+  let token = jwtDecode(Cookies.get('jwt'));
   const [agent, setAgent] = useState('');
   const [url, setUrl] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
@@ -33,6 +36,7 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
     beds: null,
     baths: null,
     agent: '',
+    agentEmail: token.payload.email
   });
 
   const updateVideo = (videoName) => {
@@ -100,15 +104,12 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     getPos();
-    console.log(listing);
     axios
       .post('http://localhost:3000/listing', listing)
       .then(() => {
           setIsSuccess(true);
-          console.log("success meow!");
       })
       .catch((err) => {
-        console.log('Fail meow', err);
       });
     setListing({
       address: '',
