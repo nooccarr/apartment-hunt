@@ -23,32 +23,6 @@ const key = require('./googleAuth/conf');
 const Utils = require('./utils/auth');
 const User = require('./models/userModel');
 
-var server = app.listen(PORT);
-
-const io = require('socket.io')(server);
-
-io.on('connection', (socket) => {
-  socket.on('disconnect', (reason) => {
-    console.log('');
-  });
-
-  socket.on('join room', (data) => {
-    console.log('a user connected');
-    socket.join(data.room);
-  });
-
-  socket.on('leave room', (data) => {
-    console.log('a user disconnected');
-    socket.leave(data.room);
-  });
-
-  socket.on('new message', (data) => {
-    socket.broadcast
-      .to(data.room)
-      .emit('receive message', [data.messageObj, data.room]);
-  });
-});
-
 var opts = {};
 opts.jwtFromRequest = function (req) {
   var token = null;
@@ -196,9 +170,9 @@ app.get('/schools', function (req, res) {
     });
 });
 
-// app.listen(PORT, () => {
-//   console.log(`Listening on port ${PORT}`);
-// });
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
 
 app.use('/', router);
 
