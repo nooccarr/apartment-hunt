@@ -1,3 +1,4 @@
+import transitions from '@material-ui/core/styles/transitions';
 import React, { useEffect, useState } from 'react';
 import PhotosLinkedList from './linkedList';
 
@@ -23,7 +24,7 @@ const Photos = ({ pics }) => {
           className='listingPhoto'
           style={{ 
             backgroundImage: `url(https://149368757.v2.pressablecdn.com/wp-content/uploads/Photos-Coming-Soon.jpg)`,
-            borderBottom: '1px solid grey'
+            border: '1px solid grey',
           }}
         >
 
@@ -33,7 +34,10 @@ const Photos = ({ pics }) => {
       return (
         <div 
           className='listingPhoto'
-          style={{ backgroundImage: `url(${ currentPhoto.value })` }}
+          style={{ 
+            backgroundImage: `url(${ currentPhoto.value })`,
+            transition: 'ease-in-out .5s',
+          }}
         >
           <img
             className='arrows'

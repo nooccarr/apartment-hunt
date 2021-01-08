@@ -1,4 +1,7 @@
 $text: helvetica;
+$light-pink: rgb(254, 218, 218);
+$mid-pink: rgb(239, 174, 170);
+$dark-pink: rgb(191, 99, 104);
 
 .results {
   grid-row: 2;
@@ -13,28 +16,34 @@ $text: helvetica;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   // align-items: flex-start;
   overflow: scroll;
 
   .listing {
     width: 245px;
-    height: 300px;
+    height: 275px;
     margin: {
-      top: 15px;
+      top: 5px;
       // bottom: 10px;
       left: 5px;
       right: 5px;
     };
-    border: {
-      // radius: 5px;
-      color: rgb(192, 192, 192);
-      width: 1px;
-      style: solid;
+    padding: {
+      right: 4px;
+      left: 4px;
+      // bottom: 4px;
+      top: 4px;
     };
-    background-color: white;
+    border: {
+      radius: 5px;
+      // color: rgb(192, 192, 192);
+      // width: 1px;
+      // style: solid;
+    };
+    // background-color: rgba(254, 218, 218, .2);
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 55% 45%;
     overflow: hidden;
 
     .listingPhoto {
@@ -48,7 +57,7 @@ $text: helvetica;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      // border-radius: 5px;
+      border-radius: 5px;
 
       .arrows {
         background-color: white;
@@ -67,12 +76,12 @@ $text: helvetica;
       .price {
         margin: {
           top: 10px;
-          left: 10px;
+          // left: 10px;
           right: 10px;
-          bottom: 10px;
+          bottom: 3px;
         };
         font: {
-          size: 25px;
+          size: 1.35em;
           weight: bold;
         }
       }
@@ -80,21 +89,24 @@ $text: helvetica;
       .details {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        // justify-content: space-between;
         margin: {
-          left: 10px;
+          // left: 10px;
           right: 10px;
         };
 
         .bedrooms, .bathrooms, .size {
 
-          font-size: 18px;
+          font-size: 1em;
+          margin: {
+            right: 10px;
+          };
           padding: {
-            top: 5px;
-            left: 20px;
+            top: 3px;
+            left: 15px;
           };
           background: {
-            size: 16px 24px;
+            size: 13px 20px;
             repeat: no-repeat;
           }
         }
@@ -112,18 +124,18 @@ $text: helvetica;
 
       .address {
         margin: {
-          left: 10px;
-          top: 10px;
+          // left: 10px;
+          top: 5px;
         };
         font: {
-          size: 18px;
+          size: 1em;
         }
       }
     }
   }
 
   .listing:hover {
-    box-shadow: 0px 0px 10px #d8a7a3;
+    // box-shadow: 0px 0px 10px #d8a7a3;
     .listingPhoto{
       .arrows {
         opacity: .3;

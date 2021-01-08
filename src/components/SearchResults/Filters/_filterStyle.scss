@@ -34,7 +34,7 @@ $text: helvetica;
         right: 10px;
       };
       border: {
-        // radius: 5px;
+        radius: 5px;
         color: rgb(192, 192, 192);
         style: solid;
         width: 1px;
@@ -53,9 +53,9 @@ $text: helvetica;
         style: solid;
         width: 1px;
         color: rgb(192, 192, 192);
-        // bottom-right-radius: 5px;
-        // bottom-left-radius: 5px;
-        // top-right-radius: 5px;
+        bottom-right-radius: 5px;
+        bottom-left-radius: 5px;
+        top-right-radius: 5px;
       }
       left: 5px;
       padding: {
@@ -123,7 +123,7 @@ $text: helvetica;
         outline: none;
         background-color: white;
         border: none;
-        // border-radius: 5px;
+        border-radius: 5px;
         padding: {
           top: 5px;
           bottom: 5px;
@@ -151,7 +151,7 @@ $text: helvetica;
           right: 10px;
         };
         border: {
-          // radius: 5px;
+          radius: 5px;
           color: rgb(192, 192, 192);
           style: solid;
           width: 1px;
@@ -162,7 +162,7 @@ $text: helvetica;
       .bedSelect, .bathSelect {
         cursor: pointer;
         background-color: white;
-        // border-radius: 5px;
+        border-radius: 5px;
         border: {
           style: solid;
           width: 1px;
@@ -190,8 +190,8 @@ $text: helvetica;
       display: block;
     }
     .Price, .Beds, .Baths, .More {
-      // border-bottom-left-radius: 0px;
-      // border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
       background-color: $color;
       // border: none;
       height: 115%;

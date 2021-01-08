@@ -1,20 +1,20 @@
 import React from 'react';
- 
- 
+
+
 
 class About extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  
+
   render() {
     let userLoggin = {
       name: 'Lonnie567',
       email: 'Lonnie567@gmail.com',
       role: 'client'
     }
-  
+
   // let userLoggin = {
   //     name: 'laura90',
   //     email: 'laura90@gmail.com',
@@ -23,11 +23,11 @@ class About extends React.Component {
 
     return (
       <div>
-     
+
           {/* <Navigation userLoggin={userLoggin}/> */}
-      
+
         <div className='about-us-container'>
-        
+
           <div className='aboutus-text-container'>
             <div>
               <h2>Overview</h2>
@@ -61,9 +61,9 @@ class About extends React.Component {
                     Address: 109 Nassau Street, 4th Floor New York NY 10038</p>
               </div>
           </div>
-        
-  
-        </div> 
+
+
+        </div>
       </div>
 
     );
