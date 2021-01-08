@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Filters from './Filters';
 import GoogleMap from './GoogleMap';
 import Results from './Results';

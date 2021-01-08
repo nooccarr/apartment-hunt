@@ -50,7 +50,7 @@ const Signup = ({ handleSignIn, openModal }) => {
           onChange={(e) => setUserPassword(e.target.value)}
         />
         <Router>
-          <Link to='/profile' style={{ textDecoration: 'none' }}>
+          <Link to='/' style={{ textDecoration: 'none' }}>
             <Button
               className='login-btn-signup'
               variant='contained'

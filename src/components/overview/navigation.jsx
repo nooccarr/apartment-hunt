@@ -150,24 +150,20 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
   }
 
   return (
-    <Router>
+    <div className="navigationbar">
+      <Router>  {/* we should use the parent router */}
       <div>
-        <div className="navheader">
-          <div className="header" id="home">
-            {window.location.pathname === "/" ? (
-              <div className="header_top_home"></div>
+      {window.location.pathname === '/' ? <div className='navheader_home'></div> : <div className='navheader'></div>}
+         {/* <div className='navheader'> */}
+          <div className='header' id='home'>
+            {window.location.pathname === '/' ? (
+              <div className='header_top_home'></div>
             ) : (
               <div className="header_top"></div>
             )}
-            <div className="wrap">
-              <div className="col-1-3">
-                {window.location.pathname === "/" ? null : (
-                  <div className="logo">
-                    <a href="/">
-                      <img src={logo} />
-                    </a>
-                  </div>
-                )}
+            <div className='wrap'>
+              <div className='col-1-3'>
+
               </div>
 
               <div className="navigation-search-bar">
@@ -175,48 +171,26 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
                   <div className="menu">
                     <ul>
                       <li>
-                        <div className="agentDrop">
-                          <button className="agentButton" onClick={showDrop}>
-                            Agent Portal
-                          </button>
-                          <div id="agentPages" className="agentContent">
-                            <p
-                              onClick={() => {
-                                window.history.pushState(
-                                  { path: `/uploadlisting` },
-                                  "",
-                                  `/uploadlisting`
-                                );
-                                window.location.reload(false);
-                              }}
-                            >
-                              Upload Listing
-                            </p>
-                            <p
-                              onClick={() => {
-                                window.history.pushState(
-                                  { path: `/aportal` },
-                                  "",
-                                  `/aportal`
-                                );
-                                window.location.reload(false);
-                              }}
-                            >
-                              Agent Portal
-                            </p>
-                          </div>
+                      {window.location.pathname === '/' ? null : (
+                        <div className='logo'>
+                          <a href='/'>
+
+                            <img src={logo} />
+                          </a>
                         </div>
+                      )}
                       </li>
+
                       <li>
                         <a href="/" className="scroll">
                           Find Apartments
                         </a>
                       </li>
                       <li>
-                        {/* <a href='/aboutus' className='scroll'>
+                        <a href='/aboutus' className='scroll'>
                             About Us
-                          </a> */}
-                        <Link to="/aboutus">About Us</Link>
+                          </a>
+                        {/* <Link to='/aboutus'>About Us</Link> */}
                       </li>
                       {checkCurrentRole()}
                       <li className='login'>
@@ -253,32 +227,38 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
                   ) : (
                     ""
                   )}
-                  <div className="search-form">
-                    {window.location.pathname === "/" ? null : (
-                      <form
-                        method="get"
-                        action="/homelist"
-                        id="search"
-                        className="f-right"
-                      >
+                  {window.location.pathname === '/' ? null: <div className='search-form'>
+                        <form
+                        method='get'
+                        action='/homelist'
+                        id='search'
+                        className='f-right'>
+                          <ul>
+                            <li>
                         <SearchBar
                           searchValue={searchValue}
                           setSearchValue={setSearchValue}
                         />
-
-                        <button type="submit" className="searchButton">
-                          {" "}
+                            </li>
+                            <li>
+                        <button type='submit' className='searchButton'>
+                          {' '}
                           Search
                         </button>
+                         </li>
+                        </ul>
                       </form>
-                    )}
+
+                      </div>}
+
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        {/* </div>  */}
+        {/* </div>
+        </div> */}
         <Route
           path="/login"
           render={(props) => {
@@ -295,9 +275,11 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
             />;
           }}
         />
-      </div>
-      {admin.hasOwnProperty('name') ? AgentChatRender() : null}
+      {/* </div> */}
+      {window.location.pathname === '/' ? <div className='navheader_home'></div> : <div className='navheader_bottom'></div>}
     </Router>
+    {admin.hasOwnProperty('name') ? AgentChatRender() : null}
+    </div>
   );
 };
 

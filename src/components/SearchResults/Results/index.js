@@ -12,7 +12,7 @@ const Results = ({ requestedBaths, requestedBeds, requestedMinPrice, requestedMa
       params: {
         distance: Number(params[0].split('=')[1]),
         lat: Number(params[1].split('=')[1]), 
-        long: Number(params[2].split('=')[1]),
+        long: Number(params[2].split('=')[1])
         // lat: coordinates.lat,
         // long: coordinates.lng
       }
@@ -20,14 +20,9 @@ const Results = ({ requestedBaths, requestedBeds, requestedMinPrice, requestedMa
       .then((results) => { 
         getListings(results.data);
        })
-      .then(() => { 
-        setSearchValue(address || 'Current Location');  
-      })
       .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
   }, []);
     if (listings) {
-      console.log('Dogs: ', requestedDogs);
-      console.log('Cats: ', requestedCats);
       return (
         <div className='results'>
           { listings.map(listing => {
