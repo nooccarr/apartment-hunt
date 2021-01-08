@@ -5,6 +5,7 @@ import logo from '../../images/logo.png';
 import '../HomePage/styles/main.scss';
 import './navigation-style.scss';
 import SearchBar from './SearchBar/index.js';
+import Search from '../HomePage/Search.jsx';
 import ChatApp from '../ChatBox/frontend/ChatApp.jsx';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
@@ -227,31 +228,11 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
                   ) : (
                     ""
                   )}
-                  {window.location.pathname === '/' ? null: <div className='search-form'>
-                        <form
-                        method='get'
-                        action='/homelist'
-                        id='search'
-                        className='f-right'>
-                          <ul>
-                            <li>
-                        <SearchBar
-                          searchValue={searchValue}
-                          setSearchValue={setSearchValue}
-                        />
-                            </li>
-                            <li>
-                        <button type='submit' className='searchButton'>
-                          {' '}
-                          Search
-                        </button>
-                         </li>
-                        </ul>
-                      </form>
-
-                      </div>}
-
-
+                  <div className="search-form">
+                    {window.location.pathname === "/" 
+                      ? null 
+                      : <Search />
+                    }
                   </div>
                 </div>
               </div>
@@ -275,7 +256,7 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
             />;
           }}
         />
-      {/* </div> */}
+      </div>
       {window.location.pathname === '/' ? <div className='navheader_home'></div> : <div className='navheader_bottom'></div>}
     </Router>
     {admin.hasOwnProperty('name') ? AgentChatRender() : null}
