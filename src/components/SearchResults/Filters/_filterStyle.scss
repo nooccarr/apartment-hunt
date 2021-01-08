@@ -34,7 +34,7 @@ $text: helvetica;
         right: 10px;
       };
       border: {
-        radius: 5px;
+        // radius: 5px;
         color: rgb(192, 192, 192);
         style: solid;
         width: 1px;
@@ -53,9 +53,9 @@ $text: helvetica;
         style: solid;
         width: 1px;
         color: rgb(192, 192, 192);
-        bottom-right-radius: 5px;
-        bottom-left-radius: 5px;
-        top-right-radius: 5px;
+        // bottom-right-radius: 5px;
+        // bottom-left-radius: 5px;
+        // top-right-radius: 5px;
       }
       left: 5px;
       padding: {
@@ -65,25 +65,65 @@ $text: helvetica;
         bottom: 10px;
       };
     }
+    .dropdown[id='moreDropDown'] {
+      // display: flex;
+      flex-direction: column;
+      align-items:flex-start;
+    }
     .dropdown {
       display: flex;
       flex-direction: row;
-      font-family: $text;
+      font: 115% $text;
       align-items: center;
       padding: {
         // right: 10px;
         left: 10px;
       };
 
-      #minPrice:invalid, #maxPrice:invalid {
-        color: red;
+      input[type='checkbox'] + label {
+        cursor: pointer;
       }
+
+      input[type='checkbox'] + label::before {
+        content: '\a0';
+        display: inline-block;
+        vertical-align: .1em;
+        width: .8em;
+        height: .8em;
+        // font-size: 18px;
+        margin-right: .2em;
+        border: {
+          radius: .2em;
+          color: pink;
+          style: solid;
+          width: 1px;
+        };
+        background: white;
+        text-indent: .15em;
+        line-height: .65;
+      }
+      input[type='checkbox']:checked + label::before {
+        content: '\2713';
+        background: pink;
+        border-color: white;
+      }
+      input[type='checkbox'] {
+        position: absolute;
+        clip: rect(0, 0, 0, 0);
+      }
+      input[type='checkbox']:hover + label::before {
+        box-shadow: 0 0 .1em .1em pink;
+      }
+
+      // #minPrice:invalid, #maxPrice:invalid {
+      //   color: red;
+      // }
 
       .priceText {
         outline: none;
         background-color: white;
         border: none;
-        border-radius: 5px;
+        // border-radius: 5px;
         padding: {
           top: 5px;
           bottom: 5px;
@@ -111,7 +151,7 @@ $text: helvetica;
           right: 10px;
         };
         border: {
-          radius: 5px;
+          // radius: 5px;
           color: rgb(192, 192, 192);
           style: solid;
           width: 1px;
@@ -122,7 +162,7 @@ $text: helvetica;
       .bedSelect, .bathSelect {
         cursor: pointer;
         background-color: white;
-        border-radius: 5px;
+        // border-radius: 5px;
         border: {
           style: solid;
           width: 1px;
@@ -142,17 +182,20 @@ $text: helvetica;
       .selected {
         background-color: pink;
       }
+      .bedSelect:hover, .bathSelect:hover {
+        background-color: lightpink;
+      }
     }
     .show {
       display: block;
     }
-    .Price, .Beds, .Baths {
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
+    .Price, .Beds, .Baths, .More {
+      // border-bottom-left-radius: 0px;
+      // border-bottom-right-radius: 0px;
       background-color: $color;
       // border: none;
       height: 115%;
-      z-index: 1;
+      z-index: 9999;
       box-shadow: -1px 10px 20px 0px rgb(192, 192, 192);
       border-color: rgb(192, 192, 192);
       border-style: solid;
