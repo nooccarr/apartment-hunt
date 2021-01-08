@@ -8,9 +8,18 @@ const VideoUpload = ({apartment_id, setVideoName}) => {
   const fileInput = useRef(null);
   const [video, setVideo] = useState();
   const [isLoading, setLoading] = useState('none');
+  const [isMp4, setIsMp4] = useState(true);
 
   const selectVideo = (e) => {
-    setVideo(e.target.files[0]);
+    //if (e.target.files[0]['type'] !== ''])
+    console.log(e.target.files[0]); //videos.mp4
+    if (e.target.files[0]['type'] !== 'video/mp4') {
+      setIsMp4(false);
+    } else {
+      setIsMp4(true);
+      setVideo(e.target.files[0]);
+    }
+
   }
 
   const onInputButtonClick = (e) => {
@@ -52,6 +61,7 @@ const VideoUpload = ({apartment_id, setVideoName}) => {
       <div onClick={(e) => {onInputButtonClick(e)}} className='select-video-button'>
         Upload Video
       </div>
+      {isMp4 === false && <div style={{color: 'red'}} className='status-message'>Invalid File Type. Please upload an .MP4 </div>}
       {video && isLoading === 'none' && <div className='video-file-container'>
         <div>
           <FontAwesomeIcon style={{'color':'#FF6EC7'}} onClick={() => {deleteVideo()}} icon={faTrashAlt} />
@@ -63,8 +73,9 @@ const VideoUpload = ({apartment_id, setVideoName}) => {
           Upload
         </div>
       </div>}
+
       {isLoading === 'uploading' && <div> Please wait... Your video is uploading</div>}
-      {isLoading === 'complete' && <div style={{color: 'green'}}> Your video has finished uploading! </div>}
+      {isLoading === 'complete' && <div style={{color: 'green', 'fontStyle':'italic'}}> Your video has finished uploading! </div>}
     </div>
   )
 }

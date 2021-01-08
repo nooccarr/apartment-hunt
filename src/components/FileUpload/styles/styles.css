@@ -6,7 +6,7 @@ File Upload/ Video Upload Fonts
 
 *******/
 .primary-font {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: Helvetica, Arial, sans-serif;
 }
 .select-video-button {
   color: white;
@@ -117,10 +117,17 @@ File Upload/ Video Upload Fonts
 }
 .apartment-entry-container > div {
   padding: 10px;
+  width: 100px;
+  box-sizing: border-box;
+
 }
 .documents-container {
   display:flex;
   flex-direction: column;
+}
+.documents-container > div{
+  padding-bottom: 10px;
+  cursor: pointer;
 }
 
 /******* End of File Upload/ Video Upload Font ******/

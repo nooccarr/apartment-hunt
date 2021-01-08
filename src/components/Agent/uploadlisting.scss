@@ -14,7 +14,7 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 .submitButton{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     background-color: deeppink;
     color:white;
     padding: 10px;
@@ -23,17 +23,19 @@
 }
 
 #finalSubmit{
+    color: white;
     margin-top: 1%;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     background-color: $color;
     font-size: 22px;
-    margin-left: 20%;
     margin-bottom: 3%;
+    border-radius: 10px;
+    padding:10px;
 }
 
 .yesButton {
     background-color: green;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "herbarium";
 }
 
 .noButton {
@@ -68,9 +70,13 @@ textarea {
 }
 
 .listingForm > div {
-    font-family: 'Helvetica', Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     padding: 10px
 
+}
+
+.pets-container > input {
+    width: 20px;
 }
 
 .main {
