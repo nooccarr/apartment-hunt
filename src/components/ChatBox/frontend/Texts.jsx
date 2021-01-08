@@ -13,7 +13,7 @@ const Texts = (props) => {
     "transports" : ["websocket"]
 };
 
-  const socket = io('http://localhost:5000', connectionOptions);
+  const socket = io('http://localhost:3000', connectionOptions);
 
   //Hooks--------------------------------------------------------
   const [text, setText] = useState('');
