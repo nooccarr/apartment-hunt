@@ -4,8 +4,14 @@ import Restaurants from './Restaurants.jsx';
 import Schools from './Schools.jsx';
 import FileUploadOverlay from '../FileUpload/FileUploadOverlay.jsx';
 import './detail.style.scss';
-import CrimeMap from './CrimeMap.jsx'
-import Neighborhood from './Neighborhood.jsx'
+import CrimeMap from './CrimeMap.jsx';
+import Neighborhood from './Neighborhood.jsx';
+import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
+let token = false;
+if (Cookies.get('jwt')) {
+    token = jwtDecode(Cookies.get('jwt'));
+}
 
 class Description extends React.Component {
     constructor(props) {
@@ -158,10 +164,12 @@ class Description extends React.Component {
                         <div className='desAddress'>
                             {this.props.details.address}, {this.props.details.city}, {this.props.details.state}, {this.props.details.zipCode}
                             </div>
+                            {token ?
                     <div className='desAct'>
                         <div className='contactAgent'>Contact Agent</div>
                         <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
                     </div>
+                    : null}
                         <div className='desAptDet'>
                             <div className='desEle1'>${this.props.details.price}/Month</div>
                             <div className='desEle2'>Bedrooms:{this.props.details.beds}</div>
