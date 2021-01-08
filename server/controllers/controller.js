@@ -158,8 +158,8 @@ const signout = (req, res) => {
 
 const applicants = (req, res) => {
   Apts.find()
-    .where('agent')
-    .equals(req.query.agent)
+    .where('agentEmail')
+    .equals(req.query.agentEmail)
     .where('applicants')
     .exists(true)
     .then((apts) => {
