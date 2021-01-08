@@ -23,6 +23,7 @@ const App = () => {
   const [texts, setTexts] = useState(null);
   const [chatId, setChatId] = useState(null);
   const [searchValue, setSearchValue] = useState('');
+  const [routed, setRouted] = useState(false);
 
   useEffect(() => {
     if (Cookies.get('jwt')) {
@@ -44,7 +45,7 @@ const App = () => {
             console.log('chunk', keyId.split('=')[1])
             let key = keyId.split('=')[1]
             setChatId(key)
-            // setTexts('alt')
+            setRouted(true)
           }
         }
     }
@@ -85,8 +86,8 @@ const App = () => {
 //   }
 
   const switchChat = (key) => {
-    if (texts !== 'alt') {
-      setChatId(null)
+    if (key !== 'alt') {
+      setRouted(false)
     }
 
     setTexts(key)
@@ -104,6 +105,7 @@ const App = () => {
         switchChat={switchChat} 
         texts={texts} 
         chatKey={chatId}
+        routed={routed}
       />
       <ApartmentContext.Provider
         value={{ listings, getListings, coordinates, setCoordinates }}>

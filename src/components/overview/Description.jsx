@@ -69,7 +69,7 @@ class Description extends React.Component {
             userName: this.props.user.name,
             userEmail: this.props.user.email,
             agentName: this.props.details.agent,
-            agentEmail: this.props.details.email,
+            agentEmail: this.props.details.agentEmail,
             messages: [],
         }).then(() => {
             return axios.get(`/msg/client`, {

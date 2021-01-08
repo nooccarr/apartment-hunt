@@ -15,13 +15,24 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import UploadListing from '../Agent/UploadListing.jsx';
 
 
-const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, user, admin, signOut, switchChat, texts, chatKey}) => {
+const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, user, admin, signOut, switchChat, texts, chatKey, routed}) => {
   const [clickedLogin, setClickedLogin] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [convos, setConvos] = useState(false);
+  // const [userLogIn, setUserLogIn] = useState(null);
 
+  
+  // useEffect(() => {
+  //   if (user.hasOwnProperty('name')) {
+  //     setUserLogIn(user)
+  //   } else if (admin.hasOwnProperty('name')){
+  //     setUserLogIn(admin)
+  //   }
+  // }, [user, admin])
+  
+  
+  
   const shutConvo = () => {
-    console.log('hit')
     setConvos(false);
   };
 
@@ -52,7 +63,7 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
       let token = jwtDecode(Cookies.get('jwt'));
       if (
         token.payload.role === 'client' ||
-        token.payload.provider === 'google' || token.payload.role === 'user'
+        token.payload.provider === 'google' || token.payload.role === 'user' 
       ) {
         return (
           <li style={{zIndex: '11', cursor: 'pointer'}} className='chatButton'>
@@ -72,6 +83,7 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
                   switchChat={switchChat} 
                   texts={texts} 
                   chatKey={chatKey}
+                  routed={routed}
                 />
               </div>
             </div>
@@ -119,6 +131,23 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
       }
     }
   };
+
+  const AgentChatRender = () => {
+    // if (admin.hasOwnProperty('name')) {
+      console.log('texts', texts)
+      return ( 
+        <ChatApp
+        convos={convos}
+        shutConvo={shutConvo}
+        user={admin}
+        switchChat={switchChat} 
+        texts={texts} 
+        chatKey={chatKey}
+        routed={routed}
+        />
+    )
+  // }
+  }
 
   return (
     <Router>
@@ -267,6 +296,7 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
           }}
         />
       </div>
+      {admin.hasOwnProperty('name') ? AgentChatRender() : null}
     </Router>
   );
 };

@@ -13,6 +13,7 @@ const ChatApp = (props) => {
   const [firstRender, setFirstRender] = useState(false);
   const [textUpdate, getTextUpdate] = useState(false);
   const [currChatRoom, getCurrChatRoom] = useState({});
+  const [render, setRender] = useState(false);
 
   const selectConvo = (id) => {
     setChatIdx(id);
@@ -32,15 +33,25 @@ const ChatApp = (props) => {
   }
 
   useEffect(() => {
-    console.log('props', props)
-    if (props.user.hasOwnProperty('email')) {
-      console.log('props.user', props.user)
+    console.log('getAdmin', props.user)
+    if (props.user.role === 'client') {
       return axios
         .get(`/msg/client`, {
           params: {
             userEmail: props.user.email,
           },
         }).then(({ data }) => {
+          setChatHist(data)
+        })
+    } else if (props.user.role === 'agent') {
+      console.log('getAdmin', props.user)
+      return axios
+        .get(`/msg/agent`, {
+          params: {
+            agentEmail: props.user.email,
+          },
+        }).then(({ data }) => {
+          console.log('data', data)
           setChatHist(data)
         })
     }
@@ -55,14 +66,14 @@ const ChatApp = (props) => {
 
   useEffect(() => {
     console.log('chatHist', chatHist)
-    console.log('props', props)
+    console.log('props.routed', props.routed)
     if (chatHist.length > 0) {
       for (let i = 0; i < chatHist.length; i++) {
         if (chatHist[i].chatId === props.chatKey) {
           getCurrChatRoom(chatHist[i])
         }
       }
-      if (props.chatKey) {
+      if (props.routed) {
         console.log('hithti')
         props.switchChat('alt');
       }
@@ -90,25 +101,39 @@ const ChatApp = (props) => {
     if (chatRoomId === null) {
       return;
     }
-
-    let outdatedChat = [...chatHist];
-    for (let i = 0; i < outdatedChat.length; i++) {
-      if (outdatedChat[i].chatId === chatRoomId) {
-        let chatRoom = outdatedChat[i];
-        chatRoom.messages.push(messageObj);
-        setChatHist(outdatedChat);
+    console.log('props.chatKey', props.chatKey)
+    if (props.routed) {
+      let outdatedChat = [...chatHist];
+      for (let i = 0; i < chatHist.length; i++) {
+        if (chatHist[i].chatId === currChatRoom.chatId) {
+          console.log('chatHist', chatHist[i])
+          console.log('outdatedChat[i]', outdatedChat[i])
+          let chatRoom = outdatedChat[i];
+          console.log('ran', chatRoom)
+          chatRoom.messages.push(messageObj);
+          getCurrChatRoom(outdatedChat[i]);
+          setRender(!render);
+        }
+      }
+    } else {
+      let outdatedChat = [...chatHist];
+      for (let i = 0; i < outdatedChat.length; i++) {
+        if (outdatedChat[i].chatId === chatRoomId) {
+          let chatRoom = outdatedChat[i];
+          chatRoom.messages.push(messageObj);
+          setChatHist(outdatedChat);
+        }
       }
     }
   };
     
   
   return (
-    <div>
-      {console.log('props.convos', props.convos)}
+    <div style={{position: 'relative', zIndex: '99'}}>
       <div>
         {props.convos ? <Convos chatHistory={chatHist} selectConvo={selectConvo} /> : null}
         {props.texts === 'nav' ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={props.user}/> : null}
-        {props.texts === 'alt' ? <Texts chatBox={currChatRoom} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={props.user}/> : null}
+        {props.texts === 'alt' ? <Texts chatBox={currChatRoom} exitChat={exitChat} updateConvo={updateConvo} chatId={props.chatKey} loggedIn={props.user} /> : null}
       </div>
     </div>
   );
