@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Login, LoginModal } from '../Authentication/index.jsx';
 import logo from '../../images/logo.png';
 import '../HomePage/styles/main.scss';
 import './navigation-style.scss';
-import SearchBar from './SearchBar/index.js';
+import { ApartmentContext } from '../HomePage/ApartmentContext.jsx';
+import HomePageSearch from '../HomePage/Search.jsx';
 import ChatApp from '../ChatBox/frontend/ChatApp.jsx';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
@@ -28,6 +29,7 @@ const Navigation = ({
   const [modalOpen, setModalOpen] = useState(false);
   const [convos, setConvos] = useState(false);
   const [role, setRole] = useState({});
+  const {listings, getListings, coordinates, setCoordinates} = useContext(ApartmentContext)
 
   
 
@@ -170,14 +172,11 @@ const Navigation = ({
                   <div className="search-form">
                     {window.location.pathname === "/" ? null : (
                       <div>
-                        <SearchBar
+                        <input type="text" ></input>
+                       { /*<HomePageSearch
                           searchValue={searchValue}
                           setSearchValue={setSearchValue}
-                        />
-                        <button type="submit" className="searchButton">
-                          {" "}
-                          Search
-                        </button>
+                       />*/}
                         </div>
                     )}
                   </div>
@@ -186,22 +185,6 @@ const Navigation = ({
             </div>
           </div>
         </div>
-        <Route
-          path="/login"
-          render={(props) => {
-            <LoginModal
-              Login={
-                <Login
-                  openModal={openModal}
-                  getUserInfo={getUserInfo}
-                  getAdminInfo={getAdminInfo}
-                />
-              }
-              modalOpen={modalOpen}
-              openModal={openModal}
-            />;
-          }}
-        />
       </div>
       <Switch>
         <Route path="/uploadlisting">
@@ -325,10 +308,7 @@ const Navigation = ({
                     <div className="search-form">
                       {window.location.pathname === "/" ? null : (
                         <div>
-                        <SearchBar
-                          searchValue={searchValue}
-                          setSearchValue={setSearchValue}
-                        />
+                        
                         <button type="submit" className="searchButton">
                           {" "}
                           Search
