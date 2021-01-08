@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback }  from 'react'
+import React, { useState, useEffect }  from 'react'
 // import loggedUser from './sampleUser'
 import axios from 'axios';
 const io = require('socket.io-client');
@@ -22,21 +22,6 @@ const Texts = (props) => {
   const [chatRoom, setChatRoom] = useState(null);
   const [render, letRender] = useState(false);
 
-  //scroll to bottom---------------------------------------------------
-  
-  const setRef = useCallback(node => {
-    if (node) {
-      node.scrollIntoView({ smooth: true })
-    }
-  }, [])
-  
-  
-  
-  
-  
-  
-  
-  
   
   //EffectHook---------------------------------------------------
   useEffect(() => {
