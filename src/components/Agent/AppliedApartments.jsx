@@ -5,7 +5,7 @@ import jwtDecode from 'jwt-decode';
 import Cookies from 'js-cookie';
 import css from '../FileUpload/styles/styles.css';
 
-const AppliedApartments = ({ agentName }) => {
+const AppliedApartments = ({ agentEmail }) => {
   var [apartmentsApplied, setApartmentsApplied] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const AppliedApartments = ({ agentName }) => {
       return (window.location.href = '/');
     } else {
       axios
-        .get(`/applicants?agent=${agentName}`)
+        .get(`/applicants?agentEmail=${token.payload.email}`)
         .then(({ data }) => {
           console.log(data);
           setApartmentsApplied(data);

@@ -422,7 +422,7 @@ const Navigation = ({
           </li>
         );
       } else {
-        return <div>''</div>;
+        return <div></div>;
       }
     }
   };

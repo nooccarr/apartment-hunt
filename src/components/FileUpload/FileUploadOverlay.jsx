@@ -31,7 +31,7 @@ const FileUploadOverlay = ({username, apartment_id, setPhotosNames}) => {
   return (
     <div>
       <div onClick={() => {updateOverlay()}} >
-        {username && apartment_id && <span className='select-video-button primary-font'>Submit Application</span>}
+        {username && apartment_id && <div className='contactAgent'>Submit Application</div>}
         {setPhotosNames &&<span className='select-video-button primary-font'>Upload Photos</span>}
       </div>
       <Modal open={open} onClose={updateOverlay}>

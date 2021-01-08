@@ -4,7 +4,7 @@ import Listings from './Listings/index';
 import './_results_styles.scss';
 import axios from 'axios';
 
-const Results = ({ requestedBaths, requestedBeds, requestedMinPrice, requestedMaxPrice }) => {
+const Results = ({ requestedBaths, requestedBeds, requestedMinPrice, requestedMaxPrice, requestedDogs, requestedCats }) => {
   const { listings, getListings } = useContext(ApartmentContext);
   var params = window.location.search.split('&');
   useEffect(() => {
@@ -26,14 +26,47 @@ const Results = ({ requestedBaths, requestedBeds, requestedMinPrice, requestedMa
       .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
   }, []);
     if (listings) {
+      console.log('Dogs: ', requestedDogs);
+      console.log('Cats: ', requestedCats);
       return (
         <div className='results'>
           { listings.map(listing => {
-  
             if ((requestedMaxPrice === '' && listing.price >= requestedMinPrice) && ((listing.beds >= requestedBeds) && (listing.baths >= requestedBaths))) {
-              return <Listings listing= { listing } />;
+              if (requestedDogs && requestedCats) {
+                if (listing.pets.dogs && listing.pets.cats) {
+                  // console.log('Dogs(true): ', listing.pets.dogs, 'Cats(true): ', listing.pets.cats);
+                  return <Listings listing= { listing } />;
+                }
+              } else if (requestedDogs) {
+                if (listing.pets.dogs) {
+                  // console.log('Dogs(true): ', listing.pets.dogs, 'Cats(false): ', listing.pets.cats);
+                  return <Listings listing= { listing } />;
+                }
+              } else if (requestedCats) {
+                if (listing.pets.cats) {
+                  // console.log('Dogs(false): ', listing.pets.dogs, 'Cats(true): ', listing.pets.cats);
+                  return <Listings listing= { listing } />;
+                }
+              } else {
+                // console.log('Dogs(false): ', listing.pets.dogs, 'Cats(false): ', listing.pets.cats);
+                return <Listings listing= { listing } />;
+              }
             } else if ((listing.price >= requestedMinPrice && listing.price <= requestedMaxPrice) && ((listing.beds >= requestedBeds) && (listing.baths >= requestedBaths))) {
-              return <Listings listing= { listing } />;
+              if (requestedDogs && requestedCats) {
+                if (listing.pets.dogs && listing.pets.cats) {
+                  return <Listings listing= { listing } />;
+                }
+              } else if (requestedDogs) {
+                if (listing.pets.dogs) {
+                  return <Listings listing= { listing } />;
+                }
+              } else if (requestedCats) {
+                if (listing.pets.cats) {
+                  return <Listings listing= { listing } />;
+                }
+              } else {
+                return <Listings listing= { listing } />;
+              }
             }
             })}
         </div>
