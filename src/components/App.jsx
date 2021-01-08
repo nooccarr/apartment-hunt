@@ -89,9 +89,9 @@ const App = () => {
                 setSearchValue={setSearchValue}
               />
             </Route>
-            <Route exact path='/admin-dashboard'>
+            {/*<Route exact path='/admin-dashboard'>
               <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
-            </Route>
+  </Route>*/}
             <Route exact path='/apartment'>
               <Overview />
             </Route>
