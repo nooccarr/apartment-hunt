@@ -259,8 +259,10 @@ class Description extends React.Component {
                             {this.props.details.address}, {this.props.details.city}, {this.props.details.state}, {this.props.details.zipCode}
                             </div>
                     <div className='desAct'>
-                        <div className='contactAgent'>Contact Agent</div>
-                        <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
+                        {this.props.user.role === 'client' ? 
+                        <div onClick={this.contactAge} className='contactAgent'>Contact Agent</div> :
+                        null}
+                        <FileUploadOverlay username={this.state.username} apartment_id={this.props.details._id} />
                     </div>
                         <div className='desAptDet'>
                             <div className='desEle1'>${this.props.details.price}/Month</div>
@@ -270,20 +272,14 @@ class Description extends React.Component {
                         </div>
                         <div className='desTail'>
                         <div className='desDes'>{this.props.details.description}</div>
-                    </div>
-                    <div className='desAct'>
-                        {this.props.user.role === 'client' ? 
-                        <div onClick={this.contactAge} className='contactAgent'>Contact Agent</div> :
-                        null}
-                        <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
-                    </div>
-                </div>
                 <div className='desContainer'>
                     <img src='./neighborhood.png' style={{top:20, left:20}} className='criteria' onClick={() => {this.flipAreaModal()}}></img>
                     <img src='./schools.png' style={{top:20, left:160}} className='criteria' onClick={() => {this.flipSchoolsModal()}}></img>
                     <img src='./restaurants.png' style={{top:160, left:20}} className='criteria' onClick={() => {this.flipDiningModal()}}></img>
                     <img src='./crime.png' style={{top:160, left:160}} className='criteria' onClick={() => {this.flipCrimeModal()}}></img>
                 </div>
+                </div>
+                    </div>
                 </div>
                 {this.areaModal()}
                 {this.diningModal()}
