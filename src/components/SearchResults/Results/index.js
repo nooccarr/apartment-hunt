@@ -26,8 +26,6 @@ const Results = ({ requestedBaths, requestedBeds, requestedMinPrice, requestedMa
       .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
   }, []);
     if (listings) {
-      console.log('Dogs: ', requestedDogs);
-      console.log('Cats: ', requestedCats);
       return (
         <div className='results'>
           { listings.map(listing => {
