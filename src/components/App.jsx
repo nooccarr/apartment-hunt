@@ -20,7 +20,10 @@ const App = () => {
   const [admin, setAdmin] = useState({});
   const [listings, getListings] = useState([]);
   const [coordinates, setCoordinates] = useState([]);
+  const [texts, setTexts] = useState(null);
+  const [chatId, setChatId] = useState(null);
   const [searchValue, setSearchValue] = useState('');
+  const [routed, setRouted] = useState(false);
 
   useEffect(() => {
     if (Cookies.get('jwt')) {
@@ -33,6 +36,18 @@ const App = () => {
       } else if (token.payload.role === 'admin') {
         getAdminInfo(token.payload.username, token.payload.email);
       }
+    }
+    console.log('lol', window.location)
+    if (window.location.search.includes('chatId')) {
+        let test = window.location.search.split('&')
+        for (var keyId of test) {
+          if (keyId.includes('chatId')) {
+            console.log('chunk', keyId.split('=')[1])
+            let key = keyId.split('=')[1]
+            setChatId(key)
+            setRouted(true)
+          }
+        }
     }
   }, []);
 
@@ -59,10 +74,25 @@ const App = () => {
   };
 
   // let userLoggin = {
-  //   name: 'Lonnie567',
-  //   email: 'Lonnie567@gmail.com',
+  //   name: 'FreddieMercury',
+  //   email: 'FreddieMercury@gmail.com',
   //   role: 'client'
   // }
+
+// let userLoggin = {
+//     name: 'Shotaro Tanaka',
+//     email: 'Shotaro Tanaka@gmail.com',
+//     role: 'agent'
+//   }
+
+  const switchChat = (key) => {
+    if (key !== 'alt') {
+      setRouted(false)
+    }
+
+    setTexts(key)
+
+  } 
 
   return (
     <div>
@@ -73,6 +103,10 @@ const App = () => {
         signOut={signOut}
         user={user}
         admin={admin}
+        switchChat={switchChat} 
+        texts={texts} 
+        chatKey={chatId}
+        routed={routed}
       />
       <ApartmentContext.Provider
         value={{ listings, getListings, coordinates, setCoordinates }}>
@@ -91,12 +125,12 @@ const App = () => {
               <AdminPortal admin={admin} getAdminInfo={getAdminInfo} />
   </Route>*/}
             <Route exact path='/apartment'>
-              <Overview />
+              <Overview switchChat={switchChat} texts={texts} user={user}/>
             </Route>
             <Route exact path='/uploadlisting' component={UploadListing} />
             <Route exact path='/aboutus' component={About}/>
             <Route exact path='/aportal'>
-              <AgentPortal admin={admin} user={user} />
+              <AgentPortal admin={admin} />
             </Route>
           </Switch>
           </Router>
