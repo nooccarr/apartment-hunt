@@ -195,7 +195,7 @@ const Navigation = ({
   );
         } else {
           return (
-            <Router>
+            <Router forceRefresh={true}>
         <div>
           <div className="navheader">
             <div className="header" id="home">
