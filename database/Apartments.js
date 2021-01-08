@@ -20,7 +20,8 @@ let apartmentSchema = new mongoose.Schema({
     pets: Object,
     beds: Number,
     baths: Number,
-    agent: String
+    agent: String,
+    agentEmail: String
 });
 
 let Apartments = mongoose.model('Apartment', apartmentSchema);

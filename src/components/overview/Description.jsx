@@ -15,11 +15,14 @@ if (Cookies.get('jwt')) {
 
 class Description extends React.Component {
     constructor(props) {
+        let token = Cookies.get('jwt') ? jwtDecode(Cookies.get('jwt')) : undefined;
+
         super(props);
         this.state = {
             areaModal: false,
             diningModal: false,
-            schoolsModal: false
+            schoolsModal: false,
+            username: token ? token.payload.username : undefined,
         }
     }
 
@@ -167,7 +170,7 @@ class Description extends React.Component {
                             {token ?
                     <div className='desAct'>
                         <div className='contactAgent'>Contact Agent</div>
-                        <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
+                        <FileUploadOverlay username={this.state.username} apartment_id={this.props.details._id} />
                     </div>
                     : null}
                         <div className='desAptDet'>
