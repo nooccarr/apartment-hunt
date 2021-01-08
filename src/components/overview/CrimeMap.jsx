@@ -67,7 +67,6 @@ class CrimeMap extends React.Component {
                     height: '600px',
                     width: '800px',
                     margin: '10px',
-                    color: 'pink'
                 }}
                 // 'height:600px; width:800px margin:10px border:2px solid; border-color:rgba(100,100,100,.7); border-radius:4px;'
                 >

@@ -4,8 +4,6 @@ import google_api_key from '../config/google_api_key.js';
 import { Loader } from '@googlemaps/js-api-loader';
 import lightMap from './MapStyles/lightmap.js';
 import darkMap from './MapStyles/darkmap.js';
-// import createHTMLMapMarker from './html-map-marker';
-// import './NeonSign/_neonsign.scss'
 
 const GoogleMap = () => {
   // const [light, setLighting] = useState(true)
@@ -38,24 +36,6 @@ const GoogleMap = () => {
         });
       })
     })
-
-      // NEON SIGNS
-
-      // cities.forEach(({ city, lat, long, gradient, className }) => {
-      //   let marker = createHTMLMapMarker({
-      //     latlng: new google.maps.LatLng(lat, long),
-      //     map:map,
-      //     html:
-      //     `<div class='wrapper'>
-      //       <div class='neon-wrapper'>
-      //         <span class='${className}'>${city}</span>
-      //         <span class='gradient' style='background:${gradient};'></span>
-      //         <span class='dodge'></span>
-      //       </div>
-      //     </div>`
-      //   });
-      // })
-    // })
     .catch(err => alert(err));
 
   return (

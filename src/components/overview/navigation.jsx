@@ -11,6 +11,8 @@ import Button from '@material-ui/core/Button';
 import jwtDecode from 'jwt-decode';
 import Cookies from 'js-cookie';
 import { Home } from '@material-ui/icons';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import UploadListing from '../Agent/UploadListing.jsx';
 
 
 const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, user, admin, signOut, switchChat, texts, chatKey}) => {
@@ -28,6 +30,9 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
     setModalOpen(boolean);
   };
 
+  const showDrop = () => {
+    document.getElementById('agentPages').classList.toggle("show");
+  }
   const signout = () => {
     axios
       .delete('/signout')
@@ -75,11 +80,37 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
         );
       } else if (token.payload.role === 'admin') {
         return (
-          <li className='chatButton'>
-            <div id='chatButton'>
-              <a href='/aportal' id='chatButton'>
-                <span>AgentPortal</span>
-              </a>
+          <li>
+            <div className="agentDrop">
+              <button className="agentButton" onClick={showDrop}>
+                            Agent Portal
+              </button>
+              <div id="agentPages" className="agentContent">
+                <p
+                  onClick={() => {
+                    window.history.pushState(
+                      { path: `/uploadlisting` },
+                        "",
+                        `/uploadlisting`
+                      );
+                    window.location.reload(false);
+                  }}
+                >
+                Upload Listing
+                </p>
+                <p
+                  onClick={() => {
+                    window.history.pushState(
+                      { path: `/aportal` },
+                      "",
+                      `/aportal`
+                    );
+                    window.location.reload(false);
+                  }}
+                >
+                Agent Portal
+                </p>
+             </div>
             </div>
           </li>
         );
@@ -92,30 +123,63 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
   return (
     <Router>
       <div>
-        <div className='navheader'>
-          <div className='header' id='home'>
-            {window.location.pathname === '/' ? (
-              <div className='header_top_home'></div>
+        <div className="navheader">
+          <div className="header" id="home">
+            {window.location.pathname === "/" ? (
+              <div className="header_top_home"></div>
             ) : (
-              <div className='header_top'></div>
+              <div className="header_top"></div>
             )}
-            <div className='wrap'>
-              <div className='col-1-3'>
-                {window.location.pathname === '/' ? null : (
-                  <div className='logo'>
-                    <a href='/'>
+            <div className="wrap">
+              <div className="col-1-3">
+                {window.location.pathname === "/" ? null : (
+                  <div className="logo">
+                    <a href="/">
                       <img src={logo} />
                     </a>
                   </div>
                 )}
               </div>
 
-              <div className='navigation-search-bar'>
-                <div className='col-2-3'>
-                  <div className='menu'>
+              <div className="navigation-search-bar">
+                <div className="col-2-3">
+                  <div className="menu">
                     <ul>
                       <li>
-                        <a href='/' className='scroll'>
+                        <div className="agentDrop">
+                          <button className="agentButton" onClick={showDrop}>
+                            Agent Portal
+                          </button>
+                          <div id="agentPages" className="agentContent">
+                            <p
+                              onClick={() => {
+                                window.history.pushState(
+                                  { path: `/uploadlisting` },
+                                  "",
+                                  `/uploadlisting`
+                                );
+                                window.location.reload(false);
+                              }}
+                            >
+                              Upload Listing
+                            </p>
+                            <p
+                              onClick={() => {
+                                window.history.pushState(
+                                  { path: `/aportal` },
+                                  "",
+                                  `/aportal`
+                                );
+                                window.location.reload(false);
+                              }}
+                            >
+                              Agent Portal
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <a href="/" className="scroll">
                           Find Apartments
                         </a>
                       </li>
@@ -123,7 +187,7 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
                         {/* <a href='/aboutus' className='scroll'>
                             About Us
                           </a> */}
-                        <Link to='/aboutus'>About Us</Link>
+                        <Link to="/aboutus">About Us</Link>
                       </li>
                       {checkCurrentRole()}
                       <li className='login'>
@@ -139,7 +203,7 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
                         <Button>
                           {user.name ? user.name : admin.name ? admin.name : ''}
                           <span onClick={() => signout(true)}>
-                            <Link to='/'> Logout</Link>
+                            <Link to="/"> Logout</Link>
                           </span>
                         </Button>
                       </li>
@@ -158,22 +222,23 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
                       openModal={openModal}
                     />
                   ) : (
-                    ''
+                    ""
                   )}
-                  <div className='search-form'>
-                    {window.location.pathname === '/' ? null : (
+                  <div className="search-form">
+                    {window.location.pathname === "/" ? null : (
                       <form
-                        method='get'
-                        action='/homelist'
-                        id='search'
-                        className='f-right'>
+                        method="get"
+                        action="/homelist"
+                        id="search"
+                        className="f-right"
+                      >
                         <SearchBar
                           searchValue={searchValue}
                           setSearchValue={setSearchValue}
                         />
 
-                        <button type='submit' className='searchButton'>
-                          {' '}
+                        <button type="submit" className="searchButton">
+                          {" "}
                           Search
                         </button>
                       </form>
@@ -186,7 +251,7 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
         </div>
         {/* </div>  */}
         <Route
-          path='/login'
+          path="/login"
           render={(props) => {
             <LoginModal
               Login={
