@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon server/app.js",
-    "start-sock": "nodemon src/components/ChatBox/backend/chatbox_server.js",
+    "start-sock": "nodemon src/components/ChatBox/backend",
     "build-dev": "npx webpack --mode development --config webpack.config.js --watch",
     "build-prod": "npx webpack --mode production --config webpack.config.js --watch"
   },

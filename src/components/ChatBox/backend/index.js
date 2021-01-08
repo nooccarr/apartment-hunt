@@ -5,7 +5,7 @@ var server = require('http').createServer(app);
 
 const io = require('socket.io')(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'http://18.224.228.145:80',
     credentials: true,
     allowedHeaders: ['chatRooms'],
   },
