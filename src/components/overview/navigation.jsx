@@ -5,6 +5,7 @@ import logo from '../../images/logo.png';
 import '../HomePage/styles/main.scss';
 import './navigation-style.scss';
 import SearchBar from './SearchBar/index.js';
+import Search from '../HomePage/Search.jsx';
 import ChatApp from '../ChatBox/frontend/ChatApp.jsx';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
@@ -228,24 +229,10 @@ const Navigation = ({
                     ""
                   )}
                   <div className="search-form">
-                    {window.location.pathname === "/" ? null : (
-                      <form
-                        method="get"
-                        action="/homelist"
-                        id="search"
-                        className="f-right"
-                      >
-                        <SearchBar
-                          searchValue={searchValue}
-                          setSearchValue={setSearchValue}
-                        />
-
-                        <button type="submit" className="searchButton">
-                          {" "}
-                          Search
-                        </button>
-                      </form>
-                    )}
+                    {window.location.pathname === "/" 
+                      ? null 
+                      : <Search />
+                    }
                   </div>
                 </div>
               </div>

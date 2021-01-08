@@ -66,15 +66,15 @@ const App = () => {
 
   return (
     <div>
-      <Navigation
-        getAdminInfo={getAdminInfo}
-        getUserInfo={getUserInfo}
-        signOut={signOut}
-        user={user}
-        admin={admin}
-      />
       <ApartmentContext.Provider
         value={{ listings, getListings, coordinates, setCoordinates }}>
+        <Navigation
+          getAdminInfo={getAdminInfo}
+          getUserInfo={getUserInfo}
+          signOut={signOut}
+          user={user}
+          admin={admin}
+        />
         <Router>
           <Switch>
             <Route exact path='/'>
