@@ -6,9 +6,9 @@ const ApplicantListContainer = ({apartment}) => {
 
   return (
     <div>
-      <div className='apartment-entry-container'>
+      {apartment['applicants'].length > 0 && <div className='apartment-entry-container'>
         <div>
-          Username
+          User
         </div>
         <div>
           Address
@@ -22,7 +22,7 @@ const ApplicantListContainer = ({apartment}) => {
         <div>
           Documents
         </div>
-      </div>
+      </div>}
       {apartment['applicants'].map((username) => (
         <ApplicantListEntry apartment={apartment} username={username} />
       ))}
