@@ -6,14 +6,19 @@ import FileUploadOverlay from '../FileUpload/FileUploadOverlay.jsx';
 import './detail.style.scss';
 import CrimeMap from './CrimeMap.jsx'
 import Neighborhood from './Neighborhood.jsx'
+import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 class Description extends React.Component {
     constructor(props) {
+        let token = Cookies.get('jwt') ? jwtDecode(Cookies.get('jwt')) : undefined;
+
         super(props);
         this.state = {
             areaModal: false,
             diningModal: false,
-            schoolsModal: false
+            schoolsModal: false,
+            username: token ? token.payload.username : undefined,
         }
     }
 
@@ -160,7 +165,7 @@ class Description extends React.Component {
                             </div>
                     <div className='desAct'>
                         <div className='contactAgent'>Contact Agent</div>
-                        <FileUploadOverlay username={"username"} apartment_id={this.props.details._id} />
+                        <FileUploadOverlay username={this.state.username} apartment_id={this.props.details._id} />
                     </div>
                         <div className='desAptDet'>
                             <div className='desEle1'>${this.props.details.price}/Month</div>

@@ -265,6 +265,7 @@ const listing = (req, res) => {
   };
   aptObj.pics = req.body.pics;
   aptObj.videos = req.body.videos;
+  aptObj.agentEmail = req.body.agentEmail;
   console.log(aptObj);
   Apts.create(aptObj)
     .then(() => {
