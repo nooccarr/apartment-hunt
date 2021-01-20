@@ -6,7 +6,7 @@ import loggedUser from './sampleUser';
 import axios from 'axios';
 
 const ChatApp = (props) => {
-  
+
   const [chatIdx, setChatIdx] = useState(null);
   const [chatHist, setChatHist] = useState([]);
   const [chatId, setChatId] = useState(null);
@@ -126,14 +126,29 @@ const ChatApp = (props) => {
       }
     }
   };
-    
-  
+
+
   return (
-    <div style={{position: 'relative', zIndex: '99'}}>
+    <div style={{position: 'relative'}}>
       <div>
-        {props.convos ? <Convos chatHistory={chatHist} selectConvo={selectConvo} /> : null}
-        {props.texts === 'nav' ? <Texts chatBox={chatHist[chatIdx]} exitChat={exitChat} updateConvo={updateConvo} chatId={chatId} loggedIn={props.user}/> : null}
-        {props.texts === 'alt' ? <Texts chatBox={currChatRoom} exitChat={exitChat} updateConvo={updateConvo} chatId={props.chatKey} loggedIn={props.user} /> : null}
+        {props.convos ? <Convos
+          chatHistory={chatHist}
+          selectConvo={selectConvo}
+        /> : null}
+        {props.texts === 'nav' ? <Texts
+          chatBox={chatHist[chatIdx]}
+          exitChat={exitChat}
+          updateConvo={updateConvo}
+          chatId={chatId}
+          loggedIn={props.user}
+        /> : null}
+        {props.texts === 'alt' ? <Texts
+          chatBox={currChatRoom}
+          exitChat={exitChat}
+          updateConvo={updateConvo}
+          chatId={props.chatKey}
+          loggedIn={props.user}
+        /> : null}
       </div>
     </div>
   );

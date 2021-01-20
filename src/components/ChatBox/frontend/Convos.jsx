@@ -1,12 +1,25 @@
 import React from 'react';
 
-const Convos = (props) => {
+const Convos = ({ chatHistory, selectConvo }) => {
 
 
     return (
-      <div style={{backgroundColor: 'rgb(245 144 162)'}}>
-        {props.chatHistory.map((chat, idx) => (
-          <div style={{padding: '20px 10px', borderBottom: '1px solid #fff'}} key={chat.chatId} onClick={() => props.selectConvo(idx)}>
+      <div style={{
+        backgroundColor: '#fff',
+        border: '3px solid #efaeaa',
+        borderRadius: '5px',
+        marginTop: '8px'
+      }}>
+        {chatHistory.map((chat, idx) => (
+          <div
+            style={{
+              padding: '20px 10px',
+              cursor: 'pointer',
+              borderBottom: `${chatHistory.length - 1 === idx ? '' :'2px dotted #efaeaa'}`
+            }}
+            key={chat.chatId}
+            onClick={() => selectConvo(idx)}
+          >
             <div>{chat.address}</div>
             <div>{'Agent'}: {chat.agentName}</div>
           </div>
@@ -16,7 +29,6 @@ const Convos = (props) => {
 };
 
 export default Convos;
-
-
+// `${props.loggedIn.name === messageObj.sender ? 'flex-end' : ''}`
 
 {/* <div>{props.role === 'client' ? 'agent' : 'client'}: {props.role === 'client' ? chat.agentName : chat.userName}</div> */}
