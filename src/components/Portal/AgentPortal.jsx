@@ -85,14 +85,16 @@ const AgentPortal = (props) => {
       <div
         style={{
           width: '475px',
-          height: '515px',
+          // height: '515px',
+          height: '700px',
           border: '3px solid #6f6389',
           display: 'inline-block',
           position: 'fixed',
           backgroundColor: '#fff',
-          top: '155px',
+          // top: '155px',
           // left: '10%',
-          left: '1%',
+          top: '200px',
+          left: '3%',
           padding: '25px',
           overflow: 'scroll'
         }}>
@@ -184,14 +186,16 @@ const AgentPortal = (props) => {
       <div
         style={{
           width: '475px',
-          height: '515px',
+          // height: '515px',
+          height: '700px',
           border: '3px solid #6f6389',
           display: 'inline-block',
           position: 'fixed',
           backgroundColor: '#fff',
-          top: '155px',
+          // top: '155px',
           // right: '10%',
-          right: '1%',
+          top: '200px',
+          right: '3%',
           padding: '25px',
           overflow: 'scroll'
         }}>

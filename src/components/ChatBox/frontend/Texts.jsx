@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback }  from 'react'
+import React, { useState, useEffect, useCallback }  from 'react';
 import axios from 'axios';
 // import loggedUser from './sampleUser'
 
@@ -14,7 +14,8 @@ const Texts = (props) => {
     "transports" : ["websocket"]
 };
 
-  const socket = io('http://18.224.228.145:80', connectionOptions);
+  // const socket = io('http://18.224.228.145:80', connectionOptions);
+  const socket = io('http://127.0.0.1:5000', connectionOptions);
 
   //Hooks--------------------------------------------------------
 

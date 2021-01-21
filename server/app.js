@@ -146,7 +146,7 @@ app.get('/restaurants', function (req, res) {
   var query = req.url.slice(14);
   axios
     .get(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?` + query
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?${query}`
     )
     .then((response) => {
       res.status(200).send(response.data.results);
@@ -160,7 +160,7 @@ app.get('/schools', function (req, res) {
   var query = req.url.slice(10);
   axios
     .get(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?` + query
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?${query}`
     )
     .then((response) => {
       res.status(200).send(response.data.results);

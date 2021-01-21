@@ -183,145 +183,150 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
               </div>
           </div>*/
   return (
-    <div className='main' style={{'overflow': 'scroll'}}  >
-        <div>
-          <h2 className='aptForm'>Upload New Apartment Listing</h2>
-          {isSuccess && <p style={{'color':'green'}}>Your upload is successful!</p>}
-          <form className='listingForm'>
-            <div>
-              <div>City: </div>
-              <input className='upload-listing-textbox' type='text' name='city' onChange={handleChange}></input>
-            </div>
-            <div>
-              <div>Listing Name: </div>
-              <input className='upload-listing-textbox'
-                type='text'
-                name='listingName'
-                onChange={handleChange}></input>
-            </div>
-            <div >
-              <div>Address (Do not abbreviate): </div>
-              <input className='upload-listing-textbox' type='text' name='address' onChange={handleChange}></input>
-            </div>
-            <div>
-              <div>Zip Code: </div>
-              <input className='upload-listing-textbox' type='text' name='zipCode' onChange={handleChange}></input>
-            </div>
-            <div>
+    <div
+      className='main'
+      style={{ overflow: 'scroll' }}
+    >
+      <div
+        style={{ width: '600px', margin: '0 auto' }}
+      >
+        <h2 className='aptForm'>Upload New Apartment Listing</h2>
+        {isSuccess && <p style={{'color':'green'}}>Your upload is successful!</p>}
+        <form className='listingForm'>
+          <div>
+            <div>City: </div>
+            <input className='upload-listing-textbox' type='text' name='city' onChange={handleChange}></input>
+          </div>
+          <div>
+            <div>Listing Name: </div>
+            <input className='upload-listing-textbox'
+              type='text'
+              name='listingName'
+              onChange={handleChange}></input>
+          </div>
+          <div >
+            <div>Address (Do not abbreviate): </div>
+            <input className='upload-listing-textbox' type='text' name='address' onChange={handleChange}></input>
+          </div>
+          <div>
+            <div>Zip Code: </div>
+            <input className='upload-listing-textbox' type='text' name='zipCode' onChange={handleChange}></input>
+          </div>
+          <div>
 
-              <button className='submitButton' onClick={getPos}>
-                Add Geolocation (Required)
-              </button>
-              <div style={{'padding':'10px 0px'}}>
-                <div>Latitude</div>
-                <input type='text' className='upload-listing-textbox' value={!listing['position']['coordinates'] ? '' : listing['position']['coordinates'][0]}></input>
-              </div>
-              <div style={{'padding':'10px 0px'}}>
-                <div>Longitude</div>
-                <input type='text' className='upload-listing-textbox' value={!listing['position']['coordinates'] ? '' : listing['position']['coordinates'][1]}></input>
-              </div>
+            <button className='submitButton' onClick={getPos}>
+              Add Geolocation (Required)
+            </button>
+            <div style={{'padding':'10px 0px'}}>
+              <div>Latitude</div>
+              <input type='text' className='upload-listing-textbox' value={!listing['position']['coordinates'] ? '' : listing['position']['coordinates'][0]}></input>
             </div>
-            <div>
-              <div>Description: </div>
-              <textarea name='description' onChange={handleChange}></textarea>
+            <div style={{'padding':'10px 0px'}}>
+              <div>Longitude</div>
+              <input type='text' className='upload-listing-textbox' value={!listing['position']['coordinates'] ? '' : listing['position']['coordinates'][1]}></input>
             </div>
+          </div>
+          <div>
+            <div>Description: </div>
+            <textarea name='description' onChange={handleChange}></textarea>
+          </div>
 
-            <div>
+          <div>
 
-              <div>Agent: </div>
-              <input className='upload-listing-textbox' type='text' name='agent' onChange={handleChange}></input>
-            </div>
-            <div>
-              <div>Beds: </div>
-              <input className='upload-listing-numberbox' type='number' name='beds' onChange={handleChange}></input>
-            </div>
-            <div>
-              <div>Baths: </div>
-              <input className='upload-listing-numberbox' type='number' name='baths' onChange={handleChange}></input>
-            </div>
-            <div>
-              <div>Price/month: </div>
-              <input className='upload-listing-numberbox' type='number' name='price' onChange={handleChange}></input>
-            </div>
-            <div>
-              <div>Square Feet: </div>
-              <input className='upload-listing-numberbox' type='number' name='sqft' onChange={handleChange}></input>
-            </div>
-            <div className='pets-container'>
-              <div style={{'font-weight':'bold'}}>Pet Friendly?</div>
-              <div>Cats</div>
-              <input
-              id='catChoice1'
-                type='radio'
-                name='cats'
-                value='yes'
-                checked={isCatChecked === 'yes'}
-                onChange={handlePets}></input>
-                <label for='catChoice1'>Yes</label>
-              <input
-                id='catChoice2'
-                type='radio'
-                name='cats'
-                value='no'
-                checked={isCatChecked === 'no'}
-                onChange={handlePets}></input>
-                <label for='catChoice2'>No</label>
-              <br></br>
-              <div>Dogs</div>
-              <input
-                id='dogChoice1'
-                type='radio'
-                name='dogs'
-                value='yes'
-                checked={isDogChecked === 'yes'}
-                onChange={handlePets}></input>
-                <label for='dogChoice1'>Yes</label>
-              <input
-                id='dogChoice2'
-                type='radio'
-                name='dogs'
-                value='no'
-                checked={isDogChecked === 'no'}
-                onChange={handlePets}></input>
-                <label for='dogChoice2'>No</label>
-              <br></br>
-            </div>
-            <div>
-              <div>
-                Neighborhoods/Burrough (Click to delete):{' '}
-              </div>
-              <br></br>
-              <input
-              className='upload-listing-textbox'
-                type='text'
-                id='hoods'
-                name='neighborhoods'
-                onChange={handleUrl}></input>
-              <input
-                style={{width: '50px', 'marginLeft': '10px'}}
-                className='submitButton'
-                type='submit'
-                value='Add'
-                name='neighborhoods'
-                onClick={addUrl}></input>{listing.neighborhoods.map((neighborhood) => (<span onClick={() => {deleteNeighborhood(neighborhood)}}>{neighborhood}, </span>))}
-            </div>
-            <div>
-              <FileUploadOverlay setPhotosNames={updatePhotos} />
-
-            </div>
-            {isPhotoUploadSuccess && <div style={{'color':'green', 'fontStyle':'italic'}}>Your photos have been uploaded!</div>}
-            <div>
-              <VideoUpload setVideoName={updateVideo} />
-            </div>
+            <div>Agent: </div>
+            <input className='upload-listing-textbox' type='text' name='agent' onChange={handleChange}></input>
+          </div>
+          <div>
+            <div>Beds: </div>
+            <input className='upload-listing-numberbox' type='number' name='beds' onChange={handleChange}></input>
+          </div>
+          <div>
+            <div>Baths: </div>
+            <input className='upload-listing-numberbox' type='number' name='baths' onChange={handleChange}></input>
+          </div>
+          <div>
+            <div>Price/month: </div>
+            <input className='upload-listing-numberbox' type='number' name='price' onChange={handleChange}></input>
+          </div>
+          <div>
+            <div>Square Feet: </div>
+            <input className='upload-listing-numberbox' type='number' name='sqft' onChange={handleChange}></input>
+          </div>
+          <div className='pets-container'>
+            <div style={{'font-weight':'bold'}}>Pet Friendly?</div>
+            <div>Cats</div>
             <input
-              id='finalSubmit'
+            id='catChoice1'
+              type='radio'
+              name='cats'
+              value='yes'
+              checked={isCatChecked === 'yes'}
+              onChange={handlePets}></input>
+              <label for='catChoice1'>Yes</label>
+            <input
+              id='catChoice2'
+              type='radio'
+              name='cats'
+              value='no'
+              checked={isCatChecked === 'no'}
+              onChange={handlePets}></input>
+              <label for='catChoice2'>No</label>
+            <br></br>
+            <div>Dogs</div>
+            <input
+              id='dogChoice1'
+              type='radio'
+              name='dogs'
+              value='yes'
+              checked={isDogChecked === 'yes'}
+              onChange={handlePets}></input>
+              <label for='dogChoice1'>Yes</label>
+            <input
+              id='dogChoice2'
+              type='radio'
+              name='dogs'
+              value='no'
+              checked={isDogChecked === 'no'}
+              onChange={handlePets}></input>
+              <label for='dogChoice2'>No</label>
+            <br></br>
+          </div>
+          <div>
+            <div>
+              Neighborhoods/Burrough (Click to delete):{' '}
+            </div>
+            <br></br>
+            <input
+            className='upload-listing-textbox'
+              type='text'
+              id='hoods'
+              name='neighborhoods'
+              onChange={handleUrl}></input>
+            <input
+              style={{width: '50px', 'marginLeft': '10px'}}
+              className='submitButton'
               type='submit'
-              value='Submit Listing'
-              onClick={handleSubmit}></input>
-              {isSuccess && <span style={{'color':'green', 'fontStyle':'italic'}}>Thank you! Your listing has been posted!</span>}
-              {isFailure && <span style={{'color':'red', 'fontStyle':'italic'}}>Error! Did your remember to add the Geolocation?</span>}
-          </form>
-        </div>
+              value='Add'
+              name='neighborhoods'
+              onClick={addUrl}></input>{listing.neighborhoods.map((neighborhood) => (<span onClick={() => {deleteNeighborhood(neighborhood)}}>{neighborhood}, </span>))}
+          </div>
+          <div>
+            <FileUploadOverlay setPhotosNames={updatePhotos} />
+
+          </div>
+          {isPhotoUploadSuccess && <div style={{'color':'green', 'fontStyle':'italic'}}>Your photos have been uploaded!</div>}
+          <div>
+            <VideoUpload setVideoName={updateVideo} />
+          </div>
+          <input
+            id='finalSubmit'
+            type='submit'
+            value='Submit Listing'
+            onClick={handleSubmit}></input>
+            {isSuccess && <span style={{'color':'green', 'fontStyle':'italic'}}>Thank you! Your listing has been posted!</span>}
+            {isFailure && <span style={{'color':'red', 'fontStyle':'italic'}}>Error! Did your remember to add the Geolocation?</span>}
+        </form>
+      </div>
     </div>
   );
 };

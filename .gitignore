@@ -127,3 +127,5 @@ src/components/overview/googleApi.js
 # Demo components
 src/components/DemoComponents
 server/googleAuth/conf.js
+
+.DS_Store
