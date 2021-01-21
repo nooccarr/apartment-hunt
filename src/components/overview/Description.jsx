@@ -47,7 +47,7 @@ class Description extends React.Component {
         if (chatRoomId === null) {
           return;
         }
-        
+
         let outdatedChat = [...this.state.chatHist];
         for (let i = 0; i < outdatedChat.length; i++) {
           if (outdatedChat[i].chatId === chatRoomId) {
@@ -83,12 +83,12 @@ class Description extends React.Component {
             })
         })
     }
-        
+
     componentDidUpdate(prevProps, prevState) {
         if (prevState.chatHist !== this.state.chatHist) {
             console.log('chatHist state has changed.')
             this.getChatRoom()
-        } 
+        }
         // else if (prevState.chatId !== this.state.chatId) {
         //     // console.log('idx state has changed.', prevState.chatId)
         //     console.log('idx state has changed.', this.state.idx)
@@ -97,9 +97,9 @@ class Description extends React.Component {
         //     this.props.switchChat('conAge')
         // }
     }
-    
+
     getChatRoom() {
-        return axios.get('/chatRoom', { 
+        return axios.get('/chatRoom', {
             params: {
                 address: this.props.details.address,
                 userName: this.props.user.name,
@@ -269,7 +269,7 @@ class Description extends React.Component {
                             </div>
                             {token ?
                     <div className='desAct'>
-                        {this.props.user.role === 'client' ? 
+                        {this.props.user.role === 'client' ?
                         <div onClick={this.contactAge} className='contactAgent'>Contact Agent</div> :
                         null}
                         <FileUploadOverlay username={this.state.username} apartment_id={this.props.details._id} />
@@ -296,7 +296,13 @@ class Description extends React.Component {
                 {this.diningModal()}
                 {this.schoolsModal()}
                 {this.crimeModal()}
-                {this.props.texts === 'conAge' ? <Texts chatBox={this.state.chatHist[this.state.idx]} updateConvo={this.updateConvo} chatId={this.state.chatId} loggedIn={this.props.user} exitChat={this.exitChat}/> : null}
+                {this.props.texts === 'conAge' ? <Texts
+                    chatBox={this.state.chatHist[this.state.idx]}
+                    updateConvo={this.updateConvo}
+                    chatId={this.state.chatId}
+                    loggedIn={this.props.user}
+                    exitChat={this.exitChat}
+                /> : null}
             </>
         )
     }

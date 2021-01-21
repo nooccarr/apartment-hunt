@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react'
+import React, { useState, useEffect, useCallback }  from 'react'
 import axios from 'axios';
 // import loggedUser from './sampleUser'
 
@@ -23,7 +23,6 @@ const Texts = (props) => {
   const [inRoom, setInRoom] = useState(false);
   const [chatRoom, setChatRoom] = useState(null);
   const [render, letRender] = useState(false);
-
 
   //EffectHook---------------------------------------------------
 
@@ -79,6 +78,12 @@ const Texts = (props) => {
     })
   }
 
+  const setRef = useCallback(node => {
+    if (node) {
+      node.scrollIntoView({ smooth: true });
+    }
+  }, []);
+
   return (
     <div style={{
       position: 'fixed',
@@ -132,8 +137,9 @@ const Texts = (props) => {
           width: '300px',
           marginRight: '16px'
         }}>
-          {props.chatBox.messages.map((messageObj, index) => (
-            <div
+          {props.chatBox.messages.map((messageObj, index) => {
+            const lastMessage = props.chatBox.messages.length - 1 === index;
+            return (<div
               key={index}
               style={{
                 margin: '1px 0',
@@ -141,6 +147,7 @@ const Texts = (props) => {
                 flex:'column',
                 justifyContent: `${props.loggedIn.name === messageObj.sender ? 'flex-end' : ''}`
               }}
+              ref={lastMessage ? setRef : null}
             >
               {(() => { if (messageObj.sender === props.loggedIn.name) {
                 return (
@@ -178,8 +185,8 @@ const Texts = (props) => {
                   </div>
                 )}
               })()}
-            </div>
-          ))}
+            </div>);
+          })}
         </div>
       </div>
       <form onSubmit={handleSubmit}>
