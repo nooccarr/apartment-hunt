@@ -33,17 +33,27 @@ npm test: Run this script to run __all__ test. Jest automatically looks for file
 * [AWS](https://aws.amazon.com)
 
 ## Features
-### Login
+### Auth
 The login feature
 
-![Login Component](readme_assets/login.gif)
+![Login Feature](readme_assets/login.gif)
 
 ### Search Apartments
 The searching feature
 
-![Search Apartments Component](readme_assets/search-apt.gif)
+![Search Apartments Feature](readme_assets/search-apt.gif)
 
 ### Live Chat
 The live chat feature
 
-![Live Chat Component](readme_assets/live-chat.gif)
+![Live Chat Feature](readme_assets/live-chat.gif)
+
+## Secure Document Upload
+The secure upload feature
+
+![Secure Document Upload Feature](readme_assets/secure-document-upload.gif)
+
+## Upload Listing
+The upload new listing feature
+
+![Upload New Listing Feature](readme_assets/upload-listing.gif)

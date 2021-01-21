@@ -22,8 +22,8 @@ const FileUploadOverlay = ({username, apartment_id, setPhotosNames}) => {
       left: `${left}%`,
       position: 'relative',
       border:'none',
-      'max-width': '600px',
-      'border-radius':'10px'
+      maxWidth: '600px',
+      borderRadius:'10px'
     };
   }
 
