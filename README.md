@@ -36,7 +36,7 @@ npm test: Run this script to run __all__ test. Jest automatically looks for file
 ### Auth
 The login feature
 
-![Login Feature](readme_assets/login.gif)
+![Login Feature](readme_assets/auth.gif)
 
 ### Search Apartments
 The searching feature
