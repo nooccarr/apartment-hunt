@@ -106,10 +106,7 @@ const ChatApp = (props) => {
       let outdatedChat = [...chatHist];
       for (let i = 0; i < chatHist.length; i++) {
         if (chatHist[i].chatId === currChatRoom.chatId) {
-          console.log('chatHist', chatHist[i])
-          console.log('outdatedChat[i]', outdatedChat[i])
           let chatRoom = outdatedChat[i];
-          console.log('ran', chatRoom)
           chatRoom.messages.push(messageObj);
           getCurrChatRoom(outdatedChat[i]);
           setRender(!render);
@@ -126,7 +123,6 @@ const ChatApp = (props) => {
       }
     }
   };
-
 
   return (
     <div style={{position: 'relative'}}>

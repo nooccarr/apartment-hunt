@@ -92,7 +92,7 @@ const App = () => {
 
     setTexts(key)
 
-  } 
+  }
 
   return (
     <div>
@@ -104,8 +104,8 @@ const App = () => {
           signOut={signOut}
           user={user}
           admin={admin}
-          switchChat={switchChat} 
-          texts={texts} 
+          switchChat={switchChat}
+          texts={texts}
           chatKey={chatId}
           routed={routed}
         />

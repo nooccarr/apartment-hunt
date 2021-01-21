@@ -28,6 +28,23 @@ const AppliedApartments = ({ agentEmail }) => {
 
   return (
     <div>
+      <div className='apartment-entry-container'>
+        <div style={{ color: '#6f6389' }}>
+          User
+        </div>
+        <div style={{ color: '#6f6389' }}>
+          Address
+        </div>
+        <div style={{ color: '#6f6389' }}>
+          City
+        </div>
+        <div style={{ color: '#6f6389' }}>
+          State
+        </div>
+        <div style={{ color: '#6f6389' }}>
+          Documents
+        </div>
+      </div>
       {apartmentsApplied.map((apartment) => (
         <ApplicantListContainer apartment={apartment} />
       ))}

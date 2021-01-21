@@ -34,14 +34,15 @@ const DocumentOverlay = ({fileName}) => {
   }
 
   function getModalStyle() {
-    const top = 25;
-    const left = 25;
+    // const top = 25;
+    // const left = 25;
 
     return {
       width: '50%',
       margin: 'auto',
       padding: '10px',
-      border: '0px solid black'
+      border: '0px solid black',
+      height: '100%'
     };
   }
 

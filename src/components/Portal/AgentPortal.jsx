@@ -84,25 +84,40 @@ const AgentPortal = (props) => {
     <div>
       <div
         style={{
-          width: '40%',
-          maxWidth: '475px',
+          width: '475px',
           height: '515px',
-          border: '1px solid black',
+          border: '3px solid #6f6389',
           display: 'inline-block',
           position: 'fixed',
           backgroundColor: '#fff',
-          top: '30vh',
-          left: '10%',
+          top: '155px',
+          // left: '10%',
+          left: '1%',
           padding: '25px',
+          overflow: 'scroll'
         }}>
-        <h2>Property Inquiries</h2>
+        <h2 style={{
+          textAlign: 'center',
+          color: '#6f6389'
+        }}>Property Inquiries</h2>
         <div>
           <div style={{marginBottom: "10px"}}>
-            <div style={{ display: 'inline-block', width: '33.3%' }}>From</div>
-            <div style={{ display: 'inline-block', width: '33.3%' }}>
-              Address
-            </div>
-            <div style={{ display: 'inline-block', width: '33.3%', position:'relative', top:'11px'}}>
+            <div style={{
+              display: 'inline-block',
+              width: '33.3%',
+              color: '#6f6389'
+            }}>From</div>
+            <div style={{
+              display: 'inline-block',
+              width: '33.3%',
+              color: '#6f6389'
+            }}>Address</div>
+            <div style={{
+              display: 'inline-block',
+              width: '33.3%',
+              position:'relative',
+              top:'11px'
+            }}>
               <img
                 width='25'
                 height='30'
@@ -111,7 +126,6 @@ const AgentPortal = (props) => {
             </div>
           </div>
           <div style={{marginBottom: "10px"}}>
-            {console.log('chatHist', chatHist)}
             {chatHist.map((inQs, idx) => (
               <React.Fragment>
                 {(() => {
@@ -123,7 +137,8 @@ const AgentPortal = (props) => {
                         onClick={() => {
                           setChatIdx(idx);
                           setResetId(!resetId);
-                        }}>
+                        }}
+                      >
                         <div
                           style={{
                             display: 'inline-block',
@@ -131,6 +146,7 @@ const AgentPortal = (props) => {
                             verticalAlign: 'top',
                             maxHeight: '40px',
                             overflowWrap: 'anywhere',
+                            cursor: 'pointer'
                           }}>
                           {inQs.userName}
                         </div>
@@ -141,6 +157,7 @@ const AgentPortal = (props) => {
                             verticalAlign: 'top',
                             maxHeight: '40px',
                             overflowWrap: 'anywhere',
+                            cursor: 'pointer'
                           }}>
                           {inQs.address}
                         </div>
@@ -151,6 +168,7 @@ const AgentPortal = (props) => {
                             verticalAlign: 'top',
                             maxHeight: '40px',
                             overflowWrap: 'anywhere',
+                            cursor: 'pointer'
                           }}>
                           {inQs.messages[inQs.messages.length - 1].message}
                         </div>
@@ -165,19 +183,22 @@ const AgentPortal = (props) => {
       </div>
       <div
         style={{
-          width: '40%',
-          maxWidth: '475px',
+          width: '475px',
           height: '515px',
-          border: '1px solid black',
+          border: '3px solid #6f6389',
           display: 'inline-block',
           position: 'fixed',
           backgroundColor: '#fff',
-          top: '30vh',
-          right: '10%',
+          top: '155px',
+          // right: '10%',
+          right: '1%',
           padding: '25px',
           overflow: 'scroll'
         }}>
-        <h2>Document Upload</h2>
+        <h2 style={{
+          textAlign: 'center',
+          color: '#6f6389'
+        }}>Document Upload</h2>
         <AppliedApartments />
       </div>
       {texts ? (
@@ -194,13 +215,3 @@ const AgentPortal = (props) => {
 };
 
 export default AgentPortal;
-
-// width: 40%;
-// max-width: 475px;
-// height: 515px;
-// border: 1px solid black;
-// display: inline-block;
-// position: fixed;
-// background-color: #fff;
-// top: 30vh;
-// left: 30%;
