@@ -14,8 +14,11 @@ Redesign Apartment Hunt’s current website utilizing modern technologies.
 <span style="font-family:'Comic Sans MS', 'Comic Sans', cursive">Comic Sans</span> will be the default website font.
 <span style="color:pink">Pink</span> will be the primary color of the website.
 
-![Search Apartments Component](readme_assets/brd.pdf)
-![Search Apartments Component](readme_assets/wireframe.pdf)
+## Business Requirement Document
+[embed]readme_assets/brd.pdf[/embed]
+
+# Wireframe
+[embed]readme_assets/wireframe.pdf[/embed]
 
 ## Scripts
 npm start: Run this to start server running on port 3000. BE ADVISED - this command __does not__ run nodemon!
