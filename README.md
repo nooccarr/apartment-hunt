@@ -11,13 +11,11 @@ Redesign Apartment Hunt’s current website utilizing modern technologies.
 5. Allow agents to upload virtual tour of apartments.
 
 ## STYLING REQUIREMENTS
-
 <span style="font-family:'Comic Sans MS', 'Comic Sans', cursive">Comic Sans</span> will be the default website font.
 <span style="color:pink">Pink</span> will be the primary color of the website.
 
 
 ## Scripts
-
 npm start: Run this to start server running on port 3000. BE ADVISED - this command __does not__ run nodemon!
 npm run build: Run this script to compile webpack running in watch mode.
 npm test: Run this script to run __all__ test. Jest automatically looks for files with 'compenent'.test.js formating
