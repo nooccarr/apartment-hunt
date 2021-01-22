@@ -2,7 +2,7 @@
 
 ## Overview
 
-Redesign Apartment Hunt’s current website utilizing modern technologies. Main implementations include search functionality, user authentication, secure document upload, virtual tour, photo & video upload, and live chat.
+Redesign Apartment Hunt’s current website utilizing modern technologies. The application was built by 13 full-stack developers. Main implementations include search functionality, user authentication, secure document upload, virtual tour, photo & video upload, and live chat.
 
 ![Apartment Hunt Overview Demo](readme_assets/overview.gif)
 
@@ -77,7 +77,7 @@ The live chat lets the user communicate with an agent representing a given prope
 ![Live Chat Feature](readme_assets/live-chat.gif)
 
 ## Secure Document Upload
-The secure upload enables the user to securely upload documents to streamline the application process. The admin is able to securely view documents posted by my client to provide client feedback on whether they will get accepted or denied.
+The secure upload enables the user to securely upload documents to streamline the application process. Inside the agent portal, the agent is able to securely view documents posted by the user.
 
 ![Secure Document Upload Feature](readme_assets/secure-document-upload.gif)
 
