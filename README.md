@@ -82,6 +82,6 @@ The secure upload enables the user to securely upload documents to streamline th
 ![Secure Document Upload Feature](readme_assets/secure-document-upload.gif)
 
 ## Upload Listing
-The agent portal contains an upload listing page. Agents have the ability to list new apartments on Apartment Hunt’s website for users to view.
+The agent portal contains an upload listing page, where agents are allowed to list new apartments on Apartment Hunt’s website for users to view. Agents have the ability to add apartment location, description, upload photos, and videos to an apartment listing.
 
 ![Upload New Listing Feature](readme_assets/upload-listing.gif)
