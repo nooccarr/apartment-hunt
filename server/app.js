@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 const axios = require('axios');
 const path = require('path');
 const parser = require('body-parser');
@@ -139,6 +140,8 @@ app.use('(/listings)?', express.static(path.join(__dirname, '../dist')));
 app.use('(/profile)?', express.static(path.join(__dirname, '../dist')));
 app.use('(/uploadlisting)?', express.static(path.join(__dirname, '../dist')));
 app.use('(/aboutus)?', express.static(path.join(__dirname, '../dist')));
+
+app.use(compression());
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 app.use(cors());

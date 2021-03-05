@@ -37,7 +37,7 @@ const App = () => {
         getAdminInfo(token.payload.username, token.payload.email);
       }
     }
-    console.log('lol', window.location)
+    // console.log('lol', window.location)
     if (window.location.search.includes('chatId')) {
         let test = window.location.search.split('&')
         for (var keyId of test) {
