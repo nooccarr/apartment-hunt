@@ -45,8 +45,8 @@ const AppliedApartments = ({ agentEmail }) => {
           Documents
         </div>
       </div>
-      {apartmentsApplied.map((apartment) => (
-        <ApplicantListContainer apartment={apartment} />
+      {apartmentsApplied.map((apartment, i) => (
+        <ApplicantListContainer key={i} apartment={apartment} />
       ))}
     </div>
   );

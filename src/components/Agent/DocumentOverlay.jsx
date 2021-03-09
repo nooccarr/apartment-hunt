@@ -55,8 +55,8 @@ const DocumentOverlay = ({fileName}) => {
       <Modal open={open} onClose={updateOverlay}>
         <div className='all-page-container' style={getModalStyle()}>
           <Document file={file} onLoadError={console.error} onLoadSuccess={({numPages}) => setNumPages(numPages)}>
-            {Array.apply(null, Array(numPages)).map((x, i) => i+1)
-            .map(page => <Page pageNumber={page} />)}
+            {Array.apply(null, Array(numPages)).map((x, i) => i + 1)
+            .map((page, j) => <Page key={j} pageNumber={page} />)}
           </Document>
         </div>
       </Modal>

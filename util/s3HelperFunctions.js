@@ -1,7 +1,8 @@
 const S3 = require('aws-sdk/clients/s3');
 const crypto = require('crypto');
 const Stream = require('stream');
-const {ID, SECRET} = require('./s3Config.js');
+// const {ID, SECRET} = require('./s3Config.js');
+require('dotenv').config();
 
 const BUCKET_NAME = 'nate-pruitt-test-bucket-0001';
 
@@ -12,8 +13,8 @@ const key = crypto.scryptSync(password, 'salt', 24);
   // The IV is usually passed along with the ciphertext.
 const iv = Buffer.alloc(16, 0); // Initialization vector.
 const s3 = new S3({
-  accessKeyId: ID,
-  secretAccessKey: SECRET
+  accessKeyId: process.env.S3_ID,
+  secretAccessKey: process.env.S3_SECRET
 });
 
 const encryptMessage = (unecryptedMessage) => {

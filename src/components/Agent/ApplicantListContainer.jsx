@@ -6,8 +6,8 @@ const ApplicantListContainer = ({apartment}) => {
 
   return (
     <div>
-      {apartment['applicants'].map((username) => (
-        <ApplicantListEntry apartment={apartment} username={username} />
+      {apartment['applicants'].map((username, i) => (
+        <ApplicantListEntry key={i} apartment={apartment} username={username} />
       ))}
     </div>
 

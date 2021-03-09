@@ -6,7 +6,7 @@ const parser = require('body-parser');
 const cors = require('cors');
 const { router } = require('./routes/route');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // const {
 //   saveMsg,
@@ -20,9 +20,11 @@ const jwt = require('jsonwebtoken');
 var JwTStrategy = require('passport-jwt').Strategy;
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const key = require('./googleAuth/conf');
+// const key = require('./googleAuth/conf');
 const Utils = require('./utils/auth');
 const User = require('./models/userModel');
+
+require('dotenv').config();
 
 var opts = {};
 opts.jwtFromRequest = function (req) {
@@ -36,8 +38,8 @@ opts.jwtFromRequest = function (req) {
 passport.use(
   new GoogleStrategy(
     {
-      clientID: key.google.clientID,
-      clientSecret: key.google.clientSecret,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: '/auth/google/redirect',
     },
     (accessToken, refreshToken, profile, done) => {

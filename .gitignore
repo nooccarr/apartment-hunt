@@ -118,14 +118,14 @@ src/components/SearchResults/config/google_api_key.js
 
 # secret keys
 server/auth/credentials.js
-util/s3Config.js
-database/dbconfig.js
+# util/s3Config.js
+# database/dbconfig.js
 
 # google key
-src/components/overview/googleApi.js
+# src/components/overview/googleApi.js
 
 # Demo components
 src/components/DemoComponents
-server/googleAuth/conf.js
+# server/googleAuth/conf.js
 
 .DS_Store

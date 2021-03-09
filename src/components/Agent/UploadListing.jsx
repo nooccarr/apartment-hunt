@@ -308,7 +308,15 @@ const UploadListing = ({ searchValue, setSearchValue }) => {
               type='submit'
               value='Add'
               name='neighborhoods'
-              onClick={addUrl}></input>{listing.neighborhoods.map((neighborhood) => (<span onClick={() => {deleteNeighborhood(neighborhood)}}>{neighborhood}, </span>))}
+              onClick={addUrl}>
+            </input>
+            {listing.neighborhoods.map((neighborhood, i) => (
+              <span
+                key={i}
+                onClick={() => {deleteNeighborhood(neighborhood)}}
+              >
+                {neighborhood},
+              </span>))}
           </div>
           <div>
             <FileUploadOverlay setPhotosNames={updatePhotos} />

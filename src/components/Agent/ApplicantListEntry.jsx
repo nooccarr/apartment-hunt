@@ -32,8 +32,8 @@ const ApplicantListEntry = ({apartment, username}) => {
         {apartment.state}
       </div>
       <div className='documents-container'>
-        {userDocumentList.map((document) => (
-        <DocumentOverlay fileName={document} />
+        {userDocumentList.map((document, i) => (
+        <DocumentOverlay key={i} fileName={document} />
         ))}
       </div>
     </div>

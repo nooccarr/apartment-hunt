@@ -1,6 +1,6 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { ApartmentContext } from '../../HomePage/ApartmentContext.jsx'
-import google_api_key from '../config/google_api_key.js';
+// import google_api_key from '../config/google_api_key.js';
 import { Loader } from '@googlemaps/js-api-loader';
 import lightMap from './MapStyles/lightmap.js';
 import darkMap from './MapStyles/darkmap.js';
@@ -11,7 +11,8 @@ const GoogleMap = () => {
   const { listings, coordinates } = useContext(ApartmentContext)
 
   const loader = new Loader({
-    apiKey: google_api_key,
+    // apiKey: google_api_key,
+    apiKey: process.env.GOOGLE_API_KEY,
     version: 'weekly'
   });
 
@@ -33,7 +34,7 @@ const GoogleMap = () => {
       })
     })
     .then(() => {
-      marker = listings.map((apartment) => {
+      marker = listings.map((apartment, i) => {
         if (apartment.address === '' || listings.address === null) {
           return;
         } else {

@@ -1,5 +1,5 @@
 import React from 'react';
-import googleKey from './googleApi.js'
+// import googleKey from './googleApi.js'
 
 class CrimeMap extends React.Component {
     constructor(props) {

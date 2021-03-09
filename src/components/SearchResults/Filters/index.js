@@ -10,7 +10,7 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
     document.getElementById(`${num}${type}`).classList.add('selected');
 
     let ids = [`0${type}`, `1${type}`, `2${type}`, `3${type}`];
-    
+
     ids = ids.filter(element => element !== `${num}${type}`);
     ids.forEach(e => {
       document.getElementById(e).classList.remove('selected');
@@ -32,7 +32,7 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
       setRequestedMaxPrice(max);
     }
   };
-  
+
   const numbercheck = (e) => {
     if ((47 < e.charCode && e.charCode < 58) || e.charCode === 8 || e.charCode === 46) {
       return true;
@@ -43,20 +43,20 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
 
   const dropdowns = {
     Price:  <div className='dropdown'>
-              $<input 
-                id='minPrice' 
-                className='priceText' 
-                type='text' 
-                placeholder='Min' 
+              $<input
+                id='minPrice'
+                className='priceText'
+                type='text'
+                placeholder='Min'
                 maxLength='6'
                 onKeyPress={ numbercheck }
               />
               <div style={{marginRight: '10px'}}>-</div>
-              $<input 
-                id='maxPrice' 
-                className='priceText' 
-                type='text' 
-                placeholder='Max' 
+              $<input
+                id='maxPrice'
+                className='priceText'
+                type='text'
+                placeholder='Max'
                 maxLength='6'
                 onKeyPress={ numbercheck }
               />
@@ -74,18 +74,18 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
             <div id='2baths' className='bathSelect' onClick={() => select('2','baths')}>2+</div>
             <div id='3baths' className='bathSelect' onClick={() => select('3','baths')}>3+</div>
           </div>,
-    More: <div 
-            className='dropdown' 
+    More: <div
+            className='dropdown'
             id='moreDropDown'
             style={{
               width: `${document.getElementById('toggleMore')?.offsetWidth - 12}px`,
             }}
     >
             <input type='checkbox' id='dogs' className='checkbox' value={requestedDogs} onChange={() => setRequestedDogs(!requestedDogs)} />
-            <label for='dogs' className='checkbox' onChange={() => setRequestedDogs(!requestedDogs)}>Allow Dogs</label>
+            <label htmlFor='dogs' className='checkbox' onChange={() => setRequestedDogs(!requestedDogs)}>Allow Dogs</label>
             <br />
             <input type='checkbox' id='cats' className='checkbox' onChange={() => setRequestedCats(!requestedCats)} />
-            <label for='cats' className='checkbox' onChange={() => setRequestedCats(!requestedCats)}>Allow Cats</label>
+            <label htmlFor='cats' className='checkbox' onChange={() => setRequestedCats(!requestedCats)}>Allow Cats</label>
           </div>
   };
 
@@ -121,12 +121,12 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
 
   return (
     <div className='allFiltersContainer'>
-      {categories.map(filter => {
+      {categories.map((filter, i) => {
         return (
-          <div className='singleFilterContainer'>
-            <div 
+          <div key={i} className='singleFilterContainer'>
+            <div
               id={ 'toggle' + filter }
-              className='filter' 
+              className='filter'
               onClick={() => {
                 document.getElementById(filter).classList.toggle('show');
                 document.getElementById(`toggle${filter}`).classList.toggle(filter);
@@ -148,7 +148,7 @@ const Filters = ({ requestedBeds, setRequestedBeds, requestedBaths, setRequested
                                   : `$${requestedMinPrice}-$${requestedMaxPrice}`
                           : filter
               }
-              <img 
+              <img
                 src="https://img.icons8.com/ios/24/000000/chevron-down.png"
                 style={{height: '10px', width: '10px'}}
               />

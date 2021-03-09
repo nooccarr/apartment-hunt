@@ -97,7 +97,8 @@ const App = () => {
   return (
     <div>
       <ApartmentContext.Provider
-        value={{ listings, getListings, coordinates, setCoordinates }}>
+        value={{ listings, getListings, coordinates, setCoordinates }}
+      >
         <Navigation
           getAdminInfo={getAdminInfo}
           getUserInfo={getUserInfo}

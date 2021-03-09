@@ -22,10 +22,10 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
 
   const findApartments = () => {
     // API call with Coordinates
-    axios.get('/search', { 
+    axios.get('/search', {
       params: {
         distance: 0.25,
-        lat: coordinates.lat, 
+        lat: coordinates.lat,
         long: coordinates.lng,
       }
     })
@@ -38,7 +38,7 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
       // .then(() => { setSearchValue(address || 'Current Location'); })
       .catch((error) => { console.log('Error getting Apartments Nearby: ', error)});
   }
-  
+
 
   const startGeolocation = () => {
     if (navigator.geolocation) {
@@ -85,41 +85,42 @@ const HomePageSearch = ({ searchValue, setSearchValue }) => {
           }) => (
             <div>
               <form
-                className='search-container' 
+                className='search-container'
                 onSubmit={findApartments}
               >
-                <img 
-                  className='pink-marker' 
-                  src={pinkmarker} 
+                <img
+                  className='pink-marker'
+                  src={pinkmarker}
                   alt='pink-marker'
                   onClick={startGeolocation}
                 />
                 <input
                   className='search-bar'
                   onChange={setAddress}
-                  {...getInputProps({placeholder: 'Enter an address, neighborhood, city, or ZIP code' })} 
+                  {...getInputProps({placeholder: 'Enter an address, neighborhood, city, or ZIP code' })}
                 />
-                <img 
-                  className='search-icon' 
+                <img
+                  className='search-icon'
                   src={searchicon}
                   alt='search-icon'
                   onClick={findApartments}
                 />
               </form>
-              <div 
+              <div
                 className='search-list'>
                 {loading && <div className='search-suggestions' key='999'>Loading...</div>}
 
                 {suggestions.map((suggestion, index) => {
                   return (
-                    <>
+                    // <>
                       <div
                         {...getSuggestionItemProps(suggestion)}
                         className='search-suggestions'
-                        key={index}>
+                        key={index}
+                      >
                         {suggestion.description}
                       </div>
-                    </>
+                    // </>
                   );
                 })}
               </div>

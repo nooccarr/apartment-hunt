@@ -104,8 +104,8 @@ const FileUpload = ({username, apartment_id, setPhotosNames}) => {
     </div>
     <div className='preview-file-container'>
       {files.length > 0 && <hr />}
-      {files.map((file) => (
-        <FilePreview file={file} deleteFile={deleteFile} />))
+      {files.map((file, i) => (
+        <FilePreview key={i} file={file} deleteFile={deleteFile} />))
       }
     </div>
     {files.length > 0 && <div className='upload-cancel-container'>
