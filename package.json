@@ -11,7 +11,7 @@
     "test": "jest",
     "start": "nodemon server/index.js",
     "start-sock": "nodemon src/components/ChatBox/backend",
-    "build-dev": "webpack --mode development --watch",
+    "build-dev": "webpack --mode development",
     "build-prod": "webpack --config webpack.prod.js"
   },
   "repository": {
