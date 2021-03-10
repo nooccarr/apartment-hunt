@@ -1,5 +1,5 @@
-const express = require('express');
 const compression = require('compression');
+const express = require('express');
 const axios = require('axios');
 const path = require('path');
 const parser = require('body-parser');
@@ -8,6 +8,7 @@ const { router } = require('./routes/route');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(compression());
 // const {
 //   saveMsg,
 //   fetchChatsByUser,
@@ -143,7 +144,6 @@ app.use('(/profile)?', express.static(path.join(__dirname, '../dist')));
 app.use('(/uploadlisting)?', express.static(path.join(__dirname, '../dist')));
 app.use('(/aboutus)?', express.static(path.join(__dirname, '../dist')));
 
-app.use(compression());
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 app.use(cors());
