@@ -2,7 +2,7 @@
   "name": "blue_ocean",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.js",
   "engines": {
     "node": "12.18.4",
     "npm": "6.14.6"
