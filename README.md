@@ -60,6 +60,10 @@ npm start
 * [Passport](http://www.passportjs.org/)
 * [AWS](https://aws.amazon.com)
 
+## Running
+
+Open [Apartment Hunt](http://ec2-54-88-10-55.compute-1.amazonaws.com) in the browser. The database instance is currently stopped but if you'd like to take a peek, please message me personally!
+
 ## Features
 ### Authentication
 A login page provides several options to login and signup for the user and Admin. Once logged in, the user is given access to only the private profile and public routes, and the admin has access to the agent portal.
