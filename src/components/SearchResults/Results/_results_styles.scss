@@ -24,7 +24,7 @@ $dark-pink: rgb(191, 99, 104);
     width: 245px;
     height: 275px;
     margin: {
-      top: 5px;
+      top: 15px;
       // bottom: 10px;
       left: 5px;
       right: 5px;
@@ -45,6 +45,7 @@ $dark-pink: rgb(191, 99, 104);
     display: grid;
     grid-template-rows: 55% 45%;
     overflow: hidden;
+    cursor: pointer;
 
     .listingPhoto {
       height: 100%;
@@ -57,7 +58,7 @@ $dark-pink: rgb(191, 99, 104);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-radius: 5px;
+      border-radius: 5px 5px 0 0;
 
       .arrows {
         background-color: white;
@@ -72,6 +73,12 @@ $dark-pink: rgb(191, 99, 104);
       display: flex;
       flex-direction: column;
       font-family: $text;
+      background-color: lightgray;
+      border-radius: 0 0 5px 5px;
+      padding-left: 10px;
+      width: 96%;
+      border: 1px solid lightgray;
+      // border-right: none;
 
       .price {
         margin: {

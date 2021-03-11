@@ -38,7 +38,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 .wrap {
-  width: 80%;
+  width: 70%;
   text-align: right;
   margin: 0 auto;
   transition: all 0.2s linear;
@@ -62,10 +62,13 @@ body {
   position: relative;
   display: inline-block;
   font-size: 2em;
+  padding-right: 140px;
 }
 .menu {
-  float: right;
+  float: left;
   margin: 1px 0;
+  width: 100%;
+  min-width: 398px;
 }
 .menu li {
   display: inline-block;
@@ -73,13 +76,16 @@ body {
 .menu li a {
   display: inline;
   font-size: 1em;
-  font-weight: 400;
+  font-weight: 300;
   margin: 5px 15px;
-  color: rgb(0, 0, 0);
+  color: white;
   transition: all 0.5s ease;
+  text-decoration: none;
+
 }
 .menu li a:hover {
-  color: rgb(191, 99, 104);
+  color: #ffc8c8;
+  text-decoration: underline;
 }
 
 .menu li a:active {
@@ -120,7 +126,7 @@ body {
 .navigation-search-bar {
   height: 100px;
   display: block;
-  text-align: left;
+  text-align: right;
 }
 
 #loginButton {
@@ -191,7 +197,7 @@ input.search-input {
   z-index: 0;
   display: block;
   position: relative;
-  left: 20px;
+  // left: 20px;
   width: 1000px;
   transition: all 0.2s linear;
 }
@@ -205,8 +211,8 @@ input.search-input {
   display: block;
   background-color: rgb(255, 255, 255, 0.7);
   width: 1300px;
-
-  margin: 10px;
+  margin-left: 65px;
+  // margin: 10px;
   height: 600px;
   grid-row: 1;
   display: grid;

@@ -38,6 +38,7 @@ File Upload/ Video Upload Fonts
 }
 .select-documents-container {
   display:flex;
+  cursor: pointer;
 
 }
 .status-message {
@@ -50,6 +51,12 @@ File Upload/ Video Upload Fonts
     padding: 15px 32px;
     font-size: 16px;
     font-weight: bold;
+    margin: 0 auto;
+}
+
+.select-documents-container:hover {
+  border: 2px solid #ff6ec7;
+  border-radius: 5px;
 }
 .preview-file-container > hr {
   border: 1px solid #FF6EC7;

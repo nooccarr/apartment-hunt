@@ -16,14 +16,16 @@
 }
 .options {
     position: absolute;
+    padding-top: 8px;
     color: white;
-    text-decoration: underline;
     text-shadow: 1px 1px 1px black;
     user-select: none;
     z-index: 10;
 }
 .options:hover {
-    color: aqua;
+    color: #ffc8c8;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .carousel {
@@ -46,11 +48,13 @@
     opacity: 1;
 }
 .right {
+    cursor: pointer;
     transform: rotate(-45deg);
     right: 50px;
     top: 220px;
 }
 .left {
+    cursor: pointer;
     transform: rotate(135deg);
     left: 50px;
     top: 220px;
@@ -61,6 +65,7 @@
     width: 900px;
 }
 .gallery-photo {
+    cursor: pointer;
     padding: 5px;
     height: 40px;
     width: 40px;

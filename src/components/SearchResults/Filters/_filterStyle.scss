@@ -12,6 +12,7 @@ $text: helvetica;
     right: 30px;
     top: 10px;
   };
+
   .singleFilterContainer {
     position: relative;
     display: inline-block;
@@ -39,6 +40,9 @@ $text: helvetica;
         style: solid;
         width: 1px;
       }
+      min-width: 80px;
+      font-weight: 100;
+      font-size: small;
     }
     .filter:hover {
       background-color: $color;

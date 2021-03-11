@@ -37,18 +37,18 @@ const App = () => {
         getAdminInfo(token.payload.username, token.payload.email);
       }
     }
-    // console.log('lol', window.location)
-    if (window.location.search.includes('chatId')) {
-        let test = window.location.search.split('&')
-        for (var keyId of test) {
-          if (keyId.includes('chatId')) {
-            console.log('chunk', keyId.split('=')[1])
-            let key = keyId.split('=')[1]
-            setChatId(key)
-            setRouted(true)
-          }
-        }
-    }
+    // // console.log('lol', window.location)
+    // if (window.location.search.includes('chatId')) {
+    //     let test = window.location.search.split('&')
+    //     for (var keyId of test) {
+    //       if (keyId.includes('chatId')) {
+    //         console.log('chunk', keyId.split('=')[1])
+    //         let key = keyId.split('=')[1]
+    //         setChatId(key)
+    //         setRouted(true)
+    //       }
+    //     }
+    // }
   }, []);
 
   const signOut = () => {

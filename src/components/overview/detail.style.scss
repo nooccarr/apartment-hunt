@@ -4,7 +4,7 @@
 .pink {
     color: pink;
   }
-  
+
   .desContainer {
     width: 300px;
     height: 300px;
@@ -16,7 +16,7 @@
     right: 0px;
     background-color: white;
   }
-  
+
   .criteria {
     position: absolute;
 
@@ -26,10 +26,11 @@
   }
 
   .criteria:hover {
-      border: 2px solid rgb(255, 0, 234);
+      border: 2px solid #d4d4d4;
       border-radius: 55px;
+      cursor: pointer;
   }
-  
+
   .desMain {
     margin: auto;
     width: 1000px;
@@ -41,14 +42,14 @@
     align-content: flex-start;
     align-items: stretch;
   }
-  
+
   .desDetail {
     background-color: white;
     order: 0;
     flex: 2 1 auto;
     align-self: auto;
   }
-  
+
   .desAct {
     position: absolute;
     width: 200px;
@@ -56,7 +57,7 @@
     top: 0px;
     right: 0px;
   }
-  
+
   .contactAgent1 {
     position: relative;
     color: $dark-pink;
@@ -89,7 +90,7 @@
   .contactAgent:hover {
     cursor: pointer;
   }
-  
+
   .subApp {
     color: pink;
     font-size: 45px;
@@ -99,7 +100,7 @@
     padding-top: 20px;
     width: 120%;
   }
-  
+
   .desDetail {
     display: flex;
     flex-direction: column;
@@ -108,7 +109,7 @@
     align-content: stretch;
     align-items: stretch;
   }
-  
+
   .desAddress {
     width: 800px;
     font-size: 35px;
@@ -118,7 +119,7 @@
     align-self: auto;
     margin-bottom: 20px;
   }
-  
+
   .desAptDet {
     font-size: 25px;
     width: 800px;
@@ -136,19 +137,19 @@
     left: 0px;
     height: 10px;
   }
-  
+
   .desEle1 {
     order: 0;
     flex: 1 1 auto;
     align-self: auto;
   }
-  
+
   .desEle2 {
     order: 0;
     flex: 1 1 auto;
     align-self: auto;
   }
-  
+
   .desEle3 {
     order: 0;
     flex: 1 1 auto;
@@ -159,7 +160,7 @@
     height: 150px;
     position: relative;
   }
-  
+
   .desDes {
     position:relative;
     padding: 15px;
@@ -174,7 +175,7 @@
     width: 650px;
     height: 300px;
   }
-  
+
   .modal {
     display: block; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -187,7 +188,7 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-  
+
   /* Modal Content/Box */
   .modal-content {
     border-radius: 20px;
@@ -195,7 +196,8 @@
     margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 20%; /* Could be more or less, depending on screen size */
+    // width: 20%; /* Could be more or less, depending on screen size */
+    width: 300px; /* Could be more or less, depending on screen size */
   }
 
   .modal-content2 {
@@ -204,7 +206,8 @@
     margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */
+    // width: 40%; /* Could be more or less, depending on screen size */
+    width: 670px;
   }
 
   .modal-content3 {
@@ -215,30 +218,32 @@
     border: 1px solid #888;
     width: 40%; /* Could be more or less, depending on screen size */
   }
-  
+
   /* The Close Button */
   .close {
     color: #aaa;
+    cursor: pointer;
     float: right;
     font-size: 28px;
     font-weight: bold;
   }
-  
+
   .restaurantList {
     overflow: scroll;
   }
-  
+
   .modalImage {
-    height: 100px
+    height: 100px;
+    // margin-right: 20px;
   }
-  
+
   .singleSchool {
     background-color: $light-pink;
-    margin-bottom: 15px;
+    margin: 0 auto 20px auto;
     border: 2px solid pink;
     border-radius: 20px;
     color: $dark-pink;
-    padding-left: 20px;
+    // padding-left: 20px;
     width: 80%;
     text-align: center;
   }
@@ -247,6 +252,7 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     color: $dark-pink;
+    margin-bottom: 0;
   }
 
   .neighborhoodName {

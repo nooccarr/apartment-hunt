@@ -39,11 +39,13 @@ class Schools extends React.Component {
                         return (
                             <div key={index} className='singleSchool'>
                                 <p className='placeName'>{school.name}</p><br></br>
-                                <img src={school.photos === undefined ?
-                                'https://visualsound.com/wp-content/uploads/2019/05/unavailable-image.jpg' :
-                                // `https://maps.googleapis.com/maps/api/place/photo?maxheight=100&photoreference=${school.photos[0].photo_reference}&key=${googleKey}`}
-                                `https://maps.googleapis.com/maps/api/place/photo?maxheight=100&photoreference=${school.photos[0].photo_reference}&key=${process.env.GOOGLE_MAP_API_KEY}`}
-                                className='modalImage'></img><br></br>
+                                <img
+                                    src={school.photos === undefined ?
+                                    'https://149368757.v2.pressablecdn.com/wp-content/uploads/Photos-Coming-Soon.jpg' :
+                                    // `https://maps.googleapis.com/maps/api/place/photo?maxheight=100&photoreference=${school.photos[0].photo_reference}&key=${googleKey}`}
+                                    `https://maps.googleapis.com/maps/api/place/photo?maxheight=100&photoreference=${school.photos[0].photo_reference}&key=${process.env.GOOGLE_MAP_API_KEY}`}
+                                    className='modalImage'
+                                ></img><br></br>
                                 <b>Rating:</b> {school.rating} {star.repeat(Math.round(school.rating))}{empty.repeat(5-Math.round(school.rating))}<br/>
                             </div>
                         )

@@ -14,6 +14,7 @@ const Convos = ({ chatHistory, selectConvo }) => {
           <div
             style={{
               padding: '20px 10px',
+              textAlign: 'left',
               cursor: 'pointer',
               borderBottom: `${chatHistory.length - 1 === idx ? '' :'2px dotted #efaeaa'}`
             }}

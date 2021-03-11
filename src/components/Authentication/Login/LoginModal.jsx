@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #fff',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    minWidth: '230px',
     width: '25%',
     height: '600px',
     borderRadius: '2px',
