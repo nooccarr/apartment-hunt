@@ -81,20 +81,20 @@ const AgentPortal = (props) => {
   };
 
   return (
-    <div>
+    <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
       <div
         style={{
           width: '475px',
           // height: '515px',
-          height: '700px',
+          height: '73vh',
           border: '3px solid #6f6389',
           display: 'inline-block',
-          position: 'fixed',
+          // position: 'fixed',
           backgroundColor: '#fff',
           // top: '155px',
           // left: '10%',
-          top: '200px',
-          left: '3%',
+          // top: '250px',
+          // left: '3%',
           padding: '25px',
           overflow: 'scroll'
         }}>
@@ -187,15 +187,15 @@ const AgentPortal = (props) => {
         style={{
           width: '475px',
           // height: '515px',
-          height: '700px',
+          height: '73vh',
           border: '3px solid #6f6389',
           display: 'inline-block',
-          position: 'fixed',
+          // position: 'fixed',
           backgroundColor: '#fff',
           // top: '155px',
           // right: '10%',
-          top: '200px',
-          right: '3%',
+          // top: '250px',
+          // right: '3%',
           padding: '25px',
           overflow: 'scroll'
         }}>

@@ -104,6 +104,7 @@ const Navigation = ({ searchValue, setSearchValue, getUserInfo, getAdminInfo, us
               </button>
               <div id="agentPages" className="agentContent">
                 <p
+                  style={{ borderBottom: '2px dotted rgb(239, 174, 170)'}}
                   onClick={() => {
                     window.history.pushState(
                       { path: `/uploadlisting` },
