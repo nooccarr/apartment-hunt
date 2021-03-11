@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest",
     "start": "pm2 start server/index.js && pm2 start src/components/ChatBox/backend",
-    "stop": "pm2 stop server/index.js",
+    "stop": "pm2 stop server/index.js && pm2 stop src/components/ChatBox/backend",
     "nodemon": "nodemon server/index.js",
     "start-sock": "nodemon src/components/ChatBox/backend",
     "build-dev": "webpack --mode development",
