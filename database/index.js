@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const db = mongoose.connect('mongodb://localhost/apartmentHunt?authSource=admin', { promiseLibrary: global.Promise, useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connect('mongodb://localhost:27017/ApartmentHunt', { promiseLibrary: global.Promise, useNewUrlParser: true, useUnifiedTopology: true });
+// const db = mongoose.connect('mongodb://localhost:27017/apartmentHunt', { promiseLibrary: global.Promise, useNewUrlParser: true, useUnifiedTopology: true });
 
 // require('dotenv').config();
 
