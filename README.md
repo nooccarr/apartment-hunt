@@ -62,7 +62,21 @@ npm start
 
 ## Running
 
-Open [Apartment Hunt](http://ec2-54-88-10-55.compute-1.amazonaws.com) in the browser. The database instance is currently stopped but if you'd like to take a peek, please message me personally!
+Brooklyn Real Estate & Apartments for Sale!
+Open [Apartment Hunt](http://ec2-54-88-10-55.compute-1.amazonaws.com) in the browser for more information.
+
+## Demo Accounts
+
+Client:
+```sh
+email: dylanallgood@gmail.com
+password: test
+```
+Agent:
+```sh
+email: apartmenthunt@gmail.com
+password: admin
+```
 
 ## Features
 ### Authentication
